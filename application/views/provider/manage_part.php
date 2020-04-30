@@ -29,6 +29,8 @@
 				<table id="myTable" class="table table-striped" >
 					<thead>
 					<tr>
+						<th style="text-align: center;"><input type="checkbox" class="selectAll"></th>
+						<th>ID</th>
 						<th>Photo</th>
 
 						<th>Part name/Part number</th>
@@ -53,6 +55,8 @@
 						$photo_name = $this->partphotos->select_photo($us->id);
 						?>
 						<tr>
+							<td></td>
+							<td><?php echo $us->id?></td>
 							<td>
 								<?php if (!empty($photo_name)) {?>
 									<img class="img_size" src="<?php echo base_url() . "/upload/$photo_name->photo_name" ?>">
@@ -103,9 +107,68 @@
 </div>
 <?php $this->load->view("common/common_script")?>
 
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
 <script>
     $(document).ready( function () {
-        $('#myTable').DataTable({"bSort": false});
+        // Setup - add a text input to each footer cell
+        // $('#myTable tfoot th').each( function () {
+        //     var title = $(this).text();
+        //     if(title)
+	    //         $(this).html( '<input style="width: 150px; font-weight: 100;" type="text" placeholder="Search '+title+'" />' );
+        // } );
+
+        var table= $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0
+            } ],
+            select: {
+                style:    'multi+shift',
+                selector: 'td:first-child'
+            },
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print',
+                {
+                    text: 'Delete Selected',
+                    action: function () {
+                        var data= table.rows( { selected: true } ).data();
+                    }
+                },
+            ],
+            "bSort": false
+        });
+        $(".selectAll").on( "click", function(e) {
+            if ($(this).is( ":checked" )) {
+                table.rows({ page: 'current' }).select();
+            } else {
+                table.rows({ page: 'current' }).deselect();
+            }
+            console.log(table.rows( { selected: true } ).data())
+        });
+
+        // Apply the search
+        // table.columns().every( function () {
+        //     var that = this;
+		//
+        //     $( 'input', this.footer() ).on( 'keyup change clear', function () {
+        //         if ( that.search() !== this.value ) {
+        //             that
+        //                 .search( this.value )
+        //                 .draw();
+        //         }
+        //     } );
+        // } );
+
     });
 </script>
 </body>

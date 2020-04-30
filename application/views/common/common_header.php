@@ -52,6 +52,18 @@
     <link  rel="stylesheet" href="<?php echo base_url()?>assets/plugins/bower_components/datatables/jquery.dataTables.min.css">
     <link  rel="stylesheet" href="<?php echo base_url()?>assets/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css">
     <link  rel="stylesheet" href="<?php echo base_url()?>assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.css">
+
+	
+	<!-- DataTable -->
+	<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+	<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
+	
+	<!-- File Uploader -->
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.css">
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.css">
+
     <script src="<?php echo  base_url();?>assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,7 +71,12 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+	<style>
+		table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected, table.dataTable tbody tr.selected {
+			background-color: #B0BED9 !important;
+		}
+	</style>
+
 </head>
 
-    
-    
+

@@ -56,6 +56,11 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
 							<div class="row" style="padding-top: 20px">
+								<div class="col-md-10 col-md-offset-1">
+									<div style="cursor: pointer" class="input-images"></div>
+								</div>
+							</div>
+							<div class="row" style="padding-top: 20px">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>
@@ -113,32 +118,30 @@
 
 
                             </div>
-                            <div class="row margin-top">
-								<br>
-								<label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>
+<!--                            <div class="row margin-top">-->
+<!--								<br>-->
+<!--								<label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>-->
 
-								<div class=" el-element-overlay m-b-40" style="margin: 15px">
+<!--								<div class=" el-element-overlay m-b-40" style="margin: 15px">-->
 									<?php
 foreach ($part_photos as $us) {
 	?>
-										<div  style="width: 20%" class=" col-md-4 col-sm-6 col-xs-12">
-												<div style="padding-bottom: 0px" class="el-card-item">
-													<div style="height:180px;" class="el-card-avatar el-overlay-1"> <image style="width:180px;margin:auto;" src="<?php echo base_url('upload/') . $us['photo_name']; ?>">
-															<div class="el-overlay">
-																<ul class="el-info">
-																	<li><a class="btn default btn-outline" title="Delete" href="<?php echo base_url('part_photos/del_part_photos/') ?><?php echo $us['id'] . '/' . $part_id; ?>" ><i class="icon-trash"></i></a></li>
-																	<li><a class="text-inverse pr-2" title="Edit"  data-original-title="Edit" href="javascript:void(0)"  data-toggle="modal" data-target="#edit_role" onclick="update('<?php echo $us['id']; ?>','<?php echo $us['is_default']; ?>','<?php echo $part_id; ?>')"><i class="ti-marker-alt"></i></a></li>
-
-																</ul>
-															</div>
-
-													</div>
-
-												</div>
-											<div align="center">
-
-											</div>
-										</div>
+<!--										<div  style="width: 20%" class=" col-md-4 col-sm-6 col-xs-12">-->
+<!--												<div style="padding-bottom: 0px" class="el-card-item">-->
+<!--													<div style="height:180px;" class="el-card-avatar el-overlay-1"> <image style="width:180px;margin:auto;" src="--><?php //echo base_url('upload/') . $us['photo_name']; ?><!--">-->
+<!--															<div class="el-overlay">-->
+<!--																<ul class="el-info">-->
+<!---->
+<!--																</ul>-->
+<!--															</div>-->
+<!---->
+<!--													</div>-->
+<!---->
+<!--												</div>-->
+<!--											<div align="center">-->
+<!---->
+<!--											</div>-->
+<!--										</div>-->
 
 									<?php }
 ;?>
@@ -146,29 +149,29 @@ foreach ($part_photos as $us) {
 for ($i = 0; $i < $remaining_count; $i++) {
 	?>
 
-										<div  style="width: 20%" class=" col-md-4 col-sm-6 col-xs-12">
-											<div style="padding-bottom: 0px" class="el-card-item">
-												<div style="height:180px;" class="el-card-avatar el-overlay-1"> <image style="width:180px;margin:auto;" src="">
-														<div class="el-overlay">
-															<ul class="el-info">
-
-															</ul>
-														</div>
-
-												</div>
-
-											</div>
-											<div align="center">
-												<input style =" font-size: 10px; padding  : 12px ; width : 180px ; display : initial ; margin-bottom : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-											</div>
-										</div>
+<!--										<div  style="width: 20%" class=" col-md-4 col-sm-6 col-xs-12">-->
+<!--											<div style="padding-bottom: 0px" class="el-card-item">-->
+<!--												<div style="height:180px;" class="el-card-avatar el-overlay-1"> <image style="width:180px;margin:auto;" src="">-->
+<!--														<div class="el-overlay">-->
+<!--															<ul class="el-info">-->
+<!---->
+<!--															</ul>-->
+<!--														</div>-->
+<!---->
+<!--												</div>-->
+<!---->
+<!--											</div>-->
+<!--											<div align="center">-->
+<!--												<input style =" font-size: 10px; padding  : 12px ; width : 180px ; display : initial ; margin-bottom : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--											</div>-->
+<!--										</div>-->
 
 
 									<?php }
 ;?>
-								</div>
+<!--								</div>-->
 
-							</div>
+<!--							</div>-->
                             <div class="row margin-top">
                                  <div class="col-md-6">
                                     <div class="form-group">
@@ -427,8 +430,26 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
         <?php $this->load->view("common/common_script")?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                var preloaded= [];
+                <?php
+				foreach ($part_photos as $us) {
+					?>
+				preloaded.push({
+					id: <?php echo $us['id']; ?>,
+					src: "<?php echo base_url('upload/') . $us['photo_name']; ?>"
+				})
+					<?php
+				}
+				?>
+				console.log(JSON.stringify(preloaded))
+                $('.input-images').imageUploader({
+                    preloaded: preloaded,
+                    imagesInputName: 'image',
+                    preloadedInputName: 'old'
+                });
                 $("#btn").click(function () {
                     $("#Create").show();
                     $("#btn").hide();

@@ -22,6 +22,21 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
 							<div class="row" style="padding-top: 20px">
+								<div class="col-md-10 col-md-offset-1">
+<!--									<div style="cursor: pointer" class="input-images"></div>-->
+<!--									<fieldset class="form-group">-->
+<!--										<a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>-->
+<!--										<input type="file" id="pro-image" style="display: none;" class="form-control" multiple>-->
+<!--									</fieldset>-->
+									<div class="preview-images-zone" id="preview-images-zone" style="cursor: pointer">
+										<div class="preview-image preview-show-1">
+											<div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>
+											<input type="file" class="karim-upload" style="display: none;" class="form-control"  name="image[]" multiple="multiple">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row" style="padding-top: 20px">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>
@@ -77,20 +92,21 @@
 
                                 </div>
                             </div>
-                            <label style =" padding  : 15px ; font-size: 17px;" for="inputEmail3" class="control-label"> Part Photo's</label><br>
-							<label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>
+<!--                            <label style =" padding  : 15px ; font-size: 17px;" for="inputEmail3" class="control-label"> Part Photo's</label><br>-->
+<!--							<label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>-->
                             <div align="center">
+<!--								<div class="input-images"></div>-->
 
-                                      <input style =" padding  : 12px ; width : 180px ; display : initial ; margin : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" required />
-                                      <input style =" padding  : 12px ; width : 180px ; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
+<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial ; margin : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" required />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
                                                 </div>
                             <div class ="row margin-top" >
 
@@ -345,6 +361,10 @@
         <?php $this->load->view('common/common_script')?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -375,6 +395,11 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
+                $('.input-images').imageUploader({
+                    // preloaded: preloaded,
+                    imagesInputName: 'image',
+                    preloadedInputName: 'old'
+                });
 
                 // $('#datepicker2').datepicker({
                 //     format : 'yyyy-mm-dd',
