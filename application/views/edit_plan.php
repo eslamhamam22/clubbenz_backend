@@ -36,7 +36,7 @@ foreach ($rec as $us) {?>
                                     <div class="form-group">
                                         <label  class="col-sm-3 control-label"> Upload Photo</label>
                                         <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="photo" id="photo" size="20"/>
+                                          <input type="file" class= "form-control btn btn-default" name="photo" id="photo" size="20" />
 
                                        </div>
                                     </div>
@@ -47,37 +47,44 @@ foreach ($rec as $us) {?>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Title</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="title" class="form-control" id="title"value="<?php echo $us->title; ?>"> </div>
+                                            <input type="text" name="title" class="form-control" id="title"value="<?php echo $us->title; ?>" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Parts</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="num_parts" class="form-control" id="num_parts"value="<?php echo $us->num_parts; ?>">
+                                            <input type="number" name="num_parts" class="form-control" id="num_parts"value="<?php echo $us->num_parts; ?>" required>
 
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Featured</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="num_featured" class="form-control" value="<?php echo $us->num_featured ?>" required>
+                                            <input type="number" name="num_featured" class="form-control" value="<?php echo $us->num_featured ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="price" class="form-control" value="<?php echo $us->price ?>" required>
+                                            <input type="number" name="price" class="form-control" value="<?php echo $us->price ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Frequency</label>
                                         <div class="col-sm-9">
-                                            <select id="frequency"  name="frequency" class="form-control">
+                                            <select id="frequency"  name="frequency" class="form-control" required >
                                                 <?php if (!empty($us->frequency)) {?>
+                                                <option value="0month" <?php echo $us->frequency == '0month' ? 'selected' : ''; ?>>3month</option>
                                                 <option value="3month" <?php echo $us->frequency == '3month' ? 'selected' : ''; ?>>3month</option>
                                                 <option value="6month" <?php echo $us->frequency == '6month' ? 'selected' : ''; ?>>6month</option>
                                                 <option value="9month" <?php echo $us->frequency == '9month' ? 'selected' : ''; ?>>9month</option>
                                                 <?php }?>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Extra Days</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" name="extra_days" class="form-control" value="<?php echo $us->extra_days ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group m-b-0">

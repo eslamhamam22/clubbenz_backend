@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
  */
 // $config['base_url'] = 'http://66.45.230.53/~clubenz/live/';
-$config['base_url'] = 'http://clubbenz.localhost/';
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------

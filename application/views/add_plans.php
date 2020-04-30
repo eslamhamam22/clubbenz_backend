@@ -28,7 +28,7 @@
                                     <div class="form-group">
     									<label for="inputEmail3" class="col-sm-3 control-label"> Upload Plan Photo</label>
                                         <div class="col-sm-9">
-    									  <input type="file" class= "form-control btn btn-default" name="photo" id="photo" size="20"/>
+    									  <input type="file" class= "form-control btn btn-default" name="photo" id="photo" size="20" required/>
     								   </div>
                                     </div>
 
@@ -40,28 +40,33 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Parts</label>
                                         <div class="col-sm-9">
-                                        <input type="text" name="num_parts" class="form-control" id="num_parts" placeholder="num parts" required> </div>
+                                        <input type="number" name="num_parts" class="form-control" id="num_parts" placeholder="num parts" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Featured</label>
                                         <div class="col-sm-9">
-                                        <input type="text" name="num_featured" class="form-control" id="num_featured" placeholder="num featured" > </div>
+                                        <input type="number" name="num_featured" class="form-control" id="num_featured" placeholder="num featured" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
                                         <div class="col-sm-9">
-                                        <input type="text" name="price" class="form-control" id="price" placeholder="price" maxlength="6"> </div>
+                                        <input type="number" name="price" class="form-control" id="price" placeholder="price" maxlength="6" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Frequency</label>
                                         <div class="col-sm-9">
-                                            <select id="frequency"  name="frequency" class="form-control">
-                                                <option>...</option>
+                                            <select id="frequency"  name="frequency" class="form-control" required>
+                                                <option value="0">0 month</option>
                                                 <option value="3">3 month</option>
                                                 <option value="6">6 month</option>
                                                 <option value="9">9 month</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Extra Days</label>
+                                        <div class="col-sm-9">
+                                        <input type="number" name="extra_days" class="form-control" id="extra_days" placeholder="Extra Days" required> </div>
                                     </div>
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">

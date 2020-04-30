@@ -51,6 +51,7 @@ class Plan extends MY_Controller {
 				$new_array['num_featured'] = $this->input->post('num_featured');
 				$new_array['price'] = $this->input->post('price');
 				$new_array['frequency'] = $this->input->post('frequency');
+				$new_array['extra_days'] = $this->input->post('extra_days');
 
 				if ($file_name != '') {
 					$config['upload_path'] = './upload/';
@@ -115,6 +116,7 @@ class Plan extends MY_Controller {
 				$new_array['num_featured'] = $this->input->post('num_featured');
 				$new_array['price'] = $this->input->post('price');
 				$new_array['frequency'] = $this->input->post('frequency');
+				$new_array['extra_days'] = $this->input->post('extra_days');
 				if ($file_name != '') {
 					$config['upload_path'] = './upload/';
 					$config['file_name'] = time() . $file_name;

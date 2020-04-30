@@ -19,7 +19,7 @@
                     <div class="container-fluid">
                         <div class="row bg-title">
                             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                                <h4 class="page-title">Reviews Listing</h4>
+                                <h4 class="page-title">shipping request</h4>
                             </div>
                            <!--  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                                     <a style="background: #2CABE3" href="<?php echo base_url('fuel/add_fuel') ?>"  class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Fuel Type</a>
@@ -61,7 +61,7 @@
                                     <td><?php echo $r['status']; ?></td>
                                     <td>
                                         <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('shippinglist/edit_shippinglist') ?>/<?php echo $r['id']; ?>"><i class="ti-marker-alt"></i></a>
-                                        <a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('shippinglist/shippinglist_del/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
+                                        <a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('shippinglist/shippinglist_del/') ?><?php echo $r['id']; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php }?>
