@@ -18,6 +18,8 @@ class Auth extends CI_Controller {
 		$this->lang->load('auth');
 	}
 
+	// hjh
+
 	/**
 	 * Redirect if needed, otherwise display the user list
 	 */
