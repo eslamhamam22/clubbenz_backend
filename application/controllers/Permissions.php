@@ -32,37 +32,6 @@ class Permissions extends MY_Controller {
 		$this->data['groups'] = $this->acl_model->get_all_groups();
 		$this->load->view('user_manage', $this->data);
 	}
-/*
-public function load_filter_user() {
-$fil_user = $_GET['fil_user'];
-if ($fil_user == 0) {
-$data = $this->db->get('users')->result();
-} else {
-$data = $this->db->get_where('users_groups', ['group_id' => $group_id])->result();
-}
-foreach ($data as $us) {?>
-<tr>
-<td><?php echo $us->first_name . " " . $us->last_name; ?></td>
-<td><?php echo $us->email; ?></td>
-<td><?php echo $us->phone; ?></td>
-</tr>
-<?php }
-}
- */
-
-	public function admin_manage() {
-		$this->data['rec'] = $this->acl_model->get_all_admins();
-		$this->load->view('admin_manage', $this->data);
-	}
-
-	public function Part_Providers_manage() {
-		$this->data['rec'] = $this->acl_model->get_all_Part_Providers();
-		$this->load->view('Part_Providers_manage', $this->data);
-	}
-	public function provider_assistance_manage() {
-		$this->data['rec'] = $this->acl_model->get_all_provider_assistance();
-		$this->load->view('provider_assistance_manage', $this->data);
-	}
 
 	public function cars() {
 		$class_id = $this->input->post('class_id');

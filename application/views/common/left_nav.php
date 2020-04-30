@@ -133,37 +133,14 @@ if ($group_id[0]->name == 'admin') {?>
                             <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
                             <span class="hide-menu">User Permissions</span></a>
                         </li>
-                        <li>
-                            <a href="#" class="waves-effect "><i data-icon="" class="ti-user fa-fw"></i> <span class="hide-menu"> Manage Users <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
-                            <ul class="nav nav-second-level">
+
                     <?php }
-	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                        <li> <a href="<?php echo base_url() ?>permissions/add_user">
-                            <i class="fa fa-plus"> </i>
-                            <span class="hide-menu"> Add User</span></a> </li> <?php }
 
 	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
                         <li> <a href="<?php echo base_url() ?>permissions/user_manage">
                             <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-                            <span class="hide-menu">All Users</span></a> </li> <?php }
+                            <span class="hide-menu">All Users</span></a> </li> <?php }?>
 
-	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                        <li> <a href="<?php echo base_url() ?>permissions/admin_manage">
-                            <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-                            <span class="hide-menu">Manage Admin</span></a> </li> <?php }
-
-	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                        <li> <a href="<?php echo base_url() ?>permissions/Part_Providers_manage">
-                            <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-                            <span class="hide-menu">Manage Part Providers</span></a> </li> <?php }
-
-	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                        <li> <a href="<?php echo base_url() ?>permissions/provider_assistance_manage">
-                            <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-                            <span class="hide-menu">Manage Provider Assistance </span></a> </li> <?php }
-
-	?>
-                </ul>
                 </ul>
             </li>
             </li>

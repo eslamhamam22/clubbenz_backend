@@ -392,39 +392,4 @@ class Acl_model extends CI_Model {
 		$query = $this->db->get('chassis');
 		return $query->row()->chassis_num;
 	}
-
-	public function get_all_admins() {
-
-		$this->db->select('*');
-		$this->db->from('users_groups');
-		$this->db->join('users', 'users.id = users_groups.user_id');
-		$this->db->where('users_groups.group_id', 1);
-
-		$q = $this->db->get();
-		return $q->result();
-
-	}
-	public function get_all_Part_Providers() {
-
-		$this->db->select('*');
-		$this->db->from('users_groups');
-		$this->db->join('users', 'users.id = users_groups.user_id');
-		$this->db->where('users_groups.group_id', 4);
-
-		$q = $this->db->get();
-		return $q->result();
-
-	}
-	public function get_all_provider_assistance() {
-
-		$this->db->select('*');
-		$this->db->from('users_groups');
-		$this->db->join('users', 'users.id = users_groups.user_id');
-		$this->db->where('users_groups.group_id', 10);
-
-		$q = $this->db->get();
-		return $q->result();
-
-	}
-
 }
