@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Upload">
+    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Photos Upload">
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(10).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(11).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(18).png" afterDir="false" />
@@ -11,9 +13,15 @@
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4)2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)2.png" afterDir="false" />
@@ -24,8 +32,8 @@
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/provider/Parts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Parts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Part_photos_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Part_photos_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/file-upload/dist/image-uploader.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/file-upload/dist/image-uploader.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/provider/add_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/add_part.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/provider/edit_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/edit_part.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +149,7 @@
       <workItem from="1586089179738" duration="2039000" />
       <workItem from="1586200611943" duration="20214000" />
       <workItem from="1586861799091" duration="50667000" />
-      <workItem from="1587549296543" duration="64517000" />
+      <workItem from="1587549296543" duration="70249000" />
     </task>
     <task id="LOCAL-00001" summary="-datatables">
       <created>1588250032806</created>
@@ -157,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588293986461</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="-Photos Upload">
+      <created>1588340646232</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588340646232</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +195,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="-datatables" />
     <MESSAGE value="-Upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Upload" />
+    <MESSAGE value="-Photos Upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Photos Upload" />
   </component>
 </project>

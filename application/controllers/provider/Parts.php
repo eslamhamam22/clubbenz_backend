@@ -19,6 +19,7 @@ class Parts extends CI_Controller{
 
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
+		$this->load->model('Car_model', 'car');
 
 		$this->load->library('session');
 
@@ -123,15 +124,15 @@ class Parts extends CI_Controller{
 					'add_date' => $this->input->post('add_date'),
 					'description' => $this->input->post('description'),
 
-					'location_latitude'	 =>   $this->input->post('location_lat'),
-					'location_longitude' =>   $this->input->post('location_lon'),
+//					'location_latitude'	 =>   $this->input->post('location_lat'),
+//					'location_longitude' =>   $this->input->post('location_lon'),
 
 					'location_zone' => $this->input->post('location_zone'),
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $this->input->post('chassis'),
-					'sort_order' => $this->input->post('sort_order'),
+//					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
@@ -201,6 +202,7 @@ class Parts extends CI_Controller{
 		$this->data['parts_category']=$this->part->manage_parts_cat();
 		$this->data['parts_sub_cat']=$this->part->manage_parts_sub_cat();
 		$this->data['brand']=$this->part->manage_brand();
+		$this->data['model_name'] = $this->car->get_classes();
 
 		$this->load->view('provider/add_part',$this->data);
 	}
@@ -301,8 +303,8 @@ class Parts extends CI_Controller{
 					'add_date' => $addDate,
 					'description' => $this->input->post('description'),
 
-					'location_latitude'	 =>   $this->input->post('location_lat'),
-					'location_longitude' =>   $this->input->post('location_lon'),
+//					'location_latitude'	 =>   $this->input->post('location_lat'),
+//					'location_longitude' =>   $this->input->post('location_lon'),
 
 					'location' => $this->input->post('location'),
 					'location_zone' => $this->input->post('location_zone'),
@@ -310,7 +312,7 @@ class Parts extends CI_Controller{
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $this->input->post('chassis'),
-					'sort_order' => $this->input->post('sort_order'),
+//					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
@@ -416,6 +418,7 @@ class Parts extends CI_Controller{
 		$photo_array_count = count($photos_array);
 		$remaining_count = 10 - $photo_array_count ;
 		$this->data['chassis_number'] = $this->part->get_chassis();
+		$this->data['chassis'] = $this->data['chassis_number'];
 		$this->data['usname']= $this->session->userdata("user_name");
 		$this->data['location']=$this->location->manage_location();
 		$this->data['rec']=$this->part->edit_part($id);
@@ -425,6 +428,7 @@ class Parts extends CI_Controller{
 		$this->data['parts_category']=$this->part->manage_parts_cat();
 		$this->data['parts_sub_cat']=$this->part->manage_parts_sub_cat();
 		$this->data['part_id'] = $id;
+		$this->data['model_name'] = $this->car->get_classes();
 
 		$this->load->view('provider/edit_part',$this->data);
 	}

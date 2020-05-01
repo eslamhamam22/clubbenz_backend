@@ -57,16 +57,16 @@
 <!--									</div>-->
 <!--								</div>-->
 <!--							</div>-->
-							<div class="row" style="padding-top: 20px">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>
-										<div class="col-md-9">
-											<input type="number" required name="sort_order" class="form-control" placeholder="1"value="<?php echo $this->input->post("sort_order") ?>">
-										</div>
-									</div>
-								</div>
-							</div>
+<!--							<div class="row" style="padding-top: 20px">-->
+<!--								<div class="col-md-12">-->
+<!--									<div class="form-group">-->
+<!--										<label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>-->
+<!--										<div class="col-md-9">-->
+<!--											<input type="number" required name="sort_order" class="form-control" placeholder="1"value="--><?php //echo $this->input->post("sort_order") ?><!--">-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
                             <div class="row" style="padding-top: 20px">
                             <div class="col-md-6">
@@ -175,28 +175,40 @@
                             </div>
                             <label style =" padding  : 15px ;    font-size: 17px;"> Part Fitting </label>
 
-                            <div style="padding :15px"  class="row margin-top" >
+							<div style="padding :15px"  class="row margin-top" >
 
+								<div class="col-md-6" >
+									<div class="form-group">
+										<div class="col-md-9">
+											<label class="control-label ">Select Class </label>
+											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
+												<option value="">Select Option</option>
+												<?php foreach ($model_name as $model) {?>
+													<?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
 
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                            <label for="chassis" class="control-label">Select Chassis</label>
+												<?php }?>
+											</select>
+										</div>
+									</div>
+								</div>
 
-                                            <select  required type="text" name="chassis" class="form-control">
-                                                <option value="">Select Chassis</option>
-                                                <option value="24" >All</option>
-                                                <?php foreach ($chassis as $c) {?>
-                                                    <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
-                                                <?php }?>
-                                            </select>
-                                            <script type="text/javascript">
-                                                document.frm.chassis.value='<?php echo $rec->chassis ?>';
-                                            </script>
-                                        </div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<div class="col-md-9">
+											<label for="chassis" class="control-label">Select Chassis</label>
 
-                                     </div>
+											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
+												<option value="">Select Chassis</option>
+												<option value="24" >All</option>
+												<?php foreach ($chassis as $c) {?>
+													<?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
+												<?php }?>
+											</select>
+										</div>
+									</div>
+								</div>
 
-                            </div>
+							</div>
 
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
@@ -263,26 +275,26 @@
                             </div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>
+<!--                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>-->
+<!---->
+<!--                            <div class="row margin-top">-->
 
-                            <div class="row margin-top">
-
-								<div class="col-md-6" >
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label">Location Latitude</label>
-
-											<input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="<?php echo $this->input->post("location_lat") ?>">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label ">Location Longitude</label>
-											<input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="<?php echo $this->input->post("location_lon") ?>" > </div>
-									</div>
-								</div>
+<!--								<div class="col-md-6" >-->
+<!--									<div class="form-group">-->
+<!--										<div class="col-md-9">-->
+<!--											<label class="control-label">Location Latitude</label>-->
+<!---->
+<!--											<input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="--><?php //echo $this->input->post("location_lat") ?><!--">-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								<div class="col-md-6">-->
+<!--									<div class="form-group">-->
+<!--										<div class="col-md-9">-->
+<!--											<label class="control-label ">Location Longitude</label>-->
+<!--											<input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="--><?php //echo $this->input->post("location_lon") ?><!--" > </div>-->
+<!--									</div>-->
+<!--								</div>-->
 <!--                                <div class="col-md-6">-->
 <!--                                    <div class="form-group">-->
 <!--                                        <label class="control-label col-md-3">Location</label>-->
@@ -291,7 +303,7 @@
 <!--                                        </div>-->
 <!--                                    </div>-->
 <!--                                </div>-->
-                            </div>
+<!--                            </div>-->
 							<div class="row margin-top">
 
 								<div class="col-md-6" >
@@ -397,6 +409,40 @@
                     placeholder: "Please select option",
                     tokenSeparators: [',', ' ']
                 });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                var chassis= [];
+				<?php foreach ($chassis as $c) {?>
+                chassis.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+				<?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+					var valueArr= value.split(',');
+                    var availableChassis= []
+					if(!$(this).val()){
+                        availableChassis= chassis.slice()
+					}else{
+                        availableChassis= chassis.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+					}
+					var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
+					})
+                    $('#chassis_select').val(prevValue || '')
+                });
+
             });
         </script>
         <!-- <script type="text/javascript">
@@ -441,6 +487,8 @@
                         }
                     });
                 });
+
+
             });
         </script>
 
