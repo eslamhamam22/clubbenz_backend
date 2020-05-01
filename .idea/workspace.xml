@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Extra Days">
+    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Button For tables">
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)2.png" afterDir="false" />
@@ -32,7 +32,6 @@
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/provider/Parts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Parts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/provider/manage_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/manage_part.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +147,7 @@
       <workItem from="1586089179738" duration="2039000" />
       <workItem from="1586200611943" duration="20214000" />
       <workItem from="1586861799091" duration="50667000" />
-      <workItem from="1587549296543" duration="77709000" />
+      <workItem from="1587549296543" duration="79996000" />
     </task>
     <task id="LOCAL-00001" summary="-datatables">
       <created>1588250032806</created>
@@ -185,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588349226690</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-Button For tables">
+      <created>1588354753760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588354753760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +216,7 @@
     <MESSAGE value="-Upload" />
     <MESSAGE value="-Photos Upload" />
     <MESSAGE value="-Extra Days" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Extra Days" />
+    <MESSAGE value="-Button For tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Button For tables" />
   </component>
 </project>
