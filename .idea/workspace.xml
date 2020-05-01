@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="">
+    <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Upload">
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(10).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(11).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(18).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(19).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(6).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(7).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/provider/Parts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Parts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/provider/add_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/add_part.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/provider/edit_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/edit_part.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Part_photos_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Part_photos_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/file-upload/dist/image-uploader.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/file-upload/dist/image-uploader.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/file-upload/dist/karim-image-uploader.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/file-upload/dist/karim-image-uploader.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/file-upload/dist/karim-image-uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/file-upload/dist/karim-image-uploader.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +93,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -136,7 +141,7 @@
       <workItem from="1586089179738" duration="2039000" />
       <workItem from="1586200611943" duration="20214000" />
       <workItem from="1586861799091" duration="50667000" />
-      <workItem from="1587549296543" duration="59293000" />
+      <workItem from="1587549296543" duration="64517000" />
     </task>
     <task id="LOCAL-00001" summary="-datatables">
       <created>1588250032806</created>
@@ -145,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588250032806</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="-Upload">
+      <created>1588293986461</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588293986461</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +179,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="-datatables" />
-    <option name="LAST_COMMIT_MESSAGE" value="-datatables" />
+    <MESSAGE value="-Upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Upload" />
   </component>
 </project>

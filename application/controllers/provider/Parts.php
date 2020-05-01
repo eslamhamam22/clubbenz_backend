@@ -329,40 +329,81 @@ class Parts extends CI_Controller{
 				);
 
 
-				print_r($_POST);
-				return;
-				$dataInfo = array();
+				$previous_photos = $this->partphotos->manage_part_photos($id);
+//				print_r($_POST["old"]);
+//				print_r($previous_photos);
+//				return;
+				$deleted_photos = $this->partphotos->del_part_photos_by_part_id($id);
+				$i= 0;
+				$j= 0;
 				$files = $_FILES;
-				$cpt = count($_FILES['image']['name']);
-				for($i=0; $i<$cpt; $i++){
-
-					$_FILES['file']['name'] 	= $files['image']['name'][$i];
-					$_FILES['file']['type']     = $_FILES['image']['type'][$i];
-					$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-					$_FILES['file']['error']     = $_FILES['image']['error'][$i];
-					$_FILES['file']['size']     = $_FILES['image']['size'][$i];
-					$config= array();
-					$config['upload_path'] ='./upload/';
-					$config['allowed_types'] = 'gif|jpg|png|jpeg';
-					$this->upload->initialize($config);
-					if($this->upload->do_upload('file')){
-						$dataInfo[] = $this->upload->data();
+//				$dataInfo = array();
+				foreach ($_POST["old"] as $key => $value){
+					if($value){
+						//OLD
+						$single_img = array_search($value, array_column($previous_photos, 'id'));
+//						print_r($single_img);
+//						return;
+//						echo $j;
+						$photo_array['photo_name']= $previous_photos[$single_img]["photo_name"];
+					}else{
+						//New
+						$_FILES['file']['name'] 	= $files['image']['name'][$i];
+						$_FILES['file']['type']     = $_FILES['image']['type'][$i];
+						$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+						$_FILES['file']['error']     = $_FILES['image']['error'][$i];
+						$_FILES['file']['size']     = $_FILES['image']['size'][$i];
+						$config= array();
+						$config['upload_path'] ='./upload/';
+						$config['allowed_types'] = 'gif|jpg|png|jpeg';
+						$this->upload->initialize($config);
+						if($this->upload->do_upload('file')){
+//							$dataInfo[] = $this->upload->data();
+							$photo_array['photo_name'] = $this->upload->data()['file_name'];
+						}
+						$i++;
 					}
-				}
-
-				for($i=0; $i<sizeof($dataInfo); $i++){
-
-					if($i==0){
+					if($j == 0)
 						$photo_array['is_default'] = "yes";
-						$photo_array['photo_name'] = $dataInfo[0]['file_name'];
-					}
-					else{
+					else
 						$photo_array['is_default'] = "no";
-						$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
-					}
-					$this->partphotos->add_part_photos($photo_array);
 
+					$this->partphotos->add_part_photos($photo_array);
+					$j++;
 				}
+//				return;
+//				$dataInfo = array();
+//				$files = $_FILES;
+//				$cpt = count($_FILES['image']['name']);
+//				for($i=0; $i<$cpt; $i++){
+//
+//					$_FILES['file']['name'] 	= $files['image']['name'][$i];
+//					$_FILES['file']['type']     = $_FILES['image']['type'][$i];
+//					$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+//					$_FILES['file']['error']     = $_FILES['image']['error'][$i];
+//					$_FILES['file']['size']     = $_FILES['image']['size'][$i];
+//					$config= array();
+//					$config['upload_path'] ='./upload/';
+//					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+//					$this->upload->initialize($config);
+//					if($this->upload->do_upload('file')){
+//						$dataInfo[] = $this->upload->data();
+//					}
+//				}
+//
+//				for($i=0; $i<sizeof($dataInfo); $i++){
+//
+//					if($i==0){
+//						$photo_array['is_default'] = "yes";
+//						$photo_array['photo_name'] = $dataInfo[0]['file_name'];
+//					}
+//					else{
+//						$photo_array['is_default'] = "no";
+//						$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
+//					}
+//					$this->partphotos->add_part_photos($photo_array);
+//
+//				}
 
 
 				$this->data['success'] = "Updated successfully!";

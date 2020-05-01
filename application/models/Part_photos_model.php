@@ -33,6 +33,11 @@ class Part_photos_model extends CI_Model{
 		$this->db->delete('part_photos');
 		return	$this->db->affected_rows();
 	}
+	public function del_part_photos_by_part_id($id){
+		$this->db->where('part_id', $id);
+		$this->db->delete('part_photos');
+		return	$this->db->affected_rows();
+	}
 	public function edit_part_photos($id){
 		$this->db->where('id', $id);
 		$this->db->from('part_photos');
