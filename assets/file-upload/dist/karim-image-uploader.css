@@ -11,7 +11,7 @@
 	background-position: center;
 	background-size: 100px;
 }
-.preview-images-zone > .preview-image:first-child {
+.preview-images-zone > .preview-image:first-child, .uploaded > .uploaded-image:first-child{
     height: 185px;
     width: 185px;
     position: relative;

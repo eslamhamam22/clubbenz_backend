@@ -1,57 +1,48 @@
 $(document).ready(function() {
-	$( ".karim-upload" ).change(readImage);
+	// document.getElementById('pro-image').addEventListener('change', readImage, false);
 
-    $( ".preview-images-zone" ).sortable();
+	$( ".preview-images-zone" ).sortable();
+	$( "#karim_uploader" ).sortable({
+		items: "div"
+	});
 
-    $(document).on('click', '.image-cancel', function() {
-        let no = $(this).data('no');
-        $(".preview-image.preview-show-"+no).remove();
-    });
-    $("#preview-images-zone").on('click', function(e) {
-		// if(e.target.id == "preview-images-zone") {
-		// 	$('#pro-image').click();
-		// }
-    });
-    $("#preview-images-zone .preview-image").on('click', function(e) {
-		if($(e.target).is("img")) {
-			$(this).children(".karim-upload").click();
-		}
-    });
+	$(document).on('click', '.image-cancel', function() {
+		let no = $(this).data('no');
+		$(".preview-image.preview-show-"+no).remove();
+	});
 });
 
 
 
 var num = 4;
 function readImage() {
-    if (window.File && window.FileList && window.FileReader) {
-        var files = event.target.files; //FileList object
-        var output = $(".preview-images-zone");
+	if (window.File && window.FileList && window.FileReader) {
+		var files = event.target.files; //FileList object
+		var output = $(".preview-images-zone");
 
-        for (let i = 0; i < files.length; i++) {
-            var file = files[i];
-            if (!file.type.match('image')) continue;
-            
-            var picReader = new FileReader();
-            
-            picReader.addEventListener('load', function (event) {
-                var picFile = event.target;
-                var html =  '<div class="preview-image preview-show-' + num + '">' +
-                            '<div class="image-cancel" data-no="' + num + '">x</div>' +
-                            '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
-							'<input style ="display: none" value="'+picFile.result+'"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"/>'
-                            '</div>';
+		for (let i = 0; i < files.length; i++) {
+			var file = files[i];
+			if (!file.type.match('image')) continue;
 
-                output.append(html);
-                console.log(picFile)
-                num = num + 1;
-            });
+			var picReader = new FileReader();
 
-            picReader.readAsDataURL(file);
-        }
-        // $("#pro-image").val('');
-        console.log(JSON.stringify(event.target.files));
-    } else {
-        console.log('Browser not support');
-    }
+			picReader.addEventListener('load', function (event) {
+				var picFile = event.target;
+				var html =  '<div class="preview-image preview-show-' + num + '">' +
+					'<div class="image-cancel" data-no="' + num + '">x</div>' +
+					'<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
+					'<div class="tools-edit-image"><a href="javascript:void(0)" data-no="' + num + '" class="btn btn-light btn-edit-image">edit</a></div>' +
+					'</div>';
+
+				output.append(html);
+				num = num + 1;
+			});
+
+			picReader.readAsDataURL(file);
+		}
+		$("#pro-image").val('');
+	} else {
+		console.log('Browser not support');
+	}
 }
 

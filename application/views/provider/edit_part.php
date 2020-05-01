@@ -24,6 +24,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="exampleModalLabel1">Photo Update</h4>
 								</div>
+								<?php print_r($part_photos) ?>
 								<form name="" method="post"type="" scope="" action="<?php echo base_url('/provider/parts/update_part_photos') ?>" enctype="multipart/form-data">
 									<input type="hidden" name="user_id" id="user_id" />
 									<div class="modal-body">
@@ -56,8 +57,13 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
 							<div class="row" style="padding-top: 20px">
-								<div class="col-md-10 col-md-offset-1">
-									<div style="cursor: pointer" class="input-images"></div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">Images</label>
+										<div class="col-md-9">
+											<div style="cursor: pointer" class="input-images"></div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="row" style="padding-top: 20px">
@@ -430,7 +436,9 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
         <?php $this->load->view("common/common_script")?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 var preloaded= [];

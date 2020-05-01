@@ -22,20 +22,41 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
 							<div class="row" style="padding-top: 20px">
-								<div class="col-md-10 col-md-offset-1">
-<!--									<div style="cursor: pointer" class="input-images"></div>-->
-<!--									<fieldset class="form-group">-->
-<!--										<a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>-->
-<!--										<input type="file" id="pro-image" style="display: none;" class="form-control" multiple>-->
-<!--									</fieldset>-->
-									<div class="preview-images-zone" id="preview-images-zone" style="cursor: pointer">
-										<div class="preview-image preview-show-1">
-											<div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>
-											<input type="file" class="karim-upload" style="display: none;" class="form-control"  name="image[]" multiple="multiple">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">Images</label>
+										<div class="col-md-9">
+											<div style="cursor: pointer" class="input-images"></div>
 										</div>
 									</div>
 								</div>
 							</div>
+<!--							<div class="row" style="padding-top: 20px">-->
+<!--								<div class="col-md-10 col-md-offset-1">-->
+<!--									<div style="cursor: pointer" class="input-images"></div>-->
+<!--									<fieldset class="form-group">-->
+<!--										<a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>-->
+<!--										<input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>-->
+<!--									</fieldset>-->
+<!--									<div class="preview-images-zone">-->
+<!--										<div class="preview-image preview-show-1">-->
+<!--											<div class="image-cancel" data-no="1">x</div>-->
+<!--											<div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>-->
+<!--											<div class="tools-edit-image"><a href="javascript:void(0)" data-no="1" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--										</div>-->
+<!--										<div class="preview-image preview-show-2">-->
+<!--											<div class="image-cancel" data-no="2">x</div>-->
+<!--											<div class="image-zone"><img id="pro-img-2" src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg"></div>-->
+<!--											<div class="tools-edit-image"><a href="javascript:void(0)" data-no="2" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--										</div>-->
+<!--										<div class="preview-image preview-show-3">-->
+<!--											<div class="image-cancel" data-no="3">x</div>-->
+<!--											<div class="image-zone"><img id="pro-img-3" src="http://i.stack.imgur.com/WCveg.jpg"></div>-->
+<!--											<div class="tools-edit-image"><a href="javascript:void(0)" data-no="3" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-12">
 									<div class="form-group">
@@ -361,9 +382,8 @@
         <?php $this->load->view('common/common_script')?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
 
         <script type="text/javascript">

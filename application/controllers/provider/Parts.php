@@ -329,6 +329,8 @@ class Parts extends CI_Controller{
 				);
 
 
+				print_r($_POST);
+				return;
 				$dataInfo = array();
 				$files = $_FILES;
 				$cpt = count($_FILES['image']['name']);
