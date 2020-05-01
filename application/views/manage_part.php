@@ -71,10 +71,11 @@ foreach ($rec as $us) {
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
                             <td>
-                                <?php if ($us->status == "pending") {?>
-                                    <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Add</button></a>
-                                <?php } else {?>
-                                    <a href="<?php echo base_url('part/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Remove</button></a>
+                                <?php if ($us->status == "pending" || $us->status == "reject") {?>
+                                    <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Approve</button></a>
+                                <?php }?>
+                                <?php if ($us->status == "pending" || $us->status == "approve") {?>
+                                    <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Reject</button></a>
                                 <?php }?>
                             </td>
 

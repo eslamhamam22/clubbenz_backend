@@ -392,4 +392,42 @@ class part extends MY_Controller {
 		echo $this->part->part_sub_cat($id);
 	}
 
+	public function approve_many() {
+		if ($_POST["parts"]) {
+			$parts = $_POST["parts"];
+			foreach ($parts as $part) {
+				$this->part->approve_part($part);
+			}
+		}
+		echo base_url('part?success=Deleted Successfully');
+		return true;
+	}
+	public function reject_many() {
+		if ($_POST["parts"]) {
+			$parts = $_POST["parts"];
+			foreach ($parts as $part) {
+				$this->part->reject_part($part);
+			}
+		}
+		echo base_url('part?success=Deleted Successfully');
+		return true;
+	}
+	public function delete_many() {
+		if ($_POST["parts"]) {
+			$parts = $_POST["parts"];
+			foreach ($parts as $part) {
+				$this->part->del_part($part);
+			}
+		}
+		echo base_url('part?success=Deleted Successfully');
+		return true;
+	}
+	public function approve($id) {
+		$this->part->approve_part($id);
+		redirect(base_url('part?success=updated  successfully!'));
+	}
+	public function reject($id) {
+		$this->part->reject_part($id);
+		redirect(base_url('part?success=updated  successfully!'));
+	}
 }

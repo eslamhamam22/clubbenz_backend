@@ -179,6 +179,19 @@ class Part_model extends CI_Model {
 		$this->db->delete('parts');
 		return $this->db->affected_rows();
 	}
+
+	public function approve_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('parts', ["status" => 'approve']);
+		return $this->db->affected_rows();
+	}
+
+	public function reject_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('parts', ["status" => 'reject']);
+		return $this->db->affected_rows();
+	}
+
 	public function edit_part($id) {
 		$this->db->where('id', $id);
 		$this->db->from('parts');
