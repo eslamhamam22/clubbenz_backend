@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 		$data['active_parts'] = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
 			return $part->active == 1 ? true : false;
 		});
-		$data["current_plan"]= $this->get_current_provider_plan($provider_id);
+		$data["current_plan"]= $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
 		$data["requests"]= $this->Shipping_model->select_shipping_by_provider($provider_id);
 		$this->load->view('provider/dashboard', $data);
 	}
@@ -46,20 +46,4 @@ class Home extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('provider', 'refresh');
 	}
-	private function get_current_provider_plan($provider_id){
-		$current_plan= $this->Provider_plan_model->get_current_plan_by_provider($provider_id);
-		if($current_plan){
-			$current_plan->plan= $this->Plan_model->get_plan_by_id($current_plan->plan_id)[0];
-			$current_plan->end_date= $this->add_months_to_date($current_plan->created_at, $current_plan->plan->frequency, $current_plan->extra_days);
-			if(strtotime(date("Y-m-d H:i:s")) > strtotime($current_plan->end_date))
-				$current_plan->status= "expired";
-			return $current_plan;
-		}
-		return false;
-	}
-	private function add_months_to_date($date, $months, $extra_days){
-		$date= date("Y-m-d H:i:s", strtotime($extra_days." days", strtotime($date)));
-		return date("Y-m-d H:i:s", strtotime($months." month", strtotime($date)));
-	}
-
 }

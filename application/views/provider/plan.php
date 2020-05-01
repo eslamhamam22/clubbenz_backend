@@ -72,7 +72,7 @@
 						<td><?php echo $plan->num_featured; ?> Parts</td>
 						<td><?php echo $plan->frequency; ?> Months</td>
 						<td><?php echo $plan->price; ?></td>
-						<td><a href="<?php echo site_url('provider/plan/subscribe_form/'.$plan->id); ?>"><button class="btn btn-small <?php echo $current_plan && $plan->id == $current_plan->plan_id? 'btn-primary' : 'btn-success' ;?>"><?php echo $current_plan && $plan->id == $current_plan->plan_id? "Renew" : "Subscribe" ;?></button></a></td>
+						<td><a href="<?php echo site_url('provider/plan/subscribe/'.$plan->id); ?>"><button class="btn btn-small <?php echo $current_plan && $plan->id == $current_plan->plan_id? 'btn-primary' : 'btn-success' ;?>"><?php echo $current_plan && $plan->id == $current_plan->plan_id? "Renew" : "Subscribe" ;?></button></a></td>
 						</tr>
 						<?php
 					}

@@ -38,11 +38,8 @@
                                 <tbody>
                                     <?php
 foreach ($rec as $us) {
-	$current_plan = $this->Provider_plan_model->get_current_plan_by_provider($us['id']);
-	// print_r($current_plan);
-	if ($current_plan) {
-		$current_plan->plan = $this->Plan_model->get_plan_by_id($current_plan->plan_id)[0];
-	}
+	$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($us['id']);
+
 	?>
                                     <tr>
                                         <td><?php echo $us['user_name']; ?></td>

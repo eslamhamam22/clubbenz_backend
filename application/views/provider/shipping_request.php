@@ -29,7 +29,6 @@
 						<th>Dimensions</th>
 						<th>Price</th>
 						<th>Address</th>
-						<th>Price</th>
 						<th>Status</th>
 					</tr>
 					</thead>
@@ -42,7 +41,6 @@ foreach ($requests as $request) {
 						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?></td>
 						<td><?php echo $request->price; ?></td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
-						<td><?php echo $request->price; ?></td>
 						<td><?php echo $request->status; ?></td>
 						</tr>
 						<?php

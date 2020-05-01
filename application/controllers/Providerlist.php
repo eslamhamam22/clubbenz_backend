@@ -110,17 +110,8 @@ class Providerlist extends MY_Controller {
 		}
 	}
 	private function get_current_provider_plan($provider_id) {
-		$current_plan = $this->Provider_plan_model->get_current_plan_by_provider($provider_id);
-		if ($current_plan) {
-			$current_plan->plan = $this->Plan_model->get_plan_by_id($current_plan->plan_id)[0];
-			$current_plan->end_date = $this->add_months_to_date($current_plan->created_at, $current_plan->plan->frequency);
-			if (strtotime(date("Y-m-d H:i:s")) > strtotime($current_plan->end_date)) {
-				$current_plan->status = "expired";
-			}
-
-			return $current_plan;
-		}
-		return false;
+		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+		return $current_plan;
 	}
 	private function add_months_to_date($date, $months) {
 		return date("Y-m-d H:i:s", strtotime($months . " month", strtotime($date)));
