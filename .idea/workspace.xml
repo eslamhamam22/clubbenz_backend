@@ -31,14 +31,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Providerlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Providerlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/provider/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/provider/Parts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Parts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/provider/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Plan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Provider_plan_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Provider_plan_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/mange_providerlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/mange_providerlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/provider/plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/plan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/provider/shipping_request.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/shipping_request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/provider/manage_part.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/provider/manage_part.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +148,7 @@
       <workItem from="1586089179738" duration="2039000" />
       <workItem from="1586200611943" duration="20214000" />
       <workItem from="1586861799091" duration="50667000" />
-      <workItem from="1587549296543" duration="72654000" />
+      <workItem from="1587549296543" duration="77709000" />
     </task>
     <task id="LOCAL-00001" summary="-datatables">
       <created>1588250032806</created>
@@ -184,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588346346749</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-Extra Days">
+      <created>1588349226690</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588349226690</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +209,7 @@
     <MESSAGE value="-datatables" />
     <MESSAGE value="-Upload" />
     <MESSAGE value="-Photos Upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Photos Upload" />
+    <MESSAGE value="-Extra Days" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Extra Days" />
   </component>
 </project>

@@ -474,20 +474,46 @@ class Parts extends CI_Controller{
 
 	}
 
-	public function activate($id){
+	private function check_maximum_parts_for_plan(){
 		$provider_id= $this->session->userdata("id");
 		$active_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
 			return $part->active == 1 ? true : false;
 		});
 		$current_plan= $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+
 		if(!$current_plan)
-			redirect(base_url('provider/parts?error=Please subscribe to a plan first'));
+			return "Please subscribe to a plan first";
 
 		if($current_plan->status == "expired")
-			redirect(base_url('provider/parts?error=Please renew your plan first'));
+			return "Please renew your plan first";
 
 		if(count($active_parts) >= $current_plan->plan->num_parts)
-			redirect(base_url('provider/parts?error=According to your plan you cannot activate more than '.$current_plan->plan->num_parts.' parts'));
+			return "According to your plan you cannot activate more than ".$current_plan->plan->num_parts." parts";
+
+		return false;
+	}
+	private function check_maximum_featured_for_plan(){
+		$provider_id= $this->session->userdata("id");
+		$featured_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
+			return $part->featured == 1 ? true : false;
+		});
+		$current_plan= $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+
+		if(!$current_plan)
+			return "Please subscribe to a plan first";
+
+		if($current_plan->status == "expired")
+			return "Please renew your plan first";
+
+		if(count($featured_parts) >= $current_plan->plan->num_featured)
+			return "According to your plan you cannot mark more than ".$current_plan->plan->num_parts." parts as featured";
+
+		return false;
+	}
+	public function activate($id){
+		$check= $this->check_maximum_parts_for_plan();
+		if($check)
+			redirect(base_url('provider/parts?error='.$check));
 
 		$this->part->activate($id);
 		redirect(base_url('provider/parts?success=updated  successfully!'));
@@ -497,19 +523,9 @@ class Parts extends CI_Controller{
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
 	public function add_to_featured($id){
-		$provider_id= $this->session->userdata("id");
-		$active_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
-			return $part->featured == 1 ? true : false;
-		});
-		$current_plan= $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
-		if(!$current_plan)
-			redirect(base_url('provider/parts?error=Please subscribe to a plan first'));
-
-		if($current_plan->status == "expired")
-			redirect(base_url('provider/parts?error=Please renew your plan first'));
-
-		if(count($active_parts) >= $current_plan->plan->num_parts)
-			redirect(base_url('provider/parts?error=According to your plan you cannot activate more than '.$current_plan->plan->num_parts.' parts'));
+		$check= $this->check_maximum_featured_for_plan();
+		if($check)
+			redirect(base_url('provider/parts?error='.$check));
 		$this->part->add_to_featured($id);
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
@@ -517,5 +533,66 @@ class Parts extends CI_Controller{
 		$this->part->remove_from_featured($id);
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
+	public function activate_many(){
+		if($_POST["parts"]){
+			$parts= $_POST["parts"];
+			foreach ($parts as $part){
+				$check= $this->check_maximum_parts_for_plan();
+				if($check){
+					echo base_url('provider/parts?error='.$check);
+					return;
+				}
+				$this->part->activate($part);
+			}
+		}
+		echo base_url('provider/parts?success=Updated Successfully');
+		return true;
+	}
+	public function deactivate_many(){
+		if($_POST["parts"]){
+			$parts= $_POST["parts"];
+			foreach ($parts as $part){
+				$this->part->deactivate($part);
+			}
+		}
+		echo base_url('provider/parts?success=Updated Successfully');
+		return true;
+	}
+	public function add_to_featured_many(){
+		if($_POST["parts"]){
+			$parts= $_POST["parts"];
+			foreach ($parts as $part){
+				$check= $this->check_maximum_featured_for_plan();
+				if($check){
+					echo base_url('provider/parts?error='.$check);
+					return;
+				}
+				$this->part->add_to_featured($part);
+			}
+		}
+		echo base_url('provider/parts?success=Updated Successfully');
+		return true;
+	}
+	public function remove_from_featured_many(){
+		if($_POST["parts"]){
+			$parts= $_POST["parts"];
+			foreach ($parts as $part){
+				$this->part->remove_from_featured($part);
+			}
+		}
+		echo base_url('provider/parts?success=Updated Successfully');
+		return true;
+	}
+	public function delete_many(){
+		if($_POST["parts"]){
+			$parts= $_POST["parts"];
+			foreach ($parts as $part){
+				$this->part->del_part($part);
+			}
+		}
+		echo base_url('provider/parts?success=Deleted Successfully');
+		return true;
+	}
+
 
 }

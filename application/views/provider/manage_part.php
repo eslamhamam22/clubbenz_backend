@@ -111,10 +111,7 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 <script>
     $(document).ready( function () {
@@ -137,11 +134,100 @@
                 selector: 'td:first-child'
             },
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print',
+                'excel',
                 {
-                    text: 'Delete Selected',
+                    text: 'Activate',
                     action: function () {
-                        var data= table.rows( { selected: true } ).data();
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+							arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/activate_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Deactivate',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+							arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/deactivate_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Add to Featured',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+							arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/add_to_featured_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Remove from Featured',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+							arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/remove_from_featured_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Delete',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+							arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/delete_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
                     }
                 },
             ],
