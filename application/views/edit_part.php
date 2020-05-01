@@ -252,10 +252,7 @@ for ($i = 0; $i < $remaining_count; $i++) {
 
 									<div class="col-md-9">
 
-										<?php
-$chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
-?>
-
+										<?php $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);?>
 
 										<select name="chassis" id="chassis" class="form-control" style="width: 200px;">
 											<option value="24" >All</option>
@@ -265,6 +262,32 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 		echo '<option value="' . $cn->id . '" selected>' . $cn->chassis_num . '</option>';
 	} else {
 		echo '<option value="' . $cn->id . '">' . $cn->chassis_num . '</option>';
+	}
+
+}?>
+
+
+
+										</select> <span class="help-block"></span>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 "  style="margin-top: 20px">
+								<div class="form-group">
+									<label class="control-label col-md-3">Select Class</label>
+
+									<div class="col-md-9">
+
+
+										<select name="model_id[]" id="model_id" class="form-control" style="width: 200px;">
+											<?php foreach ($model_name as $model) {
+
+	if ($model->id == $rec->model_id) {
+		echo '<option value="' . $model->id . '" selected>' . $model->name . '</option>';
+	} else {
+		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
 	}
 
 }?>

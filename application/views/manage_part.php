@@ -29,13 +29,15 @@
                             <table id="myTable" class="table table-striped" >
                                 <thead>
                                 <tr>
+                        <th style="text-align: center;"><input type="checkbox" class="selectAll"></th>
+                        <th>ID</th>
                                     <th>Photo</th>
-
+                                    <th>Provider Name</th>
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
-                                    <th>Price/Discount</th>
-                                    <th>Chassis</th>
+                                    <th>Chassis / Class</th>
                                     <th>Brand/User</th>
+                                    <th>Status</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -51,17 +53,30 @@ foreach ($rec as $us) {
 	$photo_name = $this->partphotos->select_photo($us->id);
 	?>
                                     <tr>
+                            <td></td>
+                            <td><?php echo $us->id ?></td>
                                         <td>
                                             <?php if (!empty($photo_name)) {?>
                                                 <img class="img_size" src="<?php echo base_url() . "/upload/$photo_name->photo_name" ?>">
                                             <?php } else {echo "No image";}?>
                                         </td>
+                                        <td>
+                                        <?php foreach ($providers as $provider) {if ($us->provider_id == $provider['id']) {echo $provider['user_name'];}}?>
+
+                                        </td>
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
                                         <td><?php echo $cat->name . "<br>" . $scat->name; ?> </td>
-                                        <td><?php echo $us->price . "<br>" . $us->discount; ?></td>
-                                        <td><?php echo $chassis_number->chassis_num; ?></td>
+                                        <td><?php echo $chassis_number->chassis_num; ?> <br> <?php foreach ($cars as $car) {if ($us->model_id == $car->id) {echo $car->name;}}?></td>
+
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
+                            <td>
+                                <?php if ($us->status == "pending") {?>
+                                    <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Add</button></a>
+                                <?php } else {?>
+                                    <a href="<?php echo base_url('part/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Remove</button></a>
+                                <?php }?>
+                            </td>
 
                                         <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('Part/edit_part') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
@@ -80,10 +95,95 @@ foreach ($rec as $us) {
             </div>
         </div>
         <?php $this->load->view("common/common_script")?>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 
         <script>
             $(document).ready( function () {
-                $('#myTable').DataTable({"bSort": false});
+        var table= $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0
+            } ],
+            select: {
+                style:    'multi+shift',
+                selector: 'td:first-child'
+            },
+            buttons: [
+                'excel',
+                {
+                    text: 'Approve',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+                            arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("part/approve_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Reject',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+                            arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("part/reject_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Delete',
+                    action: function () {
+                        var arr= [];
+                        var data= table.rows( { selected: true } ).data().toArray();;
+                        data.forEach(function (part) {
+                            arr.push(part[1])
+                        })
+                        $.ajax({
+                            type: 'post',
+                            url:'<?php echo base_url("provider/parts/delete_many") ?>',
+                            data: {parts: arr},
+                            success: function (mydata) {
+                                console.log(mydata);
+                                location.href= mydata
+                            }
+                        });
+                    }
+                },
+            ],
+            "bSort": false
+        });
+        $(".selectAll").on( "click", function(e) {
+            if ($(this).is( ":checked" )) {
+                table.rows({ page: 'current' }).select();
+            } else {
+                table.rows({ page: 'current' }).deselect();
+            }
+            console.log(table.rows( { selected: true } ).data())
+        });
             });
         </script>
     </body>

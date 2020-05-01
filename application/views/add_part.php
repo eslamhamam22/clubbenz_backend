@@ -21,6 +21,52 @@
                     <form  name="frm" method="post" action="<?php echo base_url('part/add_part') ?>" enctype="multipart/form-data">
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
+                            <div class="row" style="padding-top: 20px">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Images</label>
+                                        <div class="col-md-9">
+                                            <div style="cursor: pointer" class="input-images"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<!--                            <div class="row" style="padding-top: 20px">-->
+<!--                                <div class="col-md-10 col-md-offset-1">-->
+<!--                                    <div style="cursor: pointer" class="input-images"></div>-->
+<!--                                    <fieldset class="form-group">-->
+<!--                                        <a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>-->
+<!--                                        <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>-->
+<!--                                    </fieldset>-->
+<!--                                    <div class="preview-images-zone">-->
+<!--                                        <div class="preview-image preview-show-1">-->
+<!--                                            <div class="image-cancel" data-no="1">x</div>-->
+<!--                                            <div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>-->
+<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="1" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="preview-image preview-show-2">-->
+<!--                                            <div class="image-cancel" data-no="2">x</div>-->
+<!--                                            <div class="image-zone"><img id="pro-img-2" src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg"></div>-->
+<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="2" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="preview-image preview-show-3">-->
+<!--                                            <div class="image-cancel" data-no="3">x</div>-->
+<!--                                            <div class="image-zone"><img id="pro-img-3" src="http://i.stack.imgur.com/WCveg.jpg"></div>-->
+<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="3" class="btn btn-light btn-edit-image">edit</a></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row" style="padding-top: 20px">-->
+<!--                                <div class="col-md-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>-->
+<!--                                        <div class="col-md-9">-->
+<!--                                            <input type="number" required name="sort_order" class="form-control" placeholder="1"value="--><?php //echo $this->input->post("sort_order") ?><!--">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="row" style="padding-top: 20px">
                             <div class="col-md-6">
@@ -101,21 +147,21 @@
 
                                 </div>
                             </div>
-
-                            <label style =" padding  : 15px ; font-size: 17px;" for="inputEmail3" class="control-label"> Part Photo's</label><br>
-							<label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>
+<!--                            <label style =" padding  : 15px ; font-size: 17px;" for="inputEmail3" class="control-label"> Part Photo's</label><br>-->
+<!--                            <label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>-->
                             <div align="center">
+<!--                                <div class="input-images"></div>-->
 
-                                      <input style =" padding  : 12px ; width : 180px ; display : initial ; margin : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" required />
-                                      <input style =" padding  : 12px ; width : 180px ; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
-                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />
+<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial ; margin : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" required />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
+<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
                                                 </div>
                             <div class ="row margin-top" >
 
@@ -151,14 +197,14 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Part Status</label>
                                         <div class="col-md-9">
-											<div style="margin-top: 0px;">
-												<input type="radio" name="part_case" value="New" required> New
-												<input style="margin-left: 55px" type="radio" name="part_case" value="Used" required> Used
+                                            <div style="margin-top: 0px;">
+                                                <input type="radio" name="part_case" value="New" required> New
+                                                <input style="margin-left: 55px" type="radio" name="part_case" value="Used" required> Used
                                         </div>
                                     </div>
                                 </div>
                             </div>
-							</div>
+                            </div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
                             <label style =" padding  : 15px ;    font-size: 17px;"> Part Fitting </label>
@@ -169,37 +215,31 @@
                                     <div class="form-group">
                                         <div class="col-md-9">
                                             <label class="control-label ">Select Class </label>
-                                            <select type="text" name="model_id[]" class="form-control js-example-tokenizer" multiple >
+                                            <select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
                                                 <option value="">Select Option</option>
                                                 <?php foreach ($model_name as $model) {?>
                                                     <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
 
                                                 <?php }?>
                                             </select>
-                                            <script type="text/javascript">
-                                                document.frm.chassis.value='<?php echo $rec->model_id ?>';
-                                            </script>
                                         </div>
                                     </div>
                                 </div>
 
-                                 <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="col-md-9">
                                             <label for="chassis" class="control-label">Select Chassis</label>
 
-                                            <select  required type="text" name="chassis" class="form-control">
+                                            <select  required type="text" name="chassis" id="chassis_select" class="form-control">
                                                 <option value="">Select Chassis</option>
                                                 <option value="24" >All</option>
                                                 <?php foreach ($chassis as $c) {?>
                                                     <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
                                                 <?php }?>
                                             </select>
-                                            <script type="text/javascript">
-                                                document.frm.chassis.value='<?php echo $rec->chassis ?>';
-                                            </script>
                                         </div>
-                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -258,8 +298,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Set Date of Listing</label>
                                         <div class="col-md-9">
-<!--											<input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/>
+<!--                                            <input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/>
 
                                             <!-- <input name="add_dates" value="" id="datepickers"  /> -->
                                         </div>
@@ -269,26 +309,26 @@
                             </div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>
+<!--                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>-->
+<!---->
+<!--                            <div class="row margin-top">-->
 
-                            <div class="row margin-top">
-
-								<div class="col-md-6" >
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label">Location Latitude</label>
-
-											<input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="<?php echo $this->input->post("location_lat") ?>">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label ">Location Longitude</label>
-											<input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="<?php echo $this->input->post("location_lon") ?>" > </div>
-									</div>
-								</div>
+<!--                                <div class="col-md-6" >-->
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="col-md-9">-->
+<!--                                            <label class="control-label">Location Latitude</label>-->
+<!---->
+<!--                                            <input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="--><?php //echo $this->input->post("location_lat") ?><!--">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="col-md-9">-->
+<!--                                            <label class="control-label ">Location Longitude</label>-->
+<!--                                            <input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="--><?php //echo $this->input->post("location_lon") ?><!--" > </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 <!--                                <div class="col-md-6">-->
 <!--                                    <div class="form-group">-->
 <!--                                        <label class="control-label col-md-3">Location</label>-->
@@ -297,67 +337,80 @@
 <!--                                        </div>-->
 <!--                                    </div>-->
 <!--                                </div>-->
-                            </div>
-							<div class="row margin-top">
+<!--                            </div>-->
+                            <div class="row margin-top">
 
-								<div class="col-md-6" >
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label ">Location Zone</label>
+                                <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <label class="control-label ">Location Zone</label>
 
-											<select name="location_zone" class="form-control">
-												<option value>Select Location Zone</option>
-												<?php foreach ($location as $loc) {?>
-													<option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
-												<?php }?>
-											</select>
-											<!--  <script type="text/javascript">
+                                            <select name="location_zone" class="form-control">
+                                                <option value>Select Location Zone</option>
+                                                <?php foreach ($location as $loc) {?>
+                                                    <option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
+                                                <?php }?>
+                                            </select>
+                                            <!--  <script type="text/javascript">
                                                 document.frm.service_arabic.value='<?php echo $sr->id ?>';
                                             </script>  -->
 
-										</div>
-									</div>
-								</div>
-							</div>
-                            <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
-                            </div>
-
-                            <div class="row margin-top">
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Username</label>
-                                        <div class="col-md-9">
-											<?php foreach ($user as $us) {?>
-                                            <input type="text" name="username" value="<?php echo $us->username ?>" class="form-control" placeholder="Username" readonly >
-											<?php }?>
-										</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Email</label>
-                                        <div class="col-md-9">
-											<?php foreach ($user as $us) {?>
-                                            <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo $us->email ?>" readonly> </div>
-											<?php }?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row margin-top">
-                                <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3"> Phone</label>
-                                        <div class="col-md-9">
-											<?php foreach ($user as $us) {?>
-                                            <input type="text" name="phone" class="form-control" placeholder="Phone No" value="<?php echo $us->phone ?>">
-											<?php }?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row margin-top" >
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Location Zone</label>
+                                        <div class="col-md-9">
+                                            <div style="margin-top: 0px;">
+                                                <input type="radio" name="available_location" value="National" required>National
+                                                <input style="margin-left: 55px" type="radio" name="available_location" value="International" required> International
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Date of active</label>
+                                        <div class="col-md-9">
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row margin-top">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">date of Expiry</label>
+                                        <div class="col-md-9">
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">number of available in stock</label>
+                                        <div class="col-md-9">
+                                            <input type="number" required name="num_stock" class="form-control" placeholder="1" value="<?php echo $this->input->post("num_stock") ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-							<input required  style="margin: 15px" type="checkbox" name="vehicle1" value="Bike">By clicking "Submit" you agree to our Terms of use and Posting Rules <br>
+
+                            <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
+                            </div>
+                            <input required  style="margin: 15px" type="checkbox" name="vehicle1" value="Bike">By clicking "Submit" you agree to our Terms of use and Posting Rules <br>
 
                             <div style="padding-left: 600px;margin-top: 30px">
                                 <input type="submit" name="submit" class="btn btn-primary" value="submit">
@@ -375,10 +428,9 @@
         <?php $this->load->view('common/common_script')?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/image-uploader.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/karim-image-uploader.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -391,6 +443,40 @@
                     placeholder: "Please select option",
                     tokenSeparators: [',', ' ']
                 });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                var chassis= [];
+                <?php foreach ($chassis as $c) {?>
+                chassis.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+                <?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val()){
+                        availableChassis= chassis.slice()
+                    }else{
+                        availableChassis= chassis.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
+                    })
+                    $('#chassis_select').val(prevValue || '')
+                });
+
             });
         </script>
         <!-- <script type="text/javascript">
@@ -409,10 +495,18 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
+                $('.input-images').imageUploader({
+                    // preloaded: preloaded,
+                    imagesInputName: 'image',
+                    preloadedInputName: 'old'
+                });
 
-                // $('#datepickers').datepicker({
+                // $('#datepicker2').datepicker({
                 //     format : 'yyyy-mm-dd',
                 //     minDate: 0,
+                // });
+                // $('#datepicker3').datepicker({
+                //     format : 'yyyy-mm-dd',
                 // });
 
                 $('#cat').change(function () {
@@ -427,6 +521,8 @@
                         }
                     });
                 });
+
+
             });
         </script>
 

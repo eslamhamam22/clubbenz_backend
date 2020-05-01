@@ -15,6 +15,7 @@ class part extends MY_Controller {
 		$this->load->model('location_model', 'location');
 		$this->load->model('Provider_model', 'provider');
 		$this->load->model('Car_model', 'car');
+		$this->load->model('provider_model');
 
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
@@ -36,20 +37,22 @@ class part extends MY_Controller {
 
 		$identity = $this->session->userdata('identity');
 		$this->data['rec'] = $this->part->manage_part($identity);
+		$this->data['providers'] = $this->provider_model->select_provider();
+		$this->data['cars'] = $this->car->get_classes();
 		$this->load->view('manage_part', $this->data);
 	}
 	public function add_part() {
 
 		if ($this->input->post()) {
 
-			if (empty($this->input->post('username'))) {
-				$user = $this->ion_auth->user()->row();
-				$usname = $user->username;
-			} else {
-				$usname = $this->input->post('username');
-
-			}
-			$model_id = implode(',', $this->input->post('model_id'));
+//			if(empty($this->input->post('username'))){
+			//				$user = $this->ion_auth->user()->row();
+			//				$usname = $user->username;
+			//			}
+			//			else{
+			//				$usname = $this->input->post('username');
+			//
+			//			}
 			/*$brand=implode(',',$this->input->post('part_brand'));*/
 			$rules = array(
 				array(
@@ -93,16 +96,6 @@ class part extends MY_Controller {
 					'label' => 'Part Brand',
 					'rules' => 'trim|required',
 				),
-				array(
-					'field' => 'email',
-					'label' => 'Email',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'phone',
-					'label' => 'Phone',
-					'rules' => 'trim|required',
-				),
 			);
 
 			$this->form_validation->set_rules($rules);
@@ -113,7 +106,6 @@ class part extends MY_Controller {
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				$title = $this->input->post('title');
 				$arabicTitle = $this->input->post('title_arabic');
-				// $model_id = implode(',', $this->input->post('model_id'));
 
 				if ($this->input->post('title') == "") {
 					$title = $arabicTitle;
@@ -133,18 +125,21 @@ class part extends MY_Controller {
 					'add_date' => $this->input->post('add_date'),
 					'description' => $this->input->post('description'),
 
-					'location_latitude' => $this->input->post('location_lat'),
-					'location_longitude' => $this->input->post('location_lon'),
+//					'location_latitude'	 =>   $this->input->post('location_lat'),
+					//					'location_longitude' =>   $this->input->post('location_lon'),
 
 					'location_zone' => $this->input->post('location_zone'),
-					'username' => $usname,
-					'model_id' => $model_id,
-					'email' => $this->input->post('email'),
-					'phone' => $this->input->post('phone'),
+					'username' => $this->session->userdata("user_name"),
+					'email' => $this->session->userdata("user_email"),
+					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $this->input->post('chassis'),
+//					'sort_order' => $this->input->post('sort_order'),
+					'available_location' => $this->input->post('available_location'),
+					'date_active' => $this->input->post('date_active'),
+					'date_expire' => $this->input->post('date_expire'),
+					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),
 					'status' => $this->input->post('status'),
-
 				);
 				$result = $this->part->add_part($new_array);
 
@@ -187,9 +182,11 @@ class part extends MY_Controller {
 				}
 				if ($result) {
 
-					redirect(base_url('Part/?success=Add  successfully!'));
+					redirect(base_url('Part/?success=Added successfully!'));
 				} else {
-					redirect(base_url('Part/?error=Some error!'));
+//					print_r($new_array);
+
+					redirect(base_url('Part/?error=Unknown error!'));
 				}
 			} else {
 				$error = validation_errors();
@@ -197,14 +194,14 @@ class part extends MY_Controller {
 			}
 		}
 
-		$this->data['user'] = $this->part->get_user($this->session->userdata('email'));
+		$this->data['user'] = $this->part->get_user($this->session->userdata('user_email'));
 		$this->data['chassis'] = $this->part->get_chassis();
 		$this->data['location'] = $this->location->manage_location();
 		$this->data['parts_category'] = $this->part->manage_parts_cat();
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
 		$this->data['brand'] = $this->part->manage_brand();
-		$this->data['providers'] = $this->provider->select_provider();
 		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['providers'] = $this->provider->select_provider();
 
 		$this->load->view('add_part', $this->data);
 	}
