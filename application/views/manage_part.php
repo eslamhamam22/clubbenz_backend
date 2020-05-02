@@ -164,7 +164,7 @@ foreach ($rec as $us) {
                         })
                         $.ajax({
                             type: 'post',
-                            url:'<?php echo base_url("provider/parts/delete_many") ?>',
+                            url:'<?php echo base_url("part/delete_many") ?>',
                             data: {parts: arr},
                             success: function (mydata) {
                                 console.log(mydata);
