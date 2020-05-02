@@ -1,5 +1,5 @@
 
-<?php $this->load->view('common/common_header'); ?>
+<?php $this->load->view('common/common_header');?>
 <body class="fix-header">
 
 <div class="preloader">
@@ -25,9 +25,9 @@
 						<div class="col-xs-12">
 							<label>Part</label>
 							<select name="part" class="form-control">
-								<?php foreach ($parts as $part){ ?>
+								<?php foreach ($parts as $part) {?>
 									<option value="<?php echo $part->id; ?>"><?php echo $part->title; ?></option>
-								<?php } ?>
+								<?php }?>
 							</select>
 						</div>
 					</div>
@@ -69,8 +69,8 @@
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label>Price</label>
-							<input class="form-control" type="number" required="" name="price" placeholder="200">
+							<label>Request Date</label>
+							<input required type="date" data-date-format='yyyy-mm-dd'  name="created_at" value="<?php echo $this->input->post("created_at") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
 						</div>
 					</div>
 					<div class="form-group  m-t-20">

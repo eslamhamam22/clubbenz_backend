@@ -27,25 +27,19 @@
 					<tr>
 						<th>Part ID</th>
 						<th>Dimensions</th>
-						<th>Price</th>
 						<th>Address</th>
 						<th>Status</th>
 					</tr>
 					</thead>
 					<tbody>
-					<?php
-foreach ($requests as $request) {
-	?>
+					<?php foreach ($requests as $request) {?>
 						<tr>
 						<td><?php echo $request->part_id; ?></td>
 						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?></td>
-						<td><?php echo $request->price; ?></td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
 						<td><?php echo $request->status; ?></td>
 						</tr>
-						<?php
-}
-?>
+						<?php }?>
 					</tbody>
 				</table>
 
