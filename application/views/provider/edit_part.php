@@ -24,7 +24,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="exampleModalLabel1">Photo Update</h4>
 								</div>
-								<?php print_r($part_photos) ?>
+								<?php print_r($part_photos)?>
 								<form name="" method="post"type="" scope="" action="<?php echo base_url('/provider/parts/update_part_photos') ?>" enctype="multipart/form-data">
 									<input type="hidden" name="user_id" id="user_id" />
 									<div class="modal-body">
@@ -223,8 +223,8 @@ for ($i = 0; $i < $remaining_count; $i++) {
 							</div>
 							<label style =" padding  : 15px ;    font-size: 17px;"> Part Fitting </label>
 							<?php
-							$chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
-							?>
+$chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
+?>
 							<div style="padding :15px"  class="row margin-top" >
 
 								<div class="col-md-6" >
@@ -233,13 +233,14 @@ for ($i = 0; $i < $remaining_count; $i++) {
 											<label class="control-label ">Select Class </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
 												<option value="">Select Option</option>
-												<?php foreach ($model_name as $model) {?>
+												<?php foreach ($model_name as $model) {
+	?>
 													<?php if ($chassis_numb->model_id == $model->id) {
-														echo '<option selected value="' . $model->id . '">' . $model->name . '</option>';
-													} else {
-														echo '<option value="' . $model->id . '">' . $model->name . '</option>';
-													}
-												}?>
+		echo '<option selected value="' . $model->id . '">' . $model->name . '</option>';
+	} else {
+		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
+	}
+}?>
 											</select>
 										</div>
 									</div>
@@ -253,13 +254,14 @@ for ($i = 0; $i < $remaining_count; $i++) {
 											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
 												<option value="">Select Chassis</option>
 												<option value="24" >All</option>
-												<?php foreach ($chassis_number as $c) {?>
+												<?php foreach ($chassis_number as $c) {
+	?>
 													<?php if ($chassis_numb->chassis_num == $c->chassis_num) {
-														echo '<option selected value="' . $c->id . '">' . $c->chassis_num . '</option>';
-													} else {
-														echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>';
-													}
-												}?>
+		echo '<option selected value="' . $c->id . '">' . $c->chassis_num . '</option>';
+	} else {
+		echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>';
+	}
+}?>
 
 											</select>
 										</div>
@@ -390,8 +392,8 @@ for ($i = 0; $i < $remaining_count; $i++) {
 										<label class="control-label col-md-3">Location Zone</label>
 										<div class="col-md-9">
 											<div style="margin-top: 0px;">
-												<input type="radio" name="available_location" value="National" required <?php echo ($rec->available_location == "National")? "checked" : ""; ?>>National
-												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required <?php echo ($rec->available_location == "International")? "checked" : ""; ?>> International
+												<input type="radio" name="available_location" value="National" required <?php echo ($rec->available_location == "National") ? "checked" : ""; ?>>National
+												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required <?php echo ($rec->available_location == "International") ? "checked" : ""; ?>> International
 											</div>
 										</div>
 									</div>
@@ -441,28 +443,28 @@ for ($i = 0; $i < $remaining_count; $i++) {
                         </div>
                     </form>
                 </div>
-                <?php $this->load->view("common/common_footer")?>
+                <?php $this->load->view("provider/common/common_footer")?>
             </div>
         </div>
-        <?php $this->load->view("common/common_script")?>
+        <?php $this->load->view("provider/common/common_script")?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/image-uploader.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/karim-image-uploader.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 var preloaded= [];
                 <?php
-				foreach ($part_photos as $us) {
-					?>
+foreach ($part_photos as $us) {
+	?>
 				preloaded.push({
 					id: <?php echo $us['id']; ?>,
 					src: "<?php echo base_url('upload/') . $us['photo_name']; ?>"
 				})
 					<?php
-				}
-				?>
+}
+?>
 				console.log(JSON.stringify(preloaded))
                 $('.input-images').imageUploader({
                     preloaded: preloaded,

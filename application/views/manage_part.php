@@ -35,9 +35,9 @@
                                     <th>Provider Name</th>
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
-                                    <th>Chassis / Class</th>
+                                    <th>Chassis/Class</th>
                                     <th>Brand/User</th>
-                                    <th>Status</th>
+                                    <th>Approve/Reject</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -67,16 +67,15 @@ foreach ($rec as $us) {
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
                                         <td><?php echo $cat->name . "<br>" . $scat->name; ?> </td>
                                         <td><?php echo $chassis_number->chassis_num; ?> <br> <?php foreach ($cars as $car) {if ($us->model_id == $car->id) {echo $car->name;}}?></td>
-
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
-                            <td>
-                                <?php if ($us->status == "pending" || $us->status == "reject") {?>
-                                    <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Approve</button></a>
-                                <?php }?>
-                                <?php if ($us->status == "pending" || $us->status == "approve") {?>
-                                    <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Reject</button></a>
-                                <?php }?>
+                                        <td> <?php if ($us->status == "pending" || $us->status == "reject") {?>
+                                            <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>">
+                                            <button class="btn btn-small btn-primary"><i class="fa fa-check"></i></button></a>
+                                        <?php }?>
+                                        <?php if ($us->status == "pending" || $us->status == "approve") {?>
+                                            <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
+                                        <?php }?>
                             </td>
 
                                         <td>

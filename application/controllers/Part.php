@@ -215,23 +215,13 @@ class part extends MY_Controller {
 	}
 	public function edit_part($id) {
 
-		$user = $this->ion_auth->user()->row();
-		$usname = $user->username;
+//		$user = $this->ion_auth->user()->row();
+		//		$usname = $user->username;
 
 		if ($this->input->post()) {
 
 			$rules = array(
-				array(
-					'field' => 'price',
-					'label' => 'Price',
-					'rules' => 'trim|required',
-				),
 
-				array(
-					'field' => 'add_date',
-					'label' => 'Date Of Add',
-					'rules' => 'trim',
-				),
 				array(
 					'field' => 'part_category',
 					'label' => 'part_category',
@@ -242,34 +232,10 @@ class part extends MY_Controller {
 					'label' => 'Part Sub Category',
 					'rules' => 'trim|required',
 				),
-				array(
-					'field' => 'discount',
-					'label' => 'Discount',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'part_case',
-					'label' => 'Part Case',
-					'rules' => 'trim|required',
-				),
+
 				array(
 					'field' => 'part_brand[]',
 					'label' => 'Part Brand',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'description',
-					'label' => 'Description',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'email',
-					'label' => 'Email',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'phone',
-					'label' => 'Phone',
 					'rules' => 'trim|required',
 				),
 			);
@@ -280,7 +246,6 @@ class part extends MY_Controller {
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				$title = $this->input->post('title');
-				$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 				$arabicTitle = $this->input->post('title_arabic');
 
 				if ($this->input->post('title') == "") {
@@ -305,18 +270,22 @@ class part extends MY_Controller {
 					'part_case' => $this->input->post('part_case'),
 					'part_brand' => $part_brand,
 					'add_date' => $addDate,
-					'model_id' => $model_id,
 					'description' => $this->input->post('description'),
 
-					'location_latitude' => $this->input->post('location_lat'),
-					'location_longitude' => $this->input->post('location_lon'),
+//					'location_latitude'	 =>   $this->input->post('location_lat'),
+					//					'location_longitude' =>   $this->input->post('location_lon'),
 
 					'location' => $this->input->post('location'),
 					'location_zone' => $this->input->post('location_zone'),
-					'username' => $this->input->post('username'),
-					'email' => $this->input->post('email'),
-					'phone' => $this->input->post('phone'),
+					'username' => $this->session->userdata("user_name"),
+					'email' => $this->session->userdata("user_email"),
+					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $this->input->post('chassis'),
+//					'sort_order' => $this->input->post('sort_order'),
+					'available_location' => $this->input->post('available_location'),
+					'date_active' => $this->input->post('date_active'),
+					'date_expire' => $this->input->post('date_expire'),
+					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),
 					'status' => $this->input->post('status'),
 
@@ -330,37 +299,82 @@ class part extends MY_Controller {
 
 				);
 
-				$dataInfo = array();
+				$previous_photos = $this->partphotos->manage_part_photos($id);
+//				print_r($_POST["old"]);
+				//				print_r($previous_photos);
+				//				return;
+				$deleted_photos = $this->partphotos->del_part_photos_by_part_id($id);
+				$i = 0;
+				$j = 0;
 				$files = $_FILES;
-				$cpt = count($_FILES['image']['name']);
-				for ($i = 0; $i < $cpt; $i++) {
-
-					$_FILES['file']['name'] = $files['image']['name'][$i];
-					$_FILES['file']['type'] = $_FILES['image']['type'][$i];
-					$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-					$_FILES['file']['error'] = $_FILES['image']['error'][$i];
-					$_FILES['file']['size'] = $_FILES['image']['size'][$i];
-					$config = array();
-					$config['upload_path'] = './upload/';
-					$config['allowed_types'] = 'gif|jpg|png|jpeg';
-					$this->upload->initialize($config);
-					if ($this->upload->do_upload('file')) {
-						$dataInfo[] = $this->upload->data();
+//				$dataInfo = array();
+				foreach ($_POST["old"] as $key => $value) {
+					if ($value) {
+						//OLD
+						$single_img = array_search($value, array_column($previous_photos, 'id'));
+//						print_r($single_img);
+						//						return;
+						//						echo $j;
+						$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
+					} else {
+						//New
+						$_FILES['file']['name'] = $files['image']['name'][$i];
+						$_FILES['file']['type'] = $_FILES['image']['type'][$i];
+						$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+						$_FILES['file']['error'] = $_FILES['image']['error'][$i];
+						$_FILES['file']['size'] = $_FILES['image']['size'][$i];
+						$config = array();
+						$config['upload_path'] = './upload/';
+						$config['allowed_types'] = 'gif|jpg|png|jpeg';
+						$this->upload->initialize($config);
+						if ($this->upload->do_upload('file')) {
+//							$dataInfo[] = $this->upload->data();
+							$photo_array['photo_name'] = $this->upload->data()['file_name'];
+						}
+						$i++;
 					}
-				}
-
-				for ($i = 0; $i < sizeof($dataInfo); $i++) {
-
-					if ($i == 0) {
+					if ($j == 0) {
 						$photo_array['is_default'] = "yes";
-						$photo_array['photo_name'] = $dataInfo[0]['file_name'];
 					} else {
 						$photo_array['is_default'] = "no";
-						$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
 					}
-					$this->partphotos->add_part_photos($photo_array);
 
+					$this->partphotos->add_part_photos($photo_array);
+					$j++;
 				}
+//				return;
+				//				$dataInfo = array();
+				//				$files = $_FILES;
+				//				$cpt = count($_FILES['image']['name']);
+				//				for($i=0; $i<$cpt; $i++){
+				//
+				//					$_FILES['file']['name'] 	= $files['image']['name'][$i];
+				//					$_FILES['file']['type']     = $_FILES['image']['type'][$i];
+				//					$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+				//					$_FILES['file']['error']     = $_FILES['image']['error'][$i];
+				//					$_FILES['file']['size']     = $_FILES['image']['size'][$i];
+				//					$config= array();
+				//					$config['upload_path'] ='./upload/';
+				//					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				//					$this->upload->initialize($config);
+				//					if($this->upload->do_upload('file')){
+				//						$dataInfo[] = $this->upload->data();
+				//					}
+				//				}
+				//
+				//				for($i=0; $i<sizeof($dataInfo); $i++){
+				//
+				//					if($i==0){
+				//						$photo_array['is_default'] = "yes";
+				//						$photo_array['photo_name'] = $dataInfo[0]['file_name'];
+				//					}
+				//					else{
+				//						$photo_array['is_default'] = "no";
+				//						$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
+				//					}
+				//					$this->partphotos->add_part_photos($photo_array);
+				//
+				//				}
 
 				$this->data['success'] = "Updated successfully!";
 			} else {
@@ -372,7 +386,8 @@ class part extends MY_Controller {
 		$photo_array_count = count($photos_array);
 		$remaining_count = 10 - $photo_array_count;
 		$this->data['chassis_number'] = $this->part->get_chassis();
-		$this->data['usname'] = $usname;
+		$this->data['chassis'] = $this->data['chassis_number'];
+		$this->data['usname'] = $this->session->userdata("user_name");
 		$this->data['location'] = $this->location->manage_location();
 		$this->data['rec'] = $this->part->edit_part($id);
 		$this->data['part_photos'] = $photos_array;
@@ -380,9 +395,9 @@ class part extends MY_Controller {
 		$this->data['brand'] = $this->part->manage_brand();
 		$this->data['parts_category'] = $this->part->manage_parts_cat();
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
-		$this->data['providers'] = $this->provider->select_provider();
-		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['part_id'] = $id;
+		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['providers'] = $this->provider->select_provider();
 
 		$this->load->view('edit_part', $this->data);
 	}
