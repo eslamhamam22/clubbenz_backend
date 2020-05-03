@@ -166,6 +166,8 @@ if ($group_id[0]->name == 'admin') {?>
             </li>
             <li>
 
+                <?php if (in_array('catalog/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>catalog/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Part Catalog <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
+
                 <?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu">Push Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
                 <?php if (in_array('Reviews/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
