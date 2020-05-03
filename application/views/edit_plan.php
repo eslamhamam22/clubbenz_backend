@@ -72,11 +72,11 @@ foreach ($rec as $us) {?>
                                         <label for="inputEmail3" class="col-sm-3 control-label">Frequency</label>
                                         <div class="col-sm-9">
                                             <select id="frequency"  name="frequency" class="form-control" required >
-                                                <?php if (!empty($us->frequency)) {?>
-                                                <option value="0month" <?php echo $us->frequency == '0month' ? 'selected' : ''; ?>>3month</option>
-                                                <option value="3month" <?php echo $us->frequency == '3month' ? 'selected' : ''; ?>>3month</option>
-                                                <option value="6month" <?php echo $us->frequency == '6month' ? 'selected' : ''; ?>>6month</option>
-                                                <option value="9month" <?php echo $us->frequency == '9month' ? 'selected' : ''; ?>>9month</option>
+                                                <?php if (isset($us->frequency)) {?>
+                                                <option value="0" <?php echo $us->frequency == '0' ? 'selected' : ''; ?>>0 month</option>
+                                                <option value="3" <?php echo $us->frequency == '3' ? 'selected' : ''; ?>>3 month</option>
+                                                <option value="6" <?php echo $us->frequency == '6' ? 'selected' : ''; ?>>6 month</option>
+                                                <option value="9" <?php echo $us->frequency == '9' ? 'selected' : ''; ?>>9 month</option>
                                                 <?php }?>
                                             </select>
                                         </div>

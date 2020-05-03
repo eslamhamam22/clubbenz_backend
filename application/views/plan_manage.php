@@ -48,7 +48,7 @@ foreach ($rec as $us) {
                                         <td><?php echo $us->title ?></td>
                                         <td><?php echo $us->num_parts ?></td>
                                         <td><?php echo $us->price ?></td>
-                                        <td><?php echo $us->frequency ?></td>
+                                        <td><?php echo $us->frequency ?> Month</td>
                                          <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('plan/edit_plan') ?>/<?php echo $us->id ?>"><i class="ti-marker-alt"></i></a>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('plan/plan_del/') ?><?php echo $us->id ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
