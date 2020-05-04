@@ -305,7 +305,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                </form>
             </div>
             <div class='row'>
-               <h2>Workshop Adds</h2>
+               <h2>Workshops Adds</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_banner_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -390,7 +390,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
             </div>
 
             <div class='row'>
-               <h2>Part Shops Adds</h2>
+               <h2>Part Shops Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_partshops_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -475,7 +475,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
             </div>
 
             <div class='row'>
-               <h2>Part Services</h2>
+               <h2>Services Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_services_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -560,7 +560,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
             </div>
 
             <div class='row'>
-               <h2>Part Catlog</h2>
+               <h2>Part Catlog Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_partcatlog_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
