@@ -46,7 +46,7 @@ class Advertisement_model extends CI_Model {
 			->or_where("type", "Provider Listing")->where("pagename", "workshop")
 			->or_where("type", "Company Profile")->where("pagename", "workshop")
 			->or_where("type", "Review Comment")->where("pagename", "workshop");
-		$this->db->from('advertisement');
+		// $this->db->from('advertisement');
 		$q = $this->db->get();
 		return $q->result();
 	}

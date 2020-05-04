@@ -480,7 +480,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_partshops_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <!-- <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label> -->
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partshops_image_id_0' , 'partshops_image_input_id_0')">X</p>
