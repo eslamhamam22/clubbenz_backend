@@ -20,6 +20,7 @@ class Preferences extends REST_Controller {
 		$this->load->model('Part_model');
 		$this->load->model('Partsshop_model');
 		$this->load->model('Service_tag_model');
+		$this->load->model('Catalog_model', 'cat');
 		$this->load->model('Push_notification_model', 'notification');
 		define('FIREBASE_API_KEY', 'AAAAIDGWJ6Y:APA91bFyMeIkXy_kSS6R_l5VfCox6UqjMiv5uU8CVnzlmavattG1_hZFAv3m_HHbPGMgeSslcy8d_rcZIMZIXsXPjf3ItXM6An2i2Ljvw8bKXvsDHogx1FZO388tJ6qJBmxkINXvFjRJ');
 	}
@@ -38,6 +39,12 @@ class Preferences extends REST_Controller {
 		$arr['partshops'] = $this->Advertisement_model->manage_partshops_banner("active");
 		$arr['services'] = $this->Advertisement_model->manage_services_banner("active");
 		$arr['partcatlog'] = $this->Advertisement_model->manage_partcatlog_banner("active");
+		$arr['activate_part_catalogue'] = true;
+		$part_catalogue= $this->cat->catalog_manage();
+
+		if ($part_catalogue){
+			$arr['activate_part_catalogue'] = $part_catalogue[0]->status == 0 ? false : true;
+		}
 
 		$this->response($arr, 200);
 	}
