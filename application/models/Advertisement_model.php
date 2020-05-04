@@ -40,6 +40,17 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
+	public function manage_workshop_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "workshop")
+			->or_where("type", "Provider Listing")->where("pagename", "workshop")
+			->or_where("type", "Company Profile")->where("pagename", "workshop")
+			->or_where("type", "Review Comment")->where("pagename", "workshop");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 	public function manage_partshops_banner($type) {
 		$this->db->select('*');
 		$this->db->where("type", "Home Page Bottom")->where("pagename", "partshops")

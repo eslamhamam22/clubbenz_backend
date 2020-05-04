@@ -14,8 +14,8 @@
                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                   <h4 class="page-title">Manage Advertisement</h4>
                </div>
-            <!--    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                  <a style="background: #2CABE3" href="<?php // echo base_url('advertisement/add_advertisement') ?>"  class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Advertisement</a>
+               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <!--   <a style="background: #2CABE3" href="<?php // echo base_url('advertisement/add_advertisement') ?>"  class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Advertisement</a>
                   </div> -->
             </div>
             <div  >
@@ -210,6 +210,7 @@
                </form>
                <!-- First block End -->
             </div>
+         </div>
             <div class='row'>
                <h2>Time Out Display Add</h2>
                <div  class="row" style="padding-top: 20px">
@@ -305,7 +306,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                </form>
             </div>
             <div class='row'>
-               <h2>Workshops Adds</h2>
+               <h2>HomePage Adds</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_banner_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -376,6 +377,91 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                      <input type="hidden"  name='id_3' value="<?php echo $banner[3]->id; ?>" />
                      </div>
                      <input type="checkbox" name="status_3" value="active" <?php if ($banner[3]->status == 'active') {
+	echo "checked";
+}
+?>> Active Image
+                  </div>
+               </div>
+               <div class="form-group m-b-0">
+                    <div class="button_dive">
+                        <button type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>
+                    </div>
+                </div>
+               </form>
+            </div>
+
+            <div class='row'>
+               <h2>Workshops Adds</h2>
+               <div  class="row" style="padding-top: 20px">
+               <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_workshop_advertisement">
+                  <div align="center" class="col-md-6 imageDiv" >
+                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <div align="center" class="maarginTopBottom" >
+                        <div class="deletImageBar">
+                           <p onClick="deleteImage('workshop_image_id_0' , 'workshop_image_input_id_0')">X</p>
+                        </div>
+                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='workshop_image_id_0' src="<?php echo base_url('upload/') . $workshop[0]->image ?>" >
+                        <input type="hidden"  name='workshop_image_input_id_0' id='workshop_image_input_id_0' value="<?php echo $workshop[0]->image; ?>" />
+                        <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+                        <input style="width: 210px;margin-top: 5px;" placeholder='Enter Url'  type="text" class= "form-control btn btn-default" name="link_0" value="<?php echo $workshop[0]->link; ?>"/>
+                        <input type="hidden"  name='id_0'  value="<?php echo $workshop[0]->id; ?>" />
+                        <span style="color: red;    display: block; font-size: 12px;">Image Size should be 380*100</span>
+                     </div>
+                     <input type="checkbox" name="status_0" value="active" <?php if ($workshop[0]->status == 'active') {
+	echo "checked";
+}
+?>> Active Image
+                  </div>
+                  <div align="center" class="col-md-6 imageDiv" >
+                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <div align="center" class="maarginTopBottom" >
+                        <div class="deletImageBar">
+                           <p onClick="deleteImage('workshop_image_id_1' , 'workshop_image_input_id_1')">X</p>
+                        </div>
+                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='workshop_image_id_1' src="<?php echo base_url('upload/') . $workshop[1]->image; ?>" >
+                        <input type="hidden"  name='workshop_image_input_id_1' id='workshop_image_input_id_1' value="<?php echo $workshop[1]->image; ?>"/>
+                        <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+                        <input style="width: 210px;margin-top: 5px;" placeholder='Enter Url'  type="text" class= "form-control btn btn-default" name="link_1" value="<?php echo $workshop[1]->link; ?>"/>
+                        <span style="color: red;     display: block;font-size: 12px;">Image Size should be 400*100</span>
+                     <input type="hidden"  name='id_1' value="<?php echo $workshop[1]->id; ?>" />
+                     </div>
+                     <input type="checkbox" name="status_1" value="active" <?php if ($workshop[1]->status == 'active') {
+	echo "checked";
+}
+?>> Active Image
+                  </div>
+                  <div align="center" class="col-md-6 imageDiv" >
+                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <div align="center" class="maarginTopBottom" >
+                        <div class="deletImageBar">
+                           <p onClick="deleteImage('workshop_image_id_2' , 'workshop_image_input_id_2')">X</p>
+                        </div>
+                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='workshop_image_id_2' src="<?php echo base_url('upload/') . $workshop[2]->image; ?>" >
+                        <input type="hidden"  name='workshop_image_input_id_2' id='workshop_image_input_id_2' value="<?php echo $workshop[2]->image; ?>"/>
+                        <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+                        <input style="width: 210px;margin-top: 5px;" placeholder='Enter Url'  type="text" class= "form-control btn btn-default" name="link_2" value="<?php echo $workshop[2]->link; ?>"/>
+                        <span style="color: red;    display: block; font-size: 12px;">Image Size should be 400*100</span>
+                     <input type="hidden"  name='id_2'  value="<?php echo $workshop[2]->id; ?>" />
+                     </div>
+                     <input type="checkbox" name="status_2" value="active" <?php if ($workshop[2]->status == 'active') {
+	echo "checked";
+}
+?>> Active Image
+                  </div>
+                  <div align="center" class="col-md-6 imageDiv" >
+                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <div align="center" class="maarginTopBottom" >
+                        <div class="deletImageBar">
+                           <p onClick="deleteImage('workshop_image_id_3' , 'workshop_image_input_id_3')">X</p>
+                        </div>
+                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='workshop_image_id_3' src="<?php echo base_url('upload/') . $workshop[3]->image; ?>" >
+                        <input type="hidden"  name='workshop_image_input_id_3' id='workshop_image_input_id_3' value="<?php echo $workshop[3]->image; ?>" />
+                        <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+                        <input style="width: 210px;margin-top: 5px;" placeholder='Enter Url'  type="text" class= "form-control btn btn-default" name="link_3" value="<?php echo $workshop[3]->link; ?>"/>
+                        <span style="color: red;     display: block;font-size: 12px;">Image Size should be 400*100</span>
+                     <input type="hidden"  name='id_3' value="<?php echo $workshop[3]->id; ?>" />
+                     </div>
+                     <input type="checkbox" name="status_3" value="active" <?php if ($workshop[3]->status == 'active') {
 	echo "checked";
 }
 ?>> Active Image

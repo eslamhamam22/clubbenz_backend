@@ -35,6 +35,7 @@ class Advertisement extends MY_Controller {
 		$this->data['home'] = $this->advertisement->manage_advertisement_home("all");
 		$this->data['timeDisplay'] = $this->advertisement->manage_advertisement_timeDisplay("all");
 		$this->data['banner'] = $this->advertisement->manage_advertisement_banner("all");
+		$this->data['workshop'] = $this->advertisement->manage_workshop_banner("all");
 		$this->data['partshops'] = $this->advertisement->manage_partshops_banner("all");
 		$this->data['services'] = $this->advertisement->manage_services_banner("all");
 		$this->data['partcatlog'] = $this->advertisement->manage_partcatlog_banner("all");
@@ -180,6 +181,50 @@ class Advertisement extends MY_Controller {
 			}
 		}
 		redirect(base_url('advertisement/?success=Banner ads updated successfully!'));
+		return;
+	}
+
+	public function add_workshop_advertisement() {
+
+		$i = 0;
+		for ($i; $i <= 3; $i++) {
+			$data = array();
+			$data['image'] = $this->input->post('workshop_image_input_id_' . $i);
+			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
+			$data['link'] = $this->input->post('link_' . $i);
+			$id = $this->input->post('id_' . $i);
+			// echo "<pre>";
+			// print_r($data);
+			// echo $id;
+			$this->advertisement->update_advertisement($data, $id);
+		}
+		$dataInfo = array();
+		$files = $_FILES;
+		$cpt = count($_FILES['image']['name']);
+		for ($i = 0; $i <= 3; $i++) {
+			$id = $this->input->post('id_' . $i);
+			$file_ext = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
+			$fileName = $this->input->post('id_' . $i) . $files['image']['name'][$i];
+			$_FILES['file']['name'] = $fileName;
+			$_FILES['file']['type'] = $_FILES['image']['type'][$i];
+			$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+			$_FILES['file']['error'] = $_FILES['image']['error'][$i];
+			$_FILES['file']['size'] = $_FILES['image']['size'][$i];
+			$config = array();
+			$config['upload_path'] = './upload/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$new_name = time() . rand() . "workshop";
+			$config['file_name'] = $new_name;
+			$this->upload->initialize($config);
+			if ($this->upload->do_upload('file')) {
+				$dataInfo[] = $this->upload->data();
+				$new_array['image'] = $new_name . '.' . $file_ext;
+				$result = $this->advertisement->update_advertisement($new_array, $id);
+			} else {
+				// echo ($this->upload->display_errors());
+			}
+		}
+		redirect(base_url('advertisement/?success=partshops ads updated successfully!'));
 		return;
 	}
 
