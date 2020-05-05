@@ -395,7 +395,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_workshop_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <label  for="inputEmail3" class="control-label">First Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('workshop_image_id_0' , 'workshop_image_input_id_0')">X</p>
@@ -413,7 +413,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <label  for="inputEmail3" class="control-label">Second Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('workshop_image_id_1' , 'workshop_image_input_id_1')">X</p>
@@ -431,7 +431,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <label  for="inputEmail3" class="control-label">Third Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('workshop_image_id_2' , 'workshop_image_input_id_2')">X</p>
@@ -449,7 +449,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <label  for="inputEmail3" class="control-label">Fourth Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('workshop_image_id_3' , 'workshop_image_input_id_3')">X</p>
@@ -480,7 +480,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_partshops_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <label  for="inputEmail3" class="control-label">First Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partshops_image_id_0' , 'partshops_image_input_id_0')">X</p>
@@ -498,7 +498,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <label  for="inputEmail3" class="control-label">Second Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partshops_image_id_1' , 'partshops_image_input_id_1')">X</p>
@@ -516,7 +516,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <label  for="inputEmail3" class="control-label">Third Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partshops_image_id_2' , 'partshops_image_input_id_2')">X</p>
@@ -534,7 +534,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <label  for="inputEmail3" class="control-label">Fourth Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partshops_image_id_3' , 'partshops_image_input_id_3')">X</p>
@@ -565,7 +565,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_services_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <label  for="inputEmail3" class="control-label">First Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('services_image_id_0' , 'services_image_input_id_0')">X</p>
@@ -583,7 +583,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <label  for="inputEmail3" class="control-label">Second Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('services_image_id_1' , 'services_image_input_id_1')">X</p>
@@ -601,7 +601,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <label  for="inputEmail3" class="control-label">Third Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('services_image_id_2' , 'services_image_input_id_2')">X</p>
@@ -619,7 +619,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <label  for="inputEmail3" class="control-label">Fourth Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('services_image_id_3' , 'services_image_input_id_3')">X</p>
@@ -650,7 +650,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_partcatlog_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Home Screen Down Bar</label>
+                     <label  for="inputEmail3" class="control-label">First Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partcatlog_image_id_0' , 'partcatlog_image_input_id_0')">X</p>
@@ -668,7 +668,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <label  for="inputEmail3" class="control-label">Second Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partcatlog_image_id_1' , 'partcatlog_image_input_id_1')">X</p>
@@ -686,7 +686,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <label  for="inputEmail3" class="control-label">Third Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partcatlog_image_id_2' , 'partcatlog_image_input_id_2')">X</p>
@@ -704,7 +704,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <label  for="inputEmail3" class="control-label">Fourth Advertisement</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('partcatlog_image_id_3' , 'partcatlog_image_input_id_3')">X</p>
