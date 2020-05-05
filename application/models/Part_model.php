@@ -118,7 +118,8 @@ class Part_model extends CI_Model {
 		}
 
 //		$this->db->limit($limit, $start);
-		$this->db->select('*');
+		$this->db->select('parts.*');
+		$this->db->select('countries.phonecode');
 		$this->db->where('active', 1);
 
 		$this->db->from("parts");
