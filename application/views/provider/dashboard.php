@@ -1,5 +1,5 @@
 
-<?php $this->load->view('common/common_header'); ?>
+<?php $this->load->view('common/common_header');?>
  <body class="fix-header">
 
     <div class="preloader">
@@ -15,7 +15,7 @@
 			<div class="container-fluid">
 				<div class="row bg-title">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h4 class="page-title">Dashboard </h4>
+						<h4 class="page-title"> <?php echo lang("Dashboard"); ?></h4>
 					</div>
 				</div>
 
@@ -23,8 +23,8 @@
 				<div class="row">
 					<div class="col-sm-12">
 					<?php
-					if($current_plan) {
-						?>
+if ($current_plan) {
+	?>
 						<div class="bg-title" style="padding: 10px 20px; margin-left: 0px; margin-right: 0px;">
 							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 								<h5>Current Plan Title: <strong><?php echo $current_plan->plan->title; ?></strong></h5>
@@ -37,8 +37,8 @@
 
 						</div>
 						<?php
-					}
-					?>
+}
+?>
 					</div>
 					<div class="col-sm-12" id="shops">
 						<div class="white-box">
@@ -49,21 +49,21 @@
 											<span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
 										</li>
 										<li class="col-last">
-											<?php if($current_plan){ ?>
+											<?php if ($current_plan) {?>
 												<h3 class="counter text-right m-t-15"><?php echo $current_plan->plan->num_parts - count($active_parts); ?></h3>
-											<?php } ?>
+											<?php }?>
 										</li>
 										<li class="col-middle">
-											<?php if($current_plan){ ?>
+											<?php if ($current_plan) {?>
 											<h4>Available Parts</h4>
 											<div class="progress">
 												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
 													<span class="sr-only">40% Complete (success)</span>
 												</div>
 											</div>
-											<?php }else{ ?>
+											<?php } else {?>
 												<h4>No Plan available</h4>
-											<?php } ?>
+											<?php }?>
 										</li>
 									</ul>
 								</div>
