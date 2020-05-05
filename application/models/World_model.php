@@ -11,6 +11,26 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
+	public function get_country_by_id($id){
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('countries');
+		if ($query = $this->db->get()) {
+			return $query->result()[0];
+		} else {
+			return false;
+		}
+	}
+	public function get_state_by_id($id){
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('states');
+		if ($query = $this->db->get()) {
+			return $query->result()[0];
+		} else {
+			return false;
+		}
+	}
 	public function get_states_by_country($country_id){
 		$this->db->select('*');
 		$this->db->from('states');

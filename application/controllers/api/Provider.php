@@ -10,6 +10,7 @@ class Provider extends REST_Controller
 		$this->load->database();
 		$this->load->model('Provider_Model');
 		$this->load->model('Shipping_model');
+		$this->load->model('World_model');
 		$this->load->model('Workshop_model');
 		$this->load->model('Provider_plan_model');
 		$this->load->model('Plan_model');
@@ -32,6 +33,8 @@ class Provider extends REST_Controller
 			$r->user_name = $user->username;
 		}
 		$provider[0]->avg_rating = $this->Workshop_model->average_rating($provider_id, "provider");
+		$provider[0]->country= $this->World_model->get_country_by_id($provider[0]->country);
+		$provider[0]->governorate= $this->World_model->get_state_by_id($provider[0]->governorate);
 		$this->response($provider[0], 200);
 	}
 }
