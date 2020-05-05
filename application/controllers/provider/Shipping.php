@@ -22,6 +22,10 @@ class Shipping extends CI_Controller {
 			redirect('/provider');
 		}
 
+		$this->load->helper('language');
+		$this->lang->load('provider/left_nav',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+		$this->lang->load('provider/shipping',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+
 	}
 
 	public function index() {

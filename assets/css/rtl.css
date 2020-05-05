@@ -1,0 +1,10 @@
+@media (min-width: 768px){
+	#page-wrapper {
+		margin: 0 240px 0 0;
+	}
+}
+.top-left-part {
+	float: right;
+	border-left: 1px solid rgba(0,0,0,.08);
+	border-right: none;
+}

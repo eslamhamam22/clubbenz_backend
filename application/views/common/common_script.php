@@ -22,4 +22,3 @@
 
 <script src="<?php echo base_url()?>assets/plugins/bower_components/Chart.js/chartjs.init.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/bower_components/Chart.js/Chart.min.js"></script>
-        

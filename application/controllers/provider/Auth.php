@@ -21,6 +21,10 @@ class Auth extends CI_Controller {
 		$this->lang->load('auth');
 		if($this->session->userdata("id"))
 			redirect('/provider/home');
+
+		$this->load->helper('language');
+		$this->lang->load('provider/auth',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+
 	}
 
 	/**

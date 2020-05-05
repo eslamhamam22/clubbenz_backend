@@ -27,6 +27,10 @@ class Provider extends CI_Controller {
 		}
 		if(!$this->session->userdata("id"))
 			redirect('/provider');
+
+		$this->load->helper('language');
+		$this->lang->load('provider/left_nav',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+		$this->lang->load('provider/auth',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
 	}
 
 

@@ -33,25 +33,25 @@
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label>Width</label>
+							<label>Width(cm)</label>
 							<input class="form-control" type="number" required="required" name="width" placeholder="1.0" step="0.01" min="0">
 						</div>
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label>Height</label>
+							<label>Height(cm)</label>
 							<input class="form-control" type="number" required="required" name="height" placeholder="1.0" step="0.01" min="0">
 						</div>
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label>Length</label>
+							<label>Length(cm)</label>
 							<input class="form-control" type="number" required="required" name="length" placeholder="1.0" step="0.01" min="0">
 						</div>
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label>Weight</label>
+							<label>Weight(gm)</label>
 							<input class="form-control" type="number" required="required" name="weight" placeholder="1.0" step="0.01" min="0">
 						</div>
 					</div>

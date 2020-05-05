@@ -18,7 +18,11 @@
         <li class="dropdown">
             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><b class="hidden-xs"><?php echo $this->session->userdata('user_email'); ?></b><span class="caret"></span> </a>
             <ul class="dropdown-menu dropdown-user animated flipInY">
-                
+                <?php if($this->session->userdata('site_lang') == "arabic"){ ?>
+					<li><a href="<?php echo base_url('provider/langSwitch/switchLanguage/english');?>"><i class="fa fa-language"></i> English</a></li>
+				<?php }else{ ?>
+					<li><a href="<?php echo base_url('provider/langSwitch/switchLanguage/arabic');?>"><i class="fa fa-language"></i> العربية</a></li>
+				<?php } ?>
                 <li><a href="<?php echo base_url('provider/home/logout');?>"><i class="fa fa-power-off"></i> Logout</a></li>
             </ul>
             <!-- /.dropdown-user -->

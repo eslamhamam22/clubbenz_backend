@@ -27,6 +27,7 @@
 					<tr>
 						<th>Part ID</th>
 						<th>Dimensions</th>
+						<th>Weight</th>
 						<th>Address</th>
 						<th>Status</th>
 					</tr>
@@ -35,7 +36,8 @@
 					<?php foreach ($requests as $request) {?>
 						<tr>
 						<td><?php echo $request->part_id; ?></td>
-						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?></td>
+						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?>(cm)</td>
+						<td><?php echo $request->weight; ?>(gm)</td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
 						<td><?php echo $request->status; ?></td>
 						</tr>
