@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Featured</label>
                                         <div class="col-sm-9">
-                                        <input type="number" name="num_featured" class="form-control" id="num_featured" placeholder="num featured" required> </div>
+                                        <input type="number" name="num_featured" class="form-control" id="num_featured" placeholder="Number of featured parts cannot exceed the number of parts" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
@@ -56,6 +56,7 @@
                                         <label for="inputEmail3" class="col-sm-3 control-label">Frequency</label>
                                         <div class="col-sm-9">
                                             <select id="frequency"  name="frequency" class="form-control" required>
+                                                <option value="0">0 month</option>
                                                 <option value="3">3 month</option>
                                                 <option value="6">6 month</option>
                                                 <option value="9">9 month</option>
@@ -87,8 +88,13 @@
             $('#popup').html('<h4> added Successfully</h4>');
                 $( "div.success" ).fadeIn( 100 ).delay( 3000 ).fadeOut( 2000 );
              });
-
-
+        $("#num_featured").on("keyup", function(){
+            var max= $("#num_parts").val();
+            if($("#num_featured").val() > max){
+                alert("Number of featured parts cannot exceed the number of parts.")
+                $("#num_featured").val(max)
+            }
+        });
 
 
 

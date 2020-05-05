@@ -33,6 +33,7 @@
                         <th>ID</th>
                                     <th>Photo</th>
                                     <th>Provider Name</th>
+                                    <th>Provider Logo</th>
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
                                     <th>Chassis</th>
@@ -62,6 +63,12 @@ foreach ($rec as $us) {
                                         </td>
                                         <td>
                                         <?php foreach ($providers as $provider) {if ($us->provider_id == $provider['id']) {echo $provider['user_name'];}}?>
+
+                                        </td>
+                                        <td>
+                                        <?php foreach ($providers as $provider) {if ($us->provider_id == $provider['id']) {?>
+                                            <img class="img_size" src="<?php echo base_url('upload/') . $provider['logo']; ?>" >
+                                         <?php }}?>
 
                                         </td>
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
