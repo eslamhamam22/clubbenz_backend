@@ -117,10 +117,15 @@ class Part_model extends CI_Model {
 
 		}
 
-		$this->db->limit($limit, $start);
+//		$this->db->limit($limit, $start);
 		$this->db->select('*');
 		$this->db->where('active', 1);
-		$q = $this->db->get("parts");
+
+		$this->db->from("parts");
+		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
+		$this->db->join('countries', 'country = countries.id');
+		$q = $this->db->get();
+
 		if ($q->num_rows() > 0) {
 			return $q->result();
 		}

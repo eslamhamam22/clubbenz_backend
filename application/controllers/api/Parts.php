@@ -14,6 +14,7 @@ class Parts extends REST_Controller {
 		$this->load->model('Brand_model');
 		$this->load->model('Partcategory_model');
 		$this->load->model('Partsubcategory_model');
+		$this->load->model('Provider_plan_model');
 		$this->load->library('upload');
 		$this->load->database();
 		ini_set('display_errors', 1);
@@ -40,10 +41,25 @@ class Parts extends REST_Controller {
 			$val->part_brand = $this->Brand_model->get_bands_by_ids($val->part_brand);
 			$val->part_category = $this->Partcategory_model->get_category_by_id($val->part_category);
 			$val->part_sub_category = $this->Partsubcategory_model->get_subcategory_by_id($val->part_sub_category);
+			$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			$new_array[] = $val;
-
 		}
-
+		$country= null;
+		$phone = $this->get('phone');
+		$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
+			if(!$part->plan || $part->plan->status != "active")
+				return false;
+			if($part->available_location == "National" && $phone){
+				$phonecode= "+".$part->phonecode;
+				if(strpos($phone, $phonecode) !== false){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			return true;
+		});
+		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
 		$this->response($arr, 200);
 	}
 
