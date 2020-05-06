@@ -38,6 +38,7 @@
                                     <th>Provider Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
+									<th>Cost</th>
                                     <th>Shipping Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -57,6 +58,7 @@
                                     <td><?php echo $provider['user_email']; ?></td>
                                     <td><?php echo $provider['user_mobile']; ?></td>
                                     <?php }}?>
+                                    <td><?php echo $r['price']; ?></td>
                                     <td><?php echo $r['created_at']; ?></td>
                                     <td><?php echo $r['status']; ?></td>
                                     <td>
