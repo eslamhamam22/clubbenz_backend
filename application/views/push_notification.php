@@ -1,5 +1,5 @@
 <?php $this->load->view('common/common_header');?>
-<script src="<?php echo base_url()?>assets/js/validator/validator.js"></script>
+<script src="<?php echo base_url() ?>assets/js/validator/validator.js"></script>
     <body class="fix-header">
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -17,28 +17,28 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-3" >
-                    
+
                 </div>
                 <div class="col-md-6" style="background: white">
                     <div class="white-box">
                         <?php $this->load->view('message');?>
-                        <form class="form-horizontal" method="post" action="<?php echo base_url();?>push_notification/send_push_notification">
+                        <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>push_notification/send_push_notification">
 
                         <div align="center" style ="width :100%; margin : 20px">
-                            
+
                             <label for="" class="">User Details</label>
-            
+
                         </div>
 
 
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Classes</label>
                                 <div class="col-sm-9">
-                                     <select name="class_id" id="class" class="form-control">
+                                     <select name="class_id[]" id="class" class="form-control js-example-tokenizer3" multiple>
                                         <option value="">Select classes</option>
-                                        <?php foreach($class as $c){?>
-                                        <option value="<?php echo $c->id;?>" ><?php echo $c->name?></option>
-                                        <?php } ?>
+                                        <?php foreach ($class as $c) {?>
+                                        <option value="<?php echo $c->id; ?>" ><?php echo $c->name ?></option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
@@ -47,9 +47,9 @@
                                 <div class="col-sm-9">
                                      <select name="fuel_id" id="fuel" class="form-control">
                                         <option value="">Select Fuel Type</option>
-                                        <?php foreach($fuel as $f){?>
-                                        <option value="<?php echo $f->id;?>" ><?php echo $f->name?></option>
-                                        <?php } ?>
+                                        <?php foreach ($fuel as $f) {?>
+                                        <option value="<?php echo $f->id; ?>" ><?php echo $f->name ?></option>
+                                        <?php }?>
                                      </select>
                                 </div>
                             </div>
@@ -58,9 +58,9 @@
                                 <div class="col-sm-9">
                                      <select name="year_id" id="year" class="form-control">
                                         <option value="">Select year</option>
-                                        <?php foreach($year as $y){?>
-                                        <option value="<?php echo $y->id;?>" ><?php echo $y->name?></option>
-                                        <?php } ?>
+                                        <?php foreach ($year as $y) {?>
+                                        <option value="<?php echo $y->id; ?>" ><?php echo $y->name ?></option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
@@ -69,9 +69,9 @@
                                 <div class="col-sm-9">
                                      <select name="chassis" id="chassis" class="form-control">
                                         <option value="">Select Chassis</option>
-                                        <?php foreach($chassis as $ca){?>
-                                        <option value="<?php echo $ca->id; ?>" ><?php echo $ca->chassis_num; ?></option>
-                                        <?php } ?>
+                                        <?php foreach ($chassis as $ca) {?>
+                                        <option data-class="<?php echo $ca->model_id; ?>" value="<?php echo $ca->id; ?>" ><?php echo $ca->chassis_num; ?></option>
+                                        <?php }?>
                                      </select>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@
                                 </div>
                             </div>
                             <div align="center" style ="width :100%; margin : 20px">
-                            
+
                                 <label for="" class="">Landing Page Details</label>
-                
+
                             </div>
 
                             <div class="form-group">
@@ -135,7 +135,7 @@
                             </div>
 
 
-                            
+
 
                         </form>
                     </div>
@@ -145,18 +145,61 @@
 
         </div>
          <?php $this->load->view('common/common_script');?>
-        
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                var chassis= [];
+                <?php foreach ($chassis as $c) {?>
+                chassis.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+                <?php }?>
+                $('#class').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val()){
+                        availableChassis= chassis.slice()
+                    }else{
+                        availableChassis= chassis.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis').val();
+                    $('#chassis').empty();
+                    $('#chassis').append('<option value="">Select Option</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis').append('<option data-class="'+ch.model_id+'" value="'+ch.id+'">'+ch.chassis_num+'</option>');
+                    })
+                    $('#chassis').val(prevValue || '')
+                });
+
+            });
+        </script>
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#chassis').change(function () {
-                    var class_id = $('#class').val();
+                    // var class_id = $('#class').val();
+                    var class_id = $('#chassis option:selected').data("class");
                     var fuel_id = $('#fuel').val();
                     var year_id = $('#year').val();
                     var chassis_id = $('#chassis').val();
                     if(class_id > 0 && fuel_id > 0 && year_id > 0 && chassis_id > 0){
                         $.ajax({
                             type: 'post',
-                            url:'<?php echo base_url("push_notification/cars")?>',
+                            url:'<?php echo base_url("push_notification/cars") ?>',
                             data: {'class_id':class_id,'fuel_id':fuel_id,'year_id':year_id, 'chassis_id':chassis_id},
                             success: function (mydata) {
                                     console.log(mydata);
@@ -172,7 +215,7 @@
                     if(type != ""){
                         $.ajax({
                             type: 'post',
-                            url:'<?php echo base_url("push_notification/shops")?>',
+                            url:'<?php echo base_url("push_notification/shops") ?>',
                             data: {'type':type},
                             success: function (mydata) {
                                     console.log(mydata);
@@ -182,8 +225,8 @@
                     }
                     else{
                         alert('must select type');
-                    } 
-                }); 
+                    }
+                });
             });
 
 

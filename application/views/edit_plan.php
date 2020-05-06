@@ -59,7 +59,7 @@ foreach ($rec as $us) {?>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Featured</label>
                                         <div class="col-sm-9">
-                                            <input type="number" name="num_featured" class="form-control" value="<?php echo $us->num_featured ?>" required>
+                                            <input type="number" name="num_featured" class="form-control" id="num_featured" value="<?php echo $us->num_featured ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -73,6 +73,7 @@ foreach ($rec as $us) {?>
                                         <div class="col-sm-9">
                                             <select id="frequency"  name="frequency" class="form-control" required >
                                                 <?php if (isset($us->frequency)) {?>
+                                                <option value="0" <?php echo $us->frequency == '0' ? 'selected' : ''; ?>>0 month</option>
                                                 <option value="3" <?php echo $us->frequency == '3' ? 'selected' : ''; ?>>3 month</option>
                                                 <option value="6" <?php echo $us->frequency == '6' ? 'selected' : ''; ?>>6 month</option>
                                                 <option value="9" <?php echo $us->frequency == '9' ? 'selected' : ''; ?>>9 month</option>
@@ -102,6 +103,21 @@ foreach ($rec as $us) {?>
         <?php $this->load->view("common/common_script")?>
 
 </body>
+
+<script type="text/javascript">
+
+        $("#num_featured").on("keyup", function(){
+            var max= $("#num_parts").val();
+            if($("#num_featured").val() > max){
+                alert("Number of featured parts cannot exceed the number of parts.")
+                $("#num_featured").val(max)
+            }
+        });
+
+
+
+    </script>
+
 
 
 

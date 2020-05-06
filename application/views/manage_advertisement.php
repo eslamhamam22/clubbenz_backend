@@ -212,7 +212,7 @@
             </div>
          </div>
             <div class='row'>
-               <h2>Time Out Display Add</h2>
+               <h2>Time Out Display Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_timeOut_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -306,7 +306,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
                </form>
             </div>
             <div class='row'>
-               <h2>HomePage Adds</h2>
+               <h2>Banner Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_banner_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
@@ -328,7 +328,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Provider Listing Add</label>
+                     <label  for="inputEmail3" class="control-label">Provider Listing Ads</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('banner_image_id_1' , 'banner_image_input_id_1')">X</p>
@@ -346,7 +346,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Company Profile Add</label>
+                     <label  for="inputEmail3" class="control-label">Company Profile Ads</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('banner_image_id_2' , 'banner_image_input_id_2')">X</p>
@@ -364,7 +364,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
 ?>> Active Image
                   </div>
                   <div align="center" class="col-md-6 imageDiv" >
-                     <label  for="inputEmail3" class="control-label">Review Comment Add</label>
+                     <label  for="inputEmail3" class="control-label">Review Comment Ads</label>
                      <div align="center" class="maarginTopBottom" >
                         <div class="deletImageBar">
                            <p onClick="deleteImage('banner_image_id_3' , 'banner_image_input_id_3')">X</p>
@@ -391,7 +391,7 @@ echo $datatime;?>" readonly style="width: 200px;text-align: center;">
             </div>
 
             <div class='row'>
-               <h2>Workshops Adds</h2>
+               <h2>Workshops Ads</h2>
                <div  class="row" style="padding-top: 20px">
                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>advertisement/add_workshop_advertisement">
                   <div align="center" class="col-md-6 imageDiv" >
