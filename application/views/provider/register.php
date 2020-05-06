@@ -60,12 +60,6 @@
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
-						<label>Mobile</label>
-						<input class="form-control" type="text" required name="user_mobile" placeholder="">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-xs-12">
 						<label>Store Name</label>
 						<input class="form-control" type="text" required name="store_name" placeholder="">
 					</div>
@@ -78,16 +72,10 @@
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
-						<label>Address</label>
-						<input class="form-control" type="text" required name="address" placeholder="">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-xs-12">
 						<label>Country</label>
 						<select class="form-control" required name="country" id="country">
 							<?php foreach ($countries as $country){ ?>
-								<option value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
+								<option data-phone="<?php echo $country->phonecode; ?>" value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -104,6 +92,18 @@
 					<div class="col-xs-12">
 						<label>City</label>
 						<input class="form-control" type="text" required name="city" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label>Address</label>
+						<input class="form-control" type="text" required name="address" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label>Mobile</label>
+						<input id="phone" class="form-control" type="text" required name="user_mobile" placeholder="">
 					</div>
 				</div>
 				<div class="form-group">
@@ -176,6 +176,9 @@
 
         $('#country').change(function () {
             var id = $(this).val();
+            var code=""+$("#country option:selected").data("phone")
+			code= code.includes("+") ? code : "+"+code
+            $("#phone").val(code);
             $.ajax({
                 type: 'post',
                 url:'<?php echo base_url("provider/world/states") ?>',

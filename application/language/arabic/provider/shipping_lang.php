@@ -20,6 +20,7 @@ $lang["Weight(gm)"] = "الوزن (جم)";
 $lang["Address"] = "عنوان";
 $lang["City"] = "مدينة";
 $lang["Request Date"] = "تاريخ الطلب";
+$lang["Shipment Date"] = "تاريخ التوصيل";
 $lang["Message"] = "رسالة";
 $lang["write your message here"] = "اكتب رسالتك هنا";
 $lang["Request"] = "طلب";

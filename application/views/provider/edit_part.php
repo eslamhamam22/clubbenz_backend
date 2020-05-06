@@ -365,27 +365,23 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 <!--                                </div>-->
 
 <!--							</div>-->
-							<div class="row margin-top">
-
-								<div class="col-md-6" >
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label "><?php echo lang("Location_Zone"); ?></label>
-
-											<select name="location_zone" class="form-control">
-												<option value =""></option>
-												<?php foreach ($location as $loc) {?>
-													<option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
-												<?php }?>
-											</select>
-											<script type="text/javascript">
-                                                document.frm.location_zone.value='<?php echo $rec->location_zone ?>';
-											</script>
-
-										</div>
-									</div>
-								</div>
-							</div>
+<!--							<div class="row margin-top">-->
+<!---->
+<!--								<div class="col-md-6" >-->
+<!--									<div class="form-group">-->
+<!--										<div class="col-md-9">-->
+<!--											<label class="control-label ">--><?php //echo lang("Location_Zone"); ?><!--</label>-->
+<!---->
+<!--											<select name="location_zone" class="form-control">-->
+<!--												<option value =""></option>-->
+<!--												--><?php //foreach ($location as $loc) {?>
+<!--													<option value="--><?php //echo $loc->id ?><!--">--><?php //echo $loc->name; ?><!--</option>-->
+<!--												--><?php //}?>
+<!--											</select>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 							<div class="row margin-top" >
 								<div class="col-md-6">
 									<div class="form-group">
@@ -410,17 +406,17 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 								</div>
 
 							</div>
-							<div class="row margin-top">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
-										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $rec->date_expire; ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
-										</div>
-									</div>
-								</div>
-
-							</div>
+<!--							<div class="row margin-top">-->
+<!--								<div class="col-md-6">-->
+<!--									<div class="form-group">-->
+<!--										<label class="control-label col-md-3">--><?php //echo lang("date_of_Expiry"); ?><!--</label>-->
+<!--										<div class="col-md-9">-->
+<!--											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="--><?php //echo $rec->date_expire; ?><!--" id="datepicker3"   min="--><?php //echo date('Y-m-d'); ?><!--"/>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!---->
+<!--							</div>-->
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">

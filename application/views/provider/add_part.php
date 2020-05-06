@@ -304,31 +304,27 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </div>-->
-							<div class="row margin-top">
-
-								<div class="col-md-6" >
-									<div class="form-group">
-										<div class="col-md-9">
-											<label class="control-label "><?php echo lang("Location_Zone"); ?></label>
-
-											<select name="location_zone" class="form-control">
-												<option value><?php echo lang("Select_Location_Zone"); ?></option>
-												<?php foreach ($location as $loc) {?>
-													<option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
-												<?php }?>
-											</select>
-											<!--  <script type="text/javascript">
-                                                document.frm.service_arabic.value='<?php echo $sr->id ?>';
-                                            </script>  -->
-
-										</div>
-									</div>
-								</div>
-							</div>
+<!--							<div class="row margin-top">-->
+<!---->
+<!--								<div class="col-md-6" >-->
+<!--									<div class="form-group">-->
+<!--										<div class="col-md-9">-->
+<!--											<label class="control-label ">--><?php //echo lang("Location_Zone"); ?><!--</label>-->
+<!---->
+<!--											<select name="location_zone" class="form-control">-->
+<!--												<option value>--><?php //echo lang("Select_Location_Zone"); ?><!--</option>-->
+<!--												--><?php //foreach ($location as $loc) {?>
+<!--													<option value="--><?php //echo $loc->id ?><!--">--><?php //echo $loc->name; ?><!--</option>-->
+<!--												--><?php //}?>
+<!--											</select>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 							<div class="row margin-top" >
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3"<?php echo lang("Location_Zone"); ?>></label>
+										<label class="control-label col-md-3"><?php echo lang("Location_Zone"); ?></label>
 										<div class="col-md-9">
 											<div style="margin-top: 0px;">
 												<input type="radio" name="available_location" value="National" required><?php echo lang("National"); ?>
@@ -349,17 +345,17 @@
 								</div>
 
 							</div>
-							<div class="row margin-top">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
-										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
-										</div>
-									</div>
-								</div>
-
-							</div>
+<!--							<div class="row margin-top">-->
+<!--								<div class="col-md-6">-->
+<!--									<div class="form-group">-->
+<!--										<label class="control-label col-md-3">--><?php //echo lang("date_of_Expiry"); ?><!--</label>-->
+<!--										<div class="col-md-9">-->
+<!--											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="--><?php //echo $this->input->post("date_expire") ?><!--" id="datepicker3"   min="--><?php //echo date('Y-m-d'); ?><!--"/>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!---->
+<!--							</div>-->
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">

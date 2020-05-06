@@ -131,7 +131,7 @@ class Parts extends CI_Controller{
 //					'location_latitude'	 =>   $this->input->post('location_lat'),
 //					'location_longitude' =>   $this->input->post('location_lon'),
 
-					'location_zone' => $this->input->post('location_zone'),
+//					'location_zone' => $this->input->post('location_zone'),
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
@@ -139,7 +139,7 @@ class Parts extends CI_Controller{
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
-					'date_expire' => $this->input->post('date_expire'),
+//					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id")
 				);
@@ -310,7 +310,7 @@ class Parts extends CI_Controller{
 //					'location_latitude'	 =>   $this->input->post('location_lat'),
 //					'location_longitude' =>   $this->input->post('location_lon'),
 
-					'location' => $this->input->post('location'),
+//					'location' => $this->input->post('location'),
 					'location_zone' => $this->input->post('location_zone'),
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
@@ -319,7 +319,7 @@ class Parts extends CI_Controller{
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
-					'date_expire' => $this->input->post('date_expire'),
+//					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id")
 

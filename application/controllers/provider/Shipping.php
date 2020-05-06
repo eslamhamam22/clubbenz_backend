@@ -59,7 +59,7 @@ class Shipping extends CI_Controller {
 				"weight" => $this->input->post('weight'),
 				"address" => $this->input->post('address'),
 				"city" => $this->input->post('city'),
-				"created_at	" => $this->input->post('created_at'),
+				"shippment_date" => $this->input->post('shippment_date'),
 				"message" => $this->input->post('message'),
 			);
 

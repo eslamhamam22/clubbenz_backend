@@ -31,6 +31,7 @@
 						<th><?php echo lang("Address"); ?></th>
 						<th><?php echo lang("Cost"); ?></th>
 						<th><?php echo lang("Request Date"); ?></th>
+						<th><?php echo lang("Shipment Date"); ?></th>
 						<th><?php echo lang("Message"); ?></th>
 						<th><?php echo lang("Status"); ?></th>
 					</tr>
@@ -44,6 +45,7 @@
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
 						<td><?php echo $request->price; ?></td>
 						<td><?php echo $request->created_at; ?></td>
+						<td><?php echo $request->shippment_date; ?></td>
 						<td><?php echo $request->message; ?></td>
 						<td><?php echo $request->status; ?></td>
 						</tr>

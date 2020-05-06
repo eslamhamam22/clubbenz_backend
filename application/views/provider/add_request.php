@@ -20,7 +20,7 @@
 			</div>
 			<?php $this->load->view('message');?>
 			<div class="row" style="overflow: auto">
-				<form class="col-xs-12 form-horizontal new-lg-form" method="post" id="loginform" action="<?php echo base_url('provider/shipping/add_request_submit'); ?>">
+				<form class="col-xs-12 col-md-4 form-horizontal new-lg-form" method="post" id="loginform" action="<?php echo base_url('provider/shipping/add_request_submit'); ?>">
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
 							<label><?php echo lang("Part"); ?></label>
@@ -69,8 +69,8 @@
 					</div>
 					<div class="form-group  m-t-20">
 						<div class="col-xs-12">
-							<label><?php echo lang("Request Date"); ?></label>
-							<input required type="date" data-date-format='yyyy-mm-dd'  name="created_at" value="<?php echo $this->input->post("created_at") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
+							<label><?php echo lang("Shipment Date"); ?></label>
+							<input required type="date" data-date-format='yyyy-mm-dd'  name="shippment_date" value="<?php echo $this->input->post("shippment_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
 						</div>
 					</div>
 					<div class="form-group  m-t-20">

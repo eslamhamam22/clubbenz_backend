@@ -20,6 +20,7 @@ $lang["Weight(gm)"] = "Weight(gm)";
 $lang["Address"] = "Address";
 $lang["City"] = "City";
 $lang["Request Date"] = "Request Date";
+$lang["Shipment Date"] = "Shipment Date";
 $lang["Message"] = "Message";
 $lang["write your message here"] = "write your message here";
 $lang["Request"] = "Request";
