@@ -67,7 +67,7 @@ class Part_model extends CI_Model {
 		return $q->result();
 	}
 
-	function get_shop($data, $start, $limit, $chassis) {
+	function get_shop($data, $start, $limit, $chassis, $phone) {
 
 		$chassis_ids = array('24', $chassis);
 		$this->db->where_in('chassis_id', $chassis_ids);
@@ -120,7 +120,8 @@ class Part_model extends CI_Model {
 //		$this->db->limit($limit, $start);
 		$this->db->select('parts.*');
 		$this->db->select('countries.phonecode');
-		$this->db->where('active', 1);
+		$this->db->where('parts.active', 1);
+		$this->db->where('parts.status', "approve");
 
 		$this->db->from("parts");
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
@@ -128,7 +129,22 @@ class Part_model extends CI_Model {
 		$q = $this->db->get();
 
 		if ($q->num_rows() > 0) {
-			return $q->result();
+			$arr['shops']= $q->result();
+			$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
+				if(!$part->plan || $part->plan->status != "active")
+					return false;
+				if($part->available_location == "National" && $phone){
+					$phonecode= "+".$part->phonecode;
+					if(strpos($phone, $phonecode) !== false){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				return true;
+			});
+			$arr['shops'] = array_slice($arr['shops'], $start, $limit);
+			return $arr['shops'];
 		}
 		return array();
 	}

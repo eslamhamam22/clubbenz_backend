@@ -82,10 +82,16 @@
 								<?php } ?>
 							</td>
 							<td>
-								<?php if($us->featured == 0){ ?>
-									<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Add</button></a>
+								<?php if($us->status == "pending"){ ?>
+<!--									<button class="btn btn-small btn-info">Pending</button>-->
+								<?php }else if($us->status == "approve"){ ?>
+									<?php if($us->featured == 0){ ?>
+										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Add</button></a>
+									<?php }else{ ?>
+										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Remove</button></a>
+									<?php } ?>
 								<?php }else{ ?>
-									<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Remove</button></a>
+<!--									<button class="btn btn-small btn-danger">Rejected</button>-->
 								<?php } ?>
 							</td>
 

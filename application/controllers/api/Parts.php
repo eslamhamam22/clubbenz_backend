@@ -30,10 +30,11 @@ class Parts extends REST_Controller {
 		$search_arr['brand_id'] = $this->get('brand_id');
 		$search_arr['sub_category'] = $sub_category;
 		$search_arr['search'] = $search;
+		$phone = $this->get('phone');
 
 		$search_arr['type'] = $type;
 		$arr['total'] = $this->Part_model->count_shop($search_arr, $start, $limit, $chassis);
-		$arr['shops'] = $this->Part_model->get_shop($search_arr, $start, $limit, $chassis);
+		$arr['shops'] = $this->Part_model->get_shop($search_arr, $start, $limit, $chassis, $phone);
 
 		$new_array = array();
 		foreach ($arr['shops'] as $val) {
@@ -45,21 +46,20 @@ class Parts extends REST_Controller {
 			$new_array[] = $val;
 		}
 		$country= null;
-		$phone = $this->get('phone');
-		$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
-			if(!$part->plan || $part->plan->status != "active")
-				return false;
-			if($part->available_location == "National" && $phone){
-				$phonecode= "+".$part->phonecode;
-				if(strpos($phone, $phonecode) !== false){
-					return true;
-				}else{
-					return false;
-				}
-			}
-			return true;
-		});
-		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
+//		$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
+//			if(!$part->plan || $part->plan->status != "active")
+//				return false;
+//			if($part->available_location == "National" && $phone){
+//				$phonecode= "+".$part->phonecode;
+//				if(strpos($phone, $phonecode) !== false){
+//					return true;
+//				}else{
+//					return false;
+//				}
+//			}
+//			return true;
+//		});
+//		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
 		$this->response($arr, 200);
 	}
 
@@ -110,8 +110,9 @@ class Parts extends REST_Controller {
 
 	function get_partsubcategory_post() {
 		$id = $this->post('id');
+		$phone = $this->post('phone');
 		$chassis_id = $this->post('chassis_id');
-		$data = $this->Partsubcategory_model->get_subcategory_with_parts($id, $chassis_id);
+		$data = $this->Partsubcategory_model->get_subcategory_with_parts($id, $chassis_id, $phone);
 		$arr['success'] = true;
 		$arr['data'] = $data;
 		$arr['id'] = $id;
