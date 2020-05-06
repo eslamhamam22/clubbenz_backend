@@ -130,6 +130,9 @@ class Part_model extends CI_Model {
 
 		if ($q->num_rows() > 0) {
 			$arr['shops']= $q->result();
+			foreach ($arr['shops'] as $val) {
+				$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
+			}
 			$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
 				if(!$part->plan || $part->plan->status != "active")
 					return false;

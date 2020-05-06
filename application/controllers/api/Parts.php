@@ -42,7 +42,7 @@ class Parts extends REST_Controller {
 			$val->part_brand = $this->Brand_model->get_bands_by_ids($val->part_brand);
 			$val->part_category = $this->Partcategory_model->get_category_by_id($val->part_category);
 			$val->part_sub_category = $this->Partsubcategory_model->get_subcategory_by_id($val->part_sub_category);
-			$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
+//			$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			$new_array[] = $val;
 		}
 		$country= null;
