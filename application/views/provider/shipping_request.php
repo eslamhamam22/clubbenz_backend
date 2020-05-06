@@ -14,10 +14,10 @@
 		<div class="container-fluid">
 			<div class="row bg-title">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					<h4 class="page-title">Shipping Requests</h4>
+					<h4 class="page-title"><?php echo lang("Shipping Requests"); ?></h4>
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-					<a style="background: #2CABE3" href="<?php echo base_url('provider/shipping/add_request') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Request</a>
+					<a style="background: #2CABE3" href="<?php echo base_url('provider/shipping/add_request') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"><?php echo lang("Add Request"); ?></a>
 				</div>
 			</div>
 			<?php $this->load->view('message');?>
@@ -25,14 +25,14 @@
 				<table id="myTable" class="table table-striped" >
 					<thead>
 					<tr>
-						<th>Part ID</th>
-						<th>Dimensions</th>
-						<th>Weight</th>
-						<th>Address</th>
-						<th>Cost</th>
-						<th>Request Date</th>
-						<th>Message</th>
-						<th>Status</th>
+						<th><?php echo lang("Part ID"); ?></th>
+						<th><?php echo lang("Dimensions"); ?></th>
+						<th><?php echo lang("Weight"); ?></th>
+						<th><?php echo lang("Address"); ?></th>
+						<th><?php echo lang("Cost"); ?></th>
+						<th><?php echo lang("Request Date"); ?></th>
+						<th><?php echo lang("Message"); ?></th>
+						<th><?php echo lang("Status"); ?></th>
 					</tr>
 					</thead>
 					<tbody>

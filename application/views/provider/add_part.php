@@ -12,7 +12,7 @@
                 <div class="container-fluid">
                     <div class="row bg-title">
                         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title">ADD Part</h4>
+                            <h4 class="page-title"><?php echo lang("ADD_Part"); ?></h4>
                         </div>
 
                     </div>
@@ -24,7 +24,7 @@
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Images</label>
+										<label class="control-label col-md-3"><?php echo lang("Images"); ?></label>
 										<div class="col-md-9">
 											<div style="cursor: pointer" class="input-images"></div>
 										</div>
@@ -71,16 +71,16 @@
                             <div class="row" style="padding-top: 20px">
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Title</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Title"); ?></label>
                                         <div class="col-md-9">
-                                            <input type="text" name="title" class="form-control" placeholder="Title"value="<?php echo $this->input->post("title") ?>" maxlength="90"> </div>
+                                            <input type="text" name="title" class="form-control" placeholder="<?php echo lang("Title"); ?>"value="<?php echo $this->input->post("title") ?>" maxlength="90"> </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Title Arabic</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Title_Arabic"); ?></label>
                                         <div class="col-md-9">
-                                            <input type="text" name="title_arabic" class="form-control" placeholder="Title Arabic"value="<?php echo $this->input->post("title") ?>" maxlength="90"> </div>
+                                            <input type="text" name="title_arabic" class="form-control" placeholder="<?php echo lang("Title_Arabic"); ?>"value="<?php echo $this->input->post("title") ?>" maxlength="90"> </div>
                                     </div>
                                 </div>
 
@@ -89,10 +89,10 @@
                             <div class="row margin-top">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Parts Category</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Parts_Category"); ?></label>
                                         <div class="col-md-9">
                                             <select required name="part_category" id="cat" class="form-control" >
-                                                <option value="">Parts Category</option>
+                                                <option value=""><?php echo lang("Parts_Category"); ?></option>
                                                 <?php foreach ($parts_category as $sr) {?>
                                                 <option value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
                                                 <?php }?>
@@ -102,10 +102,10 @@
                                 </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                            <label class="control-label col-md-3">Parts Sub Category</label>
+                                            <label class="control-label col-md-3"><?php echo lang("Parts_Sub_Category"); ?></label>
                                             <div class="col-md-9">
                                                 <select name="part_sub_category" class="form-control" id="scat" required>
-                                                    <option>Select Part Category First</option>
+                                                    <option><?php echo lang("Parts_Sub_Category_First"); ?></option>
                                                 </select> <span class="help-block"> </span>
                                             </div>
 
@@ -141,17 +141,17 @@
 
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Part Number</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Part_Number"); ?></label>
                                         <div class="col-md-9">
-                                            <input type="text" name="part_number" class="form-control" placeholder="Part Number" value="<?php echo $this->input->post("part_number") ?>" maxlength="20"> </div>
+                                            <input type="text" name="part_number" class="form-control" placeholder="<?php echo lang("Part_Number"); ?>" value="<?php echo $this->input->post("part_number") ?>" maxlength="20"> </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Description</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Description"); ?></label>
                                         <div class="col-md-9">
-                                            <textarea name="description" class="form-control" rows="4" placeholder="Description"><?php echo $this->input->post("description") ?> </textarea>
+                                            <textarea name="description" class="form-control" rows="4" placeholder="<?php echo lang("Description"); ?>"><?php echo $this->input->post("description") ?> </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -161,11 +161,11 @@
                             <div class="row margin-top" >
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Part Status</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Part_Status"); ?></label>
                                         <div class="col-md-9">
 											<div style="margin-top: 0px;">
-												<input type="radio" name="part_case" value="New" required> New
-												<input style="margin-left: 55px" type="radio" name="part_case" value="Used" required> Used
+												<input type="radio" name="part_case" value="New" required> <?php echo lang("New"); ?>
+												<input style="margin-left: 55px" type="radio" name="part_case" value="Used" required><?php echo lang("Used"); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -173,16 +173,16 @@
 							</div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-                            <label style =" padding  : 15px ;    font-size: 17px;"> Part Fitting </label>
+                            <label style =" padding  : 15px ;    font-size: 17px;"> <?php echo lang("Part_Fitting"); ?> </label>
 
 							<div style="padding :15px"  class="row margin-top" >
 
 								<div class="col-md-6" >
 									<div class="form-group">
 										<div class="col-md-9">
-											<label class="control-label ">Select Class </label>
+											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
-												<option value="">Select Option</option>
+												<option value=""><?php echo lang("Select_Option"); ?></option>
 												<?php foreach ($model_name as $model) {?>
 													<?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
 
@@ -195,11 +195,11 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<div class="col-md-9">
-											<label for="chassis" class="control-label">Select Chassis</label>
+											<label for="chassis" class="control-label"><?php echo lang("Select_Chassis"); ?></label>
 
 											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
-												<option value="">Select Chassis</option>
-												<option value="24" >All</option>
+												<option value=""><?php echo lang("Select_Chassis"); ?></option>
+												<option value="24" ><?php echo lang("All"); ?></option>
 												<?php foreach ($chassis as $c) {?>
 													<?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
 												<?php }?>
@@ -213,22 +213,22 @@
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
 
-                            <label style =" padding : 15px ;    font-size: 17px;"> Part Price </label>
+                            <label style =" padding : 15px ;    font-size: 17px;"><?php echo lang("Part_Price"); ?>  </label>
 
                             <div class="row margin-top">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Price</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Price"); ?></label>
                                         <div class="col-md-9">
-                                            <input type="text" name="price" class="form-control" placeholder="Price" value="<?php echo $this->input->post("price") ?>" required maxlength="6">
+                                            <input type="text" name="price" class="form-control" placeholder="<?php echo lang("Price"); ?>" value="<?php echo $this->input->post("price") ?>" required maxlength="6">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Discount %</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Discount_%"); ?></label>
                                         <div class="col-md-9">
-                                            <input type="number" max="99" min="0"  name="discount" class="form-control" placeholder="Discount%" value="<?php echo $this->input->post("discount") ?>" required>
+                                            <input type="number" max="99" min="0"  name="discount" class="form-control" placeholder="<?php echo lang("Discount_%"); ?>" value="<?php echo $this->input->post("discount") ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -238,9 +238,9 @@
                             <div class="row margin-top">
 
                                 <div class="col-md-6" >
-                                <label style =" padding : 15px ;font-size: 17px;"> Part Brand </label>
+                                <label style =" padding : 15px ;font-size: 17px;"><?php echo lang("Part_Brand"); ?>  </label>
                                     <div class="form-group">
-                                            <label class="control-label col-md-3"> Select Brand</label>
+                                            <label class="control-label col-md-3"><?php echo lang("Select_Brand"); ?> </label>
                                             <div class="col-md-9">
 
                                                 <select name="part_brand[]"  class="form-control js-example-tokenizer">
@@ -262,7 +262,7 @@
                             <div class="row margin-top">
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Set Date of Listing</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Set_Date_of_Listing"); ?></label>
                                         <div class="col-md-9">
 <!--											<input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
 											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/>
@@ -309,10 +309,10 @@
 								<div class="col-md-6" >
 									<div class="form-group">
 										<div class="col-md-9">
-											<label class="control-label ">Location Zone</label>
+											<label class="control-label "><?php echo lang("Location_Zone"); ?></label>
 
 											<select name="location_zone" class="form-control">
-												<option value>Select Location Zone</option>
+												<option value><?php echo lang("Select_Location_Zone"); ?></option>
 												<?php foreach ($location as $loc) {?>
 													<option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
 												<?php }?>
@@ -328,11 +328,11 @@
 							<div class="row margin-top" >
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Location Zone</label>
+										<label class="control-label col-md-3"<?php echo lang("Location_Zone"); ?>></label>
 										<div class="col-md-9">
 											<div style="margin-top: 0px;">
-												<input type="radio" name="available_location" value="National" required>National
-												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required> International
+												<input type="radio" name="available_location" value="National" required><?php echo lang("National"); ?>
+												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required> <?php echo lang("International"); ?>
 											</div>
 										</div>
 									</div>
@@ -341,7 +341,7 @@
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Date of active</label>
+										<label class="control-label col-md-3"><?php echo lang("Date_of_active"); ?></label>
 										<div class="col-md-9">
 											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
 										</div>
@@ -352,7 +352,7 @@
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">date of Expiry</label>
+										<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
 										<div class="col-md-9">
 											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
 										</div>
@@ -363,7 +363,7 @@
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">
-										<label class="control-label col-md-3">number of available in stock</label>
+										<label class="control-label col-md-3"><?php echo lang("number_of_available_in_stock"); ?></label>
 										<div class="col-md-9">
 											<input type="number" required name="num_stock" class="form-control" placeholder="1" value="<?php echo $this->input->post("num_stock") ?>">
 										</div>
@@ -376,10 +376,10 @@
 
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-							<input required  style="margin: 15px" type="checkbox" name="vehicle1" value="Bike">By clicking "Submit" you agree to our Terms of use and Posting Rules <br>
+							<input required  style="margin: 15px" type="checkbox" name="vehicle1" value="Bike"> <?php echo lang("By_clicking_Submit_you_agree_to_our_Terms_of_use_and_Posting_Rules"); ?><br>
 
                             <div style="padding-left: 600px;margin-top: 30px">
-                                <input type="submit" name="submit" class="btn btn-primary" value="submit">
+                                <input type="submit" name="submit" class="btn btn-primary" value="<?php echo lang("submit"); ?>">
                             </div>
                         </div>
                     </form>
@@ -395,8 +395,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/image-uploader.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/file-upload/dist/karim-image-uploader.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/image-uploader.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/karim-image-uploader.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {

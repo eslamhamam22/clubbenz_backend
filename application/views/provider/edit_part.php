@@ -12,7 +12,7 @@
                 <div class="container-fluid">
                     <div class="row bg-title">
                         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title">Update Part </h4>
+                            <h4 class="page-title"><?php echo lang("Update_Part"); ?> </h4>
                         </div>
                     </div>
                    <?php $this->load->view('message');?>
@@ -22,7 +22,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="exampleModalLabel1">Photo Update</h4>
+									<h4 class="modal-title" id="exampleModalLabel1"><?php echo lang("Photo_Update"); ?></h4>
 								</div>
 								<?php print_r($part_photos)?>
 								<form name="" method="post"type="" scope="" action="<?php echo base_url('/provider/parts/update_part_photos') ?>" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
 									<div class="modal-body">
 										<div class="row">
 											<div class="col-md-3 col-sm-3 col-xs-12">
-												<label>Select Photo</label>
+												<label<?php echo lang("Select_Photo"); ?>></label>
 											</div>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 
@@ -45,7 +45,7 @@
 
 									</div>
 									<div class="modal-footer">
-										<button type="submit"  class="btn btn-info m-btn--pill waves-effect waves-light">Update</button>
+										<button type="submit"  class="btn btn-info m-btn--pill waves-effect waves-light"><?php echo lang("Update"); ?></button>
 									</div>
 								</form>
 							</div>
@@ -59,7 +59,7 @@
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Images</label>
+										<label class="control-label col-md-3"><?php echo lang("Images"); ?></label>
 										<div class="col-md-9">
 											<div style="cursor: pointer" class="input-images"></div>
 										</div>
@@ -83,13 +83,13 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Title</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Title"); ?></label>
                                         <div class="col-md-9"><input type="text" name="title" class="form-control" value="<?php echo $rec->title ?>" maxlength="90"> </div>
                                     </div>
                                 </div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Title Arabic</label>
+										<label class="control-label col-md-3"><?php echo lang("Title_Arabic"); ?></label>
 										<div class="col-md-9"><input type="text" name="title_arabic" class="form-control" value="<?php echo $rec->title_arabic ?>" maxlength="90"> </div>
 									</div>
 								</div>
@@ -97,10 +97,10 @@
                             </div>
                             <div class="row margin-top">
 								<div class="col-md-6">
-									<label class="control-label col-md-3">Parts Category</label>
+									<label class="control-label col-md-3"><?php echo lang("Parts_Category"); ?></label>
 									<div class="col-md-9">
 										<select required name="part_category" class="form-control" id="cat" onchange="get_subcategories(this.value)">
-											<option value="">Select services</option>
+											<option value=""><?php echo lang("Select_services"); ?></option>
 											<?php foreach ($parts_category as $sr) {?>
 												<option value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
 											<?php }?>
@@ -112,10 +112,10 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Parts Sub Category</label>
+										<label class="control-label col-md-3"><?php echo lang("Parts_Sub_Category"); ?></label>
 										<div class="col-md-9">
 											<select required name="part_sub_category" class="form-control" id="scat" >
-												<option value="">Select Sub Category</option>
+												<option value=""><?php echo lang("Select_Sub_Category"); ?></option>
 											</select>
 										</div>
 									</div>
@@ -181,7 +181,7 @@ for ($i = 0; $i < $remaining_count; $i++) {
                             <div class="row margin-top">
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Part Number</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Part_Number"); ?></label>
                                         <div class="col-md-9">
                                             <input required type="text" name="part_number" class="form-control" value="<?php echo $rec->part_number ?>" maxlength="20"> </div>
                                     </div>
@@ -190,7 +190,7 @@ for ($i = 0; $i < $remaining_count; $i++) {
 								<div class="col-md-6">
 
 									<div class="form-group">
-										<label class="control-label col-md-3">Description</label>
+										<label class="control-label col-md-3"><?php echo lang("Description"); ?></label>
 										<div class="col-md-9">
                                             <textarea required name="description" rows="4" class="form-control"><?php echo $rec->description ?>
                                             </textarea>
@@ -206,12 +206,12 @@ for ($i = 0; $i < $remaining_count; $i++) {
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Part Case</label>
+										<label class="control-label col-md-3"><?php echo lang("Part_Case"); ?></label>
 										<div class="col-md-9">
 											<?php $part_array = explode(',', $rec->part_case);?>
 											<div style="margin-top: 20px;">
-												<input type="radio" name="part_case" value="New" <?php if (in_array("New", $part_array)) {?> checked <?php }?>> New
-												<input style="margin-left: 55px" type="radio" name="part_case" value="Used" <?php if (in_array("Used", $part_array)) {?> checked <?php }?> > Used
+												<input type="radio" name="part_case" value="New" <?php if (in_array("New", $part_array)) {?> checked <?php }?>><?php echo lang("New"); ?>
+												<input style="margin-left: 55px" type="radio" name="part_case" value="Used" <?php if (in_array("Used", $part_array)) {?> checked <?php }?> > <?php echo lang("Used"); ?>
 											</div>
 											<span class="help-block"></span>
 										</div>
@@ -221,7 +221,7 @@ for ($i = 0; $i < $remaining_count; $i++) {
 							</div>
 							<div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
 							</div>
-							<label style =" padding  : 15px ;    font-size: 17px;"> Part Fitting </label>
+							<label style =" padding  : 15px ;    font-size: 17px;"> <?php echo lang("Part_Fitting"); ?> </label>
 							<?php
 $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 ?>
@@ -230,9 +230,9 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 								<div class="col-md-6" >
 									<div class="form-group">
 										<div class="col-md-9">
-											<label class="control-label ">Select Class </label>
+											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
-												<option value="">Select Option</option>
+												<option value=""><?php echo lang("Select_Option"); ?></option>
 												<?php foreach ($model_name as $model) {
 	?>
 													<?php if ($chassis_numb->model_id == $model->id) {
@@ -249,10 +249,10 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 								<div class="col-md-6">
 									<div class="form-group">
 										<div class="col-md-9">
-											<label for="chassis" class="control-label">Select Chassis</label>
+											<label for="chassis" class="control-label"><?php echo lang("Select_Chassis"); ?></label>
 
 											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
-												<option value="">Select Chassis</option>
+												<option value=""><?php echo lang("Select_Chassis"); ?></option>
 												<option value="24" >All</option>
 												<?php foreach ($chassis_number as $c) {
 	?>
@@ -272,12 +272,12 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 
 							<div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
 							</div>
-							<label style =" padding  : 15px ;    font-size: 17px;"> Part Price </label>
+							<label style =" padding  : 15px ;    font-size: 17px;"> <?php echo lang("Part_Price"); ?> </label>
 
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Price</label>
+										<label class="control-label col-md-3"><?php echo lang("Part_Price"); ?></label>
 										<div class="col-md-9">
 											<input required type="text" name="price" class="form-control" value="<?php echo $rec->price ?>" maxlength="6">
 										</div>
@@ -286,7 +286,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 
 								<div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Discount%</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Discount_%"); ?></label>
                                         <div class="col-md-9">
                                             <input required type="text" name="discount" class="form-control" value="<?php echo $rec->discount ?>"> </div>
                                     </div>
@@ -297,7 +297,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
                             <div class="row margin-top">
                                 <div class="col-md-6" >
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Parts Brand</label>
+                                        <label class="control-label col-md-3"><?php echo lang("Parts_Brand"); ?></label>
                                         <div class="col-md-9">
                                             <?php $brand_arr = explode(',', $rec->part_brand);?>
                                             <select name="part_brand[]"  class="form-control js-example-tokenizer">
@@ -316,17 +316,17 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3 ">Set Date of Listing</label>
+										<label class="control-label col-md-3 "><?php echo lang("Set_Date_of_Listing"); ?></label>
 										<div class="col-md-9 " >
 											<input  type="date" data-date-format='yyyy-mm-dd' id="add_date" value="<?php echo $rec->add_date ?>" name="add_date"  readonly>
 
 											<div id="Create" style="display:none">
-												<label style="margin-top: 10px" class="control-label "> Enter Updated Date</label><br>
+												<label style="margin-top: 10px" class="control-label "><?php echo lang("Enter_Updated_Date"); ?> </label><br>
 
 												<input  type="date" data-date-format='yyyy-mm-dd' id="updated_date" value="" name="updated_date"  min="<?php echo date('Y-m-d'); ?>">
 
 											</div>
-											<input type="button" id="btn" class="btn btn-default" value="Update Date ">
+											<input type="button" id="btn" class="btn btn-default" value="<?php echo lang("Update_Date"); ?> ">
 
 										</div>
 									</div>
@@ -370,7 +370,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 								<div class="col-md-6" >
 									<div class="form-group">
 										<div class="col-md-9">
-											<label class="control-label ">Location Zone</label>
+											<label class="control-label "><?php echo lang("Location_Zone"); ?></label>
 
 											<select name="location_zone" class="form-control">
 												<option value =""></option>
@@ -389,11 +389,11 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 							<div class="row margin-top" >
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Location Zone</label>
+										<label class="control-label col-md-3"><?php echo lang("Location_Zone"); ?></label>
 										<div class="col-md-9">
 											<div style="margin-top: 0px;">
-												<input type="radio" name="available_location" value="National" required <?php echo ($rec->available_location == "National") ? "checked" : ""; ?>>National
-												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required <?php echo ($rec->available_location == "International") ? "checked" : ""; ?>> International
+												<input type="radio" name="available_location" value="National" required <?php echo ($rec->available_location == "National") ? "checked" : ""; ?>><?php echo lang("National"); ?>
+												<input style="margin-left: 55px" type="radio" name="available_location" value="International" required <?php echo ($rec->available_location == "International") ? "checked" : ""; ?>> <?php echo lang("International"); ?>
 											</div>
 										</div>
 									</div>
@@ -402,7 +402,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">Date of active</label>
+										<label class="control-label col-md-3"><?php echo lang("Date_of_active"); ?></label>
 										<div class="col-md-9">
 											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $rec->date_active; ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
 										</div>
@@ -413,7 +413,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 							<div class="row margin-top">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3">date of Expiry</label>
+										<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
 										<div class="col-md-9">
 											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $rec->date_expire; ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
 										</div>
@@ -424,7 +424,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">
-										<label class="control-label col-md-3">number of available in stock</label>
+										<label class="control-label col-md-3"><?php echo lang("number_of_available_in_stock"); ?></label>
 										<div class="col-md-9">
 											<input type="number" required name="num_stock" class="form-control" placeholder="1" value="<?php echo $rec->num_stock; ?>">
 										</div>
@@ -436,9 +436,9 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 							</div>
 							<div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
 							</div>
-							<input required style="margin: 15px" type="checkbox" name="vehicle1" value="Bike">By clicking "Update" you agree to our Terms of use and Posting Rules <br>
+							<input required style="margin: 15px" type="checkbox" name="vehicle1" value="Bike"><?php echo lang("By_clicking_Update_you_agree_to_our_Terms_of_use_and_Posting_Rules"); ?> <br>
                             <div style="padding-left: 600px;margin-top: 30px">
-                                <input type="submit" name="submit" class="btn btn-primary" value="Update">
+                                <input type="submit" name="submit" class="btn btn-primary" value="<?php echo lang("Update"); ?>">
                             </div>
                         </div>
                     </form>

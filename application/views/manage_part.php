@@ -37,6 +37,7 @@
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
                                     <th>Chassis</th>
+                                    <th>Part Case</th>
                                     <th>Brand/User</th>
                                     <th>Approve/Reject</th>
                                     <th>Option</th>
@@ -74,6 +75,7 @@ foreach ($rec as $us) {
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
                                         <td><?php echo $cat->name . "<br>" . $scat->name; ?> </td>
                                         <td><?php echo $chassis_number->chassis_num; ?> </td>
+                                        <td><?php echo $us->part_case; ?> </td>
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
                                         <td> <?php if ($us->status == "pending" || $us->status == "reject") {?>

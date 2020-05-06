@@ -27,12 +27,12 @@ if ($current_plan) {
 	?>
 						<div class="bg-title" style="padding: 10px 20px; margin-left: 0px; margin-right: 0px;">
 							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-								<h5>Current Plan Title: <strong><?php echo $current_plan->plan->title; ?></strong></h5>
-								<h5>Current Plan Duration: <strong><?php echo $current_plan->plan->frequency; ?>
-										Months</strong></h5>
-								<h5>Start Date: <strong><?php echo $current_plan->created_at; ?></strong></h5>
-								<h5>End Date: <strong><?php echo $current_plan->end_date ?></strong></h5>
-								<h5>Status: <strong><?php echo $current_plan->status; ?></strong></h5>
+								<h5><?php echo lang("Current_Plan_Title"); ?>: <strong><?php echo $current_plan->plan->title; ?></strong></h5>
+								<h5><?php echo lang("Current_Plan_Duration"); ?>: <strong><?php echo $current_plan->plan->frequency; ?>
+										<?php echo lang("Months"); ?></strong></h5>
+								<h5><?php echo lang("Start_Date"); ?>: <strong><?php echo $current_plan->created_at; ?></strong></h5>
+								<h5><?php echo lang("End_Date"); ?>: <strong><?php echo $current_plan->end_date ?></strong></h5>
+								<h5><?php echo lang("Status"); ?>: <strong><?php echo $current_plan->status; ?></strong></h5>
 							</div>
 
 						</div>
@@ -55,14 +55,14 @@ if ($current_plan) {
 										</li>
 										<li class="col-middle">
 											<?php if ($current_plan) {?>
-											<h4>Available Parts</h4>
+											<h4><?php echo lang("Available_Parts"); ?></h4>
 											<div class="progress">
 												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-													<span class="sr-only">40% Complete (success)</span>
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
 												</div>
 											</div>
 											<?php } else {?>
-												<h4>No Plan available</h4>
+												<h4><?php echo lang("No_Plan_available"); ?></h4>
 											<?php }?>
 										</li>
 									</ul>
@@ -76,10 +76,10 @@ if ($current_plan) {
 											<h3 class="counter text-right m-t-15"><?php echo count($active_parts); ?></h3>
 										</li>
 										<li class="col-middle">
-											<h4>Total Active Parts</h4>
+											<h4><?php echo lang("Total_Active_Parts"); ?></h4>
 											<div class="progress">
 												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-													<span class="sr-only">40% Complete (success)</span>
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
 												</div>
 											</div>
 										</li>
@@ -95,10 +95,10 @@ if ($current_plan) {
 											<h3 class="counter text-right m-t-15"><?php echo count($parts) - count($active_parts); ?></h3>
 										</li>
 										<li class="col-middle">
-											<h4>Total InActive Parts</h4>
+											<h4><?php echo lang("Total_InActive_Parts"); ?></h4>
 											<div class="progress">
 												<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-													<span class="sr-only">40% Complete (success)</span>
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
 												</div>
 											</div>
 										</li>
@@ -113,10 +113,10 @@ if ($current_plan) {
 											<h3 class="counter text-right m-t-15"><?php echo count($requests); ?></h3>
 										</li>
 										<li class="col-middle">
-											<h4>Total Shipping Requests</h4>
+											<h4><?php echo lang("Total_Shipping_Requests"); ?></h4>
 											<div class="progress">
 												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-													<span class="sr-only">40% Complete (success)</span>
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
 												</div>
 											</div>
 										</li>

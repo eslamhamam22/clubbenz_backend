@@ -17,10 +17,10 @@
 		<div class="container-fluid">
 			<div class="row bg-title">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					<h4 class="page-title">Listing Parts </h4>
+					<h4 class="page-title"> <?php echo lang("Listing_Parts"); ?></h4>
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-					<a style="background: #2CABE3" href="<?php echo base_url('provider/parts/add_part') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Parts</a>
+					<a style="background: #2CABE3" href="<?php echo base_url('provider/parts/add_part') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"><?php echo lang("Add_Parts"); ?></a>
 				</div>
 			</div>
 
@@ -30,33 +30,33 @@
 					<thead>
 					<tr>
 						<th style="text-align: center;"><input type="checkbox" class="selectAll"></th>
-						<th>ID</th>
-						<th>Photo</th>
+						<th><?php echo lang("ID"); ?></th>
+						<th><?php echo lang("Photo"); ?></th>
 
-						<th>Part name/Part number</th>
-						<th>Category/Sub Category</th>
-						<th>Price/Discount</th>
-						<th>Chassis</th>
-						<th>Brand/User</th>
-						<th>Status</th>
-						<th>Featured</th>
-						<th>Option</th>
+						<th><?php echo lang("Part_name/Part_number"); ?></th>
+						<th><?php echo lang("Category/Sub_Category"); ?></th>
+						<th><?php echo lang("Price/Discount"); ?></th>
+						<th><?php echo lang("Chassis"); ?></th>
+						<th><?php echo lang("Brand/User"); ?></th>
+						<th><?php echo lang("Status"); ?></th>
+						<th><?php echo lang("Featured"); ?></th>
+						<th><?php echo lang("Option"); ?></th>
 					</tr>
 					</thead>
 					<tbody>
 					<?php
-					foreach ($rec as $us) {
-						$chassis_number = $this->part->get_chassis_number($us->chassis_id);
+foreach ($rec as $us) {
+	$chassis_number = $this->part->get_chassis_number($us->chassis_id);
 
-						/*$brand=  explode(",",$us->part_brand);*/
-						$brand = $this->part->brand_data($us->part_brand);
-						$cat = $this->part->get_category_name($us->part_category);
-						$scat = $this->part->get_subcategory_name($us->part_sub_category);
-						$photo_name = $this->partphotos->select_photo($us->id);
-						?>
+	/*$brand=  explode(",",$us->part_brand);*/
+	$brand = $this->part->brand_data($us->part_brand);
+	$cat = $this->part->get_category_name($us->part_category);
+	$scat = $this->part->get_subcategory_name($us->part_sub_category);
+	$photo_name = $this->partphotos->select_photo($us->id);
+	?>
 						<tr>
 							<td></td>
-							<td><?php echo $us->id?></td>
+							<td><?php echo $us->id ?></td>
 							<td>
 								<?php if (!empty($photo_name)) {?>
 									<img class="img_size" src="<?php echo base_url() . "/upload/$photo_name->photo_name" ?>">
@@ -67,32 +67,32 @@
 							<td><?php echo $us->price . "<br>" . $us->discount; ?></td>
 							<td><?php echo $chassis_number->chassis_num; ?></td>
 							<td><?php if ($brand) {echo $brand->name;}
-								echo "<br>" . $us->username?></td>
+	echo "<br>" . $us->username?></td>
 							<td>
-								<?php if($us->status == "pending"){ ?>
-									<button class="btn btn-small btn-info">Pending</button>
-								<?php }else if($us->status == "approve"){ ?>
-									<?php if($us->active){ ?>
-										<a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Deactivate</button></a>
-									<?php }else{ ?>
-										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Activate</button></a>
-									<?php } ?>
-								<?php }else{ ?>
-									<button class="btn btn-small btn-danger">Rejected</button>
-								<?php } ?>
+								<?php if ($us->status == "pending") {?>
+									<button class="btn btn-small btn-info"><?php echo lang("Pending"); ?></button>
+								<?php } else if ($us->status == "approve") {?>
+									<?php if ($us->active) {?>
+										<a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
+									<?php } else {?>
+										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Photo"); ?></button></a>
+									<?php }?>
+								<?php } else {?>
+									<button class="btn btn-small btn-danger"><?php echo lang("Rejected"); ?></button>
+								<?php }?>
 							</td>
 							<td>
-								<?php if($us->status == "pending"){ ?>
+								<?php if ($us->status == "pending") {?>
 <!--									<button class="btn btn-small btn-info">Pending</button>-->
-								<?php }else if($us->status == "approve"){ ?>
-									<?php if($us->featured == 0){ ?>
-										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger">Add</button></a>
-									<?php }else{ ?>
-										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success">Remove</button></a>
-									<?php } ?>
-								<?php }else{ ?>
+								<?php } else if ($us->status == "approve") {?>
+									<?php if ($us->featured == 0) {?>
+										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Add"); ?></button></a>
+									<?php } else {?>
+										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Remove"); ?></button></a>
+									<?php }?>
+								<?php } else {?>
 <!--									<button class="btn btn-small btn-danger">Rejected</button>-->
-								<?php } ?>
+								<?php }?>
 							</td>
 
 							<td>
