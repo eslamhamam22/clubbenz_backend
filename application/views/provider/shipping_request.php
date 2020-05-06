@@ -29,6 +29,7 @@
 						<th>Dimensions</th>
 						<th>Weight</th>
 						<th>Address</th>
+						<th>Cost</th>
 						<th>Request Date</th>
 						<th>Message</th>
 						<th>Status</th>
@@ -41,6 +42,7 @@
 						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?>(cm)</td>
 						<td><?php echo $request->weight; ?>(gm)</td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
+						<td><?php echo $request->price; ?></td>
 						<td><?php echo $request->created_at; ?></td>
 						<td><?php echo $request->message; ?></td>
 						<td><?php echo $request->status; ?></td>
