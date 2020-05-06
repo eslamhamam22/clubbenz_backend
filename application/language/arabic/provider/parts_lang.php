@@ -14,6 +14,7 @@ $lang["Featured"] = "متميز";
 $lang["Option"] = "اختيار";
 $lang["Pending"] = "قيد الانتظار";
 $lang["Deactivate"] = "تعطيل";
+$lang["Activate"] = "تفعيل";
 $lang["Rejected"] = "مرفوض";
 $lang["Add"] = "أضف";
 $lang["Remove"] = "إزالة";

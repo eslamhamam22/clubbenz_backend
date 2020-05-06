@@ -21,6 +21,12 @@ class Plan extends CI_Controller {
 			redirect('/provider');
 		}
 
+		if ($this->input->get('error')) {
+			$this->data['error'] = $this->input->get('error');
+		}
+		if ($this->input->get('success')) {
+			$this->data['success'] = $this->input->get('success');
+		}
 		$this->load->helper('language');
 		$this->lang->load('provider/left_nav', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
 		$this->lang->load('provider/plan', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
@@ -32,9 +38,9 @@ class Plan extends CI_Controller {
 
 	public function index() {
 		$provider_id = $this->session->userdata("id");
-		$plans = $this->Plan_model->plan_manage();
-		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
-		$this->load->view('provider/plan', ["plans" => $plans, "current_plan" => $current_plan]);
+		$this->data["plans"] = $this->Plan_model->plan_manage();
+		$this->data["current_plan"] = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+		$this->load->view('provider/plan', $this->data);
 	}
 	public function history() {
 		$provider_id = $this->session->userdata("id");
@@ -52,6 +58,19 @@ class Plan extends CI_Controller {
 	public function subscribe($id) {
 		$provider_id = $this->session->userdata("id");
 		$extra_days = $this->input->get("extra_days") || 0;
+		$data['parts'] = $this->Provider_Model->get_parts($provider_id);
+		$active_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
+			return $part->active == 1 ? true : false;
+		});
+		$featured_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part){
+			return $part->featured == 1 ? true : false;
+		});
+		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+		$plan = $this->Plan_model->get_plan_by_id($id);
+		$plan= $plan[0];
+		if(count($active_parts) > $plan->num_parts || count($featured_parts) > $plan->num_featured){
+			redirect(base_url('provider/plan?error=Please make sure the number of active parts is not more than '.$plan->num_parts." and the number of featured parts is not more than ".$plan->num_featured));
+		}
 		$this->Provider_plan_model->subscribe($provider_id, $id, $extra_days);
 		redirect(base_url('provider/plan?success=You subscribed successfully'));
 	}

@@ -160,7 +160,7 @@ if ($group_id[0]->name == 'admin') {?>
 
                     <?php if (in_array('shippinglist/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>shippinglist/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Shipping<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
-                    <?php if (in_array('comments/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>comments/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Comments <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+                    <?php if (in_array('reviews/provider', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/provider"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
                 </ul>
             </li>
@@ -170,7 +170,7 @@ if ($group_id[0]->name == 'admin') {?>
 
                 <?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu">Push Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
-                <?php if (in_array('Reviews/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
+                <?php if (in_array('Reviews/index', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/index"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 
                 <?php if (in_array('Pendning_solutions/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>car_guide/solution"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Sloution panding <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
             </li>

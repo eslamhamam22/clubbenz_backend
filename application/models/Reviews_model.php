@@ -7,6 +7,14 @@ class Reviews_model extends CI_Model {
 		return $q->result();
 
 	}
+	public function get_provider_reviews() {
+		$this->db->select("*");
+		$this->db->from("reviews");
+		$this->db->where("type", "provider");
+		$q = $this->db->get();
+		return $q->result();
+
+	}
 
 	public function get_user_name($id) {
 		if ($id != 0 && $id != "") {

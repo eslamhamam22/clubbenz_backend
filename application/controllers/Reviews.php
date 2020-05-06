@@ -26,6 +26,10 @@ class Reviews extends MY_Controller {
 		$this->data['rec'] = $this->review->get_review();
 		$this->load->view('review', $this->data);
 	}
+	public function provider() {
+		$this->data['rec'] = $this->review->get_provider_reviews();
+		$this->load->view('provider_review', $this->data);
+	}
 
 	public function status_update() {
 		if ($this->input->post()) {
@@ -38,7 +42,22 @@ class Reviews extends MY_Controller {
 			);
 			$result = $this->review->status_update($data, $id);
 			if ($result) {
-				redirect(base_url('reviews/?success=status updated successfully!'));
+				redirect(base_url('reviews?success=status updated successfully!'));
+			}
+		}
+	}
+	public function provider_status_update() {
+		if ($this->input->post()) {
+			$id = $this->input->post('id');
+			date_default_timezone_set('Egypt');
+			$data = array(
+				'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$result = $this->review->status_update($data, $id);
+			if ($result) {
+				redirect(base_url('reviews/provider?success=status updated successfully!'));
 			}
 		}
 	}

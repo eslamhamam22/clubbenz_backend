@@ -75,7 +75,7 @@ foreach ($rec as $us) {
 									<?php if ($us->active) {?>
 										<a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
 									<?php } else {?>
-										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Photo"); ?></button></a>
+										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Activate"); ?></button></a>
 									<?php }?>
 								<?php } else {?>
 									<button class="btn btn-small btn-danger"><?php echo lang("Rejected"); ?></button>
@@ -86,9 +86,9 @@ foreach ($rec as $us) {
 <!--									<button class="btn btn-small btn-info">Pending</button>-->
 								<?php } else if ($us->status == "approve") {?>
 									<?php if ($us->featured == 0) {?>
-										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Add"); ?></button></a>
+										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Add"); ?></button></a>
 									<?php } else {?>
-										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Remove"); ?></button></a>
+										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Remove"); ?></button></a>
 									<?php }?>
 								<?php } else {?>
 <!--									<button class="btn btn-small btn-danger">Rejected</button>-->

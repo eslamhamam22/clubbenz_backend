@@ -13,6 +13,7 @@ $lang["Featured"] = "Featured";
 $lang["Option"] = "Option";
 $lang["Pending"] = "Pending";
 $lang["Deactivate"] = "Deactivate";
+$lang["Activate"] = "Activate";
 $lang["Rejected"] = "Rejected";
 $lang["Add"] = "Add";
 $lang["Remove"] = "Remove";
