@@ -43,7 +43,7 @@
 						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?>(cm)</td>
 						<td><?php echo $request->weight; ?>(gm)</td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
-						<td><?php echo $request->price; ?></td>
+						<td><?php echo $request->price; ?>  <?php if (!empty($request->price)) {echo lang("E.G.P");}?></td>
 						<td><?php echo $request->created_at; ?></td>
 						<td><?php echo $request->shippment_date; ?></td>
 						<td><?php echo $request->message; ?></td>

@@ -19,6 +19,10 @@ $lang["Rejected"] = "مرفوض";
 $lang["Add"] = "أضف";
 $lang["Remove"] = "إزالة";
 $lang["Views"] = "خدد المشاهدات";
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 $lang["Images"] = "صور";
 $lang["Title"] = "عنوان";
 $lang["Title_Arabic"] = "العنوان بالعربية";

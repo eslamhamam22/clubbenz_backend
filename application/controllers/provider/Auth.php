@@ -89,6 +89,7 @@ class Auth extends CI_Controller {
 			);
 			if (!$this->upload->do_upload('logo')) {
 //				$this->session->set_flashdata('error', $this->upload->display_errors());
+<<<<<<< HEAD
 				//				redirect('/provider/auth/register');
 			} else {
 				$data = $this->upload->data();
@@ -100,6 +101,19 @@ class Auth extends CI_Controller {
 				$this->Provider_Model->signup($provider_user);
 				redirect('/provider');
 			} else {
+=======
+//				redirect('/provider/auth/register');
+			} else {
+				$data = $this->upload->data();
+				$file_name= $data["file_name"];
+				$provider_user["logo"]= $file_name;
+			}
+			if($this->Provider_Model->email_check($provider_user["user_email"])){
+				$this->session->set_flashdata('success', "You have signed up successfully");
+				$this->Provider_Model->signup($provider_user);
+				redirect('/provider');
+			}else{
+>>>>>>> origin/master
 				$this->session->set_flashdata('error', "User already exists.");
 				redirect('/provider/auth/register');
 			}

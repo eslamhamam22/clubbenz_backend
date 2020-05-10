@@ -33,6 +33,7 @@
                         <th><?php echo lang("ID"); ?></th>
                         <th><?php echo lang("Photo"); ?></th>
 
+<<<<<<< HEAD
                         <th><?php echo lang("Part_name/Part_number"); ?></th>
                         <th><?php echo lang("Category/Sub_Category"); ?></th>
                         <th><?php echo lang("Price/Discount"); ?></th>
@@ -46,6 +47,21 @@
                     </thead>
                     <tbody>
                     <?php
+=======
+						<th><?php echo lang("Part_name/Part_number"); ?></th>
+						<th><?php echo lang("Category/Sub_Category"); ?></th>
+						<th><?php echo lang("Price/Discount"); ?></th>
+						<th><?php echo lang("Chassis"); ?></th>
+						<th><?php echo lang("Brand/User"); ?></th>
+						<th><?php echo lang("Status"); ?></th>
+						<th><?php echo lang("Featured"); ?></th>
+						<th><?php echo lang("Views"); ?></th>
+						<th><?php echo lang("Option"); ?></th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php
+>>>>>>> origin/master
 foreach ($rec as $us) {
 	$chassis_number = $this->part->get_chassis_number($us->chassis_id);
 
@@ -69,6 +85,7 @@ foreach ($rec as $us) {
                             <td><?php echo $chassis_number->chassis_num; ?></td>
                             <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
+<<<<<<< HEAD
                             <td>
                                 <?php if ($us->status == "pending") {?>
                                     <button class="btn btn-small btn-info"><?php echo lang("Pending"); ?></button>
@@ -110,6 +127,43 @@ foreach ($rec as $us) {
                     <?php }?>
                     </tbody>
                 </table>
+=======
+							<td>
+								<?php if ($us->status == "pending") {?>
+									<button class="btn btn-small btn-info"><?php echo lang("Pending"); ?></button>
+								<?php } else if ($us->status == "approve") {?>
+									<?php if ($us->active) {?>
+										<a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
+										<p style="display: none">Active</p>
+									<?php } else {?>
+										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Activate"); ?></button></a>
+										<p style="display: none">inactive</p>
+									<?php }?>
+								<?php } else {?>
+									<button class="btn btn-small btn-danger"><?php echo lang("Rejected"); ?></button>
+									<p style="display: none">rejected</p>
+								<?php }?>
+							</td>
+							<td>
+								<?php if ($us->status == "pending") {?>
+<!--									<button class="btn btn-small btn-info">Pending</button>-->
+								<?php } else if ($us->status == "approve") {?>
+									<?php if ($us->featured == 0) {?>
+										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Add"); ?></button></a>
+									<?php } else {?>
+										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Remove"); ?></button></a>
+										<p style="display: none">featured</p>
+									<?php }?>
+								<?php } else {?>
+<!--									<button class="btn btn-small btn-danger">Rejected</button>-->
+								<?php }?>
+							</td>
+							<td><?php echo $us->views; ?></td>
+							<td>
+								<a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('provider/parts/edit_part') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
+								<a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('provider/parts/del_part/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
+								<!--                                            <a class="text-inverse " data-toggle="tooltip" data-original-title="Part Photo Listing" href="--><?php //echo base_url('part_photos/manage_part_photos/')?><!----><?php //echo $us->id;?><!--"><i class="ti-image"></i></a>-->
+>>>>>>> origin/master
 
             </div>
             <?php $this->load->view("common/common_footer")?>

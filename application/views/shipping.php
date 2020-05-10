@@ -59,7 +59,7 @@
                                     <td><?php echo $provider['user_email']; ?></td>
                                     <td><?php echo $provider['user_mobile']; ?></td>
                                     <?php }}?>
-                                    <td><?php echo $r['price']; ?></td>
+                                    <td><?php echo $r['price']; ?><?php if (!empty($r['price'])) {echo " E.G.P";}?></td>
                                     <td><?php echo $r['shippment_date']; ?></td>
                                     <td><?php echo $r['created_at']; ?></td>
                                     <td><?php echo $r['status']; ?></td>

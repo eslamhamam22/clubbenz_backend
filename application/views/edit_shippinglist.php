@@ -54,7 +54,7 @@
                                             <h4>
                                                 <span> Length :  <?php echo $us->length; ?> - </span>
                                                 <span> Width  :  <?php echo $us->width; ?> - </span>
-                                                <span> Height :  <?php echo $us->height; ?> </span>
+                                                <span> Height :  <?php echo $us->height; ?> (cm) </span>
                                             </h4>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Wieght</label>
                                         <div class="col-sm-9">
-                                            <h4><?php echo $us->weight; ?></h4>
+                                            <h4><?php echo $us->weight; ?> (gm)</h4>
                                         </div>
                                     </div>
 

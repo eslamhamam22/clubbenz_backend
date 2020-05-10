@@ -24,3 +24,4 @@ $lang["Shipment Date"] = "Shipment Date";
 $lang["Message"] = "Message";
 $lang["write your message here"] = "write your message here";
 $lang["Request"] = "Request";
+$lang["E.G.P"] = "E.G.P";

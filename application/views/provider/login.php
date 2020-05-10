@@ -36,7 +36,11 @@
           <?php if (isset($message)) {?>
                 <div class="alert alert-danger"> <?php echo $message; ?> </div>
             <?php }?>
+<<<<<<< HEAD
              <h3 class="box-title m-b-0">Spare Parts Catalogue Portal</h3>
+=======
+            <h3 class="box-title m-b-0">Spare Parts Catalogue Portal</h3>
+>>>>>>> origin/master
             <small>Enter your details below</small>
           <form class="form-horizontal new-lg-form" method="post" id="loginform" action="<?php echo base_url('provider/auth/login'); ?>">
 

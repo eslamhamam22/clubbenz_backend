@@ -24,3 +24,4 @@ $lang["Shipment Date"] = "تاريخ التوصيل";
 $lang["Message"] = "رسالة";
 $lang["write your message here"] = "اكتب رسالتك هنا";
 $lang["Request"] = "طلب";
+$lang["E.G.P"] = "جنيه";
