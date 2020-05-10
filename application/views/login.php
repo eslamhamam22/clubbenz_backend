@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
   <head>
       <meta charset="utf-8">
@@ -11,7 +11,7 @@
       <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/animate.css" rel="stylesheet" type="text/css">
       <link href="<?php echo base_url(); ?>assets/css/spinners.css" rel="stylesheet" type="text/css">
-      <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css"> 
+      <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css">
       <link href="<?php echo base_url(); ?>assets/css/colors/default.css" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -20,11 +20,11 @@
     </div>
     <section id="wrapper" class="new-login-register">
       <div class="lg-info-panel">
-              <div class="inner-panel" style="background-image: url(<?php echo base_url('upload/bg_image.jpg')?>)">
-                  
-                  <a href="javascript:void(0)" class="p-20 di"><img src="<?php echo base_url()?>assets/plugins/images/admin-logo.png"></a>
+              <div class="inner-panel" style="background-image: url(<?php echo base_url('upload/bg_image.jpg') ?>)">
+
+                  <a href="javascript:void(0)" class="p-20 di"><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo.png"></a>
                   <div class="lg-content">
-                    
+
                     <h2>CLUBENZ</h2>
                        <!--  <p class="text-muted">with this admin you can get 2000+ pages, 500+ ui component, 2000+ icons, different demos and many more... </p>
                       <a href="#" class="btn btn-rounded btn-danger p-l-20 p-r-20"> Buy now</a> -->
@@ -33,13 +33,13 @@
       </div>
       <div class="new-login-box">
         <div class="white-box">
-          <?php if(isset($message)) { ?>
+          <?php if (isset($message)) {?>
                 <div class="alert alert-danger"> <?php echo $message; ?> </div>
             <?php }?>
             <h3 class="box-title m-b-0">Sign In to Admin</h3>
             <small>Enter your details below</small>
           <form class="form-horizontal new-lg-form" method="post" id="loginform" action="<?php echo base_url('auth/login'); ?>">
-            
+
             <div class="form-group  m-t-20">
               <div class="col-xs-12">
                 <label>Username</label>
@@ -95,7 +95,7 @@
             </div>
           </form>
         </div>
-      </div>            
+      </div>
     </section>
     <!-- jQuery -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -110,6 +110,6 @@
     <!-- Custom Theme JavaScript -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>
     <!--Style Switcher -->
-    <script type="text/javascript" src="<?php echo base_url()?>assets//plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>assets//plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
   </body>
 </html>
