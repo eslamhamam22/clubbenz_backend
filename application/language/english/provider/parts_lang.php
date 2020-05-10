@@ -18,10 +18,6 @@ $lang["Rejected"] = "Rejected";
 $lang["Add"] = "Add";
 $lang["Remove"] = "Remove";
 $lang["Views"] = "Number Of Views";
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 $lang["Images"] = "Images";
 $lang["Title"] = "Title";
 $lang["Title_Arabic"] = "Title Arabic";
