@@ -40,6 +40,7 @@
 						<th><?php echo lang("Brand/User"); ?></th>
 						<th><?php echo lang("Status"); ?></th>
 						<th><?php echo lang("Featured"); ?></th>
+						<th><?php echo lang("Views"); ?></th>
 						<th><?php echo lang("Option"); ?></th>
 					</tr>
 					</thead>
@@ -74,11 +75,14 @@ foreach ($rec as $us) {
 								<?php } else if ($us->status == "approve") {?>
 									<?php if ($us->active) {?>
 										<a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
+										<p style="display: none">Active</p>
 									<?php } else {?>
 										<a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Activate"); ?></button></a>
+										<p style="display: none">inactive</p>
 									<?php }?>
 								<?php } else {?>
 									<button class="btn btn-small btn-danger"><?php echo lang("Rejected"); ?></button>
+									<p style="display: none">rejected</p>
 								<?php }?>
 							</td>
 							<td>
@@ -89,12 +93,13 @@ foreach ($rec as $us) {
 										<a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Add"); ?></button></a>
 									<?php } else {?>
 										<a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Remove"); ?></button></a>
+										<p style="display: none">featured</p>
 									<?php }?>
 								<?php } else {?>
 <!--									<button class="btn btn-small btn-danger">Rejected</button>-->
 								<?php }?>
 							</td>
-
+							<td><?php echo $us->views; ?></td>
 							<td>
 								<a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('provider/parts/edit_part') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
 								<a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('provider/parts/del_part/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>

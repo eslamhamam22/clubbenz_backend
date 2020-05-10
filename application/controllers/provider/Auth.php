@@ -72,39 +72,35 @@ class Auth extends CI_Controller {
 			$config['file_name'] = time() . $fname;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$this->upload->initialize($config);
-//			$this->upload->do_upload('file_name');
+			$provider_user = array(
+				'user_name' => $this->input->post('user_name'),
+				'user_email' => $this->input->post('user_email'),
+				'user_password' => md5($this->input->post('password')),
+				'user_mobile' => $this->input->post('user_mobile'),
+				'store_name' => $this->input->post('store_name'),
+				'contact_person' => $this->input->post('contact_person'),
+				'address' => $this->input->post('address'),
+				'country' => $this->input->post('country'),
+				'governorate' => $this->input->post('governorate'),
+				'city' => $this->input->post('city'),
+				'zip_code' => $this->input->post('zip_code'),
+				'business_website' => $this->input->post('business_website'),
+			);
 			if (!$this->upload->do_upload('logo')) {
-				$this->session->set_flashdata('error', $this->upload->display_errors());
-//				print_r($this->upload->display_errors());
-//				echo $fname;
-				redirect('/provider/auth/register');
+//				$this->session->set_flashdata('error', $this->upload->display_errors());
+//				redirect('/provider/auth/register');
 			} else {
 				$data = $this->upload->data();
 				$file_name= $data["file_name"];
-				$provider_user = array(
-					'user_name' => $this->input->post('user_name'),
-					'user_email' => $this->input->post('user_email'),
-					'user_password' => md5($this->input->post('password')),
-					'user_mobile' => $this->input->post('user_mobile'),
-					'store_name' => $this->input->post('store_name'),
-					'contact_person' => $this->input->post('contact_person'),
-					'address' => $this->input->post('address'),
-					'country' => $this->input->post('country'),
-					'governorate' => $this->input->post('governorate'),
-					'city' => $this->input->post('city'),
-					'zip_code' => $this->input->post('zip_code'),
-					'business_website' => $this->input->post('business_website'),
-					// 'logo' => $this->input->post('logo'),
-					"logo" => $file_name,
-				);
-				if($this->Provider_Model->email_check($provider_user["user_email"])){
-					$this->session->set_flashdata('success', "You have signed up successfully");
-					$this->Provider_Model->signup($provider_user);
-					redirect('/provider');
-				}else{
-					$this->session->set_flashdata('error', "User already exists.");
-					redirect('/provider/auth/register');
-				}
+				$provider_user["logo"]= $file_name;
+			}
+			if($this->Provider_Model->email_check($provider_user["user_email"])){
+				$this->session->set_flashdata('success', "You have signed up successfully");
+				$this->Provider_Model->signup($provider_user);
+				redirect('/provider');
+			}else{
+				$this->session->set_flashdata('error', "User already exists.");
+				redirect('/provider/auth/register');
 			}
 		}
 		redirect('/provider');

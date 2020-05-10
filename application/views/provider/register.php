@@ -121,7 +121,7 @@
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label>Logo</label>
-						<input class="form-control" type="file" required name="logo" placeholder="">
+						<input class="form-control" type="file" name="logo" placeholder="">
 					</div>
 				</div>
 				<div class="form-group text-center m-t-20">
