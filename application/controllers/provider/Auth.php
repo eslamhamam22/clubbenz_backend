@@ -19,11 +19,12 @@ class Auth extends CI_Controller {
 		$this->load->library('session');
 		$this->load->library('upload');
 		$this->lang->load('auth');
-		if($this->session->userdata("id"))
+		if ($this->session->userdata("id")) {
 			redirect('/provider/home');
+		}
 
 		$this->load->helper('language');
-		$this->lang->load('provider/auth',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+		$this->lang->load('provider/auth', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
 
 	}
 
@@ -45,13 +46,13 @@ class Auth extends CI_Controller {
 			$pass = $this->input->post("password");
 //			$remember = $this->input->post('remember_me');
 			if (strlen($email) > 0 && strlen($pass) > 0) {
-				$login= $this->Provider_Model->login($email, md5($pass));
-				if($login){
+				$login = $this->Provider_Model->login($email, md5($pass));
+				if ($login) {
 //					print_r($login[0]);
 					$this->session->set_userdata($login[0]);
 //					print_r($this->session->userdata());
 					redirect('/provider/home');
-				}else{
+				} else {
 					$this->session->set_flashdata('error', 'Wrong Username or Password');
 					redirect('/provider');
 				}
@@ -72,39 +73,35 @@ class Auth extends CI_Controller {
 			$config['file_name'] = time() . $fname;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$this->upload->initialize($config);
-//			$this->upload->do_upload('file_name');
+			$provider_user = array(
+				'user_name' => $this->input->post('user_name'),
+				'user_email' => $this->input->post('user_email'),
+				'user_password' => md5($this->input->post('password')),
+				'user_mobile' => $this->input->post('user_mobile'),
+				'store_name' => $this->input->post('store_name'),
+				'contact_person' => $this->input->post('contact_person'),
+				'address' => $this->input->post('address'),
+				'country' => $this->input->post('country'),
+				'governorate' => $this->input->post('governorate'),
+				'city' => $this->input->post('city'),
+				'zip_code' => $this->input->post('zip_code'),
+				'business_website' => $this->input->post('business_website'),
+			);
 			if (!$this->upload->do_upload('logo')) {
-				$this->session->set_flashdata('error', $this->upload->display_errors());
-//				print_r($this->upload->display_errors());
-//				echo $fname;
-				redirect('/provider/auth/register');
+//				$this->session->set_flashdata('error', $this->upload->display_errors());
+				//				redirect('/provider/auth/register');
 			} else {
 				$data = $this->upload->data();
-				$file_name= $data["file_name"];
-				$provider_user = array(
-					'user_name' => $this->input->post('user_name'),
-					'user_email' => $this->input->post('user_email'),
-					'user_password' => md5($this->input->post('password')),
-					'user_mobile' => $this->input->post('user_mobile'),
-					'store_name' => $this->input->post('store_name'),
-					'contact_person' => $this->input->post('contact_person'),
-					'address' => $this->input->post('address'),
-					'country' => $this->input->post('country'),
-					'governorate' => $this->input->post('governorate'),
-					'city' => $this->input->post('city'),
-					'zip_code' => $this->input->post('zip_code'),
-					'business_website' => $this->input->post('business_website'),
-					// 'logo' => $this->input->post('logo'),
-					"logo" => $file_name,
-				);
-				if($this->Provider_Model->email_check($provider_user["user_email"])){
-					$this->session->set_flashdata('success', "You have signed up successfully");
-					$this->Provider_Model->signup($provider_user);
-					redirect('/provider');
-				}else{
-					$this->session->set_flashdata('error', "User already exists.");
-					redirect('/provider/auth/register');
-				}
+				$file_name = $data["file_name"];
+				$provider_user["logo"] = $file_name;
+			}
+			if ($this->Provider_Model->email_check($provider_user["user_email"])) {
+				$this->session->set_flashdata('success', "You have signed up successfully");
+				$this->Provider_Model->signup($provider_user);
+				redirect('/provider');
+			} else {
+				$this->session->set_flashdata('error', "User already exists.");
+				redirect('/provider/auth/register');
 			}
 		}
 		redirect('/provider');
@@ -119,6 +116,5 @@ class Auth extends CI_Controller {
 	public function forget_pass() {
 		redirect('/provider');
 	}
-
 
 }

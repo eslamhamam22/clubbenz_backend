@@ -20,9 +20,9 @@
 </div>
 <section id="wrapper" class="new-login-register" style="position: relative">
 	<div class="lg-info-panel">
-		<div class="inner-panel" style="background-image: url(<?php echo base_url('upload/bg_image.jpg')?>)">
+		<div class="inner-panel" style="background-image: url(<?php echo base_url('upload/bg_image.jpg') ?>)">
 
-			<a href="javascript:void(0)" class="p-20 di"><img src="<?php echo base_url()?>assets/plugins/images/admin-logo.png"></a>
+			<a href="javascript:void(0)" class="p-20 di"><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo.png"></a>
 			<div class="lg-content">
 
 				<h2>CLUBENZ</h2>
@@ -33,7 +33,7 @@
 	</div>
 	<div class="new-login-box" style="margin-top: 0px">
 		<div class="white-box">
-			<?php if(isset($message)) { ?>
+			<?php if (isset($message)) {?>
 				<div class="alert alert-danger"> <?php echo $message; ?> </div>
 			<?php }?>
 			<h3 class="box-title m-b-0">Sign Up as a Provider</h3>
@@ -74,9 +74,9 @@
 					<div class="col-xs-12">
 						<label>Country</label>
 						<select class="form-control" required name="country" id="country">
-							<?php foreach ($countries as $country){ ?>
+							<?php foreach ($countries as $country) {?>
 								<option data-phone="<?php echo $country->phonecode; ?>" value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
-							<?php } ?>
+							<?php }?>
 						</select>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label>Logo</label>
-						<input class="form-control" type="file" required name="logo" placeholder="">
+						<input class="form-control" type="file" name="logo" placeholder="">
 					</div>
 				</div>
 				<div class="form-group text-center m-t-20">

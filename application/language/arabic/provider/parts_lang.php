@@ -18,7 +18,7 @@ $lang["Activate"] = "تفعيل";
 $lang["Rejected"] = "مرفوض";
 $lang["Add"] = "أضف";
 $lang["Remove"] = "إزالة";
-
+$lang["Views"] = "خدد المشاهدات";
 $lang["Images"] = "صور";
 $lang["Title"] = "عنوان";
 $lang["Title_Arabic"] = "العنوان بالعربية";

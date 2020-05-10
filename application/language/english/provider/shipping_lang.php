@@ -1,5 +1,5 @@
 <?php
-$lang["Shipping"] = "Shipping";
+$lang["Shipping"] = "Shipping offer";
 $lang["Show"] = "Show";
 $lang["Shipping Requests"] = "Shipping Requests";
 $lang["Add Request"] = "Add Request";

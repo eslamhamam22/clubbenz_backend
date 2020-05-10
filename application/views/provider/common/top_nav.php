@@ -14,6 +14,7 @@
     <ul class="nav navbar-top-links navbar-left">
         <li><a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
     </ul>
+    <!-- s -->
     <ul class="nav navbar-top-links navbar-right pull-right">
         <?php if ($this->session->userdata('site_lang') == "arabic") {?>
                     <li><a href="<?php echo base_url('provider/langSwitch/switchLanguage/english'); ?>"><i class="fa fa-language"></i> English</a></li>
