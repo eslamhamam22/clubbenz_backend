@@ -76,7 +76,7 @@
               </div>
             </div>
           </form>
-          <form class="form-horizontal" id="recoverform" action="<?php echo site_url('auth/forgotPass'); ?>">
+          <form class="form-horizontal" id="recoverform" action="<?php echo site_url('auth/forgot_password'); ?>">
             <div class="form-group ">
               <div class="col-xs-12">
                 <h3>Recover Password</h3>

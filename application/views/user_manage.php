@@ -12,9 +12,13 @@
         <div id="page-wrapper" style="background: white">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Manage Users</h4>
                     </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a style="background: #2CABE3" href="<?php echo base_url('permissions/add_user') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add User</a>
+                    </div>
+
                 </div>
                 <?php $this->load->view('message');?>
                  <table id="myTable" class="table table-striped">
@@ -76,9 +80,7 @@ foreach ($rec as $us) {
                             <td><?php echo $roles_arr['names']; ?></td>
                             <td>
                                 <a class="text-inverse pr-2" href="<?php echo base_url('permissions/user_update/') ?><?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
-
-                                <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('permissions/user_del/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
-
+                                <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('permissions/user_del/') ?><?php echo $us->id; ?>"><i class="ti-trash"></i></a>
                                 <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Update Password" href="<?php echo base_url('carmodel/change_password/') ?><?php echo $us->id; ?>"><i class="ti-lock"></i></a>
                             </td>
                         </tr>
@@ -88,31 +90,11 @@ foreach ($rec as $us) {
                  <?php $this->load->view('common/common_footer');?>
             </div>
         </div>
-   	</div>
+    </div>
         <?php $this->load->view('common/common_script');?>
          <script>
             $(document).ready( function () {
                 $('#myTable').DataTable();
-
-                $('#fil_user').change(function(){
-                    // let a = $(this).val();
-                    // console.log(a);
-                    //
-                    filter_user();
-
-                });
-
-                function filter_user() {
-                    var fil_user = $(#fil_user).val();
-                    $.ajax({
-                        url: "<?=base_url('permissions/user_manage')?>",
-                        data: "fil_user" + $fil_user,
-                        success: function(data) {
-                            ("#myTable tbody").html(data)
-                        }
-                    });
-                }
-
             } );
         </script>
 

@@ -91,7 +91,6 @@ class Provider_model extends CI_model {
 		return $q->result();
 
 	}
-
 }
 
 ?>

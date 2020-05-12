@@ -43,31 +43,7 @@ if ($current_plan) {
 					<div class="col-sm-12" id="shops">
 						<div class="white-box">
 							<div class="row row-in">
-								<div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
-									<ul class="col-in">
-										<li>
-											<span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
-										</li>
-										<li class="col-last">
-											<?php if ($current_plan) {?>
-												<h3 class="counter text-right m-t-15"><?php echo $current_plan->plan->num_parts - count($active_parts); ?></h3>
-											<?php }?>
-										</li>
-										<li class="col-middle">
-											<?php if ($current_plan) {?>
-											<h4><?php echo lang("Available_Parts"); ?></h4>
-											<div class="progress">
-												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
-												</div>
-											</div>
-											<?php } else {?>
-												<h4><?php echo lang("No_Plan_available"); ?></h4>
-											<?php }?>
-										</li>
-									</ul>
-								</div>
-								<div class="col-lg-3 col-sm-6 row-in-br">
+								<div class="col-lg-4 col-sm-6 row-in-br">
 									<ul class="col-in">
 										<li>
 											<span class="circle circle-md bg-success"><i class=" ti-shopping-cart"></i></span>
@@ -85,7 +61,7 @@ if ($current_plan) {
 										</li>
 									</ul>
 								</div>
-								<div class="col-lg-3 col-sm-6 row-in-br">
+								<div class="col-lg-4 col-sm-6 row-in-br">
 									<ul class="col-in">
 										<li>
 											<span class="circle circle-md bg-danger"><i class="ti-clipboard"></i></span>
@@ -104,7 +80,7 @@ if ($current_plan) {
 										</li>
 									</ul>
 								</div>
-								<div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
+								<div class="col-lg-4 col-sm-6 row-in-br  b-r-none">
 									<ul class="col-in">
 										<li>
 											<span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
