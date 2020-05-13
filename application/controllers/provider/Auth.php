@@ -128,4 +128,104 @@ class Auth extends CI_Controller {
 		redirect('/provider');
 	}
 
+	public function forgotpassword_post() {
+		if ($_POST) {
+			$arr = $this->_forgotpassword($_POST);
+		} else {
+			$arr['message'] = "Please provide Email";
+			$arr['success'] = false;
+		}
+		// $this->response($arr, 200);
+		redirect('/provider', $ar);
+	}
+
+	private function _forgotpassword($data) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+
+		if ($data['user_email']) {
+			$user = $this->Acl_model->get_email($data['user_email']);
+			if ($user) {
+				$resetToken = md5($user->user_email);
+				$resetTimeStemp = time();
+				$resetToken = $resetToken . "" . $resetTimeStemp;
+				$this->email->initialize($config);
+				$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+				$this->email->to($user->user_email);
+				$users['resetlink'] = $resetToken;
+				$mesg = $this->load->view('provider/reset_password_view', $users, true);
+				$this->email->subject('Reset Password Request Clubenz');
+				$this->email->message($mesg);
+				$this->email->send();
+				$user = $this->Acl_model->reset_password_request($data['user_email'], $resetToken, $resetTimeStemp);
+				// $this->form_validation->set_error_delimiters('','');
+				// $this->form_validation->set_rules($rules);
+				$arr['message'] = "Password check your email to rest your password";
+				$arr['success'] = true;
+
+			} else {
+				$arr['message'] = "Please provide valid user email";
+				$arr['success'] = false;
+			}
+
+		} else {
+			$arr['message'] = "Please provide valid user email";
+			$arr['success'] = false;
+		}
+		return $arr;
+	}
+
+	public function updatepassword() {
+
+		if ($_GET['resetToken']) {
+			$user = $this->Acl_model->get_user_by_resetToken($_GET['resetToken']);
+
+			if ($user) {
+				$resetTimeStemp = time();
+				if ($user->resetTimeStemp + 900 > $resetTimeStemp) {
+					$this->load->view('provider/reset_password');
+				} else {
+					$data['message'] = "URL is expired, please reset your password again.";
+					$this->load->view('provider/reset_password', $data);
+				}
+
+			} else {
+				$data['message'] = "URL is not valid.";
+				$this->load->view('provider/reset_password', $data);
+			}
+		} else {
+
+		}
+
+		// check if url does not get expired or token is valid
+
+		// $this->load->view('reset_password', $this->data);
+	}
+	public function confirmupdatepassword() {
+
+		$password = md5($this->input->post("user_password"));
+		$c_password = md5($this->input->post("c_password"));
+		if ($c_password == $password) {
+
+			$resetToken = $this->input->post('resetToken');
+
+			$this->db->query("update provider_user set user_password='" . $password . "' where resetToken='$resetToken' ");
+
+			redirect('/provider');
+
+		}
+
+	}
+
 }

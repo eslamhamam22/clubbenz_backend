@@ -386,10 +386,37 @@ class Acl_model extends CI_Model {
 		return "";
 	}
 
-	public function get_chassis_name($id) {
-		$this->db->select("chassis_num");
-		$this->db->where('id', $id);
-		$query = $this->db->get('chassis');
-		return $query->row()->chassis_num;
+	function get_email($user_email) {
+		$this->db->select('user_email');
+		$this->db->from('provider_user');
+		$this->db->where('user_email', $user_email);
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->row();
+		} else {
+			return false;
+		}
+
 	}
+
+	function reset_password_request($user_email, $resetToken, $resetTimeStemp) {
+
+		$this->db->where('user_email', $user_email);
+		$this->db->update('provider_user', array('resetToken' => $resetToken, 'resetTimeStemp' => $resetTimeStemp));
+
+		return true;
+	}
+
+	function get_user_by_resetToken($resetToken) {
+		$this->db->select("*");
+		$this->db->from("provider_user");
+		$this->db->where("resetToken", $resetToken);
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			$data = $query->row();
+			return $data;
+		}
+		return false;
+	}
+
 }

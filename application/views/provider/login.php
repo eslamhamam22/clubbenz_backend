@@ -73,7 +73,7 @@
               </div>
             </div>
           </form>
-          <form class="form-horizontal" id="recoverform" action="<?php echo site_url('provider/auth/forgotPass'); ?>">
+          <form class="form-horizontal" id="recoverform" action="<?php echo site_url('provider/auth/forgotpassword_post'); ?>" method="post">
             <div class="form-group ">
               <div class="col-xs-12">
                 <h3>Recover Password</h3>
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group ">
               <div class="col-xs-12">
-                <input class="form-control" type="text" required="" placeholder="Email">
+                <input class="form-control" name="user_email" type="text" required="" placeholder="Email">
               </div>
             </div>
             <div class="form-group text-center m-t-20">
