@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
 		$this->load->model('Provider_Model');
+		$this->load->model('Part_model');
 		$this->load->model('Shipping_model');
 		$this->load->model('Provider_plan_model');
 		$this->load->model('Plan_model');
@@ -42,6 +43,7 @@ class Home extends CI_Controller {
 		});
 		$data["current_plan"] = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
 		$data["requests"] = $this->Shipping_model->select_shipping_by_provider($provider_id);
+		$data["partviews"] = $this->Part_model->get_parts($provider_id);
 		$this->load->view('provider/dashboard', $data);
 	}
 

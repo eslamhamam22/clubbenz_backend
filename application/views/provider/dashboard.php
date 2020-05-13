@@ -99,6 +99,75 @@ if ($current_plan) {
 									</ul>
 								</div>
 							</div>
+							<div class="row row-in">
+								<div class="col-lg-4 col-sm-6 row-in-br  b-r-none">
+									<ul class="col-in">
+										<li>
+											<span class="circle circle-md bg-danger"><i class="ti-wallet"></i></span>
+										</li>
+										<li class="col-last">
+											<h3 class="counter text-right m-t-15">
+												<?php $sum = 0?>
+												<?php foreach ($partviews as $partview) {$sum += $partview->views;}?>
+												<?php echo $sum; ?>
+												</h3>
+										</li>
+										<li class="col-middle">
+											<h4><?php echo lang("viewers of my parts"); ?></h4>
+											<div class="progress">
+												<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="col-lg-4 col-sm-6 row-in-br  b-r-none">
+									<ul class="col-in">
+										<li>
+											<span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
+										</li>
+										<li class="col-last">
+											<h3 class="counter text-right m-t-15">
+												<?php $max = 0?>
+												<?php foreach ($partviews as $partview) {?>
+												<?php if ($partview->views > $max) {$max = $partview->views;}}?>
+												<?php echo $max; ?>
+												</h3>
+										</li>
+										<li class="col-middle">
+											<h4><?php echo lang("highest parts"); ?></h4>
+											<div class="progress">
+												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="col-lg-4 col-sm-6 row-in-br  b-r-none">
+									<ul class="col-in">
+										<li>
+											<span class="circle circle-md bg-success"><i class="ti-wallet"></i></span>
+										</li>
+										<li class="col-last">
+											<h3 class="counter text-right m-t-15">
+												<?php foreach ($partviews as $partview) {?>
+												<?php if ($partview->views < $max) {$max = $partview->views;}}?>
+												<?php echo $max; ?>
+												</h3>
+										</li>
+										<li class="col-middle">
+											<h4><?php echo lang("lowest parts"); ?></h4>
+											<div class="progress">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+													<span class="sr-only"><?php echo lang("40%_Complete_(success)"); ?></span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

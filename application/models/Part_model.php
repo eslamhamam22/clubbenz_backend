@@ -129,18 +129,20 @@ class Part_model extends CI_Model {
 		$q = $this->db->get();
 
 		if ($q->num_rows() > 0) {
-			$arr['shops']= $q->result();
+			$arr['shops'] = $q->result();
 			foreach ($arr['shops'] as $val) {
 				$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			}
-			$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
-				if(!$part->plan || $part->plan->status != "active")
+			$arr['shops'] = array_filter($arr['shops'], function ($part) use ($phone) {
+				if (!$part->plan || $part->plan->status != "active") {
 					return false;
-				if($part->available_location == "National" && $phone){
-					$phonecode= "+".$part->phonecode;
-					if(strpos($phone, $phonecode) !== false){
+				}
+
+				if ($part->available_location == "National" && $phone) {
+					$phonecode = "+" . $part->phonecode;
+					if (strpos($phone, $phonecode) !== false) {
 						return true;
-					}else{
+					} else {
 						return false;
 					}
 				}
@@ -383,6 +385,14 @@ class Part_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('parts', ["featured" => 0]);
 		return $this->db->affected_rows();
+	}
+
+	public function get_parts($provider_id) {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$this->db->where('provider_id', $provider_id);
+		$q = $this->db->get();
+		return $q->result();
 	}
 
 }
