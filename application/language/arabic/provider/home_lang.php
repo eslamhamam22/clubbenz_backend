@@ -15,3 +15,4 @@ $lang["Total_Shipping_Requests"] = "إجمالي طلبات الشحن";
 $lang["viewers of my parts"] = "مشاهدي أجزائي";
 $lang["highest parts"] = "أعلى الأجزاء";
 $lang["lowest parts"] = "اقل الاجزاء";
+$lang["Favorites Parts"] = "أجزاء المفضلة";

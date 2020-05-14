@@ -21,12 +21,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-lg-3" >
-                                <div>
-
-
-                                </div>
-                            </div>
                             <?php $this->load->view('message');?>
 
                             <table id="myTable" class="table table-striped">

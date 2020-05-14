@@ -299,7 +299,7 @@
                                         <label class="control-label col-md-3">Set Date of Listing</label>
                                         <div class="col-md-9">
 <!--                                            <input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
-                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/>
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
 
                                             <!-- <input name="add_dates" value="" id="datepickers"  /> -->
                                         </div>
@@ -377,7 +377,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Date of active</label>
                                         <div class="col-md-9">
-                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
                                         </div>
                                     </div>
                                 </div>
@@ -388,7 +388,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">date of Expiry</label>
                                         <div class="col-md-9">
-                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/>
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
                                         </div>
                                     </div>
                                 </div>

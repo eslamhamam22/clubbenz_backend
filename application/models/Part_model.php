@@ -395,6 +395,16 @@ class Part_model extends CI_Model {
 		return $q->result();
 	}
 
+	public function get_parts_id() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
 }
 
 ?>

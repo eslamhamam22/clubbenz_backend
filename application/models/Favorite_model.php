@@ -8,15 +8,15 @@ class Favorite_model extends CI_Model {
 		return $q->result();
 	}
 	public function add_favorite($user_id, $part_id) {
-		$data= array();
-		$data["user_id"]= $user_id;
-		$data["part_id"]= $part_id;
+		$data = array();
+		$data["user_id"] = $user_id;
+		$data["part_id"] = $part_id;
 		return $this->db->insert('favorites', $data);
 	}
 	public function remove_favorite($user_id, $part_id) {
-		$data= array();
-		$data["user_id"]= $user_id;
-		$data["part_id"]= $part_id;
+		$data = array();
+		$data["user_id"] = $user_id;
+		$data["part_id"] = $part_id;
 		return $this->db->delete('favorites', $data);
 	}
 	public function is_favorite($user_id, $part_id) {
@@ -29,6 +29,16 @@ class Favorite_model extends CI_Model {
 			return true;
 		}
 		return false;
+	}
+
+	public function get_favorites() {
+		$this->db->select('*');
+		$this->db->from('favorites');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}
 }
 

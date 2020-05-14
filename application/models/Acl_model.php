@@ -71,6 +71,13 @@ class Acl_model extends CI_Model {
 		$result = $this->db->get()->result_array();
 		return $result;
 	}
+	public function get_chassis_name($id) {
+		$this->db->select("chassis_num");
+		$this->db->where('id', $id);
+		$query = $this->db->get('chassis');
+		return $query->row()->chassis_num;
+	}
+
 	public function get_groupsbyid($id) {
 		$this->db->select('*');
 		$this->db->from('groups');

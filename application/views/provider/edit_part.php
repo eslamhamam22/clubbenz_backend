@@ -318,12 +318,12 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 									<div class="form-group">
 										<label class="control-label col-md-3 "><?php echo lang("Set_Date_of_Listing"); ?></label>
 										<div class="col-md-9 " >
-											<input  type="date" data-date-format='yyyy-mm-dd' id="add_date" value="<?php echo $rec->add_date ?>" name="add_date"  readonly>
+											<input  type="date" data-date-format='yyyy-mm-dd' id="add_date" value="<?php echo $rec->add_date ?>" name="add_date" class="form-control"  readonly>
 
 											<div id="Create" style="display:none">
 												<label style="margin-top: 10px" class="control-label "><?php echo lang("Enter_Updated_Date"); ?> </label><br>
 
-												<input  type="date" data-date-format='yyyy-mm-dd' id="updated_date" value="" name="updated_date"  min="<?php echo date('Y-m-d'); ?>">
+												<input  type="date" data-date-format='yyyy-mm-dd' id="updated_date" value="" name="updated_date"  min="<?php echo date('Y-m-d'); ?>" class="form-control">
 
 											</div>
 											<input type="button" id="btn" class="btn btn-default" value="<?php echo lang("Update_Date"); ?> ">
@@ -400,7 +400,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 									<div class="form-group">
 										<label class="control-label col-md-3"><?php echo lang("Date_of_active"); ?></label>
 										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $rec->date_active; ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
+											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $rec->date_active; ?>" id="datepicker2" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
 										</div>
 									</div>
 								</div>

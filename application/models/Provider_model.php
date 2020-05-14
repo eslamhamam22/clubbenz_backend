@@ -79,6 +79,13 @@ class Provider_model extends CI_model {
 		return $q->result();
 	}
 
+	public function get_parts_fet() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 	public function edit($data, $id) {
 		$this->db->where('id', $id);
 		$this->db->update('provider_user', $data);
@@ -90,6 +97,19 @@ class Provider_model extends CI_model {
 		$q = $this->db->get();
 		return $q->result();
 
+	}
+
+	public function update_status() {
+		$id = $_REQUEST['sid'];
+		$sval = $_REQUEST['sval'];
+		if ($sval == 1) {
+			$featured = 0;
+		} else {
+			$featured = 1;
+		}
+		$data = array('featured' => $featured);
+		$this->db->where('id', $id);
+		return $this->db->update('parts', $data);
 	}
 }
 

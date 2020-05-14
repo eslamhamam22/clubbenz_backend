@@ -264,10 +264,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3"><?php echo lang("Set_Date_of_Listing"); ?></label>
                                         <div class="col-md-9">
-<!--											<input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>"/>
-
-                                            <!-- <input name="add_dates" value="" id="datepickers"  /> -->
+											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -275,52 +272,7 @@
                             </div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-<!--                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>-->
-<!---->
-<!--                            <div class="row margin-top">-->
 
-<!--								<div class="col-md-6" >-->
-<!--									<div class="form-group">-->
-<!--										<div class="col-md-9">-->
-<!--											<label class="control-label">Location Latitude</label>-->
-<!---->
-<!--											<input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="--><?php //echo $this->input->post("location_lat") ?><!--">-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-md-6">-->
-<!--									<div class="form-group">-->
-<!--										<div class="col-md-9">-->
-<!--											<label class="control-label ">Location Longitude</label>-->
-<!--											<input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="--><?php //echo $this->input->post("location_lon") ?><!--" > </div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label class="control-label col-md-3">Location</label>-->
-<!--                                        <div class="col-md-9">-->
-<!--                                            <input type="text"  name="location" class="form-control" placeholder="Location"value="--><?php //echo $this->input->post("location")?><!--"> -->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--							<div class="row margin-top">-->
-<!---->
-<!--								<div class="col-md-6" >-->
-<!--									<div class="form-group">-->
-<!--										<div class="col-md-9">-->
-<!--											<label class="control-label ">--><?php //echo lang("Location_Zone"); ?><!--</label>-->
-<!---->
-<!--											<select name="location_zone" class="form-control">-->
-<!--												<option value>--><?php //echo lang("Select_Location_Zone"); ?><!--</option>-->
-<!--												--><?php //foreach ($location as $loc) {?>
-<!--													<option value="--><?php //echo $loc->id ?><!--">--><?php //echo $loc->name; ?><!--</option>-->
-<!--												--><?php //}?>
-<!--											</select>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
 							<div class="row margin-top" >
 								<div class="col-md-6">
 									<div class="form-group">
@@ -339,23 +291,13 @@
 									<div class="form-group">
 										<label class="control-label col-md-3"><?php echo lang("Date_of_active"); ?></label>
 										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/>
+											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
 										</div>
 									</div>
 								</div>
 
 							</div>
-<!--							<div class="row margin-top">-->
-<!--								<div class="col-md-6">-->
-<!--									<div class="form-group">-->
-<!--										<label class="control-label col-md-3">--><?php //echo lang("date_of_Expiry"); ?><!--</label>-->
-<!--										<div class="col-md-9">-->
-<!--											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="--><?php //echo $this->input->post("date_expire") ?><!--" id="datepicker3"   min="--><?php //echo date('Y-m-d'); ?><!--"/>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!---->
-<!--							</div>-->
+
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">
@@ -393,6 +335,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/image-uploader.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url() ?>assets/file-upload/dist/karim-image-uploader.js"></script>
+
 
         <script type="text/javascript">
             $(document).ready(function() {

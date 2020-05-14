@@ -16,6 +16,7 @@ class Home extends CI_Controller {
 		$this->load->model('Part_model');
 		$this->load->model('Shipping_model');
 		$this->load->model('Provider_plan_model');
+		$this->load->model('Favorite_model');
 		$this->load->model('Plan_model');
 		$this->load->model('Acl_model');
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -44,6 +45,8 @@ class Home extends CI_Controller {
 		$data["current_plan"] = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
 		$data["requests"] = $this->Shipping_model->select_shipping_by_provider($provider_id);
 		$data["partviews"] = $this->Part_model->get_parts($provider_id);
+		$data["partsid"] = $this->Part_model->get_parts_id();
+		$data["favorites"] = $this->Favorite_model->get_favorites();
 		$this->load->view('provider/dashboard', $data);
 	}
 
