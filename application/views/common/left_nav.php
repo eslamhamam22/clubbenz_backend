@@ -113,7 +113,7 @@ if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a
 
             <?php }
 if (in_array('Booking/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                <li><a style="color: #84868D" class="waves-effect" href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+                <li><a class="waves-effect" href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
             <?php }
 
 if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {
