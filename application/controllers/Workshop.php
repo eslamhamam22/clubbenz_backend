@@ -29,7 +29,7 @@ class Workshop extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->workshop->manage_workshop();
-
+		$this->data['title'] = 'Manage Worshops';
 		$this->load->view('manage_workshop', $this->data);
 	}
 
@@ -203,6 +203,7 @@ class Workshop extends MY_Controller {
 		}
 
 		$this->data['service'] = $this->service_tag->manage_workshop();
+		$this->data['title'] = 'Add Worshops';
 		$this->load->view('add_workshop', $this->data);
 	}
 
@@ -375,6 +376,7 @@ class Workshop extends MY_Controller {
 		}
 
 		$this->data['service'] = $this->service_tag->manage_workshop();
+		$this->data['title'] = 'Import Worshops';
 		$this->load->view('excel_workshop', $this->data);
 	}
 
@@ -447,6 +449,7 @@ class Workshop extends MY_Controller {
 	public function edit_workshop($id) {
 		$this->data['rec'] = $this->workshop->edit_workshop($id);
 		$this->data['service'] = $this->service_tag->manage_workshop();
+		$this->data['title'] = 'Edit Worshops';
 		$this->load->view('edit_workshop', $this->data);
 	}
 	public function update_workshop() {

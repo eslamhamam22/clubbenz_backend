@@ -22,6 +22,7 @@ class Providerlist extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->provider_model->select_provider();
+		$this->data['title'] = 'Manage Provider List';
 		// $this->data['plan'] = $this->Provider_plan_model->get_current_plan_by_provider();
 		$this->load->view('mange_providerlist', $this->data);
 	}
@@ -37,6 +38,7 @@ class Providerlist extends MY_Controller {
 
 	public function edit_providerlist($id) {
 		$data['rec'] = $this->provider_model->edit_providerlist($id);
+		$data['title'] = 'Edit Provider List';
 		$this->load->view('edit_providerlist', $data);
 	}
 

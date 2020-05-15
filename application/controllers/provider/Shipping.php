@@ -23,26 +23,29 @@ class Shipping extends CI_Controller {
 		}
 
 		$this->load->helper('language');
-		$this->lang->load('provider/left_nav',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
-		$this->lang->load('provider/shipping',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+		$this->lang->load('provider/left_nav', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
+		$this->lang->load('provider/shipping', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
 
 	}
 
 	public function index() {
 		$file = $this->Shippment_model->shipment_manage();
 		$data["file"] = $file[0];
+		$data['title'] = 'Shipping';
 		$this->load->view('provider/shipping', $data);
 	}
 
 	public function request() {
 		$provider_id = $this->session->userdata("id");
 		$data["requests"] = $this->Shipping_model->select_shipping_by_provider($provider_id);
+		$data['title'] = 'Shipping Request';
 		$this->load->view('provider/shipping_request', $data);
 	}
 	public function add_request() {
 		$provider_id = $this->session->userdata("id");
 		$data['parts'] = $this->Provider_Model->get_parts($provider_id);
 		$data["requests"] = $this->Shipping_model->select_shipping_by_provider($provider_id);
+		$data['title'] = 'Add Shipping Request';
 		$this->load->view('provider/add_request', $data);
 	}
 

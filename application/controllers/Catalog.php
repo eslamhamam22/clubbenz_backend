@@ -26,6 +26,7 @@ class Catalog extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->cat->catalog_manage();
+		$this->data['title'] = 'Parts Catalogue';
 		$this->load->view('catalog_manage', $this->data);
 	}
 

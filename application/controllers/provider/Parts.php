@@ -42,6 +42,7 @@ class Parts extends CI_Controller {
 
 		$identity = $this->session->userdata('identity');
 		$this->data['rec'] = $this->Provider_Model->get_parts($this->session->userdata("id"));
+		$this->data['title'] = 'Manage Part';
 		$this->load->view('provider/manage_part', $this->data);
 	}
 	public function add_part() {
@@ -203,7 +204,7 @@ class Parts extends CI_Controller {
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
 		$this->data['brand'] = $this->part->manage_brand();
 		$this->data['model_name'] = $this->car->get_classes();
-
+		$this->data['title'] = 'Add Part';
 		$this->load->view('provider/add_part', $this->data);
 	}
 	public function del_part($id) {
@@ -421,7 +422,7 @@ class Parts extends CI_Controller {
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
 		$this->data['part_id'] = $id;
 		$this->data['model_name'] = $this->car->get_classes();
-
+		$this->data['title'] = 'Edit Part';
 		$this->load->view('provider/edit_part', $this->data);
 	}
 	public function sub_cat() {
@@ -591,8 +592,7 @@ class Parts extends CI_Controller {
 		return true;
 	}
 
-	function array2csv(array &$array)
-	{
+	function array2csv(array &$array) {
 		if (count($array) == 0) {
 			return null;
 		}
@@ -621,14 +621,14 @@ class Parts extends CI_Controller {
 		header("Content-Disposition: attachment;filename={$filename}");
 		header("Content-Transfer-Encoding: binary");
 	}
-	public function export(){
+	public function export() {
 		$array = $this->Provider_Model->get_parts_for_export($this->session->userdata("id"), true);
 		$this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
 		echo $this->array2csv($array);
 		die();
 	}
 
-	public function import(){
+	public function import() {
 		if (isset($_POST["import"])) {
 
 			$fileName = $_FILES["file"]["tmp_name"];
@@ -636,7 +636,7 @@ class Parts extends CI_Controller {
 			if ($_FILES["file"]["size"] > 0) {
 
 				$file = fopen($fileName, "r");
-				$counter= 0;
+				$counter = 0;
 				while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
 					if (isset($column[0]) && ($column[0] == "id" || $column[0] == "title")) {
 						continue;

@@ -41,12 +41,13 @@ class Push_notification extends MY_Controller {
 		$this->data['year'] = $this->year->year_manage();
 		$this->data['fuel'] = $this->fuel->fuel_manage();
 		$this->data['chassis'] = $this->Users_model->get_all_chassis();
+		$this->data['title'] = 'Send Notification';
 		$this->load->view('push_notification', $this->data);
 
 	}
 	public function manage_notification() {
 		$this->data['rec'] = $this->notification->manage_notification();
-
+		$this->data['title'] = 'Manage Notification';
 		$this->load->view('manage_notification', $this->data);
 	}
 	public function cars() {

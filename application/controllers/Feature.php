@@ -23,6 +23,7 @@ class Feature extends MY_Controller {
 	public function index() {
 		$this->data['rec'] = $this->provider_model->select_provider();
 		$this->data['parts'] = $this->provider_model->get_parts_fet();
+		$this->data['title'] = 'Features';
 		$this->load->view('mange_feature', $this->data);
 	}
 

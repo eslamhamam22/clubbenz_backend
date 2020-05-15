@@ -24,10 +24,12 @@ class Reviews extends MY_Controller {
 
 	public function index() {
 		$this->data['rec'] = $this->review->get_review();
+		$this->data['title'] = 'Manage Review';
 		$this->load->view('review', $this->data);
 	}
 	public function provider() {
 		$this->data['rec'] = $this->review->get_provider_reviews();
+		$this->data['title'] = 'Provider User Review';
 		$this->load->view('provider_review', $this->data);
 	}
 

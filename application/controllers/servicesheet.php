@@ -26,8 +26,8 @@ class servicesheet extends CI_Controller {
 	}
 	// index
 	public function index() {
-
-		$this->load->view('excel_service');
+		$this->data['title'] = 'Services Excel Sheet';
+		$this->load->view('excel_service', $this->data);
 	}
 
 	// file upload functionality

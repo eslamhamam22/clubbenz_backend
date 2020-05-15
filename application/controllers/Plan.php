@@ -26,6 +26,7 @@ class Plan extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->plan->plan_manage();
+		$this->data['title'] = 'Plan Manage';
 		$this->load->view('plan_manage', $this->data);
 	}
 	public function add_plans() {
@@ -77,7 +78,8 @@ class Plan extends MY_Controller {
 				redirect(base_url('plan/?error=' . $error));
 			}
 		}
-		$this->load->view('add_plans');
+		$this->data['title'] = 'Add Plan';
+		$this->load->view('add_plans', $this->data);
 	}
 
 	public function plan_del($id) {
@@ -90,6 +92,7 @@ class Plan extends MY_Controller {
 	}
 	public function edit_plan($id) {
 		$data['rec'] = $this->plan->edit_plan($id);
+		$data['title'] = 'Edit Plan';
 		$this->load->view('edit_plan', $data);
 	}
 	public function plan_update() {

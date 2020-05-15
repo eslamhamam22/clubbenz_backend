@@ -25,28 +25,29 @@ class Provider extends CI_Controller {
 		if ($this->input->get('success')) {
 			$this->data['success'] = $this->input->get('success');
 		}
-		if(!$this->session->userdata("id"))
+		if (!$this->session->userdata("id")) {
 			redirect('/provider');
+		}
 
 		$this->load->helper('language');
-		$this->lang->load('provider/left_nav',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
-		$this->lang->load('provider/auth',$this->session->userdata('site_lang') == "arabic"? "arabic" : "english");
+		$this->lang->load('provider/left_nav', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
+		$this->lang->load('provider/auth', $this->session->userdata('site_lang') == "arabic" ? "arabic" : "english");
 	}
 
-
 	public function index() {
-		$provider_id= $this->session->userdata("id");
-		$user= $this->Provider_Model->get_provider_by_id($provider_id);
+		$provider_id = $this->session->userdata("id");
+		$user = $this->Provider_Model->get_provider_by_id($provider_id);
 		$this->data['countries'] = $this->World_model->get_countries();
-		$this->data["user"]= $user[0];
+		$this->data["user"] = $user[0];
 		$this->data['states'] = $this->World_model->get_states_by_country($user[0]->country);
+		$this->data['title'] = 'Profile';
 		$this->load->view('provider/profile', $this->data);
 	}
 
 	public function edit() {
 		//$this->data['title'] = $this->lang->line('login_heading');
 		if ($_POST) {
-			$provider_id= $this->session->userdata("id");
+			$provider_id = $this->session->userdata("id");
 			$provider_user = array(
 				'user_email' => $this->input->post('user_email'),
 				'user_name' => $this->input->post('user_name'),
@@ -60,9 +61,11 @@ class Provider extends CI_Controller {
 				'zip_code' => $this->input->post('zip_code'),
 				'business_website' => $this->input->post('business_website'),
 			);
-			if($this->input->post('user_password'))
+			if ($this->input->post('user_password')) {
 				$provider_user["user_password"] = md5($this->input->post('user_password'));
-			if(!empty($_FILES['logo']['name'])){
+			}
+
+			if (!empty($_FILES['logo']['name'])) {
 				$config['upload_path'] = './upload/';
 				$fname = $_FILES['logo']['name'];
 				$config['file_name'] = time() . $fname;
@@ -74,8 +77,8 @@ class Provider extends CI_Controller {
 					redirect(base_url('provider/provider?error=Something wrong happened.'));
 				}
 				$data = $this->upload->data();
-				$file_name= $data["file_name"];
-				$provider_user["logo"]= $file_name;
+				$file_name = $data["file_name"];
+				$provider_user["logo"] = $file_name;
 			}
 			$this->Provider_Model->edit($provider_user, $provider_id);
 			$this->session->set_flashdata('success', "You have edited your profile successfully");
