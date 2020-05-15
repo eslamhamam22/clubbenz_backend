@@ -108,7 +108,20 @@ foreach ($rec as $us) {
                     <?php }?>
                     </tbody>
                 </table>
+				<form style="display: none" class="form-horizontal" action="<?php echo base_url("provider/parts/import") ?>" method="post"
+					  name="frmCSVImport" id="frmCSVImport"
+					  enctype="multipart/form-data">
+					<div class="input-row">
+						<label class="col-md-4 control-label">Choose CSV
+							File</label> <input type="file" name="file"
+												id="file" accept=".csv">
+						<button type="submit" id="submit" name="import"
+								class="btn-submit">Import</button>
+						<br />
 
+					</div>
+
+				</form>
 
             </div>
             <?php $this->load->view("common/common_footer")?>
@@ -125,6 +138,9 @@ foreach ($rec as $us) {
 
 <script>
     $(document).ready( function () {
+        $("#file").change(function (){
+            $('#submit').click();
+        });
         // Setup - add a text input to each footer cell
         // $('#myTable tfoot th').each( function () {
         //     var title = $(this).text();
@@ -144,7 +160,19 @@ foreach ($rec as $us) {
                 selector: 'td:first-child'
             },
             buttons: [
-                'excel',
+                {
+                    text: 'Export',
+                    action: function () {
+                        var win = window.open('<?php echo base_url("provider/parts/export") ?>', '_blank');
+                        win.focus();
+                    }
+                },
+                {
+                    text: 'Import',
+                    action: function () {
+                        $('#file').click();
+                    }
+                },
                 {
                     text: 'Activate',
                     action: function () {

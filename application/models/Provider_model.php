@@ -69,14 +69,29 @@ class Provider_model extends CI_model {
 		$this->db->insert('provider_user', $data);
 	}
 
-	public function get_parts($id) {
+	public function get_parts($id, $toArray= false) {
 		$this->db->select('*');
 		$this->db->where('provider_id', $id);
 
 		$this->db->order_by("id", "desc");
 		$this->db->from('parts');
 		$q = $this->db->get();
-		return $q->result();
+		if($toArray)
+			return $q->result_array();
+		else
+			return $q->result();
+	}
+	public function get_parts_for_export($id, $toArray= false) {
+		$this->db->select('id, title, title_arabic, part_number, part_category, part_sub_category, price, discount, part_case, part_brand, add_date, description, chassis_id, available_location, date_active, num_stock');
+		$this->db->where('provider_id', $id);
+
+		$this->db->order_by("id", "desc");
+		$this->db->from('parts');
+		$q = $this->db->get();
+		if($toArray)
+			return $q->result_array();
+		else
+			return $q->result();
 	}
 
 	public function get_parts_fet() {
