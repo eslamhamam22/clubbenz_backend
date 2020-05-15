@@ -103,7 +103,7 @@ if ($group_id[0]->name == 'Part_Providers') {
                         <a href="index.html" class="waves-effect"><i data-icon="" class="mdi mdi-home fa-fw"></i> <span class="hide-menu">Car Guide <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
                         <ul class="nav nav-third-level collapse <?php if ($this->uri->segment(1) == 'car_guide' || $this->uri->segment(1) == 'car_guide/manage_cluster_error') {?>in<?php }?>">
                     <?php
-if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a href="<?php echo base_url() ?>car_guide/"><i data-icon="" class="  mdi-settings fa-fw"></i><span class="hide-menu">Listing Car Guide</span></a> </li><?php }
+if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a href="<?php echo base_url() ?>car_guide/index"><i data-icon="" class="  mdi-settings fa-fw"></i><span class="hide-menu">Listing Car Guide</span></a> </li><?php }
 		if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a href="<?php echo base_url() ?>car_guide/manage_cluster_error"><i data-icon="" class=" mdi-settings fa-fw"></i><span class="hide-menu">Cluster Errors!chassis</span></a> </li><?php }?>
                         </ul>
                     </li>
@@ -113,17 +113,17 @@ if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a
 
             <?php }
 if (in_array('Booking/active', $c_a) || $group_id[0]->name == 'admin') {?>
-                <li><a class="waves-effect" href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+                <li><a class="waves-effect" href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
             <?php }
 
 if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {
 	?>
             <li>
-                <a href="index.html" class="waves-effect "><i data-icon="" class="ti-user fa-fw"></i> <span class="hide-menu"> Users <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+                <a href="<?php echo base_url() ?>permissions/" class="waves-effect "><i data-icon="" class="ti-user fa-fw"></i> <span class="hide-menu"> Users <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
                 <ul class="nav nav-second-level">
                     <?php
 if ($group_id[0]->name == 'admin') {?>
-                        <li> <a href="<?php echo base_url() ?>permissions/">
+                        <li> <a href="<?php echo base_url() ?>permissions/index">
                             <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
                             <span class="hide-menu">User Groups</span></a>
                         </li><?php }
