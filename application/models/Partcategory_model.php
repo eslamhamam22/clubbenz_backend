@@ -47,4 +47,25 @@ class Partcategory_model extends CI_Model{
 		$q=$this->db->get();
 		return $q->result();
 	}
+	public function get_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('parts_categories');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+	public function get_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('parts_categories');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
 }

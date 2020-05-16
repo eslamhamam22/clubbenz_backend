@@ -19,6 +19,11 @@ class Parts extends CI_Controller {
 
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
+		$this->load->model('Partsubcategory_model');
+		$this->load->model('Partcategory_model');
+		$this->load->model('Chassis_model');
+		$this->load->model('Brand_model');
+
 		$this->load->model('Car_model', 'car');
 
 		$this->load->library('session');
@@ -637,14 +642,112 @@ class Parts extends CI_Controller {
 
 				$file = fopen($fileName, "r");
 				$counter= 0;
+				$failed= 0;
 				while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
 					if (isset($column[0]) && ($column[0] == "id" || $column[0] == "title")) {
 						continue;
 					}
-					print_r($column);
-					$counter++;
+					$start_index= 0;
+					if(is_numeric($column[0])){
+						$start_index= 1;
+					}
+					echo $start_index;
+					$title	= $column[$start_index + 0];
+					$title_arabic		= $column[$start_index + 1];
+					$part_number	= $column[$start_index + 2];
+					$part_category		= $column[$start_index + 3];
+					$part_sub_category		= $column[$start_index + 4];
+					$price		= $column[$start_index + 5];
+					$discount		= $column[$start_index + 6];
+					$part_case		= $column[$start_index + 7];
+					$part_brand		= $column[$start_index + 8];
+					$add_date		= $column[$start_index + 9];
+					$description		= $column[$start_index + 10];
+					$chassis_id		= $column[$start_index + 11];
+					$available_location		= $column[$start_index + 12];
+					$date_active		= $column[$start_index + 13];
+					$num_stock	= $column[$start_index + 14];
+
+					$new_array = array(
+						'title' => $title,
+						'title_arabic' => $title_arabic,
+						'part_number' => $part_number,
+						'part_category' => $part_category,
+						'part_sub_category' => $part_sub_category,
+						'price' => $price,
+						'discount' => $discount,
+						'part_case' => $part_case,
+						'part_brand' => $part_brand,
+						'add_date' => $add_date,
+						'description' => $description,
+						'username' => $this->session->userdata("user_name"),
+						'email' => $this->session->userdata("user_email"),
+						'phone' => $this->session->userdata("user_mobile"),
+						'chassis_id' => $chassis_id,
+						'available_location' => $available_location,
+						'date_active' => $date_active,
+						'num_stock' => $num_stock,
+						'provider_id' => $this->session->userdata("id"),
+					);
+
+					if(is_numeric($part_category)){
+						if(!$this->Partcategory_model->get_by_id($part_category))
+							continue;
+					}else{
+						$object=$this->Partcategory_model->get_by_name($part_category);
+						if($object)
+							continue;
+						else
+							$new_array['part_category']= $object[0]->id;
+
+					}
+
+					if(is_numeric($part_sub_category)){
+						if(!$this->Partsubcategory_model->get_by_id($part_sub_category))
+							continue;
+					}else{
+						$object=$this->Partsubcategory_model->get_by_name($part_sub_category);
+						if($object)
+							continue;
+						else
+							$new_array['part_sub_category']= $object[0]->id;
+
+					}
+					if(is_numeric($part_brand)){
+						if(!$this->Brand_model->get_by_id($part_brand))
+							continue;
+					}else{
+						$object=$this->Brand_model->get_by_name($part_brand);
+						if($object)
+							continue;
+						else
+							$new_array['part_brand']= $object[0]->id;
+
+					}
+					if(is_numeric($chassis_id)){
+						if(!$this->Chassis_model->get_by_id($chassis_id))
+							continue;
+					}else{
+						$object=$this->Chassis_model->get_by_name($chassis_id);
+						if($object)
+							continue;
+						else
+							$new_array['chassis_id']= $object[0]->id;
+
+					}
+
+
+					if($result = $this->part->add_part($new_array)){
+//						print_r($column);
+						$counter++;
+					}else{
+						$failed++;
+					}
 				}
-				echo $counter;
+				if($failed > 0){
+					redirect(base_url('provider/Parts/?success='.$counter.' parts were added successfully!&error='.$failed.' failed to be added'));
+				}
+				redirect(base_url('provider/Parts/?success='.$counter.' parts were added successfully!'));
 			}
 		}
 	}

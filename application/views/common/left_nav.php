@@ -86,7 +86,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 				?>
 				<li>
 					<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">L</i> <span class="hide-menu"> Listing <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
-					<ul class="nav nav-second-level collapse <?php if ($this->uri->segment(2) != 'solution' && ($this->uri->segment(1) == 'cars' || $this->uri->segment(1) == 'workshop' || $this->uri->segment(1) == 'partshop' || $this->uri->segment(1) == 'serviceshop' || $this->uri->segment(1) == 'part' || $this->uri->segment(1) == 'car_guide')) {?>in<?php }?>">
+					<ul class="nav nav-second-level collapse <?php if (($this->uri->segment(2) != 'solution' && $this->uri->segment(2) != 'edit_error_solution' ) && ($this->uri->segment(1) == 'cars' || $this->uri->segment(1) == 'workshop' || $this->uri->segment(1) == 'partshop' || $this->uri->segment(1) == 'serviceshop' || $this->uri->segment(1) == 'part' || $this->uri->segment(1) == 'car_guide')) {?>in<?php }?>">
 						<?php
 						if ($group_id[0]->name == 'Part_Providers') {
 							if (true) {?><li> <a href="<?php echo base_url() ?>part/"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu">Listing Parts</span></a> </li><?php }

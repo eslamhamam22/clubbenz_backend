@@ -158,4 +158,25 @@ class Chassis_model extends CI_Model{
         $q = $this->db->get();
         return $q->row();
     }
+	public function get_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('chassis');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+	public function get_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('chassis_num', $name);
+		$this->db->from('chassis');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
 }
