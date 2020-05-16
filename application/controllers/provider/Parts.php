@@ -46,6 +46,7 @@ class Parts extends CI_Controller {
 	public function index() {
 
 		$identity = $this->session->userdata('identity');
+		$this->data['title'] = 'Manage Part';
 		$this->data['rec'] = $this->Provider_Model->get_parts($this->session->userdata("id"));
 		$this->load->view('provider/manage_part', $this->data);
 	}
@@ -208,6 +209,7 @@ class Parts extends CI_Controller {
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
 		$this->data['brand'] = $this->part->manage_brand();
 		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['title'] = 'Add Part';
 
 		$this->load->view('provider/add_part', $this->data);
 	}
@@ -426,6 +428,7 @@ class Parts extends CI_Controller {
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
 		$this->data['part_id'] = $id;
 		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['title'] = 'Edit Part';
 
 		$this->load->view('provider/edit_part', $this->data);
 	}
