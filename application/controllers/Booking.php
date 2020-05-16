@@ -33,7 +33,9 @@ class Booking extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->booking->manage_booking();
+		$this->data['title'] = 'Booking';
 		$this->load->view('manage_booking', $this->data);
+
 	}
 	public function status_update() {
 		if ($this->input->post()) {

@@ -19,7 +19,10 @@
             <div col-md-12 col-lg-12>
                <div class="white-box">
                   <h3 class="box-title">Error Title : </h3>
-                  <h2><?php if($cluster_error !="") echo $cluster_error->title; ?></h2>
+                  <h2><?php if ($cluster_error != "") {
+	echo $cluster_error->title;
+}
+?></h2>
                </div>
             </div>
          </div>
@@ -27,19 +30,19 @@
             <div col-md-12 col-lg-12>
                <div class="white-box">
                   <h3 class="box-title">Error Images : </h3>
-                  <?php if(count($cluster_error) > 0) {?>
+                  <?php if (count($cluster_error) > 0) {?>
                   <div class="row row-in">
                      <div class="col-lg-3 col-sm-6 row-in-br">
-                        <?php if($cluster_error->pic1) {?> <img style="width:200px;" src="<?php echo base_url('upload/').$cluster_error->pic1; ?>"> <?php } ?>
+                        <?php if ($cluster_error->pic1) {?> <img style="width:200px;" src="<?php echo base_url('upload/') . $cluster_error->pic1; ?>"> <?php }?>
                      </div>
                      <div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
-                        <?php if($cluster_error->pic2) {?><img style="width:200px;" src="<?php echo base_url('upload/').$cluster_error->pic2; ?>"><?php } ?>
+                        <?php if ($cluster_error->pic2) {?><img style="width:200px;" src="<?php echo base_url('upload/') . $cluster_error->pic2; ?>"><?php }?>
                      </div>
                      <div class="col-lg-3 col-sm-6 row-in-br">
-                        <?php if($cluster_error->pic3) {?><img style="width:200px;" src="<?php echo base_url('upload/').$cluster_error->pic3; ?>"><?php } ?>
+                        <?php if ($cluster_error->pic3) {?><img style="width:200px;" src="<?php echo base_url('upload/') . $cluster_error->pic3; ?>"><?php }?>
                      </div>
                      <div class="col-lg-3 col-sm-6  b-0">
-                        <?php if($cluster_error->pic4) {?><img style="width:200px;" src="<?php echo base_url('upload/').$cluster_error->pic4; ?>"><?php } ?>
+                        <?php if ($cluster_error->pic4) {?><img style="width:200px;" src="<?php echo base_url('upload/') . $cluster_error->pic4; ?>"><?php }?>
                      </div>
                   </div>
                   <?php }?>
@@ -49,30 +52,30 @@
          <div class="white-box" >
          <h3 class="box-title">User Information : </h3>
             <input type="hidden" name="user_id" class="form-control" value="3">
-          
+
             <div class="row" style="border-radius: 7%;width: 220px;margin: auto;background: #edf1f5;text-align: center;margin-bottom: 15px;">
-            <?php  if(!empty($this->data['user']->profile_picture)){ 
-                                   
-                                   if (strpos($this->data['user']->profile_picture, 'fbsbx') !== false) {
-                                       $profile_picture = $this->data['user']->profile_picture;
-                                   }else{
-                                       $profile_picture =  base_url('upload/profile_picture/').$us->profile_picture;
-                                   }
-                                }else{
-                                    $profile_picture ='';
-                                }
-            ?>                                   
+            <?php if (!empty($this->data['user']->profile_picture)) {
+
+	if (strpos($this->data['user']->profile_picture, 'fbsbx') !== false) {
+		$profile_picture = $this->data['user']->profile_picture;
+	} else {
+		$profile_picture = base_url('upload/profile_picture/') . $us->profile_picture;
+	}
+} else {
+	$profile_picture = '';
+}
+?>
                <img class="profile_image" src="<?php echo $profile_picture; ?>">
-            
+
             </div>
 
             <div class="row">
-          
+
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="inputEmail3" class="col-md-3 control-label">First Name</label>
                      <div class="col-md-9">
-                        <input type="text" name="first_name" class="form-control" required="" value="<?php echo $this->data['user']->first_name; ?>" readonly> 
+                        <input type="text" name="first_name" class="form-control" required="" value="<?php echo $this->data['user']->first_name; ?>" readonly>
                      </div>
                   </div>
                </div>
@@ -80,7 +83,7 @@
                   <div class="form-group">
                      <label for="inputEmail3" class="col-md-3 control-label">Last Name</label>
                      <div class="col-md-9">
-                        <input type="text" name="last_name" class="form-control" required="" value="<?php echo $this->data['user']->last_name; ?>" readonly> 
+                        <input type="text" name="last_name" class="form-control" required="" value="<?php echo $this->data['user']->last_name; ?>" readonly>
                      </div>
                   </div>
                </div>
@@ -90,7 +93,7 @@
                   <div class="form-group">
                      <label for="inputEmail3" class="col-md-3 control-label">Email</label>
                      <div class="col-md-9">
-                        <input type="text" name="email" class="form-control" id="email" required="" value="<?php echo $this->data['user']->email; ?>" readonly> 
+                        <input type="text" name="email" class="form-control" id="email" required="" value="<?php echo $this->data['user']->email; ?>" readonly>
                      </div>
                   </div>
                </div>
@@ -109,7 +112,7 @@
             </div>
             <div class="col-md-6">
                <div class="white-box" style="margin-top: 51px">
-                  <form name="frm" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("car_guide/edit_error_solution/".$us->id);?>">
+                  <form name="frm" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("car_guide/edit_error_solution/" . $us->id); ?>">
                      <input type="hidden" name="id" value="<?php echo $id; ?>">
                      <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label"> Upload Image</label>
@@ -118,7 +121,7 @@
                         </div>
                      </div>
                      <div class="form-group" style="padding-left: 200px">
-                        <img style="width:200px;" src="<?php echo base_url('upload/').$us->picture ;?>" >
+                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->picture; ?>" >
                      </div>
                      <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label" > Description</label>
@@ -141,8 +144,8 @@
                               <option value="rejected">rejected</option>
                            </select>
                            <script type="text/javascript">
-                              document.frm.chassis.value='<?php echo $us->status?>';
-                           </script> 
+                              document.frm.chassis.value='<?php echo $us->status ?>';
+                           </script>
                         </div>
                      </div>
                      <div class="form-group m-b-0">

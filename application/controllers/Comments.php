@@ -28,6 +28,7 @@ class Comments extends MY_Controller {
 		$this->data['rec'] = $this->comment->get_comment();
 		$this->data['providers'] = $this->provider_model->select_provider();
 		$this->data['users'] = $this->acl_model->get_all_users();
+		$this->data['title'] = 'Reviews';
 		$this->load->view('comment', $this->data);
 	}
 }

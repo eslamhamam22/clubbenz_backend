@@ -47,6 +47,7 @@ class Home extends CI_Controller {
 		$data["partviews"] = $this->Part_model->get_parts($provider_id);
 		$data["partsid"] = $this->Part_model->get_parts_id();
 		$data["favorites"] = $this->Favorite_model->get_favorites();
+		$data['title'] = 'Dashboard';
 		$this->load->view('provider/dashboard', $data);
 	}
 

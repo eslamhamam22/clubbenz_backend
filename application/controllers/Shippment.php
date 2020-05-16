@@ -26,6 +26,7 @@ class Shippment extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->shippment->shipment_manage();
+		$this->data['title'] = 'Manage Shippment';
 		$this->load->view('shippment_manage', $this->data);
 	}
 

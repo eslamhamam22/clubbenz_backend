@@ -39,6 +39,7 @@ class Advertisement extends MY_Controller {
 		$this->data['partshops'] = $this->advertisement->manage_partshops_banner("all");
 		$this->data['services'] = $this->advertisement->manage_services_banner("all");
 		$this->data['partcatlog'] = $this->advertisement->manage_partcatlog_banner("all");
+		$this->data['title'] = 'Advertisement';
 
 		// echo "<pre>";
 		// print_r($this->data['banner']);

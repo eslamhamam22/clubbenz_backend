@@ -24,12 +24,14 @@ class Permissions extends MY_Controller {
 
 	public function index() {
 		$this->data['groups'] = $this->acl_model->get_all_groups();
+		$this->data['title'] = 'Manage Groups';
 		$this->load->view('groups', $this->data);
 	}
 
 	public function user_manage() {
 		$this->data['rec'] = $this->acl_model->get_all_users();
 		$this->data['groups'] = $this->acl_model->get_all_groups();
+		$this->data['title'] = 'Users';
 		$this->load->view('user_manage', $this->data);
 	}
 /*
@@ -148,6 +150,7 @@ foreach ($data as $us) {?>
 		$this->data['years'] = $this->Years_model->year_manage();
 		$this->data['fuel_types'] = $this->Fuel_model->fuel_manage();
 		$this->data['chassis'] = $this->Users_model->get_all_chassis();
+		$this->data['title'] = 'Add User';
 		$this->load->view('add_user', $this->data);
 	}
 
@@ -244,6 +247,7 @@ foreach ($data as $us) {?>
 		$this->data['years'] = $this->Years_model->year_manage();
 		$this->data['fuel_types'] = $this->Fuel_model->fuel_manage();
 		$this->data['chassis'] = $this->Users_model->get_all_chassis();
+		$this->data['title'] = 'Edit User';
 		$this->load->view('user_update', $this->data);
 	}
 
@@ -309,6 +313,7 @@ foreach ($data as $us) {?>
 		$this->data['permissions'] = $this->acl_model->get_all_permissions();
 		$this->data['group_permissions'] = $this->acl_model->get_groups_permissions_ids($this->input->get('group_id'));
 		//$this->data['view']="group_base_permissions";
+		$this->data['title'] = 'Group User Permissions';
 		$this->load->view('group_base_permissions', $this->data);
 
 	}

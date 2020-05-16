@@ -36,6 +36,7 @@ class Car_guide extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->car_guide->get_car_guide();
+		$this->data['title'] = 'Car Guide';
 		$this->load->view('car_guide', $this->data);
 	}
 	public function add_car_guide() {
@@ -158,6 +159,7 @@ class Car_guide extends MY_Controller {
 
 		}
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
+		$this->data['title'] = 'Add Car Guide';
 		$this->load->view('add_car_guide', $this->data);
 	}
 	public function del_car_guide($id) {
@@ -329,10 +331,12 @@ class Car_guide extends MY_Controller {
 		$this->data['chassis_number'] = $this->car_guide->get_chassis();
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
 		$this->data['rec'] = $this->car_guide->edit_car_guide($id);
+		$this->data['title'] = 'Edit Car Guide';
 		$this->load->view('edit_car_guide', $this->data);
 	}
 	public function manage_cluster_error() {
 		$this->data['rec'] = $this->car_guide->get_cluster_error();
+		$this->data['title'] = 'Cluster Errors';
 		$this->load->view('manage_cluster_error', $this->data);
 	}
 	public function add_cluster_error() {
@@ -438,6 +442,7 @@ class Car_guide extends MY_Controller {
 			}*/
 		}
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
+		$this->data['title'] = 'Add Cluster Errors';
 		$this->load->view('add_cluster_error', $this->data);
 	}
 	private function pic($fname) {
@@ -625,11 +630,13 @@ class Car_guide extends MY_Controller {
 		$this->data['chassis_number'] = $this->car_guide->get_chassis();
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
 		$this->data['rec'] = $this->car_guide->edit_cluster_error($id);
+		$this->data['title'] = 'Edit Cluster Errors';
 		$this->load->view('edit_cluster_error', $this->data);
 	}
 
 	public function manage_error_solution() {
 		$this->data['rec'] = $this->car_guide->get_error_solution();
+		$this->data['title'] = 'Edit  Solution Pending ';
 		$this->load->view('manage_error_solution', $this->data);
 	}
 
@@ -692,6 +699,7 @@ class Car_guide extends MY_Controller {
 			}*/
 		}
 		$this->data['cluster_error'] = $this->car_guide->manage_cluster_error();
+		$this->data['title'] = 'Add Error Solution';
 		$this->load->view('add_error_solution', $this->data);
 	}
 	public function del_error_solution($id) {
@@ -759,6 +767,7 @@ class Car_guide extends MY_Controller {
 		$user = $this->Users_model->get_user_by_id($this->data['us']->submited_by);
 		$this->data['cluster_error'] = $this->car_guide->get_cluster_error_by_id($this->data['us']->cluster_error_id);
 		$this->data['user'] = $user;
+		$this->data['title'] = 'Edit Error Solution';
 		// echo "<pre>";
 		// echo $this->data['user']->email;
 		// return;
@@ -785,6 +794,7 @@ class Car_guide extends MY_Controller {
 
 	public function solution() {
 		$this->data['rec'] = $this->car_guide->get_solution();
+		$this->data['title'] = ' Solution Pending ';
 		$this->load->view('solution', $this->data);
 	}
 	public function status_update_solution() {

@@ -77,6 +77,10 @@ body {
   color: #ffffff;
   font-weight: 500;
 }
+.slimScrollBar {
+    background: #fff !important;
+}
+
 #side-menu ul > li > a:hover {
   color: #ffffff;
 }
@@ -106,6 +110,7 @@ body {
   color: #ffffff;
   border: 1px solid #2cabe3;
 }
+
 /*Custom tab*/
 .customtab li.active a,
 .customtab li.active a:hover,
@@ -113,6 +118,19 @@ body {
   border-bottom: 2px solid #2cabe3;
   color: #2cabe3;
 }
+.customtab li.active a,
+.customtab li.active a:hover,
+.customtab li.active a:focus {
+  border-bottom: 2px solid #2cabe3;
+  color: #2cabe3;
+}
+.tabs-vertical li.active a,
+.tabs-vertical li.active a:hover,
+.tabs-vertical li.active a:focus {
+  background: #2cabe3;
+  border-right: 2px solid #2cabe3;
+}
+
 .tabs-vertical li.active a,
 .tabs-vertical li.active a:hover,
 .tabs-vertical li.active a:focus {

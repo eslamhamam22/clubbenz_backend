@@ -39,6 +39,7 @@ class part extends MY_Controller {
 		$this->data['rec'] = $this->part->manage_part($identity);
 		$this->data['providers'] = $this->provider_model->select_provider();
 		$this->data['cars'] = $this->car->get_classes();
+		$this->data['title'] = 'Manage Listing Parts';
 		$this->load->view('manage_part', $this->data);
 	}
 	public function add_part() {
@@ -202,6 +203,7 @@ class part extends MY_Controller {
 		$this->data['brand'] = $this->part->manage_brand();
 		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['providers'] = $this->provider->select_provider();
+		$this->data['title'] = 'Add Listing Part';
 
 		$this->load->view('add_part', $this->data);
 	}
@@ -398,7 +400,7 @@ class part extends MY_Controller {
 		$this->data['part_id'] = $id;
 		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['providers'] = $this->provider->select_provider();
-
+		$this->data['title'] = 'Edit Listing Part';
 		$this->load->view('edit_part', $this->data);
 	}
 	public function sub_cat() {

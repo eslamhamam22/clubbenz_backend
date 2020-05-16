@@ -26,8 +26,9 @@ class workshopsheet extends CI_Controller {
 	}
 	// index
 	public function index() {
+		$this->data['title'] = 'Import Excel Sheet';
 
-		$this->load->view('excel_workshop');
+		$this->load->view('excel_workshop', $this->data);
 	}
 
 	// file upload functionality

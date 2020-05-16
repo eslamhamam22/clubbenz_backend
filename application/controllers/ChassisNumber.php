@@ -31,6 +31,7 @@ class ChassisNumber extends MY_Controller {
 
 		$this->data['rec'] = $this->chassis->get_chassis();
 		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['title'] = 'Chassis Number';
 		//print_r($this->data);
 		$this->load->view('chassis', $this->data);
 	}
@@ -52,6 +53,7 @@ class ChassisNumber extends MY_Controller {
 
 		}
 		$this->data['model_name'] = $this->car->get_classes();
+		$this->data['title'] = 'Add Chassis Number';
 		$this->load->view('add_chassis', $this->data);
 
 	}
@@ -78,6 +80,7 @@ class ChassisNumber extends MY_Controller {
 			// $chassis['chassis'] = $this->chassis->get_chassis_info($_GET['id']);
 			$this->data['chassis'] = $this->chassis->get_chassis_info($_GET['id']);
 			$this->data['model_name'] = $this->car->get_classes();
+			$this->data['title'] = 'Edit Chassis Number';
 			$this->load->view('edit_chassis', $this->data);
 		}
 

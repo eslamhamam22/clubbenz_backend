@@ -22,12 +22,14 @@ class Shippinglist extends MY_Controller {
 	public function index() {
 		$this->data['rec'] = $this->shipping_model->select_shipping();
 		$this->data['providers'] = $this->provider_model->select_provider();
+		$this->data['title'] = 'Manage Shipping Request';
 		$this->load->view('shipping', $this->data);
 	}
 
 	public function edit_shippinglist($id) {
 		$data['rec'] = $this->shipping_model->edit_shippinglist($id);
 		$data['providers'] = $this->provider_model->select_provider();
+		$data['title'] = 'Edit Shipping Request';
 		$this->load->view('edit_shippinglist', $data);
 	}
 

@@ -29,6 +29,7 @@ class Partsubcategory extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->partsubcategory->manage_parts_sub_cat();
+		$this->data['title'] = 'Part SubCatagories';
 		$this->data['partcat'] = $this->partsubcategory->parts_cat();
 
 		$this->load->view('manage_parts_sub_categories', $this->data);
@@ -75,7 +76,7 @@ class Partsubcategory extends MY_Controller {
 			}
 		}
 		$data['rec'] = $this->partsubcategory->manage_parts_cat();
-
+		$data['title'] = 'Add Part SubCategory';
 		$this->load->view('add_parts_sub_categories', $data);
 	}
 	public function part_sub_categories_del($id) {
@@ -90,7 +91,7 @@ class Partsubcategory extends MY_Controller {
 	public function edit_parts_sub_categories($id) {
 		$this->data['rec'] = $this->partsubcategory->manage_parts_cat();
 		$this->data['scat'] = $this->partsubcategory->edit_parts_sub_cat($id);
-
+		$this->data['title'] = 'Edit Part Sub Category';
 		$this->load->view('edit_parts_sub_categories', $this->data);
 	}
 

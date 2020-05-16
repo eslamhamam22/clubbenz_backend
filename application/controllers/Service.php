@@ -30,6 +30,7 @@ class Service extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->service->service_manage();
+		$this->data['title'] = 'Services Manage';
 		$this->load->view('service_manage', $this->data);
 	}
 	public function add_services() {
@@ -78,7 +79,8 @@ class Service extends MY_Controller {
 				redirect(base_url('service/?error=' . $error));
 			}
 		}
-		$this->load->view('add_services');
+		$this->data['title'] = 'Add Services';
+		$this->load->view('add_services', $this->data);
 	}
 
 	public function import_services() {
@@ -127,7 +129,8 @@ class Service extends MY_Controller {
 				redirect(base_url('service/?error=' . $error));
 			}
 		}
-		$this->load->view('excel_service');
+		$this->data['title'] = 'Import Services Excel';
+		$this->load->view('excel_service', $this->data);
 	}
 
 	function export() {
@@ -175,6 +178,7 @@ class Service extends MY_Controller {
 	}
 	public function edit_service($id) {
 		$data['rec'] = $this->service->edit_service($id);
+		$data['title'] = 'Edit Services';
 		$this->load->view('edit_service', $data);
 	}
 	public function service_update() {
