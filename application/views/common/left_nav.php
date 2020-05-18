@@ -31,7 +31,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 			<?php }if (in_array('Preferances/active', $c_a) || in_array('Advertisement/active', $c_a) || $group_id[0]->name == 'admin') {
 	?>
 				<li>
-					<a href="index.html" class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Preferences <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+					<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Preferences <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 					<ul class="nav nav-second-level collapse <?php if ($this->uri->segment(1) == 'classes' || $this->uri->segment(1) == 'fuel' || $this->uri->segment(1) == 'years' || $this->uri->segment(1) == 'location' || $this->uri->segment(1) == 'partcategory' || $this->uri->segment(1) == 'partsubcategory' || $this->uri->segment(1) == 'brand' || $this->uri->segment(1) == 'service_tag' || $this->uri->segment(1) == 'service') {?>in<?php }?>">
 						<?php if (true) {?>
 
@@ -52,7 +52,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 								<a href="index.html" class="waves-effect"><i data-icon="" class="mdi mdi-engine fa-fw"></i> <span class="hide-menu"> Manage parts Details <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 								<ul class="nav  nav-third-level collapse <?php if ($this->uri->segment(1) == 'location' || $this->uri->segment(1) == 'partcategory' || $this->uri->segment(1) == 'partsubcategory' || $this->uri->segment(1) == 'brand') {?>in<?php }?>">
 									<?php
-if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>location/"><i data-icon="" class=" ti-world fa-fw"></i><span class="hide-menu">Manage Location Zone</span></a> </li><?php }
+if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>location/"><i data-icon="" class=" ti-world fa-fw"></i><span class="hide-menu"> Location Zone</span></a> </li><?php }
 		if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>partcategory/"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu">Parts Categories</span></a> </li> <?php }
 		if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>partsubcategory/"><i data-icon="" class="linea-icon linea-basic fa-fw">PS</i><span class="hide-menu">Parts Sub Categories</span></a> </li> <?php }
 		if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>brand/"><i data-icon="" class="linea-icon linea-basic fa-fw">BR</i><span class="hide-menu">Parts Brands</span></a> </li> <?php }
@@ -86,7 +86,7 @@ if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'Part_Providers' |
 	?>
 				<li>
 					<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">L</i> <span class="hide-menu"> Listing <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
-					<ul class="nav nav-second-level collapse <?php if (($this->uri->segment(2) != 'solution' && $this->uri->segment(2) != 'edit_error_solution' ) && ($this->uri->segment(1) == 'cars' || $this->uri->segment(1) == 'workshop' || $this->uri->segment(1) == 'partshop' || $this->uri->segment(1) == 'serviceshop' || $this->uri->segment(1) == 'part' || $this->uri->segment(1) == 'car_guide')) {?>in<?php }?>">
+					<ul class="nav nav-second-level collapse <?php if (($this->uri->segment(2) != 'solution' && $this->uri->segment(2) != 'edit_error_solution') && ($this->uri->segment(1) == 'cars' || $this->uri->segment(1) == 'workshop' || $this->uri->segment(1) == 'partshop' || $this->uri->segment(1) == 'serviceshop' || $this->uri->segment(1) == 'part' || $this->uri->segment(1) == 'car_guide')) {?>in<?php }?>">
 						<?php
 if ($group_id[0]->name == 'Part_Providers') {
 		if (true) {?><li> <a href="<?php echo base_url() ?>part/"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu">Listing Parts</span></a> </li><?php }
@@ -113,73 +113,69 @@ if (in_array('Listing/active', $c_a) || $group_id[0]->name == 'admin') {?><li><a
 
 			<?php }
 if (in_array('Booking/active', $c_a) || $group_id[0]->name == 'admin') {?>
-				<li><a class="waves-effect" href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+				<li><a class="waves-effect " href="<?php echo base_url() ?>booking/"><i data-icon="" class=" linea-basic fa-fw">B</i> <span class="hide-menu">Booking <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 			<?php }
 
-if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {
-	?>
-				<li>
-					<a href="<?php echo base_url() ?>permissions/" class="waves-effect "><i data-icon="" class="ti-user fa-fw"></i> <span class="hide-menu"> Users <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
-					<ul class="nav nav-second-level">
-						<?php
-if ($group_id[0]->name == 'admin') {?>
-							<li> <a href="<?php echo base_url() ?>permissions/index">
-								<i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-								<span class="hide-menu">User Groups</span></a>
-							</li><?php }
+if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 
-	if ($group_id[0]->name == 'admin') {?>
-							<li> <a href="<?php echo base_url() ?>permissions/group_base_permissions">
-									<i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-									<span class="hide-menu">User Permissions</span></a>
-							</li>
+            <li>
+                <a href="index.html" class="waves-effect "><i data-icon="" class="ti-user fa-fw"></i> <span class="hide-menu"> Users <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 
-						<?php }
+                <ul class="nav nav-second-level"><?php if ($group_id[0]->name == 'admin') {?>
 
-	if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
-							<li> <a href="<?php echo base_url() ?>permissions/user_manage">
-									<i data-icon="" class="linea-icon linea-basic fa-fw"></i>
-									<span class="hide-menu">All Users</span></a> </li> <?php }?>
+                	<li> <a href="<?php echo base_url() ?>permissions/"> <i data-icon="" class="linea-icon linea-basic fa-fw"></i>
+                        <span class="hide-menu">User Groups</span></a> </li>
 
-					</ul>
-				</li>
-				</li>
-			<?php }?>
+                	<li> <a href="<?php echo base_url() ?>permissions/group_base_permissions"><i data-icon="" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Permissions</span></a> </li>
+
+                <?php }if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
+                	<li> <a href="<?php echo base_url() ?>permissions/user_manage"><i data-icon="" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Manage Users</span></a> </li> <?php }?>
+                </ul>
+            </li>
+            <?php }?>
 
 
+
+<?php if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 
 			<li>
-				<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> Provider <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+				<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> Parts Catalogue <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 
-				<ul class="nav nav-second-level">
+				<ul class="nav nav-second-level <?php if ($this->uri->segment(1) == 'feature' || $this->uri->segment(1) == 'plan' || $this->uri->segment(1) == 'providerlist' || $this->uri->segment(1) == 'shippment' || $this->uri->segment(1) == 'shippinglist' || $this->uri->segment(1) == 'reviews/provider') {?>in<?php }?>">
 
-					<?php if (in_array('feature/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>feature/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Manage Feature <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+					<?php if (in_array('catalog/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>catalog/"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> Manage Parts Catalogue <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 
-					<?php if (in_array('plan/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>plan/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Subscription Plans <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+					<li>
+						<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> Provider <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+						<ul class="nav nav-third-level collapse <?php if (($this->uri->segment(2) != 'provider') && $this->uri->segment(1) == 'feature' || $this->uri->segment(1) == 'plan' || $this->uri->segment(1) == 'providerlist' || $this->uri->segment(1) == 'shippment' || $this->uri->segment(1) == 'shippinglist' || $this->uri->segment(1) == 'reviews/provider') {?>in<?php }?>">
 
-					<?php if (in_array('providerlist/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>providerlist/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Providers List  <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+						<?php if (in_array('feature/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>feature/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Manage Feature <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+
+						<?php if (in_array('plan/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>plan/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Subscription Plans <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+
+						<?php if (in_array('providerlist/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>providerlist/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Providers List  <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
 
-					<?php if (in_array('shippment/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>shippment/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Shipment Cost<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+						<?php if (in_array('shippment/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>shippment/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Shipment Cost<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
-					<?php if (in_array('shippinglist/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>shippinglist/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Shipping Requests<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+						<?php if (in_array('shippinglist/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>shippinglist/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Shipping Requests<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
-					<?php if (in_array('reviews/provider', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/provider"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">User Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+						<?php if (in_array('reviews/provider', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/provider"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">User Reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
 				</ul>
-			</li>
+					</li>
+				</ul>
 
-			<?php if (in_array('catalog/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>catalog/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Parts Catalogue <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
+			</li> <?php }?>
+
+
 
 			<li>
+			<?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Manage Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
+			<?php if (in_array('Reviews/index', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/index"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> Manage user reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 
-
-			<?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu">Manage Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
-
-			<?php if (in_array('Reviews/index', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/index"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Manage user reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
-
-			<?php if (in_array('Pendning_solutions/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>car_guide/solution"class="waves-effect"><i class="" data-icon="">A</i> <span class="hide-menu"> Solution Pending <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
+			<?php if (in_array('Pendning_solutions/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>car_guide/solution"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> Solution Pending <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 			</li>
 		</ul>
 	</div>
