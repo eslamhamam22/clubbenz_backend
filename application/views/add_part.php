@@ -135,7 +135,6 @@
                                             <label class="control-label col-md-3">Status</label>
                                             <div class="col-md-9">
                                                 <select id="status"  name="status" class="form-control">
-                                                    <option>Status</option>
                                                     <option value="pending">pending</option>
                                                     <option value="approve">approve</option>
                                                     <option value="reject">reject</option>
@@ -147,21 +146,8 @@
 
                                 </div>
                             </div>
-<!--                            <label style =" padding  : 15px ; font-size: 17px;" for="inputEmail3" class="control-label"> Part Photo's</label><br>-->
-<!--                            <label style =" color: red ; padding-left  : 80px ; font-size: 14px;" for="inputEmail3" class="control-label">  Main Photo </label>-->
                             <div align="center">
-<!--                                <div class="input-images"></div>-->
 
-<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial ; margin : 15px"   type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" required />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px ; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple" />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
-<!--                                      <input style =" padding  : 12px ; width : 180px; display : initial; margin : 15px"  type="file" class= " btn btn-default" name="image[]"size="20" multiple="multiple"  />-->
                                                 </div>
                             <div class ="row margin-top" >
 
@@ -231,13 +217,16 @@
                                         <div class="col-md-9">
                                             <label for="chassis" class="control-label">Select Chassis</label>
 
-                                            <select  required type="text" name="chassis" id="chassis_select" class="form-control">
+                                            <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
                                                 <option value="">Select Chassis</option>
                                                 <option value="24" >All</option>
                                                 <?php foreach ($chassis as $c) {?>
                                                     <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
                                                 <?php }?>
                                             </select>
+                                            <script type="text/javascript">
+                                                document.frm.chassis.value='<?php echo $rec->chassis ?>';
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -282,10 +271,6 @@
                                                     <option value="<?php echo $ar->id ?>"><?php echo $ar->name; ?></option>
                                                     <?php }?>
                                                 </select>
-                                                <!--  <script type="text/javascript">
-                                                document.frm.service_arabic.value='<?php echo $sr->id ?>';
-                                            </script>  -->
-
                                             </div>
                                         </div>
                                 </div>
@@ -298,10 +283,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Set Date of Listing</label>
                                         <div class="col-md-9">
-<!--                                            <input type="text" id="datepicker" data-date-format='yyyy-mm-dd' name="add_date" class="form-control form_datetime" placeholder="Set Date Of Add" autocomplete="off"value="--><?php //echo $this->input->post("add_date")?><!--">-->
                                             <input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
-
-                                            <!-- <input name="add_dates" value="" id="datepickers"  /> -->
                                         </div>
                                     </div>
                                 </div>
@@ -309,35 +291,7 @@
                             </div>
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
-<!--                            <label style =" padding : 15px ;    font-size: 17px;"> Location</label>-->
-<!---->
-<!--                            <div class="row margin-top">-->
 
-<!--                                <div class="col-md-6" >-->
-<!--                                    <div class="form-group">-->
-<!--                                        <div class="col-md-9">-->
-<!--                                            <label class="control-label">Location Latitude</label>-->
-<!---->
-<!--                                            <input type="text" style="text-align: center"  name="location_lat" class="form-control" placeholder="Location Latitude" value="--><?php //echo $this->input->post("location_lat") ?><!--">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <div class="col-md-9">-->
-<!--                                            <label class="control-label ">Location Longitude</label>-->
-<!--                                            <input type="text" style="text-align: center"  name="location_lon" class="form-control" placeholder="Location Longitude" value="--><?php //echo $this->input->post("location_lon") ?><!--" > </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label class="control-label col-md-3">Location</label>-->
-<!--                                        <div class="col-md-9">-->
-<!--                                            <input type="text"  name="location" class="form-control" placeholder="Location"value="--><?php //echo $this->input->post("location")?><!--"> -->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="row margin-top">
 
                                 <div class="col-md-6" >
@@ -351,10 +305,6 @@
                                                     <option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
                                                 <?php }?>
                                             </select>
-                                            <!--  <script type="text/javascript">
-                                                document.frm.service_arabic.value='<?php echo $sr->id ?>';
-                                            </script>  -->
-
                                         </div>
                                     </div>
                                 </div>
@@ -469,7 +419,7 @@
                     }
                     var prevValue= $('#chassis_select').val();
                     $('#chassis_select').empty();
-                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');

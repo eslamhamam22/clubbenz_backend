@@ -16,7 +16,7 @@ class part extends MY_Controller {
 		$this->load->model('Provider_model', 'provider');
 		$this->load->model('Car_model', 'car');
 		$this->load->model('provider_model');
-
+		$this->load->model('Car_guide_model', 'car_guide');
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
 
@@ -73,11 +73,6 @@ class part extends MY_Controller {
 					'rules' => 'trim',
 				),
 				array(
-					'field' => 'chassis',
-					'label' => 'chassis',
-					'rules' => 'trim|required',
-				),
-				array(
 					'field' => 'part_category',
 					'label' => 'part_category',
 					'rules' => 'trim|required',
@@ -102,6 +97,8 @@ class part extends MY_Controller {
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
 				$file_name = $_FILES['image']['name'];
+
+				$cha = implode(',', $this->input->post('chassis'));
 
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
@@ -133,7 +130,7 @@ class part extends MY_Controller {
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
-					'chassis_id' => $this->input->post('chassis'),
+					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
@@ -204,6 +201,7 @@ class part extends MY_Controller {
 		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['providers'] = $this->provider->select_provider();
 		$this->data['title'] = 'Add Listing Part';
+		$this->data['rec'] = $this->car_guide->edit_cluster_error($id);
 
 		$this->load->view('add_part', $this->data);
 	}
@@ -221,6 +219,8 @@ class part extends MY_Controller {
 		//		$usname = $user->username;
 
 		if ($this->input->post()) {
+
+			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
 
 			$rules = array(
 
@@ -282,7 +282,7 @@ class part extends MY_Controller {
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
-					'chassis_id' => $this->input->post('chassis'),
+					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),

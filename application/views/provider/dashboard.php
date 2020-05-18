@@ -177,7 +177,7 @@ if ($current_plan) {
 											<?php $counter = 0?>
 											<?php foreach ($favorites as $favorite) {?>
 											<?php foreach ($partsid as $partid) {?>
-											<?php if ($favorite->part_id == $partid->id && $this->session->userdata("id") == $partview->provider_id) {$counter++;}}}?>
+											<?php if ($favorite->part_id == $partid->id && $this->session->userdata("id") == $partview->provider_id && $partid->status == "approve") {$counter++;}}}?>
 											<?php echo $counter; ?>
 											</h3>
 										</li>

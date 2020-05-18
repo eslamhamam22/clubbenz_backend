@@ -17,7 +17,7 @@ class Car_guide extends MY_Controller {
 		$this->load->model('Car_guide_model', 'car_guide');
 		$this->load->model('Reviews_model', 'review');
 		$this->load->model('Users_model');
-
+		$this->load->model('Car_model', 'car');
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
 
@@ -42,6 +42,7 @@ class Car_guide extends MY_Controller {
 	public function add_car_guide() {
 
 		if ($this->input->post()) {
+			$cha = implode(',', $this->input->post('chassis'));
 
 			/*$rules = array(
 				array(
@@ -145,7 +146,7 @@ class Car_guide extends MY_Controller {
 				'link2' => $link1,
 				'link3' => $link3,
 				'link4' => $link4,
-				'chassis' => $this->input->post('chassis'),
+				'chassis' => $cha,
 
 			);
 
@@ -159,6 +160,7 @@ class Car_guide extends MY_Controller {
 
 		}
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
+		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['title'] = 'Add Car Guide';
 		$this->load->view('add_car_guide', $this->data);
 	}
@@ -173,6 +175,8 @@ class Car_guide extends MY_Controller {
 	}
 	public function edit_car_guide($id) {
 		if ($this->input->post()) {
+
+			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
 
 			/*$rules = array(
 				array(
@@ -316,7 +320,7 @@ class Car_guide extends MY_Controller {
 				'link2' => $link2,
 				'link3' => $link3,
 				'link4' => $link4,
-				'chassis' => $this->input->post('chassis'),
+				'chassis' => $cha,
 
 			);
 
@@ -331,6 +335,7 @@ class Car_guide extends MY_Controller {
 		$this->data['chassis_number'] = $this->car_guide->get_chassis();
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
 		$this->data['rec'] = $this->car_guide->edit_car_guide($id);
+		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['title'] = 'Edit Car Guide';
 		$this->load->view('edit_car_guide', $this->data);
 	}
@@ -442,6 +447,7 @@ class Car_guide extends MY_Controller {
 			}*/
 		}
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
+		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['title'] = 'Add Cluster Errors';
 		$this->load->view('add_cluster_error', $this->data);
 	}
@@ -629,6 +635,7 @@ class Car_guide extends MY_Controller {
 		}
 		$this->data['chassis_number'] = $this->car_guide->get_chassis();
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();
+		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['rec'] = $this->car_guide->edit_cluster_error($id);
 		$this->data['title'] = 'Edit Cluster Errors';
 		$this->load->view('edit_cluster_error', $this->data);

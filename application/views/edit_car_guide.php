@@ -21,27 +21,43 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
                             <div class="row" style="padding-top: 20px">
+
+                                <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <label class="control-label ">Select Class </label>
+                                            <select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
+                                                <option value="">Select Option</option>
+                                                <?php foreach ($model_name as $model) {?>
+                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="col-md-9">
                                             <label class="control-label">Select Chassis</label>
 
-                                            <?php
-$chassis_numb = $this->car_guide->get_chassis_by_id($rec->chassis);
-?>
+                                            <?php $chassis_arr = explode(",", $rec->chassis);?>
+                                            <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
+                                            <option value="24">All</option>
+                                            <?php foreach ($chassis_number as $cn) {
+	?>
 
-                                            <select name="chassis" id="chassis" class="form-control" style="width: 200px;">
+                                            <?php if (in_array($cn->id, $chassis_arr)) {
+		echo '<option value="' . $cn->id . '" selected>' . $cn->chassis_num . '</option>';
+	} else {
+		echo '<option value="' . $cn->id . '">' . $cn->chassis_num . '</option>';
+	}
 
-                                            <?php echo '<option selected value="' . $chassis_numb->id . '">' . $chassis_numb->chassis_num . '</option>'; ?>
-
-                                                <?php foreach ($chassis_number as $cn) {?>
-
-                                                    <?php echo '<option value="' . $cn->id . '">' . $cn->chassis_num . '</option>'; ?>
-
-                                                <?php }?>
-                                            </select> <span class="help-block"></span>
-
-
+	?>
+                                            <?php }?>
+                                            </select>
+                                             <span class="help-block"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -235,6 +251,57 @@ $chassis_numb = $this->car_guide->get_chassis_by_id($rec->chassis);
             </div>
         </div>
          <?php $this->load->view('common/common_script')?>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".js-example-tokenizer").select2({
+                    tags: true,
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer2").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 var chassis= [];
+                <?php foreach ($chassis as $c) {?>
+                chassis.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+                <?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val()){
+                        availableChassis= chassis.slice()
+                    }else{
+                        availableChassis= chassis.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
+                    })
+                    $('#chassis_select').val(prevValue || '')
+                });
+            });
+        </script>
+
     </body>
 
 </html>

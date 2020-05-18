@@ -20,15 +20,30 @@
                         <div class="form-body"style="background: white;padding-bottom:30px">
                             <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
                             <div class="row" style="padding-top: 20px">
+
+                                <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <label class="control-label ">Select Class </label>
+                                            <select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
+                                                <option value="">Select Option</option>
+                                                <?php foreach ($model_name as $model) {?>
+                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6" >
                                     <div class="form-group">
                                         <div class="col-md-9">
                                             <label class="control-label ">Select Chassis</label>
-                                            <select type="text" name="chassis[]" class="form-control js-example-tokenizer" multiple >
-                                                <option value="s">Select Option</option>
+                                            <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
+                                                <option value="24" >All</option>
                                                 <?php foreach ($chassis as $c) {?>
                                                     <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
-
                                                 <?php }?>
                                             </select>
                                             <script type="text/javascript">
@@ -233,6 +248,43 @@
                     tags: true,
                     placeholder: "Please select option",
                     tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer2").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 var chassis= [];
+                <?php foreach ($chassis as $c) {?>
+                chassis.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+                <?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val()){
+                        availableChassis= chassis.slice()
+                    }else{
+                        availableChassis= chassis.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
+                    })
+                    $('#chassis_select').val(prevValue || '')
                 });
             });
         </script>

@@ -66,16 +66,7 @@
 									</div>
 								</div>
 							</div>
-<!--							<div class="row" style="padding-top: 20px">-->
-<!--								<div class="col-md-12">-->
-<!--									<div class="form-group">-->
-<!--										<label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>-->
-<!--										<div class="col-md-9">-->
-<!--											<input type="number" required name="sort_order" class="form-control" placeholder="1"value="--><?php //echo $rec->sort_order; ?><!--">-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
+
 
                             <div class="row" style="padding-top: 20px">
 
@@ -234,14 +225,10 @@ for ($i = 0; $i < $remaining_count; $i++) {
 											<label class="control-label ">Select Class </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
 												<option value="">Select Option</option>
-												<?php foreach ($model_name as $model) {
-	?>
-													<?php if ($chassis_numb->model_id == $model->id) {
-		echo '<option selected value="' . $model->id . '">' . $model->name . '</option>';
-	} else {
-		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
-	}
-}?>
+												<?php foreach ($model_name as $model) {?>
+                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+
+                                                <?php }?>
 											</select>
 										</div>
 									</div>
@@ -251,18 +238,22 @@ for ($i = 0; $i < $remaining_count; $i++) {
 									<div class="form-group">
 										<div class="col-md-9">
 											<label for="chassis" class="control-label">Select Chassis</label>
-
-											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
-												<option value="">Select Chassis</option>
-												<option value="24" >All</option>
-												<?php foreach ($chassis_number as $c) {
+											<?php $chassis_arr = explode(",", $rec->chassis_id);?>
+											<select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
+												<option value="24">All</option>
+                                                <?php foreach ($chassis_number as $cn) {
 	?>
-													<?php if ($chassis_numb->chassis_num == $c->chassis_num) {
-		echo '<option selected value="' . $c->id . '">' . $c->chassis_num . '</option>';
+
+                                                    <?php
+if (in_array($cn->id, $chassis_arr)) {
+//if ($chassis_numb->chassis_num == $cn->chassis_num) {
+		echo '<option value="' . $cn->id . '" selected>' . $cn->chassis_num . '</option>';
 	} else {
-		echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>';
+		echo '<option value="' . $cn->id . '">' . $cn->chassis_num . '</option>';
 	}
-}?>
+
+	?>
+                                                <?php }?>
 
 											</select>
 										</div>
@@ -400,7 +391,7 @@ foreach ($part_photos as $us) {
                     }
                     var prevValue= $('#chassis_select').val();
                     $('#chassis_select').empty();
-                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
