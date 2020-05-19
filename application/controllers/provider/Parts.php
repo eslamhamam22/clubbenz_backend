@@ -141,8 +141,8 @@ class Parts extends CI_Controller {
 					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					'date_active' => $this->input->post('date_active'),
-//					'date_expire' => $this->input->post('date_expire'),
+					// 'date_active' => $this->input->post('date_active'),
+					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id"),
 				);

@@ -269,20 +269,19 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row margin-top">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Date of active</label>
+                                        <label class="control-label col-md-3">Date of expire</label>
                                         <div class="col-md-9">
-                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $this->input->post("date_active") ?>" id="datepicker2" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
+                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="row margin-top">
 
-                            </div>
                             <div class="row" style="padding-top: 20px">
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -369,12 +368,9 @@
             });
         </script>
         <!-- <script type="text/javascript">
-
             $(document).ready(function() {
-
             });
             //  $(".form_datetime").datepicker({format: 'yyyy-mm-dd'});
-
         </script>  -->
 <!--        <script type="text/javascript">-->
 <!--            $("#datepicker").datepicker().datepicker("setDate", new Date());-->
@@ -420,4 +416,3 @@
     </body>
 
 </html>
-

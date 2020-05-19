@@ -126,18 +126,19 @@ class part extends MY_Controller {
 //					'location_latitude'	 =>   $this->input->post('location_lat'),
 					//					'location_longitude' =>   $this->input->post('location_lon'),
 
-					// 'location_zone' => $this->input->post('location_zone'),
+//					'location_zone' => $this->input->post('location_zone'),
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					'date_active' => $this->input->post('date_active'),
-					// 'date_expire' => $this->input->post('date_expire'),
+					// 'date_active' => $this->input->post('date_active'),
+					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),
 					'status' => $this->input->post('status'),
+
 				);
 				$result = $this->part->add_part($new_array);
 
@@ -201,7 +202,6 @@ class part extends MY_Controller {
 		$this->data['model_name'] = $this->car->get_classes();
 		$this->data['providers'] = $this->provider->select_provider();
 		$this->data['title'] = 'Add Listing Part';
-		// $this->data['rec'] = $this->car_guide->edit_cluster_error();
 
 		$this->load->view('add_part', $this->data);
 	}
@@ -285,7 +285,7 @@ class part extends MY_Controller {
 					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					'date_active' => $this->input->post('date_active'),
+					// 'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),

@@ -399,26 +399,15 @@ if (in_array($c->id, $chassis_arr)) {
 							</div>
 							<div class="row margin-top">
 								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-3"><?php echo lang("Date_of_active"); ?></label>
+								<div class="form-group">
+									<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?><</label>
 										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_active" value="<?php echo $rec->date_active; ?>" id="datepicker2" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
+										<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $rec->date_expire; ?> " id="datepicker3"   min="?php echo date('Y-m-d'); ?>">
 										</div>
 									</div>
 								</div>
 
 							</div>
-<!--							<div class="row margin-top">-->
-<!--								<div class="col-md-6">-->
-<!--									<div class="form-group">-->
-<!--										<label class="control-label col-md-3">--><?php //echo lang("date_of_Expiry"); ?><!--</label>-->
-<!--										<div class="col-md-9">-->
-<!--											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="--><?php //echo $rec->date_expire; ?><!--" id="datepicker3"   min="--><?php //echo date('Y-m-d'); ?><!--"/>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!---->
-<!--							</div>-->
 							<div class="row" style="padding-top: 20px">
 								<div class="col-md-9">
 									<div class="form-group">
