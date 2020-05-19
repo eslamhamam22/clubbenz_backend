@@ -81,11 +81,6 @@ class Parts extends CI_Controller {
 					'rules' => 'trim',
 				),
 				array(
-					'field' => 'chassis',
-					'label' => 'chassis',
-					'rules' => 'trim|required',
-				),
-				array(
 					'field' => 'part_category',
 					'label' => 'part_category',
 					'rules' => 'trim|required',
@@ -110,6 +105,8 @@ class Parts extends CI_Controller {
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
 				$file_name = $_FILES['image']['name'];
+
+				$cha = implode(',', $this->input->post('chassis'));
 
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
@@ -141,7 +138,7 @@ class Parts extends CI_Controller {
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
-					'chassis_id' => $this->input->post('chassis'),
+					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
@@ -228,6 +225,8 @@ class Parts extends CI_Controller {
 
 		if ($this->input->post()) {
 
+			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+
 			$rules = array(
 				array(
 					'field' => 'price',
@@ -312,7 +311,7 @@ class Parts extends CI_Controller {
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
-					'chassis_id' => $this->input->post('chassis'),
+					'chassis_id' => $cha,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					'date_active' => $this->input->post('date_active'),
@@ -599,8 +598,7 @@ class Parts extends CI_Controller {
 		return true;
 	}
 
-	function array2csv(array &$array)
-	{
+	function array2csv(array &$array) {
 		if (count($array) == 0) {
 			return null;
 		}
@@ -629,14 +627,14 @@ class Parts extends CI_Controller {
 		header("Content-Disposition: attachment;filename={$filename}");
 		header("Content-Transfer-Encoding: binary");
 	}
-	public function export(){
+	public function export() {
 		$array = $this->Provider_Model->get_parts_for_export($this->session->userdata("id"), true);
 		$this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
 		echo $this->array2csv($array);
 		die();
 	}
 
-	public function import(){
+	public function import() {
 		if (isset($_POST["import"])) {
 
 			$fileName = $_FILES["file"]["tmp_name"];
@@ -644,32 +642,32 @@ class Parts extends CI_Controller {
 			if ($_FILES["file"]["size"] > 0) {
 
 				$file = fopen($fileName, "r");
-				$counter= 0;
-				$failed= 0;
+				$counter = 0;
+				$failed = 0;
 				while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
 					if (isset($column[0]) && ($column[0] == "id" || $column[0] == "title")) {
 						continue;
 					}
-					$start_index= 0;
-					if(is_numeric($column[0])){
-						$start_index= 1;
+					$start_index = 0;
+					if (is_numeric($column[0])) {
+						$start_index = 1;
 					}
 					echo $start_index;
-					$title	= $column[$start_index + 0];
-					$title_arabic		= $column[$start_index + 1];
-					$part_number	= $column[$start_index + 2];
-					$part_category		= $column[$start_index + 3];
-					$part_sub_category		= $column[$start_index + 4];
-					$price		= $column[$start_index + 5];
-					$discount		= $column[$start_index + 6];
-					$part_case		= $column[$start_index + 7];
-					$part_brand		= $column[$start_index + 8];
-					$add_date		= $column[$start_index + 9];
-					$description		= $column[$start_index + 10];
-					$chassis_id		= $column[$start_index + 11];
-					$available_location		= $column[$start_index + 12];
-					$date_active		= $column[$start_index + 13];
-					$num_stock	= $column[$start_index + 14];
+					$title = $column[$start_index + 0];
+					$title_arabic = $column[$start_index + 1];
+					$part_number = $column[$start_index + 2];
+					$part_category = $column[$start_index + 3];
+					$part_sub_category = $column[$start_index + 4];
+					$price = $column[$start_index + 5];
+					$discount = $column[$start_index + 6];
+					$part_case = $column[$start_index + 7];
+					$part_brand = $column[$start_index + 8];
+					$add_date = $column[$start_index + 9];
+					$description = $column[$start_index + 10];
+					$chassis_id = $column[$start_index + 11];
+					$available_location = $column[$start_index + 12];
+					$date_active = $column[$start_index + 13];
+					$num_stock = $column[$start_index + 14];
 
 					$new_array = array(
 						'title' => $title,
@@ -693,64 +691,75 @@ class Parts extends CI_Controller {
 						'provider_id' => $this->session->userdata("id"),
 					);
 
-					if(is_numeric($part_category)){
-						if(!$this->Partcategory_model->get_by_id($part_category))
+					if (is_numeric($part_category)) {
+						if (!$this->Partcategory_model->get_by_id($part_category)) {
 							continue;
-					}else{
-						$object=$this->Partcategory_model->get_by_name($part_category);
-						if($object)
+						}
+
+					} else {
+						$object = $this->Partcategory_model->get_by_name($part_category);
+						if ($object) {
 							continue;
-						else
-							$new_array['part_category']= $object[0]->id;
+						} else {
+							$new_array['part_category'] = $object[0]->id;
+						}
 
 					}
 
-					if(is_numeric($part_sub_category)){
-						if(!$this->Partsubcategory_model->get_by_id($part_sub_category))
+					if (is_numeric($part_sub_category)) {
+						if (!$this->Partsubcategory_model->get_by_id($part_sub_category)) {
 							continue;
-					}else{
-						$object=$this->Partsubcategory_model->get_by_name($part_sub_category);
-						if($object)
+						}
+
+					} else {
+						$object = $this->Partsubcategory_model->get_by_name($part_sub_category);
+						if ($object) {
 							continue;
-						else
-							$new_array['part_sub_category']= $object[0]->id;
+						} else {
+							$new_array['part_sub_category'] = $object[0]->id;
+						}
 
 					}
-					if(is_numeric($part_brand)){
-						if(!$this->Brand_model->get_by_id($part_brand))
+					if (is_numeric($part_brand)) {
+						if (!$this->Brand_model->get_by_id($part_brand)) {
 							continue;
-					}else{
-						$object=$this->Brand_model->get_by_name($part_brand);
-						if($object)
+						}
+
+					} else {
+						$object = $this->Brand_model->get_by_name($part_brand);
+						if ($object) {
 							continue;
-						else
-							$new_array['part_brand']= $object[0]->id;
+						} else {
+							$new_array['part_brand'] = $object[0]->id;
+						}
 
 					}
-					if(is_numeric($chassis_id)){
-						if(!$this->Chassis_model->get_by_id($chassis_id))
+					if (is_numeric($chassis_id)) {
+						if (!$this->Chassis_model->get_by_id($chassis_id)) {
 							continue;
-					}else{
-						$object=$this->Chassis_model->get_by_name($chassis_id);
-						if($object)
+						}
+
+					} else {
+						$object = $this->Chassis_model->get_by_name($chassis_id);
+						if ($object) {
 							continue;
-						else
-							$new_array['chassis_id']= $object[0]->id;
+						} else {
+							$new_array['chassis_id'] = $object[0]->id;
+						}
 
 					}
 
-
-					if($result = $this->part->add_part($new_array)){
+					if ($result = $this->part->add_part($new_array)) {
 //						print_r($column);
 						$counter++;
-					}else{
+					} else {
 						$failed++;
 					}
 				}
-				if($failed > 0){
-					redirect(base_url('provider/Parts/?success='.$counter.' parts were added successfully!&error='.$failed.' failed to be added'));
+				if ($failed > 0) {
+					redirect(base_url('provider/Parts/?success=' . $counter . ' parts were added successfully!&error=' . $failed . ' failed to be added'));
 				}
-				redirect(base_url('provider/Parts/?success='.$counter.' parts were added successfully!'));
+				redirect(base_url('provider/Parts/?success=' . $counter . ' parts were added successfully!'));
 			}
 		}
 	}

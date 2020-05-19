@@ -77,6 +77,7 @@
 
 										<label  for="inputEmail3" class="control-label"> Upload Image</label>
                                         <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"   value="<?php echo $rec->pic1 ?>" />
+                                        <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                     </div>
 
 
@@ -158,14 +159,14 @@
                                 <div class="">
                                     <h4 style="padding: 50px"><b>3 . Fues & Rely Location ! Chassis</b></h4>
                                     <div align="center" class="" style="">
-                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $rec->pic3; ?>" >
+                                        <a href=" <?php echo base_url('upload/') . $rec->pic3; ?>" title="Show" rel="bookmark" target="_blank"> Show </a>
 										<input hidden type="text" name="is_fues_rely_location" value="<?php echo $rec->pic3 ?>" >
 
 									</div>
                                     <div align="center" style="padding: 30px">
-										<input required type="radio" name="fues_rely_location" value="image" <?php if ($rec->pic3) {?> checked <?php }?>>
-										<label  for="inputEmail3" class="control-label"> Upload Image</label>
-                                        <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+										<input required type="radio" name="fues_rely_location" value="pdf" <?php if ($rec->pic3) {?> checked <?php }?>>
+										<label  for="inputEmail3" class="control-label"> Upload File PDF</label>
+                                        <input style="width: 400px" type="file" class= "form-control btn btn-default" name="pdf"size="20"/>
                                     </div>
 
 
@@ -211,6 +212,7 @@
 
 										<label  for="inputEmail3" class="control-label"> Upload Image</label>
                                         <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"  id="logo_image" size="20" multiple="multiple"  />
+                                        <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                     </div>
 
 

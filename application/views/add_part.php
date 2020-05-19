@@ -31,42 +31,6 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <div class="row" style="padding-top: 20px">-->
-<!--                                <div class="col-md-10 col-md-offset-1">-->
-<!--                                    <div style="cursor: pointer" class="input-images"></div>-->
-<!--                                    <fieldset class="form-group">-->
-<!--                                        <a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>-->
-<!--                                        <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>-->
-<!--                                    </fieldset>-->
-<!--                                    <div class="preview-images-zone">-->
-<!--                                        <div class="preview-image preview-show-1">-->
-<!--                                            <div class="image-cancel" data-no="1">x</div>-->
-<!--                                            <div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>-->
-<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="1" class="btn btn-light btn-edit-image">edit</a></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="preview-image preview-show-2">-->
-<!--                                            <div class="image-cancel" data-no="2">x</div>-->
-<!--                                            <div class="image-zone"><img id="pro-img-2" src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg"></div>-->
-<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="2" class="btn btn-light btn-edit-image">edit</a></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="preview-image preview-show-3">-->
-<!--                                            <div class="image-cancel" data-no="3">x</div>-->
-<!--                                            <div class="image-zone"><img id="pro-img-3" src="http://i.stack.imgur.com/WCveg.jpg"></div>-->
-<!--                                            <div class="tools-edit-image"><a href="javascript:void(0)" data-no="3" class="btn btn-light btn-edit-image">edit</a></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="row" style="padding-top: 20px">-->
-<!--                                <div class="col-md-12">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label class="control-label col-md-3">Product arrangement in order (1 shown first, then 2, 3, ....)</label>-->
-<!--                                        <div class="col-md-9">-->
-<!--                                            <input type="number" required name="sort_order" class="form-control" placeholder="1"value="--><?php //echo $this->input->post("sort_order") ?><!--">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
 
                             <div class="row" style="padding-top: 20px">
                             <div class="col-md-6">
@@ -219,7 +183,7 @@
 
                                             <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
                                                 <option value="">Select Chassis</option>
-                                                <option value="24" >All</option>
+                                                <option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
                                                 <?php foreach ($chassis as $c) {?>
                                                     <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
                                                 <?php }?>
@@ -292,23 +256,6 @@
                             <div align="center" class=" margin-top" style= "width : 100% ; height :1px ; background : darkgray ">
                             </div>
 
-                            <div class="row margin-top">
-
-                                <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <div class="col-md-9">
-                                            <label class="control-label ">Location Zone</label>
-
-                                            <select name="location_zone" class="form-control">
-                                                <option value>Select Location Zone</option>
-                                                <?php foreach ($location as $loc) {?>
-                                                    <option value="<?php echo $loc->id ?>"><?php echo $loc->name; ?></option>
-                                                <?php }?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row margin-top" >
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -334,14 +281,6 @@
 
                             </div>
                             <div class="row margin-top">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">date of Expiry</label>
-                                        <div class="col-md-9">
-                                            <input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3" class="form-control"  min="<?php echo date('Y-m-d'); ?>"/>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
                             <div class="row" style="padding-top: 20px">

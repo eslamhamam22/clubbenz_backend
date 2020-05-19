@@ -91,6 +91,19 @@ class Car_guide extends MY_Controller {
 				}
 			}
 
+			if (isset($_FILES['pdf']) && !empty($_FILES['pdf'])) {
+				$filename = $_FILES['pdf']['name'];
+				if ($filename != "") {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $filename;
+					$config['allowed_types'] = 'pdf';
+					$this->upload->initialize($config);
+					if ($this->upload->do_upload('pdf')) {
+						$pdfInfo = $this->upload->data();
+					}
+				}
+			}
+
 			if ($this->input->post('listing_photo') == "file_pdf") {
 
 				$file_pdf = $pdfdataInfo['file_name'];
@@ -100,6 +113,18 @@ class Car_guide extends MY_Controller {
 
 				$file_pdf = "";
 				$link1 = $this->input->post('link1');
+
+			}
+
+			if ($this->input->post('fues_rely_location') == "pdf") {
+
+				$pdf = $pdfInfo['file_name'];
+				$link3 = "";
+
+			} else {
+
+				$pdf = "";
+				$link3 = $this->input->post('link3');
 
 			}
 
@@ -114,20 +139,9 @@ class Car_guide extends MY_Controller {
 				$link2 = $this->input->post('link2');
 
 			}
-			if ($this->input->post('fues_rely_location') == "image") {
-
-				$pic3 = $dataInfo[1]['file_name'];
-				$link3 = "";
-
-			} else {
-
-				$pic3 = "";
-				$link3 = $this->input->post('link3');
-
-			}
 			if ($this->input->post('tire_pressure') == "image") {
 
-				$pic4 = $dataInfo[2]['file_name'];
+				$pic4 = $dataInfo[1]['file_name'];
 				$link4 = "";
 
 			} else {
@@ -140,7 +154,7 @@ class Car_guide extends MY_Controller {
 			$data = array(
 				'pic1' => $pic2,
 				'pic2' => $file_pdf,
-				'pic3' => $pic3,
+				'pic3' => $pdf,
 				'pic4' => $pic4,
 				'link1' => $link2,
 				'link2' => $link1,
@@ -214,8 +228,6 @@ class Car_guide extends MY_Controller {
 						$picture1 = $dataInfo['file_name'];
 					} else if ($i == 1) {
 						$picture2 = $dataInfo['file_name'];
-					} else if ($i == 2) {
-						$picture3 = $dataInfo['file_name'];
 					}
 				}
 			}
@@ -230,13 +242,27 @@ class Car_guide extends MY_Controller {
 				$this->upload->initialize($config);
 				$this->upload->do_upload('file_name');
 				$pdfdataInfo = $this->upload->data();
-				$pdf = $pdfdataInfo['file_name'];
+				$pdff = $pdfdataInfo['file_name'];
 			}
+
+			if (!empty($files['pdf']['name'])) {
+				$fname = $_FILES['file_name']['name'] = $files['pdf']['name'];
+				$_FILES['file_name']['tmp_name'] = $files['pdf']['tmp_name'];
+				$config = array();
+				$config['upload_path'] = './upload/';
+				$config['file_name'] = time() . $fname;
+				$config['allowed_types'] = 'pdf';
+				$this->upload->initialize($config);
+				$this->upload->do_upload('file_name');
+				$pdfInfo = $this->upload->data();
+				$pdffile = $pdfInfo['file_name'];
+			}
+
 			if ($this->input->post('listing_photo') == "file_pdf") {
 
-				if (isset($pdf)) {
+				if (isset($pdff)) {
 
-					$file_pdf = $pdf;
+					$file_pdf = $pdff;
 					$link1 = "";
 
 				} else {
@@ -248,6 +274,26 @@ class Car_guide extends MY_Controller {
 
 				$file_pdf = "";
 				$link1 = $this->input->post('link1');
+
+			}
+
+			if ($this->input->post('fues_rely_location') == "pdf") {
+				if (isset($pdffile)) {
+
+					$pdf = $pdffile;
+					$link3 = "";
+
+				} else {
+
+					$pdf = $this->input->post('is_fues_rely_location');
+					$link3 = "";
+
+				}
+
+			} else {
+
+				$pdf = "";
+				$link3 = $this->input->post('link3');
 
 			}
 
@@ -271,30 +317,12 @@ class Car_guide extends MY_Controller {
 				$link2 = $this->input->post('link2');
 
 			}
-			if ($this->input->post('fues_rely_location') == "image") {
-				if (isset($picture2)) {
 
-					$pic3 = $picture2;
-					$link3 = "";
-
-				} else {
-
-					$pic3 = $this->input->post('is_fues_rely_location');
-					$link3 = "";
-
-				}
-
-			} else {
-
-				$pic3 = "";
-				$link3 = $this->input->post('link3');
-
-			}
 			if ($this->input->post('tire_pressure') == "image") {
 
-				if (isset($picture3)) {
+				if (isset($picture2)) {
 
-					$pic4 = $picture3;
+					$pic4 = $picture2;
 					$link4 = "";
 
 				} else {
@@ -314,7 +342,7 @@ class Car_guide extends MY_Controller {
 			$data = array(
 				'pic1' => $pic2,
 				'pic2' => $file_pdf,
-				'pic3' => $pic3,
+				'pic3' => $pdf,
 				'pic4' => $pic4,
 				'link1' => $link1,
 				'link2' => $link2,

@@ -240,7 +240,8 @@ for ($i = 0; $i < $remaining_count; $i++) {
 											<label for="chassis" class="control-label">Select Chassis</label>
 											<?php $chassis_arr = explode(",", $rec->chassis_id);?>
 											<select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
-												<option value="24">All</option>
+
+												<option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
                                                 <?php foreach ($chassis_number as $cn) {
 	?>
 

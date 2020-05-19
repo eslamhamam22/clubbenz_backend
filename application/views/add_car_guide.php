@@ -70,6 +70,7 @@
 
 											<label  for="inputEmail3" class="control-label"> Upload Image</label>
                                             <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+                                            <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                         </div>
 
 
@@ -150,9 +151,9 @@
                                         <div align="center" class="" style="">
                                         </div>
                                         <div align="center" style="padding: 30px">
-											<input required type="radio" name="fues_rely_location" value="image">
-											<label  for="inputEmail3" class="control-label"> Upload Image</label>
-                                            <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
+											<input required type="radio" name="fues_rely_location" value="pdf">
+											<label  for="inputEmail3" class="control-label"> Upload file PDF</label>
+                                            <input style="width: 400px" type="file" class= "form-control btn btn-default" name="pdf"size="20" />
                                         </div>
 
 
@@ -207,7 +208,9 @@
 											<input type="radio" name="tire_pressure" value="link">
 
 											<label class="control-label ">Enter Link </label>
-                                            <input type="text" style="width: 400px" name="link4" class=" form-control"  placeholder=" Link-4" value="<?php echo $this->input->post("link4") ?>"/> </div>
+                                            <input type="text" style="width: 400px" name="link4" class=" form-control"  placeholder=" Link-4" value="<?php echo $this->input->post("link4") ?>"/>
+                                            <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
+                                             </div>
 
                                     </div>
 

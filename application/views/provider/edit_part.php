@@ -233,14 +233,10 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
 												<option value=""><?php echo lang("Select_Option"); ?></option>
-												<?php foreach ($model_name as $model) {
-	?>
-													<?php if ($chassis_numb->model_id == $model->id) {
-		echo '<option selected value="' . $model->id . '">' . $model->name . '</option>';
-	} else {
-		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
-	}
-}?>
+												<?php foreach ($model_name as $model) {?>
+                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+
+                                                <?php }?>
 											</select>
 										</div>
 									</div>
@@ -250,20 +246,26 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 									<div class="form-group">
 										<div class="col-md-9">
 											<label for="chassis" class="control-label"><?php echo lang("Select_Chassis"); ?></label>
-
-											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
+											<?php $chassis_arr = explode(",", $rec->chassis_id);?>
+											<select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
 												<option value=""><?php echo lang("Select_Chassis"); ?></option>
-												<option value="24" >All</option>
+												<option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
 												<?php foreach ($chassis_number as $c) {
 	?>
-													<?php if ($chassis_numb->chassis_num == $c->chassis_num) {
-		echo '<option selected value="' . $c->id . '">' . $c->chassis_num . '</option>';
+
+													 <?php
+if (in_array($c->id, $chassis_arr)) {
+//if ($chassis_numb->chassis_num == $c->chassis_num) {
+		echo '<option value="' . $c->id . '" selected>' . $c->chassis_num . '</option>';
 	} else {
 		echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>';
 	}
-}?>
+
+	?>
+                                                <?php }?>
 
 											</select>
+
 										</div>
 									</div>
 								</div>

@@ -197,9 +197,9 @@
 										<div class="col-md-9">
 											<label for="chassis" class="control-label"><?php echo lang("Select_Chassis"); ?></label>
 
-											<select  required type="text" name="chassis" id="chassis_select" class="form-control">
+											<select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
 												<option value=""><?php echo lang("Select_Chassis"); ?></option>
-												<option value="24" ><?php echo lang("All"); ?></option>
+												<option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>"><?php echo lang("All"); ?></option>
 												<?php foreach ($chassis as $c) {?>
 													<?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
 												<?php }?>
@@ -374,7 +374,7 @@
 					}
 					var prevValue= $('#chassis_select').val();
                     $('#chassis_select').empty();
-                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
