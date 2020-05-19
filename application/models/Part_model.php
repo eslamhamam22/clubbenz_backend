@@ -141,7 +141,7 @@ class Part_model extends CI_Model {
 				if(!in_array($chassis, $chassis_arr)){
 					return false;
 				}
-				if($part->date_expire && strtotime(date("Y-m-d H:i:s")) < strtotime($part->date_expire)){
+				if($part->date_expire && !isEmpty($part->date_expire) && strtotime(date("Y-m-d H:i:s")) < strtotime($part->date_expire)){
 					return false;
 				}
 
