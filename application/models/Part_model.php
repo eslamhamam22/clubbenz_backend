@@ -70,7 +70,10 @@ class Part_model extends CI_Model {
 	function get_shop($data, $start, $limit, $chassis, $phone) {
 
 		$chassis_ids = array('24', $chassis);
-		$this->db->where_in('chassis_id', $chassis_ids);
+//		$this->db->where_in('chassis_id', $chassis_ids);
+//		$this->db->like('chassis_id', $chassis);
+//		$this->db->or_like('chassis_id', $chassis);
+//		$this->db->or_like('chassis_id', $chassis);
 		if ($data['search']) {
 //			$this->db->like("chassis_id",'24', "both" );
 			//$this->db->alike("chassis_id",'2', "both" );
@@ -133,7 +136,15 @@ class Part_model extends CI_Model {
 			foreach ($arr['shops'] as $val) {
 				$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			}
-			$arr['shops'] = array_filter($arr['shops'], function ($part) use ($phone) {
+			$arr['shops'] = array_filter($arr['shops'], function ($part) use ($phone, $chassis) {
+				$chassis_arr= explode(',', $part->chassis_id);
+				if(!in_array($chassis, $chassis_arr)){
+					return false;
+				}
+				if($part->date_expire && strtotime(date("Y-m-d H:i:s")) < strtotime($part->date_expire)){
+					return false;
+				}
+
 				if (!$part->plan || $part->plan->status != "active") {
 					return false;
 				}
