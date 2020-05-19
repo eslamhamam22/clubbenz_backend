@@ -5,10 +5,10 @@
         <!-- Logo -->
         <a  class="logo" href="<?echo base_url('/dashboard')?>">
             <!-- Logo icon image, you can use font-icon also --><b>
-            <!--This is dark logo icon--><img src="<?php echo base_url()?>assets/plugins/images/admin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="<?php echo base_url()?>assets/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
+            <!--This is dark logo icon--><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
          </b>
             <!-- Logo text image you can use text also --><span class="hidden-xs">
-            <!--This is dark logo text--><img src="<?php echo base_url()?>assets/plugins/images/admin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="<?php echo base_url()?>assets/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
+            <!--This is dark logo text--><img src="<?php echo base_url() ?>assets/plugins/images/admin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="<?php echo base_url() ?>assets/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
          </span> </a>
     </div>
     <ul class="nav navbar-top-links navbar-left">
@@ -18,8 +18,8 @@
         <li class="dropdown">
             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><b class="hidden-xs"><?php echo $this->session->userdata('email'); ?></b><span class="caret"></span> </a>
             <ul class="dropdown-menu dropdown-user animated flipInY">
-                
-                <li><a href="<?php echo base_url('auth/logout');?>"><i class="fa fa-power-off"></i> Logout</a></li>
+                <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
+                <li><a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Update Password" href="<?php echo base_url('carmodel/change_password/') ?><?php echo $this->session->userdata('id'); ?>">Change Password</a></li>
             </ul>
             <!-- /.dropdown-user -->
         </li>
