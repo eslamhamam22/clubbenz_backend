@@ -74,7 +74,7 @@ foreach ($rec as $us) {
                                     <?php if ($us->active) {?>
                                         <a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
 										<p style="display: none">Active</p>
-										<?php if(strtotime(date("Y-m-d H:i:s")) < strtotime($us->date_expire)){ ?>
+										<?php if(!isEmpty($us->date_expire) && (strtotime(date("Y-m-d H:i:s")) < strtotime($us->date_expire))){ ?>
 											<p class="color: red">*Expired</p>
 										<?php } ?>
                                     <?php } else {?>
