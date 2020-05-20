@@ -27,6 +27,11 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 		color: #ffffff;
 		font-weight: 500;
 	}
+
+	.slimScrollBar {
+    background: #fff !important;
+    opacity: 1 !important;
+}
 </style>
 <div class="navbar-default sidebar" role="navigation">
 	<div class="sidebar-nav slimscrollsidebar" style="overflow: hidden; width: auto; height: 100%;">
