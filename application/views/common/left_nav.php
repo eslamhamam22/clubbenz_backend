@@ -165,7 +165,7 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 								<?php if (in_array('Parts_Catalogue/active', $c_a) || $group_id[0]->name == 'admin') {?>
 								<li> <a href="<?php echo base_url() ?>part/"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu">Listing Parts</span></a> </li><?php }?>
 
-								<?php if (in_array('Parts_Catalogue/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>feature/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Manage Feature <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+								<?php if (in_array('Parts_Catalogue/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>feature/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Featured list <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 
 								<?php if (in_array('Parts_Catalogue/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>plan/"class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu">Subscription Plans <span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
 

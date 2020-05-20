@@ -19,7 +19,7 @@
                     <div class="container-fluid">
                         <div class="row bg-title">
                             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                                <h4 class="page-title">Manage User Reviews Listing</h4>
+                                <h4 class="page-title">Manage User Reviews</h4>
                             </div>
                            <!--  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                                     <a style="background: #2CABE3" href="<?php echo base_url('fuel/add_fuel') ?>"  class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Fuel Type</a>
