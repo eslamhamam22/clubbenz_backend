@@ -99,6 +99,7 @@ class part extends MY_Controller {
 				$file_name = $_FILES['image']['name'];
 
 				$cha = implode(',', $this->input->post('chassis'));
+				$model_select = implode(',', $this->input->post('model_id'));
 
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
@@ -131,6 +132,7 @@ class part extends MY_Controller {
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
+					'model_id' => $model_select,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					// 'date_active' => $this->input->post('date_active'),
@@ -221,6 +223,7 @@ class part extends MY_Controller {
 		if ($this->input->post()) {
 
 			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 
 			$rules = array(
 
@@ -283,6 +286,7 @@ class part extends MY_Controller {
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
+					'model_id' => $model_select,
 //					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
 					// 'date_active' => $this->input->post('date_active'),

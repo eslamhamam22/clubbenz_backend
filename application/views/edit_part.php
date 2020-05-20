@@ -223,11 +223,21 @@ for ($i = 0; $i < $remaining_count; $i++) {
 									<div class="form-group">
 										<div class="col-md-9">
 											<label class="control-label ">Select Class </label>
+											<?php $model_arr = explode(",", $rec->model_id);?>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
 												<option value="">Select Option</option>
-												<?php foreach ($model_name as $model) {?>
-                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
 
+												<?php foreach ($model_name as $model) {
+	?>
+
+												<?php
+if (in_array($model->id, $model_arr)) {
+		echo '<option value="' . $model->id . '" selected>' . $model->name . '</option>';
+	} else {
+		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
+	}
+
+	?>
                                                 <?php }?>
 											</select>
 										</div>

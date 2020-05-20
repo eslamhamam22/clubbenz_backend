@@ -43,6 +43,7 @@ class Car_guide extends MY_Controller {
 
 		if ($this->input->post()) {
 			$cha = implode(',', $this->input->post('chassis'));
+			$model_id = implode(',', $this->input->post('model_id'));
 
 			/*$rules = array(
 				array(
@@ -161,6 +162,7 @@ class Car_guide extends MY_Controller {
 				'link3' => $link3,
 				'link4' => $link4,
 				'chassis' => $cha,
+				'model_id' => $model_id,
 
 			);
 
@@ -191,6 +193,7 @@ class Car_guide extends MY_Controller {
 		if ($this->input->post()) {
 
 			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+			$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 
 			/*$rules = array(
 				array(
@@ -349,6 +352,7 @@ class Car_guide extends MY_Controller {
 				'link3' => $link3,
 				'link4' => $link4,
 				'chassis' => $cha,
+				'model_id' => $model_id,
 
 			);
 
@@ -378,6 +382,7 @@ class Car_guide extends MY_Controller {
 			$userid = $user->id;
 
 			$cha = implode(',', $this->input->post('chassis'));
+			$model_id = implode(',', $this->input->post('model_id'));
 
 			/*$rules = array(
 				array(
@@ -424,6 +429,7 @@ class Car_guide extends MY_Controller {
 				'description_arabic' => $this->input->post('description_arabic'),
 				// 'chassis' => $this->input->post('chassis'),
 				'chassis' => $cha,
+				'model_id' => $model_id,
 				'shop_type' => $this->input->post('shop_type'),
 				'shop_id' => $this->input->post('shop'),
 
@@ -506,6 +512,7 @@ class Car_guide extends MY_Controller {
 			$userid = $user->id;
 			// $cha = implode(',', $this->input->post('chassis'));
 			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+			$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 			/*$rules = array(
 				array(
 					'field'   => 'link1',
@@ -529,6 +536,7 @@ class Car_guide extends MY_Controller {
 				'description' => $this->input->post('description'),
 				'description_arabic' => $this->input->post('description_arabic'),
 				'chassis' => $cha,
+				'model_id' => $model_id,
 				'shop_type' => $this->input->post('shop_type'),
 				'shop_id' => $this->input->post('shop'),
 			);

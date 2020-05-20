@@ -231,11 +231,20 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 									<div class="form-group">
 										<div class="col-md-9">
 											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
+											<?php $model_arr = explode(",", $rec->model_id);?>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
 												<option value=""><?php echo lang("Select_Option"); ?></option>
-												<?php foreach ($model_name as $model) {?>
-                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+												<?php foreach ($model_name as $model) {
+	?>
 
+												<?php
+if (in_array($model->id, $model_arr)) {
+		echo '<option value="' . $model->id . '" selected>' . $model->name . '</option>';
+	} else {
+		echo '<option value="' . $model->id . '">' . $model->name . '</option>';
+	}
+
+	?>
                                                 <?php }?>
 											</select>
 										</div>
@@ -400,9 +409,10 @@ if (in_array($c->id, $chassis_arr)) {
 							<div class="row margin-top">
 								<div class="col-md-6">
 								<div class="form-group">
-									<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?><</label>
+									<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
 										<div class="col-md-9">
-										<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $rec->date_expire; ?> " id="datepicker3"   min="?php echo date('Y-m-d'); ?>">
+
+										<input  type="date" data-date-format='yyyy-mm-dd' id="datepicker3" value="<?php echo $rec->date_expire ?>" name="date_expire" class="form-control" >
 										</div>
 									</div>
 								</div>
