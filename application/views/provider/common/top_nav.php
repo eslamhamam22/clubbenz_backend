@@ -3,7 +3,7 @@
 <div class="navbar-header">
     <div class="top-left-part">
         <!-- Logo -->
-        <a  class="logo" href="<?echo base_url('/provider/dashboard')?>">
+        <a  class="logo" href="<?php echo base_url('/provider/dashboard') ?>">
             <!-- Logo icon image, you can use font-icon also --><b>
             <!--This is dark logo icon--><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="<?php echo base_url() ?>assets/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
          </b>
