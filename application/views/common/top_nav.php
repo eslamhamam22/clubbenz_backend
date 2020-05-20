@@ -18,8 +18,9 @@
         <li class="dropdown">
             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><b class="hidden-xs"><?php echo $this->session->userdata('email'); ?></b><span class="caret"></span> </a>
             <ul class="dropdown-menu dropdown-user animated flipInY">
+                <?php ?>
                 <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
-                <li><a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Update Password" href="<?php echo base_url('carmodel/change_password/') ?><?php echo $this->session->userdata('id'); ?>">Change Password</a></li>
+                <li><a class="text-inverse pr-2" data-toggle="tooltip" href="<?php echo base_url('carmodel/change_password/') ?><?php echo $this->ion_auth->user()->row()->id; ?>">Change Password</a></li>
             </ul>
             <!-- /.dropdown-user -->
         </li>
