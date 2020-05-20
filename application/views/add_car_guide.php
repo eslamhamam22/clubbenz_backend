@@ -194,6 +194,7 @@
 											<input required type="radio" name="tire_pressure" value="image">
 											<label  for="inputEmail3" class="control-label"> Upload Image</label>
                                             <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"  id="logo_image" size="20" multiple="multiple"  />
+                                            <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                         </div>
 
 
@@ -209,7 +210,7 @@
 
 											<label class="control-label ">Enter Link </label>
                                             <input type="text" style="width: 400px" name="link4" class=" form-control"  placeholder=" Link-4" value="<?php echo $this->input->post("link4") ?>"/>
-                                            <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
+
                                              </div>
 
                                     </div>
@@ -278,6 +279,7 @@
                     var prevValue= $('#chassis_select').val();
                     $('#chassis_select').empty();
                     // $('#chassis_select').append('<option value="">Select Option</option>');
+                    $('#chassis_select').append('<option value="all">All</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');

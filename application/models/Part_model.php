@@ -51,6 +51,14 @@ class Part_model extends CI_Model {
 		}
 	}
 
+	public function get_chassis_by_model($model_id) {
+		$this->db->select("id");
+		$this->db->from("chassis");
+		$this->db->where('model_id', $model_id);
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 	public function get_chassis() {
 		$this->db->select('*');
 		$this->db->from('chassis');
@@ -71,9 +79,9 @@ class Part_model extends CI_Model {
 
 		$chassis_ids = array('24', $chassis);
 //		$this->db->where_in('chassis_id', $chassis_ids);
-//		$this->db->like('chassis_id', $chassis);
-//		$this->db->or_like('chassis_id', $chassis);
-//		$this->db->or_like('chassis_id', $chassis);
+		//		$this->db->like('chassis_id', $chassis);
+		//		$this->db->or_like('chassis_id', $chassis);
+		//		$this->db->or_like('chassis_id', $chassis);
 		if ($data['search']) {
 //			$this->db->like("chassis_id",'24', "both" );
 			//$this->db->alike("chassis_id",'2', "both" );
@@ -137,11 +145,11 @@ class Part_model extends CI_Model {
 				$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			}
 			$arr['shops'] = array_filter($arr['shops'], function ($part) use ($phone, $chassis) {
-				$chassis_arr= explode(',', $part->chassis_id);
-				if(!in_array($chassis, $chassis_arr)){
+				$chassis_arr = explode(',', $part->chassis_id);
+				if (!in_array($chassis, $chassis_arr)) {
 					return false;
 				}
-				if($part->date_expire && !isEmpty($part->date_expire) && strtotime(date("Y-m-d H:i:s")) < strtotime($part->date_expire)){
+				if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d H:i:s")) < strtotime($part->date_expire)) {
 					return false;
 				}
 

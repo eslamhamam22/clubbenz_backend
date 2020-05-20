@@ -509,7 +509,8 @@ foreach ($part_photos as $us) {
                     }
                     var prevValue= $('#chassis_select').val();
                     $('#chassis_select').empty();
-                    $('#chassis_select').append('<option value="">Select Option</option>');
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
+                     $('#chassis_select').append('<option value="all">All</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');

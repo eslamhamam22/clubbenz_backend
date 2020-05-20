@@ -13,6 +13,7 @@ class Car_guide extends MY_Controller {
 		$this->load->model('Fuel_model', 'fuel');
 		$this->load->model('Years_model', 'year');
 		$this->load->model('Classes_model', 'classes');
+		$this->load->model('Part_model', 'part');
 		$this->load->model('Advertisement_model', 'advertisement');
 		$this->load->model('Car_guide_model', 'car_guide');
 		$this->load->model('Reviews_model', 'review');
@@ -44,6 +45,21 @@ class Car_guide extends MY_Controller {
 		if ($this->input->post()) {
 			$cha = implode(',', $this->input->post('chassis'));
 			$model_id = implode(',', $this->input->post('model_id'));
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
 
 			/*$rules = array(
 				array(
@@ -194,6 +210,21 @@ class Car_guide extends MY_Controller {
 
 			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
 			$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
 
 			/*$rules = array(
 				array(
@@ -384,6 +415,21 @@ class Car_guide extends MY_Controller {
 			$cha = implode(',', $this->input->post('chassis'));
 			$model_id = implode(',', $this->input->post('model_id'));
 
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
+
 			/*$rules = array(
 				array(
 					'field'   => 'link1',
@@ -513,6 +559,21 @@ class Car_guide extends MY_Controller {
 			// $cha = implode(',', $this->input->post('chassis'));
 			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
 			$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
 			/*$rules = array(
 				array(
 					'field'   => 'link1',

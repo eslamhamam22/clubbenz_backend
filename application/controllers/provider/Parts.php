@@ -109,6 +109,21 @@ class Parts extends CI_Controller {
 				$cha = implode(',', $this->input->post('chassis'));
 				$model_select = implode(',', $this->input->post('model_id'));
 
+				if ($cha == "all") {
+
+					$model_list = explode(",", $model_select);
+					$chassis_list = [];
+					foreach ($model_list as $single_model) {
+						$model_chassis = $this->part->get_chassis_by_model($single_model);
+						foreach ($model_chassis as $single_chassis) {
+							echo $single_chassis->id;
+							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+						}
+					}
+					$cha = implode(',', $chassis_list);
+
+				}
+
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				$title = $this->input->post('title');
@@ -279,6 +294,21 @@ class Parts extends CI_Controller {
 				$file_name = $_FILES['image']['name'];
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
+				//
+				if ($cha == "all") {
+
+					$model_list = explode(",", $model_select);
+					$chassis_list = [];
+					foreach ($model_list as $single_model) {
+						$model_chassis = $this->part->get_chassis_by_model($single_model);
+						foreach ($model_chassis as $single_chassis) {
+							echo $single_chassis->id;
+							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+						}
+					}
+					$cha = implode(',', $chassis_list);
+
+				}
 				$title = $this->input->post('title');
 				$arabicTitle = $this->input->post('title_arabic');
 
