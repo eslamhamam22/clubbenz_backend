@@ -54,7 +54,7 @@ if (in_array($model->id, $model_arr)) {
 
                                             <?php $chassis_arr = explode(",", $rec->chassis);?>
                                             <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
-                                            <option value="24">All</option>
+                                            <option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
                                             <?php foreach ($chassis_number as $cn) {
 	?>
 

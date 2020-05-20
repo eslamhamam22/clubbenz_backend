@@ -52,7 +52,7 @@ if (in_array($model->id, $model_arr)) {
 
                                             <?php $chassis_numb = $this->car_guide->get_chassis_by_id($rec->chassis);
 $chassis_arr = explode(",", $rec->chassis);?>
-<select type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple >                                                <option value="24">All</option>
+<select type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple >                                                <option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
                                                 <?php foreach ($chassis_number as $cn) {
 	?>
 

@@ -45,7 +45,7 @@
 
                                                 <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
                                                 <option value="">Select Chassis</option>
-                                                <option value="24" >All</option>
+                                                <option value="<?php foreach ($chassis as $c) {echo $c->id . ',';}?>">All</option>
                                                 <?php foreach ($chassis as $c) {?>
                                                     <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
                                                 <?php }?>
