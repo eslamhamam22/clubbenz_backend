@@ -1,4 +1,4 @@
-<?php $this->load->view('common/common_header');?>
+<?php $this->load->view('provider/common/common_header');?>
     <body class="fix-header">
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">

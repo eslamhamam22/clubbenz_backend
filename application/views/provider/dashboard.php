@@ -1,5 +1,5 @@
 
-<?php $this->load->view('common/common_header');?>
+<?php $this->load->view('provider/common/common_header');?>
  <body class="fix-header">
 
     <div class="preloader">
@@ -195,11 +195,11 @@ if ($current_plan) {
 						</div>
 					</div>
 				</div>
-				<?php $this->load->view("common/common_footer")?>
+				<?php $this->load->view("provider/common/common_footer")?>
 			</div>
 		</div>
 
 	</div>
-    <?php $this->load->view("common/common_script")?>
+    <?php $this->load->view("provider/common/common_script")?>
 </body>
 </html>

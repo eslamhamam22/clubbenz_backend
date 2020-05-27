@@ -1,5 +1,5 @@
 
-<?php $this->load->view('common/common_header'); ?>
+<?php $this->load->view('provider/common/common_header');?>
 <body class="fix-header">
 
 <div class="preloader">
@@ -20,7 +20,7 @@
 			</div>
 			<?php $this->load->view('message');?>
 			<div style="overflow: auto">
-				<form action="<?php echo site_url('provider/plan/subscribe/'.$plan->id); ?>" method="get">
+				<form action="<?php echo site_url('provider/plan/subscribe/' . $plan->id); ?>" method="get">
 					<div class="form-group">
 						<div class="col-xs-12">
 							<label>Extra number of days: </label>
@@ -34,13 +34,13 @@
 					</div>
 				</form>
 			</div>
-			<?php $this->load->view("common/common_footer")?>
+			<?php $this->load->view("provider/common/common_footer")?>
 		</div>
 
 	</div>
 </div>
 </div>
-<?php $this->load->view("common/common_script")?>
+<?php $this->load->view("provider/common/common_script")?>
 <script>
     $(document).ready( function () {
         $('#myTable').DataTable({"bSort": false});

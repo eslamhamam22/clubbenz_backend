@@ -1,4 +1,4 @@
-<?php $this->load->view('common/common_header');?>
+<?php $this->load->view('provider/common/common_header');?>
 
 <body class="fix-header">
 
@@ -127,11 +127,11 @@ foreach ($rec as $us) {
 				</form>
 
             </div>
-            <?php $this->load->view("common/common_footer")?>
+            <?php $this->load->view("provider/common/common_footer")?>
         </div>
     </div>
 </div>
-<?php $this->load->view("common/common_script")?>
+<?php $this->load->view("provider/common/common_script")?>
 
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>

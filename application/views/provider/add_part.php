@@ -1,4 +1,4 @@
-<?php $this->load->view('common/common_header');?>
+<?php $this->load->view('provider/common/common_header');?>
     <body class="fix-header">
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -323,13 +323,13 @@
                     </form>
 
                 </div>
-                <?php $this->load->view('common/common_footer')?>
+                <?php $this->load->view('provider/common/common_footer')?>
             </div>
         </div>
 
 
 
-        <?php $this->load->view('common/common_script')?>
+        <?php $this->load->view('provider/common/common_script')?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
