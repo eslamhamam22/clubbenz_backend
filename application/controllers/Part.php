@@ -197,12 +197,12 @@ class part extends MY_Controller {
 				}
 				if ($result) {
 
-					// redirect(base_url('Part/?success=Added successfully!'));
+					redirect(base_url('Part/?success=Added successfully!'));
 				} else {
 					echo $result;
 //					print_r($new_array);
 
-					// redirect(base_url('Part/?error=Unknown error!'));
+					redirect(base_url('Part/?error=Unknown error!'));
 				}
 			} else {
 				$error = validation_errors();
@@ -220,7 +220,7 @@ class part extends MY_Controller {
 		$this->data['providers'] = $this->provider->select_provider();
 		$this->data['title'] = 'Add Listing Part';
 
-		// $this->load->view('add_part', $this->data);
+		$this->load->view('add_part', $this->data);
 	}
 	public function del_part($id) {
 		$id = $this->part->del_part($id);
