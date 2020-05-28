@@ -81,4 +81,21 @@ class Membership_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+	public function get_current_membership_by_user($user_id) {
+		$this->db->select('*');
+		$this->db->from('membership_st');
+		$this->db->where('user_id', $user_id);
+		$this->db->order_by('id', "DESC");
+		$this->db->limit(1);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			return $query->result()[0];
+		} else {
+			return false;
+		}
+	}
+	public function subscribe($user_id, $membership, $address){
+		$this->db->insert('membership_st', ["user_id" => $user_id, "membership" => $membership, "address" => $address, "status" => "pending"]);
+	}
+
 }
