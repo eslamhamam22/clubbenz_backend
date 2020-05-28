@@ -35,7 +35,7 @@ class Memberships extends REST_Controller {
 		$data["memberships"]= $memberships;
 		$this->response($data, 200);
 	}
-	public function subscribe(){
+	public function subscribe_post(){
 		$user_id = $this->post('user_id');
 		$address = $this->post('address');
 		$membership = $this->post('membership');
