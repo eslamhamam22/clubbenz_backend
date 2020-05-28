@@ -162,10 +162,11 @@ class Membership extends MY_Controller {
 
 		echo $val;
 		if ($val) {
-			// redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
 		} else {
-			// redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
 		}
+
 	}
 
 	public function add_ajax_details() {

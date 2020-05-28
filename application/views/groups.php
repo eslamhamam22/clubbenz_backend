@@ -39,7 +39,7 @@
                                         <!-- <button type="button" class="btn waves-effect waves-light btn-inverse dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button> -->
                             	        <button aria-expanded="true" data-toggle="dropdown" class="btn dropdown-toggle waves-effect waves-light"><span class="caret"></span></button>
                                         <ul role="menu" class="dropdown-menu">
-                                            <!-- <li><a href="<?php echo base_url() ?>permissions/delete_group/<?php echo $g['id']; ?>">Delete</a></li> -->
+                                            <li><a href="<?php echo base_url() ?>permissions/delete_group/<?php echo $g['id']; ?>">Delete</a></li>
                                             <li><a href="javascript:void(0)" onclick="updateGroup('<?php echo $g["id"] ?>', '<?php echo $g["name"] ?>', '<?php echo $g["description"] ?>', '<?php echo $g["check_permission"] ?>')">Edit</a></li>
                                             <li><?php if ($g["check_permission"] == "on") {?><li><a href="<?php echo base_url(); ?>permissions/group_base_permissions?group_id=<?php echo $g['id']; ?>">Manage Permissions</a></li><?php }?>
                                         </ul>
