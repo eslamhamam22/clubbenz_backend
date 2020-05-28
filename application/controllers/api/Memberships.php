@@ -18,7 +18,12 @@ class Memberships extends REST_Controller {
 		$user_id = $this->get('user_id');
 		$features= $this->Membership_model->membership_manage();
 		$memberships["platinum"]["features"]= array();
+		$details= $this->Membership_model->edit_membership_fet(1);
+		$memberships["platinum"]["price"]= $details[0]->platinum_price;
+		$memberships["platinum"]["image"]= $details[0]->platinum_image;
 		$memberships["gold"]["features"]= array();
+		$memberships["gold"]["price"]= $details[0]->price;
+		$memberships["gold"]["image"]= $details[0]->gold_image;
 		$data["current"]= null;
 		if($user_id){
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
