@@ -40,7 +40,7 @@
 					<?php foreach ($requests as $request) {?>
 						<tr>
 						<td><?php echo $request->part_id; ?></td>
-						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?>(cm)</td>
+						<td><?php echo $request->height . "*" . $request->width . "*" . $request->length; ?>(Cm, Gm)</td>
 						<td><?php echo $request->weight; ?>(gm)</td>
 						<td><?php echo $request->address . ", " . $request->city; ?></td>
 						<td><?php echo $request->price; ?>  <?php if (!empty($request->price)) {echo lang("E.G.P");}?></td>

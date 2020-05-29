@@ -215,6 +215,18 @@ class Part_model extends CI_Model {
 			return $name;
 		}
 	}
+	public function get_model_number($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('model');
+		// $this->db->order_by('chassis_num', 'asc');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			$name = $q->row();
+			return $name;
+		}
+
+	}
 	public function add_part($data) {
 		$this->db->insert('parts', $data);
 		return $this->db->insert_id();

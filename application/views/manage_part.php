@@ -29,14 +29,14 @@
                             <table id="myTable" class="table table-striped" >
                                 <thead>
                                 <tr>
-                        <th style="text-align: center;"><input type="checkbox" class="selectAll"></th>
-                        <th>ID</th>
+                                    <th style="text-align: center;"><input type="checkbox" class="selectAll"></th>
+                                    <th>ID</th>
                                     <th>Photo</th>
                                     <th>Provider Name</th>
                                     <th>Provider Logo</th>
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
-                                    <th>Chassis</th>
+                                    <th>class/Chassis</th>
                                     <th>Part Case</th>
                                     <th>Brand/User</th>
                                     <th>Approve/Reject</th>
@@ -47,6 +47,7 @@
                                 <?php
 foreach ($rec as $us) {
 	$chassis_number = $this->part->get_chassis_number($us->chassis_id);
+	$model_number = $this->part->get_model_number($us->model_id);
 
 	/*$brand=  explode(",",$us->part_brand);*/
 	$brand = $this->part->brand_data($us->part_brand);
@@ -74,7 +75,7 @@ foreach ($rec as $us) {
                                         </td>
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
                                         <td><?php echo $cat->name . "<br>" . $scat->name; ?> </td>
-                                        <td><?php echo $chassis_number->chassis_num; ?> </td>
+                                        <td><?php echo $chassis_number->chassis_num; ?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
                                         <td><?php echo $us->part_case; ?> </td>
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
