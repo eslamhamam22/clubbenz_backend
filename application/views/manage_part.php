@@ -86,7 +86,7 @@ foreach ($rec as $us) {
                                         <?php if ($us->status == "pending" || $us->status == "approve") {?>
                                             <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
                                         <?php }?>
-                            </td>
+                                        </td>
 
                                         <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('Part/edit_part') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>

@@ -50,7 +50,8 @@
                         </div>
                     </div> -->
                     <div class="row" id="nestable">
-                        <?php foreach ($permissions as $c) {?>
+                        <?php foreach ($permissions as $c) {
+	?>
                         <div class="col-md-6">
                             <ol class="dd-list">
                                 <li class="dd-item" data-id="3">
@@ -59,7 +60,15 @@
 	                                <?php foreach ($functions as $f) {?>
                                         <ol class="dd-list">
                                             <li class="dd-item" data-id="6">
-                                                <div class="dd-handle"><input type="checkbox" name="permissions[]"  value="<?php echo $f['id']; ?>" <?php if (!empty($group_permissions)) {if (in_array($f['id'], $group_permissions)) {?> checked <?php }}?>/> &nbsp; <?php echo $f['name']; ?></div>
+                                                <div class="dd-handle">
+                                                    <input type="checkbox" name="permissions[]" value="<?php echo $f['id']; ?>"
+                                                      <?php if (!empty($group_permissions)) {
+		if (in_array($f['id'], $group_permissions)) {?>
+                                                         checked
+                                                         <?php }}?>
+                                                    / >
+                                                         &nbsp; <?php echo $f['name']; ?>
+                                                </div>
                                             </li>
                                         </ol>
                                     <?php }?>

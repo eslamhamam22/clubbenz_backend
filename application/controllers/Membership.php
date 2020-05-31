@@ -10,7 +10,7 @@ class Membership extends MY_Controller {
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
 		$this->load->model('Membership_model', 'membership');
-
+		$this->load->model('acl_model');
 		$this->load->library('session');
 
 		if (!$this->ion_auth->logged_in()) {
@@ -29,6 +29,12 @@ class Membership extends MY_Controller {
 		$this->data['rel'] = $this->membership->membership_rel_manage();
 		$this->data['title'] = 'Memberships Manage';
 		$this->load->view('membership_manage', $this->data);
+	}
+	public function membership_request() {
+		$this->data['st'] = $this->membership->membership_st_manage();
+		$this->data['users'] = $this->acl_model->get_all_users();
+		$this->data['title'] = 'Memberships Request Manage';
+		$this->load->view('membership_request_manage', $this->data);
 	}
 	public function membership_setting() {
 		$this->data['rec'] = $this->membership->membership_manage();
@@ -95,6 +101,14 @@ class Membership extends MY_Controller {
 			redirect(base_url('membership/?error=Some error!'));
 		}
 	}
+	public function membership_request_del($id) {
+		$id = $this->membership->membership_request_del($id);
+		if ($id) {
+			redirect(base_url('membership/?success= Delete successfully!'));
+		} else {
+			redirect(base_url('membership/?error=Some error!'));
+		}
+	}
 	public function edit_membership($id) {
 		$data['rec'] = $this->membership->edit_membership($id);
 		$data['title'] = 'Edit Member ship';
@@ -138,13 +152,14 @@ class Membership extends MY_Controller {
 					}
 
 				}
+
 				if ($val) {
 					redirect(base_url('membership/?success=Update  successfully!'));
 				} else {
 					redirect(base_url('membership/?success=Update  successfully!'));
 				}
 			} else {
-				$error = validation_errors();
+				// $error = validation_errors();
 				redirect(base_url('membership/edit_membership/' . $id . '?error=' . $error));
 			}
 		}
@@ -152,20 +167,26 @@ class Membership extends MY_Controller {
 
 	public function membership_setting_update() {
 //
-		$id = $this->input->post('id');
-		print_r($_POST);
+		// $id = $this->input->post('id');
+		$this->membership->reset_membership();
 
+		$new_array = array();
 		$new_array['gold'] = $this->input->post('gold');
 		$new_array['platinum'] = $this->input->post('platinum');
-
-		$val = $this->membership->membership_update($new_array, $id);
-
-		echo $val;
+		foreach ($new_array as $membership) {
+			if (is_array($membership)) {
+				foreach ($membership as $key => $value) {
+					$val = $this->membership->membership_setting_update($key, [$value => $value]);
+				}
+			}
+		}
 		if ($val) {
 			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
 		} else {
 			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
 		}
+
+		// $val = $this->membership->membership_setting_update($new_array);
 
 	}
 
@@ -231,5 +252,13 @@ class Membership extends MY_Controller {
 			}
 
 		}
+	}
+	public function approve($id) {
+		$this->membership->approve_membership($id);
+		redirect(base_url('membership/membership_request?success=updated  successfully!'));
+	}
+	public function reject($id) {
+		$this->membership->reject_membership($id);
+		redirect(base_url('membership/membership_request?success=updated  successfully!'));
 	}
 }

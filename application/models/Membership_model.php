@@ -10,9 +10,24 @@ class Membership_model extends CI_Model {
 			return false;
 		}
 	}
+	public function membership_setting_manage() {
+		$this->db->where('id', $id);
+		$this->db->from('membership');
+		$q = $this->db->get();
+		return $q->result();
+	}
 	public function membership_rel_manage() {
 		$this->db->select('*');
 		$this->db->from('membership_rel');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+	public function membership_st_manage() {
+		$this->db->select('*');
+		$this->db->from('membership_st');
 		if ($query = $this->db->get()) {
 			return $query->result();
 		} else {
@@ -58,6 +73,12 @@ class Membership_model extends CI_Model {
 		return $this->db->affected_rows();
 
 	}
+	public function membership_request_del($id) {
+		$this->db->where('id', $id);
+		$this->db->delete('membership_st');
+		return $this->db->affected_rows();
+
+	}
 	public function edit_membership($id) {
 		$this->db->where('id', $id);
 		$this->db->from('membership');
@@ -68,6 +89,16 @@ class Membership_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('membership', $new_array);
 		return $this->db->affected_rows();
+	}
+	public function reset_membership() {
+		$this->db->update('membership', ["gold" => "", "platinum" => ""]);
+
+	}
+	public function membership_setting_update($id, $data_arr) {
+
+		$this->db->where('id', $id);
+		$this->db->update('membership', $data_arr);
+		// return true;
 	}
 	public function edit_membership_fet($id) {
 		$this->db->where('id', $id);
@@ -94,8 +125,20 @@ class Membership_model extends CI_Model {
 			return false;
 		}
 	}
-	public function subscribe($user_id, $membership, $address){
+	public function subscribe($user_id, $membership, $address) {
 		$this->db->insert('membership_st', ["user_id" => $user_id, "membership" => $membership, "address" => $address, "status" => "pending"]);
+	}
+
+	public function approve_membership($id) {
+		$this->db->where('id', $id);
+		$this->db->update('membership_st', ["status" => 'approve']);
+		return $this->db->affected_rows();
+	}
+
+	public function reject_membership($id) {
+		$this->db->where('id', $id);
+		$this->db->update('membership_st', ["status" => 'reject']);
+		return $this->db->affected_rows();
 	}
 
 }

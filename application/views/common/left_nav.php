@@ -39,7 +39,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 			<h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
 		<ul class="nav" id="side-menu">
 			<?php if ($group_id[0]->name && $group_id[0]->name != 'Part_Providers') {?>
-				<li> <a href="<?php echo base_url('/dashboard') ?>" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+				<li> <a href="<?php echo base_url('/dashboard') ?>" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 			<?php }if (in_array('Preferances/active', $c_a) || in_array('Advertisement/active', $c_a) || $group_id[0]->name == 'admin') {
 	?>
 				<li>
@@ -201,6 +201,9 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 							<li> <a href="<?php echo base_url() ?>membership/index"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Memberships<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
 							<li> <a href="<?php echo base_url() ?>membership/membership_features"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership features<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+
+							<li> <a href="<?php echo base_url() ?>membership/membership_request"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership Request<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+
 
 						<li> <a href="<?php echo base_url() ?>membership/membership_setting"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership setting<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 

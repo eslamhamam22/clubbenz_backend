@@ -55,9 +55,10 @@
                                         <td><?php echo $us->id ?></td>
                                         <td><?php echo $us->benefit ?></td>
 
-                                        <td><input style="margin: 15px"  type="checkbox" name="gold[<?php echo $us->id; ?>]" value="gold"  <?php echo ($us->gold == "gold") ? "checked" : ""; ?>></td>
+                                        <td>
+                                        <input style="margin: 15px"  type="checkbox" name="gold[<?php echo $us->id ?>]" value="gold"  <?php echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
 
-                                        <td><input style="margin: 15px"  type="checkbox" name="platinum[<?php echo $us->id; ?>]" value="platinum"  <?php echo ($us->platinum == "platinum") ? "checked" : ""; ?>></td>
+                                        <td><input style="margin: 15px"  type="checkbox" name="platinum[<?php echo $us->id ?>]" value="platinum"  <?php echo ($us->platinum == 'platinum') ? "checked" : ""; ?>></td>
                                     </tr>
                                     <?php }?>
                                 </tbody>
