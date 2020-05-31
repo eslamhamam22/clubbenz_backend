@@ -13,12 +13,8 @@
                         <div class="container-fluid">
                             <div class="row bg-title">
                                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                                    <h4 class="page-title">Manage Membership Sittng</h4>
+                                    <h4 class="page-title">Manage Membership Sittngs</h4>
                                 </div>
-                                <!-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                                    <a style="background: #2CABE3" href="<?php echo base_url('membership/add_membership') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Membership</a>
-
-                                </div> -->
                             </div>
 
                             <?php $this->load->view('message');?>
@@ -29,6 +25,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Benefit</th>
+                                        <th>Details</th>
                                         <th>Gold</th>
                                         <th>Platinum</th>
                                     </tr>
@@ -37,6 +34,7 @@
                                     <tr>
                                         <td>Price</td>
                                         <td></td>
+                                        <td></td>
                                     <?php foreach ($fet as $fe) {?>
                                         <td><?php echo $fe->price; ?></td>
                                         <td><?php echo $fe->platinum_price; ?></td>
@@ -44,6 +42,7 @@
                                     </tr>
                                     <tr>
                                         <td>Card Image</td>
+                                        <td></td>
                                         <td></td>
                                     <?php foreach ($fet as $fe) {?>
                                         <td><img style="width:60px; height: 60px" src="<?php echo base_url('upload/') . $fe->gold_image; ?>" ></td>
@@ -54,7 +53,9 @@
                                     <tr>
                                         <td><?php echo $us->id ?></td>
                                         <td><?php echo $us->benefit ?></td>
-
+                                        <td><?php foreach ($rel as $re) {?>
+                                            <?php if ($us->id == $re->membership_id) {echo '-' . $re->details . '<br>';}}?>
+                                        </td>
                                         <td>
                                         <input style="margin: 15px"  type="checkbox" name="gold[<?php echo $us->id ?>]" value="gold"  <?php echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
 

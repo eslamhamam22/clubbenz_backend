@@ -27,25 +27,25 @@ class Membership extends MY_Controller {
 	public function index() {
 		$this->data['rec'] = $this->membership->membership_manage();
 		$this->data['rel'] = $this->membership->membership_rel_manage();
-		$this->data['title'] = 'Memberships Manage';
+		$this->data['title'] = 'Manage Membership Datils';
 		$this->load->view('membership_manage', $this->data);
 	}
 	public function membership_request() {
 		$this->data['st'] = $this->membership->membership_st_manage();
 		$this->data['users'] = $this->acl_model->get_all_users();
-		$this->data['title'] = 'Memberships Request Manage';
+		$this->data['title'] = 'Manage Membership Requests ';
 		$this->load->view('membership_request_manage', $this->data);
 	}
 	public function membership_setting() {
 		$this->data['rec'] = $this->membership->membership_manage();
 		$this->data['rel'] = $this->membership->membership_rel_manage();
 		$this->data['fet'] = $this->membership->membership_features_manage();
-		$this->data['title'] = 'Memberships Setting Manage';
+		$this->data['title'] = 'Manage Membership Settings ';
 		$this->load->view('membershipsetting_manage', $this->data);
 	}
 	public function membership_features() {
 		$this->data['rec'] = $this->membership->membership_features_manage();
-		$this->data['title'] = 'Memberships Features Manage';
+		$this->data['title'] = 'Manage Membership Features ';
 		$this->load->view('memberships_features_manage', $this->data);
 	}
 	public function add_membership() {
@@ -137,15 +137,13 @@ class Membership extends MY_Controller {
 				$new_data = array();
 				$ct = count($this->input->post('details'));
 				for ($i = 0; $i < $ct; $i++) {
-
 					$new_data['details'] = $this->input->post('details')[$i];
 					$new_data['membership_id'] = $id;
-					$error_id = $this->input->post('error_id')[$i];
+					// $error_id = $this->input->post('error_id')[$i];
 
-					if (!empty($error_id)) {
+					if (isset($this->input->post('error_id')[$i])) {
 
-						$rec = $this->membership->edit_membership_rel($new_data, $error_id);
-
+						$rec = $this->membership->edit_membership_rel($new_data, $this->input->post('error_id')[$i]);
 					} else {
 
 						$this->membership->add_membership_rel($new_data);

@@ -673,7 +673,7 @@ class Car_guide extends MY_Controller {
 
 			$files = $_FILES;
 			$new_data = array();
-			$ct = count($this->input->post('descriptions'));
+			$ct = count(array($this->input->post('descriptions')));
 			$indexx = 0;
 			$counter = 0;
 			for ($i = 0; $i < $ct; $i++) {

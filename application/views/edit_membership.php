@@ -86,7 +86,7 @@ $error_solution = $this->membership->get_membership_rel_id($us->id);
                                     </div>
                                     <div class="row margin-top">
                                         <div align="center" >
-                                            <input style="width: 150px; height: 40px; background-color: forestgreen " type="button" onclick="delete_sol(<?php echo $es->id ?>);"  name="delete" class="btn btn-primary" value="Delete">
+                                            <input style="width: 150px; height: 40px; margin-top:20px; background-color: forestgreen " type="button" onclick="delete_sol(<?php echo $es->id ?>);"  name="delete" class="btn btn-primary" value="Delete">
                                         </div>
                                     </div>
                                 </div>

@@ -198,14 +198,14 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 
 					<ul class="nav nav-second-level"><?php if ($group_id[0]->name == 'admin') {?>
 
-							<li> <a href="<?php echo base_url() ?>membership/index"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Memberships<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+							<li> <a href="<?php echo base_url() ?>membership/index"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Membership Datils<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
-							<li> <a href="<?php echo base_url() ?>membership/membership_features"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership features<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+							<li> <a href="<?php echo base_url() ?>membership/membership_features"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Membership Features<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
-							<li> <a href="<?php echo base_url() ?>membership/membership_request"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership Request<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+							<li> <a href="<?php echo base_url() ?>membership/membership_request"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Membership Request<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
 
-						<li> <a href="<?php echo base_url() ?>membership/membership_setting"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">membership setting<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+						<li> <a href="<?php echo base_url() ?>membership/membership_setting"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Membership Settings<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
 					</ul>
 				</li>
