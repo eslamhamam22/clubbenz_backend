@@ -22,6 +22,7 @@ class workshopsheet extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Workshop_excel', 'workshopex');
 		$this->load->model('workshop_model', 'test');
+		$this->load->model('Workshop_model', 'workshop');
 
 	}
 	// index
@@ -75,6 +76,9 @@ class workshopsheet extends CI_Controller {
 				// if ($arrayCount > 0) {
 				// 	$this->db->empty_table('workshop');
 				// }
+				//
+				$counter = 0;
+				$failed = 0;
 
 				for ($row = 2; $row <= count($allDataInSheet); $row++) {
 					$data = array(
@@ -98,19 +102,18 @@ class workshopsheet extends CI_Controller {
 						'created_date' => $allDataInSheet[$row]['P'],
 					);
 
-					$this->db->insert('workshop', $data);
-					$id = $this->db->insert_id();
-				}
-				if (true) {
+					if ($result = $this->workshop->add_workshop($data)) {
+//						print_r($column);
+						$counter++;
+					} else {
+						$failed++;
+					}
 
-					$this->load->helper('url');
-					redirect(base_url('workshop/?success=Data%20Imported%20successfully'));
-					return;
 				}
-				// else{
-				//       redirect( base_url('cars/?success=Error'));
-
-				// }
+				if ($failed > 0) {
+					redirect(base_url('workshop/?success=' . $counter . ' Workshops were added successfully!&error=' . $failed . ' failed to be added'));
+				}
+				redirect(base_url('workshop/?success=' . $counter . ' Workshops were added successfully!'));
 
 			} else {
 				echo "Please import correct file, did not match excel sheet column";

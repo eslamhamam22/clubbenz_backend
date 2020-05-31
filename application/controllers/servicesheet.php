@@ -22,6 +22,7 @@ class servicesheet extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Site', 'site');
 		$this->load->model('Service_model', 'test');
+		$this->load->model('Service_model', 'service');
 
 	}
 	// index
@@ -75,6 +76,9 @@ class servicesheet extends CI_Controller {
 				// 	$this->db->empty_table('service');
 				// }
 
+				$counter = 0;
+				$failed = 0;
+
 				for ($row = 2; $row <= count($allDataInSheet); $row++) {
 
 					$data = array(
@@ -84,20 +88,19 @@ class servicesheet extends CI_Controller {
 						'show_services' => $allDataInSheet[$row]['D'],
 					);
 
-					$this->db->insert('services', $data);
-					$id = $this->db->insert_id();
+					if ($result = $this->service->add_services($data)) {
+//						print_r($column);
+						$counter++;
+					} else {
+						$failed++;
+					}
 
 				}
-				if (true) {
 
-					$this->load->helper('url');
-					redirect(base_url('service/?success=Data%20Imported%20successfully'));
-					return;
+				if ($failed > 0) {
+					redirect(base_url('service/?success=' . $counter . ' Services were added successfully!&error=' . $failed . ' failed to be added'));
 				}
-				// else{
-				//       redirect( base_url('cars/?success=Error'));
-
-				// }
+				redirect(base_url('service/?success=' . $counter . ' Services were added successfully!'));
 
 			} else {
 				echo "Please import correct file, did not match excel sheet column";
