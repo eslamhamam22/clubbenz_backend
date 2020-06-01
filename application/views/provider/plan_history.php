@@ -21,7 +21,7 @@
 			<?php $this->load->view('message');?>
 			<div style="overflow: auto">
 				<?php
-if ($current_plan) {
+if (isset($current_plan)) {
 	?>
 					<div class="bg-title" style="padding: 10px 20px; margin-left: 0px; margin-right: 0px;">
 						<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -50,6 +50,7 @@ if ($current_plan) {
 					</tr>
 					</thead>
 					<tbody>
+					<?php if (is_array($plans)): ?>
 					<?php foreach ($plans as $plan) {if ($plan->plan->id == $current_plan->plan_id) {?>
 							<tr style="background-color: #2F323E!important; color: white !important;">
 							<?php } else {?>
@@ -69,7 +70,8 @@ if ($current_plan) {
 						</tr>
 						<?php
 }
-?>
+
+?><?php endif;?>
 					</tbody>
 				</table>
 

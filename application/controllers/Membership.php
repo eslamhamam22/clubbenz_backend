@@ -27,13 +27,13 @@ class Membership extends MY_Controller {
 	public function index() {
 		$this->data['rec'] = $this->membership->membership_manage();
 		$this->data['rel'] = $this->membership->membership_rel_manage();
-		$this->data['title'] = 'Manage Membership Datils';
+		$this->data['title'] = 'Manage Membership datils';
 		$this->load->view('membership_manage', $this->data);
 	}
 	public function membership_request() {
 		$this->data['st'] = $this->membership->membership_st_manage();
 		$this->data['users'] = $this->acl_model->get_all_users();
-		$this->data['title'] = 'Manage Membership Requests ';
+		$this->data['title'] = 'Manage Membership request ';
 		$this->load->view('membership_request_manage', $this->data);
 	}
 	public function membership_setting() {
