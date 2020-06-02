@@ -56,7 +56,6 @@
                                         <label for="inputEmail3" class="col-sm-3 control-label">Frequency</label>
                                         <div class="col-sm-9">
                                             <select id="frequency"  name="frequency" class="form-control" required>
-                                                <option value="0">0 month</option>
                                                 <option value="3">3 month</option>
                                                 <option value="6">6 month</option>
                                                 <option value="9">9 month</option>
