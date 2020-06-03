@@ -74,9 +74,9 @@ class Push_notification_model extends CI_Model {
 	public function get_all_users($data) {
 		$this->db->select('*');
 
-		if ($data['class_id'] != '') {
-			$this->db->where('model_id', $data['class_id']);
-		}
+		// if ($data['class_id'] != '') {
+		// 	 $this->db->where('model_id', $data['class_id']);
+		// }
 
 		if ($data['year_id'] != '') {
 			$this->db->where('year_id', $data['year_id']);

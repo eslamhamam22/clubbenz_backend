@@ -21,7 +21,7 @@
 			<?php $this->load->view('message');?>
 			<div style="overflow: auto">
 				<?php
-if (isset($current_plan)) {
+if ($current_plan) {
 	?>
 					<div class="bg-title" style="padding: 10px 20px; margin-left: 0px; margin-right: 0px;">
 						<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">

@@ -47,8 +47,8 @@ class Plan extends CI_Controller {
 		$provider_id = $this->session->userdata("id");
 		$provider_plans = $this->get_current_provider_history($provider_id);
 		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
-		$this->data['title'] = 'Plan History';
-		$this->load->view('provider/plan_history', $this->data, ["plans" => $provider_plans, "current_plan" => $current_plan]);
+		$data_title = 'Plan History';
+		$this->load->view('provider/plan_history', ["plans" => $provider_plans, "current_plan" => $current_plan, "title" => $data_title]);
 	}
 	public function subscribe_form($plan_id) {
 		$provider_id = $this->session->userdata("id");
