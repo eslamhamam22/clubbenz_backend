@@ -47,19 +47,21 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
 
                         <form id="frm">
                             <div class="row">
-                                <div class="col-md-4 both WEEK MONTH" id="start_date" style="display: none">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">To</label>
-                                        <div class="col-md-9">
-                                            <input type="text" autocomplete="off" id="datepicker1"  data-date-format='yyyy-mm-dd' name="date" class="form-control form_datetime">
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4 both MONTH" id="end_date" style="display:none">
                                     <div class="form-group">
                                         <label class="control-label col-md-3">from</label>
                                         <div class="col-md-9">
                                              <input type="text" disabled  autocomplete="off" id="datepicker2"  data-date-format='yyyy-mm-dd' name="datef" class="form-control form_datetime ">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 both WEEK MONTH" id="start_date" style="display: none">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">To</label>
+                                        <div class="col-md-9">
+                                            <input type="text" autocomplete="off" id="datepicker1"  data-date-format='yyyy-mm-dd' name="date" class="form-control form_datetime">
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +333,8 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
       if(this.value == "WEEK") {
         $('#form').show();
         $('#start_date').show();
-        $('#end_date').hide();
+        $('#end_date').show();
+        $('#datepicker2').removeAttr("disabled");
       } else {
         $('#form').show();
         $('#start_date').show();
@@ -348,6 +351,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                     var chassis = $(this).val();
                     var period= $('#period').val();
                     if(period == 'WEEK'){
+                        var datef =  $('#datepicker2').val();
                         var date =  $('#datepicker1').val();
 
                     }
@@ -377,6 +381,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                 var period= $('#period').val();
                 if(period != ""){
                    if(period == 'WEEK'){
+                        var datef =  $('#datepicker2').val();
                         var date =  $('#datepicker1').val();
 
                     }
@@ -405,7 +410,8 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                 $('#fresh').show();
                 var period= $('#period').val();
                if(period == 'WEEK'){
-                    var date =  $('#datepicker1').val();
+                    var datef =  $('#datepicker2').val();
+                        var date =  $('#datepicker1').val();;
                     $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/app_user_couunt") ?>',
@@ -450,7 +456,8 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                 $('#fresh').show();
                 var period= $('#period').val();
                if(period == 'WEEK'){
-                    var date =  $('#datepicker1').val();
+                    var datef =  $('#datepicker2').val();
+                        var date =  $('#datepicker1').val();
                     $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/shop_count") ?>',

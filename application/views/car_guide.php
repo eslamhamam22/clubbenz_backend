@@ -20,7 +20,7 @@
                             <h4 class="page-title">Listing Car Guide </h4>
                         </div>
                         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                                    <a style="background: #2CABE3" href="<?php echo base_url('car_guide/add_car_guide') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Car Guied</a>
+                                    <a style="background: #2CABE3" href="<?php echo base_url('car_guide/add_car_guide') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Car Guide</a>
                         </div>
                     </div>
 

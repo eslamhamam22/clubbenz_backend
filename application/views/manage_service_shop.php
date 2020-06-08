@@ -19,6 +19,8 @@
                             </div>
                             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                                 <a style="background: #2CABE3" href="<?php echo base_url('serviceshop/add_service_shop') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Service Shop</a>
+                                <a style="background: #2CABE3" href="<?php echo base_url('serviceshop/import_service_shop') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">import Service Shop</a>
+                                    <a style="background: #2CABE3" href="<?php echo base_url('serviceshop/export') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Export Service Shop</a>
                             </div>
                         </div>
                         <?php $this->load->view('message');?>

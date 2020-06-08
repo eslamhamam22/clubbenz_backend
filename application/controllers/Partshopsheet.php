@@ -13,23 +13,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-class workshopsheet extends CI_Controller {
+class Partshopsheet extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 		// load model
 		$this->load->helper('url');
-		$this->load->model('Workshop_excel', 'workshopex');
-		$this->load->model('workshop_model', 'test');
-		$this->load->model('Workshop_model', 'workshop');
+		// $this->load->model('Workshop_excel', 'workshopex');
+		// $this->load->model('workshop_model', 'test');
+		$this->load->model('Partsshop_model', 'partshop');
 
 	}
 	// index
 	public function index() {
 		$this->data['title'] = 'Import Excel Sheet';
 
-		$this->load->view('excel_workshop', $this->data);
+		$this->load->view('excel_part_shop', $this->data);
 	}
 
 	// file upload functionality
@@ -39,7 +39,7 @@ class workshopsheet extends CI_Controller {
 		$this->form_validation->set_rules('fileURL', 'Upload File', 'callback_checkFileValidation');
 		if ($this->form_validation->run() == false) {
 
-			redirect(base_url('workshop/?error= invalid File or No file'));
+			redirect(base_url('partshop/?error= invalid File or No file'));
 		} else {
 			// If file uploaded
 			if (!empty($_FILES['fileURL']['name'])) {
@@ -84,25 +84,26 @@ class workshopsheet extends CI_Controller {
 					$data = array(
 						'name' => $allDataInSheet[$row]['A'],
 						'arabic_name' => $allDataInSheet[$row]['B'],
-						'web' => $allDataInSheet[$row]['C'],
+						'web_link' => $allDataInSheet[$row]['C'],
 						'city' => $allDataInSheet[$row]['D'],
 						'country' => $allDataInSheet[$row]['E'],
-						'location_lat' => $allDataInSheet[$row]['F'],
-						'location_lon' => $allDataInSheet[$row]['G'],
-						'address' => $allDataInSheet[$row]['H'],
-						'opening_hour' => $allDataInSheet[$row]['I'],
-						'closing_hour' => $allDataInSheet[$row]['J'],
-						'day_off' => $allDataInSheet[$row]['K'],
+						'location_latitude' => $allDataInSheet[$row]['F'],
+						'location_longitude' => $allDataInSheet[$row]['G'],
+						'opening_hours' => $allDataInSheet[$row]['H'],
+						'closing_hours' => $allDataInSheet[$row]['I'],
+						'part_type' => $allDataInSheet[$row]['J'],
+						'off_day' => $allDataInSheet[$row]['K'],
 						'phone' => $allDataInSheet[$row]['L'],
-						'twitter' => $allDataInSheet[$row]['M'],
-						'email' => $allDataInSheet[$row]['N'],
+						'facebok_link' => $allDataInSheet[$row]['M'],
+						'address' => $allDataInSheet[$row]['N'],
 						'serch_tag' => $allDataInSheet[$row]['O'],
 						'serch_tag_arabic' => $allDataInSheet[$row]['P'],
-						'facebook_page_link' => $allDataInSheet[$row]['Q'],
-						'created_date' => $allDataInSheet[$row]['R'],
+						'created_date' => $allDataInSheet[$row]['Q'],
+						'email' => $allDataInSheet[$row]['R'],
+						'tweeter' => $allDataInSheet[$row]['S'],
 					);
 
-					if ($result = $this->workshop->add_workshop($data)) {
+					if ($result = $this->partshop->add_part_shop($data)) {
 //						print_r($column);
 						$counter++;
 					} else {
@@ -111,9 +112,9 @@ class workshopsheet extends CI_Controller {
 
 				}
 				if ($failed > 0) {
-					redirect(base_url('workshop/?success=' . $counter . ' Workshops were added successfully!&error=' . $failed . ' failed to be added'));
+					redirect(base_url('partshop/?success=' . $counter . ' Partshops were added successfully!&error=' . $failed . ' failed to be added'));
 				}
-				redirect(base_url('workshop/?success=' . $counter . ' Workshops were added successfully!'));
+				redirect(base_url('partshop/?success=' . $counter . ' Partshops were added successfully!'));
 
 			} else {
 				echo "Please import correct file, did not match excel sheet column";

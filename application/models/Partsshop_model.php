@@ -150,5 +150,15 @@ class Partsshop_model extends CI_Model {
 	public function total_partshop() {
 		return $this->db->count_all('partshop');
 	}
+
+	function fetch_data() {
+		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter"));
+		$this->db->from("partshop");
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return 0;
+	}
 }
 ?>

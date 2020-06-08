@@ -21,6 +21,8 @@
                         </div>
                         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                                     <a style="background: #2CABE3" href="<?php echo base_url('partshop/add_part_shop') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Part Shop</a>
+                                    <a style="background: #2CABE3" href="<?php echo base_url('partshop/import_part_shop') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">import Part Shop</a>
+                                    <a style="background: #2CABE3" href="<?php echo base_url('partshop/export') ?>" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Export Part Shop</a>
                         </div>
                     </div>
                         <?php $this->load->view('message');?>
