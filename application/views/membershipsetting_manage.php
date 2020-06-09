@@ -58,7 +58,7 @@
 
                                         <?php foreach ($fet as $fe) {?>
                                         <td>
-                                        <input style="margin: 15px"  type="checkbox" name="checkbox[<?php echo $fe->id ?>]" value="checkbox[<?php echo $fe->id ?>]"  <?php //echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
+                                        <input style="margin: 15px"  type="checkbox" name="<?php echo $fe->name ?>[<?php echo $fe->id ?>]" value="checkbox[<?php echo $fe->id ?>]"  <?php //echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
                                         <?php }?>
                                     </tr>
                                     <?php }?>
