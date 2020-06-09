@@ -73,6 +73,12 @@ class Membership_model extends CI_Model {
 		return $this->db->affected_rows();
 
 	}
+	public function membership_features_del($id) {
+		$this->db->where('id', $id);
+		$this->db->delete('membership_fet');
+		return $this->db->affected_rows();
+
+	}
 	public function membership_request_del($id) {
 		$this->db->where('id', $id);
 		$this->db->delete('membership_st');
@@ -139,6 +145,11 @@ class Membership_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('membership_st', ["status" => 'reject']);
 		return $this->db->affected_rows();
+	}
+
+	public function add_membership_features($new_array) {
+		$this->db->insert('membership_fet', $new_array);
+		return $this->db->insert_id();
 	}
 
 }

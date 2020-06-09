@@ -26,8 +26,9 @@
                                         <th>No</th>
                                         <th>Benefit</th>
                                         <th>Details</th>
-                                        <th>Gold</th>
-                                        <th>Platinum</th>
+                                       <?php foreach ($fet as $fe) {$ct = count(array($fe->id));?>
+                                        <th><?php echo $fe->name; ?></th>
+                                       <?php }?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,19 +36,17 @@
                                         <td>Price</td>
                                         <td></td>
                                         <td></td>
-                                    <?php foreach ($fet as $fe) {?>
+                                        <?php foreach ($fet as $fe) {?>
                                         <td><?php echo $fe->price; ?></td>
-                                        <td><?php echo $fe->platinum_price; ?></td>
-                                    <?php }?>
+                                         <?php }?>
                                     </tr>
                                     <tr>
                                         <td>Card Image</td>
                                         <td></td>
                                         <td></td>
-                                    <?php foreach ($fet as $fe) {?>
-                                        <td><img style="width:60px; height: 60px" src="<?php echo base_url('upload/') . $fe->gold_image; ?>" ></td>
-                                        <td><img style="width:60px; height: 60px" src="<?php echo base_url('upload/') . $fe->platinum_image; ?>" ></td>
-                                    <?php }?>
+                                        <?php foreach ($fet as $fe) {?>
+                                        <td><?php echo $fe->name; ?></td>
+                                        <?php }?>
                                     </tr>
                                     <?php foreach ($rec as $us) {?>
                                     <tr>
@@ -57,7 +56,9 @@
                                             <?php if ($us->id == $re->membership_id) {echo '-' . $re->details . '<br>';}}?>
                                         </td>
                                         <td>
+                                            <?php for ($i = 0; $i < $ct; $i++) {?>
                                         <input style="margin: 15px"  type="checkbox" name="gold[<?php echo $us->id ?>]" value="gold"  <?php echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
+                                        <?php }?>
 
                                         <td><input style="margin: 15px"  type="checkbox" name="platinum[<?php echo $us->id ?>]" value="platinum"  <?php echo ($us->platinum == 'platinum') ? "checked" : ""; ?>></td>
                                     </tr>

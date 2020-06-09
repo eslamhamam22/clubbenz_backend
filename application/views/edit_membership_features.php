@@ -36,40 +36,29 @@ foreach ($rec as $us) {
                                     <input type="hidden"  name="id" value="<?php echo $us->id; ?>">
 
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label">Gold Price</label>
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name" class="form-control" value="<?php echo $us->name ?>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
                                         <div class="col-sm-9">
                                             <input type="number" name="price" class="form-control" value="<?php echo $us->price ?>" required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label">Platinum Price</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" name="platinum_price" class="form-control" value="<?php echo $us->platinum_price ?>" required>
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
-                                        <label  class="col-sm-3 control-label"> Upload GOld Photo</label>
+                                        <label  class="col-sm-3 control-label"> Upload image</label>
                                         <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="gold_image" id="gold_image" size="20" />
+                                          <input type="file" class= "form-control btn btn-default" name="image" id="image" size="20" />
 
                                        </div>
                                     </div>
                                     <div class="form-group" style="padding-left: 200px">
-                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->gold_image; ?>" >
+                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->image; ?>" >
                                     </div>
-
-                                     <div class="form-group">
-                                        <label  class="col-sm-3 control-label"> Upload Platinum Photo</label>
-                                        <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="platinum_image" id="platinum_image" size="20" />
-
-                                       </div>
-                                    </div>
-                                    <div class="form-group" style="padding-left: 200px">
-                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->platinum_image; ?>" >
-                                    </div>
-
 
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">

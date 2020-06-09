@@ -163,31 +163,6 @@ class Membership extends MY_Controller {
 		}
 	}
 
-	public function membership_setting_update() {
-//
-		// $id = $this->input->post('id');
-		$this->membership->reset_membership();
-
-		$new_array = array();
-		$new_array['gold'] = $this->input->post('gold');
-		$new_array['platinum'] = $this->input->post('platinum');
-		foreach ($new_array as $membership) {
-			if (is_array($membership)) {
-				foreach ($membership as $key => $value) {
-					$val = $this->membership->membership_setting_update($key, [$value => $value]);
-				}
-			}
-		}
-		if ($val) {
-			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
-		} else {
-			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
-		}
-
-		// $val = $this->membership->membership_setting_update($new_array);
-
-	}
-
 	public function add_ajax_details() {
 
 		$this->load->view('ajax_error_details');
@@ -207,37 +182,68 @@ class Membership extends MY_Controller {
 		$this->load->view('edit_membership_features', $data);
 	}
 
+	public function add_membership_features() {
+		if ($this->input->post()) {
+
+			$rules = array(
+				array(
+					'field' => 'name',
+					'label' => 'Name',
+					'rules' => 'trim|required',
+				),
+			);
+
+			$this->form_validation->set_rules($rules);
+			if ($this->form_validation->run()) {
+				$file_name = $_FILES['image']['name'];
+				$new_array['name'] = $this->input->post('name');
+				$new_array['price'] = $this->input->post('price');
+
+				if ($file_name != '') {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $file_name;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('image')) {
+						echo ($this->upload->display_errors());
+					} else {
+						$data = $this->upload->data();
+						$new_array['image'] = $data['file_name'];
+					}
+				}
+				$result = $this->membership->add_membership_features($new_array);
+				if ($result) {
+					redirect(base_url('membership/membership_features/?success=Add  successfully!'));
+				} else {
+					redirect(base_url('membership/membership_features/?error=Some error!'));
+				}
+			} else {
+				$error = validation_errors();
+				redirect(base_url('membership/membership_features/?error=' . $error));
+			}
+		}
+		$this->data['title'] = 'Add';
+		$this->load->view('add_membership_features', $this->data);
+	}
+
 	public function membership_features_update() {
 
 		$id = $this->input->post('id');
 		if ($this->input->post()) {
 
-			$file_name = $_FILES['gold_image']['name'];
-			$pla_image = $_FILES['platinum_image']['name'];
+			$file_name = $_FILES['image']['name'];
+			$new_array['name'] = $this->input->post('name');
 			$new_array['price'] = $this->input->post('price');
-			$new_array['platinum_price'] = $this->input->post('platinum_price');
 			if ($file_name != '') {
 				$config['upload_path'] = './upload/';
 				$config['file_name'] = time() . $file_name;
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$this->upload->initialize($config);
-				if (!$this->upload->do_upload('gold_image')) {
+				if (!$this->upload->do_upload('image')) {
 					echo ($this->upload->display_errors());
 				} else {
 					$data = $this->upload->data();
-					$new_array['gold_image'] = $data['file_name'];
-				}
-			}
-			if ($pla_image != '') {
-				$config['upload_path'] = './upload/';
-				$config['file_name'] = time() . $pla_image;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				$this->upload->initialize($config);
-				if (!$this->upload->do_upload('platinum_image')) {
-					echo ($this->upload->display_errors());
-				} else {
-					$data = $this->upload->data();
-					$new_array['platinum_image'] = $data['file_name'];
+					$new_array['image'] = $data['file_name'];
 				}
 			}
 
@@ -251,6 +257,15 @@ class Membership extends MY_Controller {
 
 		}
 	}
+
+	public function membership_features_del($id) {
+		$id = $this->membership->membership_features_del($id);
+		if ($id) {
+			redirect(base_url('membership/membership_features/?success= Delete successfully!'));
+		} else {
+			redirect(base_url('membership/membership_features/?error=Some error!'));
+		}
+	}
 	public function approve($id) {
 		$this->membership->approve_membership($id);
 		redirect(base_url('membership/membership_request?success=updated  successfully!'));
@@ -258,5 +273,26 @@ class Membership extends MY_Controller {
 	public function reject($id) {
 		$this->membership->reject_membership($id);
 		redirect(base_url('membership/membership_request?success=updated  successfully!'));
+	}
+
+	public function membership_setting_update() {
+		// $id = $this->input->post('id');
+		$this->membership->reset_membership();
+
+		$new_array = array();
+		$new_array['gold'] = $this->input->post('gold');
+		$new_array['platinum'] = $this->input->post('platinum');
+		foreach ($new_array as $membership) {
+			if (is_array($membership)) {
+				foreach ($membership as $key => $value) {
+					$val = $this->membership->membership_setting_update($key, [$value => $value]);
+				}
+			}
+		}
+		if ($val) {
+			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+		} else {
+			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+		}
 	}
 }
