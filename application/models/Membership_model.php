@@ -151,4 +151,11 @@ class Membership_model extends CI_Model {
 		$this->db->insert('memberships', $new_array);
 		return $this->db->insert_id();
 	}
+	public function get_benefits_by_membership($id) {
+		$this->db->where('membership_id', $id);
+		$this->db->from('memberships_benefits');
+		$this->db->join('benefits', 'memberships_benefits.benefit_id = benefits.id');
+		$q = $this->db->get();
+		return $q->result();
+	}
 }

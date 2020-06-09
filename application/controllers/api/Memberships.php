@@ -16,27 +16,37 @@ class Memberships extends REST_Controller {
 
 	public function get_memberships_get(){
 		$user_id = $this->get('user_id');
-		$features= $this->Membership_model->membership_manage();
-		$memberships["platinum"]["features"]= array();
-		$details= $this->Membership_model->edit_membership_fet(1);
-		$memberships["platinum"]["price"]= $details[0]->platinum_price;
-		$memberships["platinum"]["image"]= $details[0]->platinum_image;
-		$memberships["gold"]["features"]= array();
-		$memberships["gold"]["price"]= $details[0]->price;
-		$memberships["gold"]["image"]= $details[0]->gold_image;
+		$memberships= $this->Membership_model->membership_features_manage();
+		if($memberships){
+			foreach ($memberships as $membership){
+				$membership->benefits= $this->Membership_model->get_benefits_by_membership($membership->id);
+				foreach ($membership->benefits as $benefit){
+					$benefit->details= $this->Membership_model->get_membership_rel_id($benefit->id);
+				}
+			}
+		}
+
+//		$features= $this->Membership_model->membership_manage();
+//		$memberships["platinum"]["features"]= array();
+//		$details= $this->Membership_model->edit_membership_fet(1);
+//		$memberships["platinum"]["price"]= $details[0]->platinum_price;
+//		$memberships["platinum"]["image"]= $details[0]->platinum_image;
+//		$memberships["gold"]["features"]= array();
+//		$memberships["gold"]["price"]= $details[0]->price;
+//		$memberships["gold"]["image"]= $details[0]->gold_image;
 		$data["current"]= null;
 		if($user_id){
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
 			$data["current"]= $current_membership;
 		}
 
-		foreach ($features as $feature){
-			$feature->details= $this->Membership_model->get_membership_rel_id($feature->id);
-			if($feature->platinum == "platinum")
-				array_push($memberships["platinum"]["features"], $feature);
-			if($feature->gold == "gold")
-				array_push($memberships["gold"]["features"], $feature);
-		}
+//		foreach ($features as $feature){
+//			$feature->details= $this->Membership_model->get_membership_rel_id($feature->id);
+//			if($feature->platinum == "platinum")
+//				array_push($memberships["platinum"]["features"], $feature);
+//			if($feature->gold == "gold")
+//				array_push($memberships["gold"]["features"], $feature);
+//		}
 		$data["memberships"]= $memberships;
 		$this->response($data, 200);
 	}
