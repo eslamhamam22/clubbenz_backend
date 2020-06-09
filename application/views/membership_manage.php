@@ -39,9 +39,9 @@ foreach ($rec as $us) {
 	?>
                                     <tr>
                                         <td><?php echo $us->id ?></td>
-                                        <td><?php echo $us->benefit ?></td>
+                                        <td><?php echo $us->name ?></td>
                                         <td><?php foreach ($rel as $re) {?>
-                                            <?php if ($us->id == $re->membership_id) {echo '-' . $re->details . '<br>';}}?>
+                                            <?php if ($us->id == $re->benefit_id) {echo '-' . $re->details . '<br>';}}?>
                                         </td>
                                          <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('membership/edit_membership') ?>/<?php echo $us->id ?>"><i class="ti-marker-alt"></i></a>

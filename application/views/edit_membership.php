@@ -38,38 +38,8 @@ foreach ($rec as $us) {
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Benefit</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="benefit" class="form-control" id="benefit"value="<?php echo $us->benefit; ?>" required> </div>
+                                            <input type="text" name="name" class="form-control" id="name"value="<?php echo $us->name; ?>" required> </div>
                                     </div>
-
-                                     <!-- <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label"></label>
-                                        <div class="col-sm-9">
-                                            <input style="margin: 15px"  type="checkbox" name="gold" value="gold"  <?php echo ($us->gold == "gold") ? "checked" : ""; ?>> Gold
-                                            <input style="margin: 15px"  type="checkbox" name="platinum" value="platinum"  <?php echo ($us->platinum == "platinum") ? "checked" : ""; ?>> Platinum
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label  class="col-sm-3 control-label"> Upload Photo</label>
-                                        <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="gold_image" id="gold_image" size="20" />
-
-                                       </div>
-                                    </div>
-                                    <div class="form-group" style="padding-left: 200px">
-                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->gold_image; ?>" >
-                                    </div>
-
-                                     <div class="form-group">
-                                        <label  class="col-sm-3 control-label"> Upload Photo</label>
-                                        <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="platinum_image" id="platinum_image" size="20" />
-
-                                       </div>
-                                    </div>
-                                    <div class="form-group" style="padding-left: 200px">
-                                        <img style="width:200px;" src="<?php echo base_url('upload/') . $us->platinum_image; ?>" >
-                                    </div> -->
 
 <?php
 $error_solution = $this->membership->get_membership_rel_id($us->id);

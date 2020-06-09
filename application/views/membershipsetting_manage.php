@@ -26,7 +26,7 @@
                                         <th>No</th>
                                         <th>Benefit</th>
                                         <th>Details</th>
-                                       <?php foreach ($fet as $fe) {$ct = count(array($fe->id));?>
+                                       <?php foreach ($fet as $fe) {?>
                                         <th><?php echo $fe->name; ?></th>
                                        <?php }?>
                                     </tr>
@@ -51,16 +51,15 @@
                                     <?php foreach ($rec as $us) {?>
                                     <tr>
                                         <td><?php echo $us->id ?></td>
-                                        <td><?php echo $us->benefit ?></td>
+                                        <td><?php echo $us->name ?></td>
                                         <td><?php foreach ($rel as $re) {?>
-                                            <?php if ($us->id == $re->membership_id) {echo '-' . $re->details . '<br>';}}?>
+                                            <?php if ($us->id == $re->benefit_id) {echo '-' . $re->details . '<br>';}}?>
                                         </td>
-                                        <td>
-                                            <?php for ($i = 0; $i < $ct; $i++) {?>
-                                        <input style="margin: 15px"  type="checkbox" name="gold[<?php echo $us->id ?>]" value="gold"  <?php echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
-                                        <?php }?>
 
-                                        <td><input style="margin: 15px"  type="checkbox" name="platinum[<?php echo $us->id ?>]" value="platinum"  <?php echo ($us->platinum == 'platinum') ? "checked" : ""; ?>></td>
+                                        <?php foreach ($fet as $fe) {?>
+                                        <td>
+                                        <input style="margin: 15px"  type="checkbox" name="checkbox[<?php echo $fe->id ?>]" value="checkbox[<?php echo $fe->id ?>]"  <?php //echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
+                                        <?php }?>
                                     </tr>
                                     <?php }?>
                                 </tbody>

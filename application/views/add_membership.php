@@ -29,31 +29,8 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label"> Benefit</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="benefit" class="form-control" id="benefit" placeholder="Benefit" required> </div>
+                                            <input type="text" name="name" class="form-control" id="name" placeholder="Benefit" required> </div>
                                     </div>
-
-
-                                    <!-- <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label"> </label>
-                                        <div class="col-sm-9">
-                                            <input style="margin: 15px" type="checkbox" name="gold" value="gold">Gold
-                                            <input style="margin: 15px" type="checkbox" name="platinum" value="platinum">Platinum
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label"> Upload Gold Photo</label>
-                                        <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="gold_image" id="gold_image" size="20" required/>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label"> Upload Platinum Photo</label>
-                                        <div class="col-sm-9">
-                                          <input type="file" class= "form-control btn btn-default" name="platinum_image" id="platinum_image" size="20" required/>
-                                       </div>
-                                    </div> -->
-
-
 
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label"> Details</label>

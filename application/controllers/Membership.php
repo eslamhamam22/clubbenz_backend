@@ -53,8 +53,8 @@ class Membership extends MY_Controller {
 
 			$rules = array(
 				array(
-					'field' => 'benefit',
-					'label' => 'Benefit',
+					'field' => 'name',
+					'label' => 'Name',
 					'rules' => 'trim|required',
 				),
 			);
@@ -62,7 +62,7 @@ class Membership extends MY_Controller {
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
 
-				$new_array['benefit'] = $this->input->post('benefit');
+				$new_array['name'] = $this->input->post('name');
 
 				$result = $this->membership->add_membership($new_array);
 
@@ -73,7 +73,7 @@ class Membership extends MY_Controller {
 					for ($i = 0; $i < $ct; $i++) {
 
 						$new_data['details'] = $this->input->post('details')[$i];
-						$new_data['membership_id'] = $result;
+						$new_data['benefit_id'] = $result;
 
 						$rec = $this->membership->add_membership_rel($new_data);
 					}
@@ -121,8 +121,8 @@ class Membership extends MY_Controller {
 		if ($this->input->post()) {
 			$rules = array(
 				array(
-					'field' => 'benefit',
-					'label' => 'Benefit',
+					'field' => 'name',
+					'label' => 'Name',
 					'rules' => 'trim|required',
 				),
 			);
@@ -130,7 +130,7 @@ class Membership extends MY_Controller {
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
 
-				$new_array['benefit'] = $this->input->post('benefit');
+				$new_array['name'] = $this->input->post('name');
 
 				$val = $this->membership->membership_update($new_array, $id);
 
@@ -138,7 +138,7 @@ class Membership extends MY_Controller {
 				$ct = count($this->input->post('details'));
 				for ($i = 0; $i < $ct; $i++) {
 					$new_data['details'] = $this->input->post('details')[$i];
-					$new_data['membership_id'] = $id;
+					$new_data['benefit_id'] = $id;
 					// $error_id = $this->input->post('error_id')[$i];
 
 					if (isset($this->input->post('error_id')[$i])) {
