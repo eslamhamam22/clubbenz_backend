@@ -47,7 +47,7 @@ class Memberships extends REST_Controller {
 		if (isset($_FILES['idFrontPhoto']) && !empty($_FILES['idFrontPhoto'])) {
 			$filename = $_FILES['idFrontPhoto']['name'];
 			if ($filename != "") {
-				$config['upload_path'] = './upload/idFrontPhoto';
+				$config['upload_path'] = './upload';
 				$config['file_name'] = time() . $filename;
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
 				$this->upload->initialize($config);
@@ -62,7 +62,7 @@ class Memberships extends REST_Controller {
 		if (isset($_FILES['idBackPhoto']) && !empty($_FILES['idBackPhoto'])) {
 			$filename = $_FILES['idBackPhoto']['name'];
 			if ($filename != "") {
-				$config['upload_path'] = './upload/idBackPhoto';
+				$config['upload_path'] = './upload';
 				$config['file_name'] = time() . $filename;
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
 				$this->upload->initialize($config);
@@ -77,7 +77,7 @@ class Memberships extends REST_Controller {
 		if (isset($_FILES['licenseFrontPhoto']) && !empty($_FILES['licenseFrontPhoto'])) {
 			$filename = $_FILES['licenseFrontPhoto']['name'];
 			if ($filename != "") {
-				$config['upload_path'] = './upload/licenseFrontPhoto';
+				$config['upload_path'] = './upload';
 				$config['file_name'] = time() . $filename;
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
 				$this->upload->initialize($config);
@@ -92,7 +92,7 @@ class Memberships extends REST_Controller {
 		if (isset($_FILES['licenseBackPhoto']) && !empty($_FILES['licenseBackPhoto'])) {
 			$filename = $_FILES['licenseBackPhoto']['name'];
 			if ($filename != "") {
-				$config['upload_path'] = './upload/licenseBackPhoto';
+				$config['upload_path'] = './upload';
 				$config['file_name'] = time() . $filename;
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
 				$this->upload->initialize($config);
