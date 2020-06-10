@@ -161,7 +161,7 @@ class Membership_model extends CI_Model {
 		}
 	}
 	public function subscribe($new_array) {
-		$new_array["status"]= "pending";
+		$new_array["status"] = "pending";
 		$this->db->insert('memberships_users', $new_array);
 	}
 
@@ -217,22 +217,5 @@ class Membership_model extends CI_Model {
 			return "";
 		}
 		return "";
-	}
-
-	function get_all_users() {
-		$this->db->select('*');
-		$this->db->from('users');
-		$this->db->join('users_groups', 'users.id = users_groups.user_id');
-		$this->db->where('users_groups.group_id', 2);
-		$q = $this->db->get();
-		return $q->result();
-	}
-
-	function get_users_membership() {
-		$this->db->select('*');
-		$this->db->from('memberships_users');
-		$this->db->join('users', 'users.id = memberships_users.user_id');
-		$q = $this->db->get();
-		return $q->result();
 	}
 }
