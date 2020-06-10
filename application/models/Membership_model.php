@@ -150,7 +150,7 @@ class Membership_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('memberships_users');
 		$this->db->where('user_id', $user_id);
-//		$this->db->join('memberships', 'memberships.id = memberships_users.membership_id');
+		$this->db->join('memberships', 'memberships_users.membership_id = memberships.id');
 		$this->db->order_by('id', "DESC");
 		$this->db->limit(1);
 		$query = $this->db->get();

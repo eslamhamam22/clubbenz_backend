@@ -106,7 +106,7 @@ class Memberships extends REST_Controller {
 
 		$output= $this->Membership_model->subscribe($new_array);
 
-		$this->response($new_array, 200);
+		$this->response($_FILES, 200);
 	}
 
 }
