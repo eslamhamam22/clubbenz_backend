@@ -32,7 +32,6 @@ class Membership extends MY_Controller {
 	}
 	public function membership_request() {
 		$this->data['st'] = $this->membership->membership_st_manage();
-		$this->data['users'] = $this->acl_model->get_all_users();
 		$this->data['title'] = 'Manage Membership request ';
 		$this->load->view('membership_request_manage', $this->data);
 	}
@@ -276,23 +275,106 @@ class Membership extends MY_Controller {
 	}
 
 	public function membership_setting_update() {
-		// $id = $this->input->post('id');
 		$this->membership->reset_membership();
 
 		$new_array = array();
-		$new_array['gold'] = $this->input->post('gold');
-		$new_array['platinum'] = $this->input->post('platinum');
-		foreach ($new_array as $membership) {
-			if (is_array($membership)) {
-				foreach ($membership as $key => $value) {
-					$val = $this->membership->membership_setting_update($key, [$value => $value]);
-				}
+		$data = $this->input->post('data');
+		foreach ($data as $membership_id => $benifits) {
+			foreach ($benifits as $benefit_id => $value) {
+				$this->membership->membership_setting_update(["membership_id" => $membership_id, "benefit_id" => $benefit_id]);
 			}
 		}
-		if ($val) {
-			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
-		} else {
-			redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+		redirect(base_url('membership/membership_setting/?success=Update  successfully!'));
+
+	}
+
+	public function edit_memberships_users($id) {
+		$data['rec'] = $this->membership->edit_memberships_users($id);
+		$data['title'] = 'Edit Member ship';
+		$this->load->view('edit_memberships_users', $data);
+	}
+
+	public function memberships_users_update() {
+
+		$id = $this->input->post('id');
+		if ($this->input->post()) {
+			$rules = array(
+				array(
+					'field' => 'address',
+					'label' => 'address',
+					'rules' => 'trim|required',
+				),
+			);
+
+			$this->form_validation->set_rules($rules);
+			if ($this->form_validation->run()) {
+				$file_name = $_FILES['nid_front']['name'];
+				$file_name = $_FILES['nid_rear']['name'];
+				$file_name = $_FILES['licence_front']['name'];
+				$file_name = $_FILES['licence_rear']['name'];
+				$new_array['address'] = $this->input->post('address');
+				$new_array['nid'] = $this->input->post('nid');
+
+				if ($file_name != '') {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $file_name;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('nid_front')) {
+						echo ($this->upload->display_errors());
+					} else {
+						$data = $this->upload->data();
+						$new_array['nid_front'] = $data['file_name'];
+					}
+				}
+				if ($file_name != '') {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $file_name;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('nid_rear')) {
+						echo ($this->upload->display_errors());
+					} else {
+						$data = $this->upload->data();
+						$new_array['nid_rear'] = $data['file_name'];
+					}
+				}
+				if ($file_name != '') {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $file_name;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('licence_front')) {
+						echo ($this->upload->display_errors());
+					} else {
+						$data = $this->upload->data();
+						$new_array['licence_front'] = $data['file_name'];
+					}
+				}
+				if ($file_name != '') {
+					$config['upload_path'] = './upload/';
+					$config['file_name'] = time() . $file_name;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('licence_rear')) {
+						echo ($this->upload->display_errors());
+					} else {
+						$data = $this->upload->data();
+						$new_array['licence_rear'] = $data['file_name'];
+					}
+				}
+
+				$val = $this->membership->memberships_users_update($new_array, $id);
+
+				if ($val) {
+					redirect(base_url('membership/membership_request/?success=Update  successfully!'));
+				} else {
+					redirect(base_url('membership/membership_request/?success=Update  successfully!'));
+				}
+			} else {
+				// $error = validation_errors();
+				redirect(base_url('membership/membership_request/edit_membership/' . $id . '?error=' . $error));
+			}
 		}
 	}
 }

@@ -8,6 +8,7 @@ class Dashboard extends MY_Controller {
 		$this->load->model('Serviceshop_model', 'serviceshop');
 		$this->load->model('Partsshop_model', 'partshop');
 		$this->load->model('Car_model', 'classes');
+		$this->load->model('acl_model');
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
 		if (!$this->ion_auth->logged_in()) {
@@ -23,6 +24,8 @@ class Dashboard extends MY_Controller {
 		$this->data['serviceshop'] = $this->serviceshop->total_serviceshop();
 		$this->data['workshop'] = $this->workshop->total_workshop();
 		$this->data['partshop'] = $this->partshop->total_partshop();
+		$this->data['carowners'] = $this->partshop->total_carowners();
+		$this->data['rec'] = $this->acl_model->get_all_users();
 		$this->data['chassis'] = $this->user->get_allusers_chassis();
 		$this->data['classes'] = $this->user->get_allclasses();
 		$this->data['classes'] = $this->classes->get_classes();
@@ -250,9 +253,11 @@ class Dashboard extends MY_Controller {
 			$workshop = $this->user->month_workshop($date, $datef);
 			$serviceshop = $this->user->month_serviceshop($date, $datef);
 			$partshop = $this->user->month_partshop($date, $datef);
+			$carowners = $this->user->month_carowners($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
+			$this->data['carowners'] = $carowners;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 		} else {
 			$ts = strtotime($date);
@@ -262,9 +267,11 @@ class Dashboard extends MY_Controller {
 			$workshop = $this->user->month_workshop($start_date, $end_date);
 			$serviceshop = $this->user->month_serviceshop($start_date, $end_date);
 			$partshop = $this->user->month_partshop($start_date, $end_date);
+			$carowners = $this->user->month_carowners($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
+			$this->data['carowners'] = $carowners;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 
 		}

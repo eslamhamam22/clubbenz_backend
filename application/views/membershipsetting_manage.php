@@ -45,7 +45,7 @@
                                         <td></td>
                                         <td></td>
                                         <?php foreach ($fet as $fe) {?>
-                                        <td><?php echo $fe->name; ?></td>
+                                        <td><img class="img_size" src="<?php echo base_url() . "/upload/$fe->image" ?>"></td>
                                         <?php }?>
                                     </tr>
                                     <?php foreach ($rec as $us) {?>
@@ -58,7 +58,8 @@
 
                                         <?php foreach ($fet as $fe) {?>
                                         <td>
-                                        <input style="margin: 15px"  type="checkbox" name="<?php echo $fe->name ?>[<?php echo $fe->id ?>]" value="checkbox[<?php echo $fe->id ?>]"  <?php //echo ($us->gold == 'gold') ? "checked" : ""; ?>></td>
+                                        <input style="margin: 15px"  type="checkbox" name="data[<?php echo $fe->id ?>][<?php echo $us->id ?>]" value="<?php echo $us->id ?>"
+                                          <?php echo $this->membership->get_membership_set($fe->id, $us->id) ? "checked" : ""; ?>></td>
                                         <?php }?>
                                     </tr>
                                     <?php }?>

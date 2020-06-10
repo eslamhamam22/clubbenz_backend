@@ -27,29 +27,42 @@
                                         <th>Username</th>
                                         <th>Membership</th>
                                         <th>Address</th>
+                                        <th>NID</th>
+                                        <th>NID Front</th>
+                                        <th>NID Rear</th>
+                                        <th>license Front</th>
+                                        <th>license Rear</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-    <?php foreach ($st as $s) {?>
+    <?php foreach ($st as $s) {
+	$memberships = $this->membership->get_membership_features($s->membership_id);
+	$user = $this->membership->get_user_name($s->user_id);
+	?>
                                     <tr>
                                         <td><?php echo $s->id ?></td>
 
-                                        <td><?php foreach ($users as $user) {?>
-                                        <?php if ($user->id == $s->user_id) {echo $user->username;}}?></td>
-                                        <td><?php echo $s->membership; ?></td>
+                                        <td><?php echo $user->username; ?></td>
+                                        <td><?php echo $memberships->name; ?></td>
                                         <td><?php echo $s->address; ?></td>
+                                        <td><?php echo $s->nid; ?></td>
+                                        <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->nid_front" ?>"></td>
+                                        <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->nid_front" ?>"></td>
+                                        <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->licence_front" ?>"></td>
+                                        <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->licence_rear" ?>"></td>
                                         <td> <?php if ($s->status == "pending" || $s->status == "reject") {?>
                                             <a href="<?php echo base_url('membership/approve/') ?><?php echo $s->id; ?>">
-                                            <button class="btn btn-small btn-primary"><i class="fa fa-check"></i></button></a>
+                                            <button class="btn btn-small btn-primary">Delivery</button></a>
                                         <?php }?>
                                         <?php if ($s->status == "pending" || $s->status == "approve") {?>
-                                            <a href="<?php echo base_url('membership/reject/') ?><?php echo $s->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
+                                            <a href="<?php echo base_url('membership/reject/') ?><?php echo $s->id; ?>"><button class="btn btn-small btn-danger">Complete</button></a>
                                         <?php }?>
                                         </td>
                                          <td>
+                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('membership/edit_memberships_users') ?>/<?php echo $s->id ?>"><i class="ti-marker-alt"></i></a>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('membership/membership_request_del/') ?><?php echo $s->id ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
                                          </td>
                                     </tr>

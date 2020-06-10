@@ -151,6 +151,17 @@ class Partsshop_model extends CI_Model {
 		return $this->db->count_all('partshop');
 	}
 
+	public function total_carowners() {
+		$this->db->select('*');
+		$this->db->from('users_groups');
+		$this->db->where('group_id', 2);
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
 	function fetch_data() {
 		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter"));
 		$this->db->from("partshop");

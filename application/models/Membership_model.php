@@ -91,21 +91,49 @@ class Membership_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
+
+	public function edit_memberships_users($id) {
+		$this->db->where('id', $id);
+		$this->db->from('memberships_users');
+		$q = $this->db->get();
+		return $q->result();
+	}
 	public function membership_update($new_array, $id) {
 		$this->db->where('id', $id);
 		$this->db->update('benefits', $new_array);
 		return $this->db->affected_rows();
 	}
+	public function memberships_users_update($new_array, $id) {
+		$this->db->where('id', $id);
+		$this->db->update('memberships_users', $new_array);
+		return $this->db->affected_rows();
+	}
 	public function reset_membership() {
-		$this->db->update('benefits', ["gold" => "", "platinum" => ""]);
+		// $this->db->from('memberships_benefits');
+		$this->db->empty_table('memberships_benefits');
 
 	}
-	public function membership_setting_update($id, $data_arr) {
+	public function membership_setting_update($data_arr) {
 
-		$this->db->where('id', $id);
-		$this->db->update('benefits', $data_arr);
+		// $this->db->where('id', $id);
+		$this->db->insert('memberships_benefits', $data_arr);
+		// $this->db->insert('benefits', $new_array);
+		// return $this->db->insert_id();
 		// return true;
 	}
+	public function get_membership_set($membership_id, $benefit_id) {
+		$this->db->select('*');
+		$this->db->from('memberships_benefits');
+		$this->db->where('membership_id', $membership_id);
+		$this->db->where('benefit_id', $benefit_id);
+		$query = $this->db->get();
+		if ($query->num_rows() >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function edit_membership_fet($id) {
 		$this->db->where('id', $id);
 		$this->db->from('memberships');
@@ -155,6 +183,53 @@ class Membership_model extends CI_Model {
 		$this->db->where('membership_id', $id);
 		$this->db->from('memberships_benefits');
 		$this->db->join('benefits', 'memberships_benefits.benefit_id = benefits.id');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function get_user_name($id) {
+		if ($id != 0 && $id != "") {
+			$this->db->select("*");
+			$this->db->where('id', $id);
+			$this->db->from('users');
+			$query = $this->db->get();
+			if ($query->num_rows() > 0) {
+				$result = $query->row();
+				return $result;
+				//return $result->first_name." ".$result->last_name;
+			}
+			return "";
+		}
+		return "";
+	}
+	public function get_membership_features($id) {
+		if ($id != 0 && $id != "") {
+			$this->db->select("*");
+			$this->db->where('id', $id);
+			$this->db->from('memberships');
+			$query = $this->db->get();
+			if ($query->num_rows() > 0) {
+				$result = $query->row();
+				return $result;
+				//return $result->first_name." ".$result->last_name;
+			}
+			return "";
+		}
+		return "";
+	}
+
+	function get_all_users() {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('users_groups', 'users.id = users_groups.user_id');
+		$this->db->where('users_groups.group_id', 2);
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	function get_users_membership() {
+		$this->db->select('*');
+		$this->db->from('memberships_users');
+		$this->db->join('users', 'users.id = memberships_users.user_id');
 		$q = $this->db->get();
 		return $q->result();
 	}

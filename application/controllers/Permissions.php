@@ -9,6 +9,7 @@ class Permissions extends MY_Controller {
 		$this->load->model('Fuel_model');
 		$this->load->model('Users_model');
 		$this->load->model('Car_model');
+		$this->load->model('Membership_model', 'membership');
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->model('Chassis_model');
 		$this->load->library('upload');
@@ -33,6 +34,13 @@ class Permissions extends MY_Controller {
 		$this->data['groups'] = $this->acl_model->get_all_groups();
 		$this->data['title'] = 'Users';
 		$this->load->view('user_manage', $this->data);
+	}
+
+	public function car_users() {
+		$this->data['rec'] = $this->membership->membership_st_manage();
+		$this->data['users'] = $this->membership->get_all_users();
+		$this->data['title'] = 'Car Users';
+		$this->load->view('car_users_manage', $this->data);
 	}
 /*
 public function load_filter_user() {
