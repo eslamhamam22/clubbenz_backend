@@ -31,13 +31,20 @@ class Memberships extends REST_Controller {
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
 			$data["current"]= $current_membership;
 			if($data["current"]){
-
+				$data["current"]->end_date= $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration);
+				if (strtotime(date("Y-m-d H:i:s")) > strtotime($data["current"]->end_date)) {
+					$data["current"] = false;
+				}
 			}
 		}
 
 		$data["memberships"]= $memberships;
 		$this->response($data, 200);
 	}
+	public function add_months_to_date($date, $months) {
+		return date("Y-m-d H:i:s", strtotime($months . " month", strtotime($date)));
+	}
+
 	public function subscribe_post(){
 		$arr= array();
 		$new_array["user_id"] = $this->post('user_id');
