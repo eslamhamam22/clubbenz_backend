@@ -159,8 +159,9 @@ class Membership_model extends CI_Model {
 			return false;
 		}
 	}
-	public function subscribe($user_id, $membership, $address) {
-		$this->db->insert('memberships_users', ["user_id" => $user_id, "membership" => $membership, "address" => $address, "status" => "pending"]);
+	public function subscribe($new_array) {
+		$new_array["status"]= "pending";
+		$this->db->insert('memberships_users', $new_array);
 	}
 
 	public function approve_membership($id) {

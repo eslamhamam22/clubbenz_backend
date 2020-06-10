@@ -26,35 +26,82 @@ class Memberships extends REST_Controller {
 			}
 		}
 
-//		$features= $this->Membership_model->membership_manage();
-//		$memberships["platinum"]["features"]= array();
-//		$details= $this->Membership_model->edit_membership_fet(1);
-//		$memberships["platinum"]["price"]= $details[0]->platinum_price;
-//		$memberships["platinum"]["image"]= $details[0]->platinum_image;
-//		$memberships["gold"]["features"]= array();
-//		$memberships["gold"]["price"]= $details[0]->price;
-//		$memberships["gold"]["image"]= $details[0]->gold_image;
 		$data["current"]= null;
 		if($user_id){
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
 			$data["current"]= $current_membership;
 		}
 
-//		foreach ($features as $feature){
-//			$feature->details= $this->Membership_model->get_membership_rel_id($feature->id);
-//			if($feature->platinum == "platinum")
-//				array_push($memberships["platinum"]["features"], $feature);
-//			if($feature->gold == "gold")
-//				array_push($memberships["gold"]["features"], $feature);
-//		}
 		$data["memberships"]= $memberships;
 		$this->response($data, 200);
 	}
 	public function subscribe_post(){
-		$user_id = $this->post('user_id');
-		$address = $this->post('address');
-		$membership = $this->post('membership');
-		$this->Membership_model->subscribe($user_id, $membership, $address);
+		$new_array["user_id"] = $this->post('user_id');
+		$new_array["address"] = $this->post('address');
+		$new_array["membership_id"] = $this->post('membership');
+		$new_array["nid"] = $this->post('nid');
+		if (isset($_FILES['idFrontPhoto']) && !empty($_FILES['idFrontPhoto'])) {
+			$filename = $_FILES['idFrontPhoto']['name'];
+			if ($filename != "") {
+				$config['upload_path'] = './upload/idFrontPhoto';
+				$config['file_name'] = time() . $filename;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('idFrontPhoto')) {
+					$arr['error_picture'] = $this->upload->display_errors();
+				} else {
+					$data = $this->upload->data();
+					$new_array['nid_front'] = $data['file_name'];
+				}
+			}
+		}
+		if (isset($_FILES['idBackPhoto']) && !empty($_FILES['idBackPhoto'])) {
+			$filename = $_FILES['idBackPhoto']['name'];
+			if ($filename != "") {
+				$config['upload_path'] = './upload/idBackPhoto';
+				$config['file_name'] = time() . $filename;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('idBackPhoto')) {
+					$arr['error_picture'] = $this->upload->display_errors();
+				} else {
+					$data = $this->upload->data();
+					$new_array['nid_rear'] = $data['file_name'];
+				}
+			}
+		}
+		if (isset($_FILES['licenseFrontPhoto']) && !empty($_FILES['licenseFrontPhoto'])) {
+			$filename = $_FILES['licenseFrontPhoto']['name'];
+			if ($filename != "") {
+				$config['upload_path'] = './upload/licenseFrontPhoto';
+				$config['file_name'] = time() . $filename;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('licenseFrontPhoto')) {
+					$arr['error_picture'] = $this->upload->display_errors();
+				} else {
+					$data = $this->upload->data();
+					$new_array['licence_front'] = $data['file_name'];
+				}
+			}
+		}
+		if (isset($_FILES['licenseBackPhoto']) && !empty($_FILES['licenseBackPhoto'])) {
+			$filename = $_FILES['licenseBackPhoto']['name'];
+			if ($filename != "") {
+				$config['upload_path'] = './upload/licenseBackPhoto';
+				$config['file_name'] = time() . $filename;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|PNG';
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('licenseBackPhoto')) {
+					$arr['error_picture'] = $this->upload->display_errors();
+				} else {
+					$data = $this->upload->data();
+					$new_array['licence_rear'] = $data['file_name'];
+				}
+			}
+		}
+
+		$this->Membership_model->subscribe($new_array);
 
 		$this->response(true, 200);
 	}
