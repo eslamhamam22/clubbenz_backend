@@ -30,6 +30,7 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>image</th>
+                                        <th>Duration</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,7 @@ foreach ($rec as $us) {
                                         <td><?php echo $us->id ?></td>
                                         <td><?php echo $us->name ?></td>
                                         <td><?php echo $us->price ?></td>
+                                        <td><?php echo $us->duration . 'M' ?></td>
                                         <td>
                                             <img class="img_size" src="<?php echo base_url() . "/upload/$us->image" ?>">
                                         </td>

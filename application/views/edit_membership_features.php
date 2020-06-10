@@ -60,6 +60,12 @@ foreach ($rec as $us) {
                                         <img style="width:200px;" src="<?php echo base_url('upload/') . $us->image; ?>" >
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label"> Duration</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" name="duration" class="form-control" value="<?php echo $us->duration ?>" required> </div>
+                                    </div>
+
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Update</button>

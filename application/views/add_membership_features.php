@@ -46,6 +46,12 @@
                                        </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label"> Duration</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" name="duration" class="form-control" id="duration" placeholder="Duration" required> </div>
+                                    </div>
+
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button  type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>

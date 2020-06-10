@@ -7,6 +7,7 @@ class Dashboard extends MY_Controller {
 		$this->load->model('Users_model', 'user');
 		$this->load->model('Serviceshop_model', 'serviceshop');
 		$this->load->model('Partsshop_model', 'partshop');
+		$this->load->model('Membership_model', 'membership');
 		$this->load->model('Car_model', 'classes');
 		$this->load->model('acl_model');
 		$this->load->library(['ion_auth', 'form_validation']);
@@ -25,6 +26,8 @@ class Dashboard extends MY_Controller {
 		$this->data['workshop'] = $this->workshop->total_workshop();
 		$this->data['partshop'] = $this->partshop->total_partshop();
 		$this->data['carowners'] = $this->partshop->total_carowners();
+		$this->data['membership'] = $this->partshop->total_membership();
+		$this->data['membership_users'] = $this->partshop->total_memberships_users();
 		$this->data['rec'] = $this->acl_model->get_all_users();
 		$this->data['chassis'] = $this->user->get_allusers_chassis();
 		$this->data['classes'] = $this->user->get_allclasses();
@@ -254,10 +257,14 @@ class Dashboard extends MY_Controller {
 			$serviceshop = $this->user->month_serviceshop($date, $datef);
 			$partshop = $this->user->month_partshop($date, $datef);
 			$carowners = $this->user->month_carowners($date, $datef);
+			$membership = $this->user->month_membership($date, $datef);
+			$membership_users = $this->user->month_memberships_users($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
+			$this->data['membership'] = $membership;
+			$this->data['membership_users'] = $membership_users;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 		} else {
 			$ts = strtotime($date);
@@ -268,10 +275,14 @@ class Dashboard extends MY_Controller {
 			$serviceshop = $this->user->month_serviceshop($start_date, $end_date);
 			$partshop = $this->user->month_partshop($start_date, $end_date);
 			$carowners = $this->user->month_carowners($date, $datef);
+			$membership = $this->user->month_membership($date, $datef);
+			$membership_users = $this->user->month_memberships_users($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
+			$this->data['membership'] = $membership;
+			$this->data['membership_users'] = $membership_users;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 
 		}

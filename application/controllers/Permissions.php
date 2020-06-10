@@ -10,6 +10,7 @@ class Permissions extends MY_Controller {
 		$this->load->model('Users_model');
 		$this->load->model('Car_model');
 		$this->load->model('Membership_model', 'membership');
+		$this->load->model('Membership_model', 'membership');
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->model('Chassis_model');
 		$this->load->library('upload');
@@ -35,24 +36,6 @@ class Permissions extends MY_Controller {
 		$this->data['title'] = 'Users';
 		$this->load->view('user_manage', $this->data);
 	}
-
-/*
-public function load_filter_user() {
-$fil_user = $_GET['fil_user'];
-if ($fil_user == 0) {
-$data = $this->db->get('users')->result();
-} else {
-$data = $this->db->get_where('users_groups', ['group_id' => $group_id])->result();
-}
-foreach ($data as $us) {?>
-<tr>
-<td><?php echo $us->first_name . " " . $us->last_name; ?></td>
-<td><?php echo $us->email; ?></td>
-<td><?php echo $us->phone; ?></td>
-</tr>
-<?php }
-}
- */
 
 	public function cars() {
 		$class_id = $this->input->post('class_id');

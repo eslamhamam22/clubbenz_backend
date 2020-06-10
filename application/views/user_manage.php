@@ -28,6 +28,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
+                            <th>Membership</th>
+                            <th>Expiry Date</th>
                             <th>Car</th>
                             <th>Chassis</th>
                             <th>Class Type</th>
@@ -39,6 +41,7 @@
                         <?php
 foreach ($rec as $us) {
 	$roles_arr = $this->acl_model->get_group_by_user_id($us->id);
+	$membership = $this->membership->get_current_membership_by_user($us->id);
 	$class_name = $this->acl_model->get_class_name($us->model_id);
 	$chassis = $this->acl_model->get_chassis_name($us->chassis);
 	$model_text = $this->Car_model->get_car_model_by_car_vin_prefix($us->car_vin_prefix);
@@ -73,6 +76,8 @@ foreach ($rec as $us) {
                             <td><?php echo $us->first_name . " " . $us->last_name; ?></td>
                             <td><?php echo $us->email; ?></td>
                             <td><?php echo $us->phone; ?></td>
+                            <td><?php if ($membership != "") {echo $membership->name;} else {echo "No Membership";}?></td>
+                            <td><?php if ($membership != "") {echo $membership->created_date;} else {echo "No Expiry Date";}?></td>
                             <td><?php echo $model_text; ?></td>
                             <td><?php echo $chassis; ?></td>
                             <td><?php echo $class_name; ?></td>

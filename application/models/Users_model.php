@@ -379,7 +379,17 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_carowners($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM users INNER JOIN users_groups ON 'users.id' = 'users_groups.user_id'  WHERE  'users.created_date' >= '$sdate' AND 'users.created_date' <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM users INNER JOIN users_groups ON users.id = users_groups.user_id  WHERE  users.created_date >= '$sdate' AND users.created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_membership($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM memberships WHERE  created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_memberships_users($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM memberships_users WHERE  date_created >= '$sdate' AND date_created <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}

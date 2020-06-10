@@ -27,7 +27,7 @@ class Membership extends MY_Controller {
 	public function index() {
 		$this->data['rec'] = $this->membership->membership_manage();
 		$this->data['rel'] = $this->membership->membership_rel_manage();
-		$this->data['title'] = 'Manage Membership datils';
+		$this->data['title'] = 'Manage Membership details';
 		$this->load->view('membership_manage', $this->data);
 	}
 	public function membership_request() {
@@ -197,6 +197,7 @@ class Membership extends MY_Controller {
 				$file_name = $_FILES['image']['name'];
 				$new_array['name'] = $this->input->post('name');
 				$new_array['price'] = $this->input->post('price');
+				$new_array['duration'] = $this->input->post('duration');
 
 				if ($file_name != '') {
 					$config['upload_path'] = './upload/';
@@ -233,6 +234,7 @@ class Membership extends MY_Controller {
 			$file_name = $_FILES['image']['name'];
 			$new_array['name'] = $this->input->post('name');
 			$new_array['price'] = $this->input->post('price');
+			$new_array['duration'] = $this->input->post('duration');
 			if ($file_name != '') {
 				$config['upload_path'] = './upload/';
 				$config['file_name'] = time() . $file_name;
