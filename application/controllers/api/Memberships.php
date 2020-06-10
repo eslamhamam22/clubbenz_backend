@@ -30,6 +30,9 @@ class Memberships extends REST_Controller {
 		if($user_id){
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
 			$data["current"]= $current_membership;
+			if($data["current"]){
+
+			}
 		}
 
 		$data["memberships"]= $memberships;
@@ -101,9 +104,9 @@ class Memberships extends REST_Controller {
 			}
 		}
 
-		$this->Membership_model->subscribe($new_array);
+		$output= $this->Membership_model->subscribe($new_array);
 
-		$this->response(true, 200);
+		$this->response($new_array, 200);
 	}
 
 }
