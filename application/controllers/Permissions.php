@@ -36,12 +36,6 @@ class Permissions extends MY_Controller {
 		$this->load->view('user_manage', $this->data);
 	}
 
-	public function car_users() {
-		$this->data['rec'] = $this->membership->membership_st_manage();
-		$this->data['users'] = $this->membership->get_all_users();
-		$this->data['title'] = 'Car Users';
-		$this->load->view('car_users_manage', $this->data);
-	}
 /*
 public function load_filter_user() {
 $fil_user = $_GET['fil_user'];
