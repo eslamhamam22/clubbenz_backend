@@ -39,6 +39,7 @@ class Memberships extends REST_Controller {
 		$this->response($data, 200);
 	}
 	public function subscribe_post(){
+		$arr= array();
 		$new_array["user_id"] = $this->post('user_id');
 		$new_array["address"] = $this->post('address');
 		$new_array["membership_id"] = $this->post('membership');
@@ -106,7 +107,7 @@ class Memberships extends REST_Controller {
 
 		$output= $this->Membership_model->subscribe($new_array);
 
-		$this->response($_FILES, 200);
+		$this->response($arr, 200);
 	}
 
 }
