@@ -792,7 +792,7 @@ class User extends REST_Controller {
 
 		require APPPATH . 'twilio-php/Services/Twilio.php';
 		$AccountSid = "AC9f4bc85142a5c39b294ca30b7d955785"; // Your Account SID from www.twilio.com/console
-		$AuthToken = "8b68b3cab9d074ffb930c51206fdcb47"; // Your Auth Token from www.twilio.com/console
+		$AuthToken = "d06fb1f5dad4aff696e7be7e6b76ea5c"; // Your Auth Token from www.twilio.com/console
 		$this->client = new Services_Twilio($AccountSid, $AuthToken);
 
 		$sms_msg = "Verification Code:" . $code;
