@@ -109,13 +109,13 @@
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label>Zip Code</label>
-						<input class="form-control" type="number" required name="zip_code" placeholder="">
+						<input class="form-control" type="number" name="zip_code" placeholder="">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label>Business Website</label>
-						<input class="form-control" type="text" required name="business_website" placeholder="">
+						<input class="form-control" type="text" name="business_website" placeholder="">
 					</div>
 				</div>
 				<div class="form-group">

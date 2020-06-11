@@ -107,7 +107,16 @@ class Parts extends CI_Controller {
 				$file_name = $_FILES['image']['name'];
 
 				$cha = implode(',', $this->input->post('chassis'));
-				$model_select = implode(',', $this->input->post('model_id'));
+				$model_select= implode(',', $this->input->post('model_id'));
+				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
+					$all_models=$this->car->get_classes();
+					$model_select= array();
+					foreach ($all_models as $single_model) {
+						$model_select = array_merge($model_select, array($single_model->id));
+					}
+
+					$model_select = implode(',', $model_select);
+				}
 
 				if ($cha == "all") {
 
@@ -116,7 +125,7 @@ class Parts extends CI_Controller {
 					foreach ($model_list as $single_model) {
 						$model_chassis = $this->part->get_chassis_by_model($single_model);
 						foreach ($model_chassis as $single_chassis) {
-							echo $single_chassis->id;
+//							echo $single_chassis->id;
 							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
 						}
 					}
@@ -163,6 +172,7 @@ class Parts extends CI_Controller {
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id"),
 				);
+				print_r($new_array);
 				$result = $this->part->add_part($new_array);
 
 				$photo_array = array(
@@ -295,6 +305,18 @@ class Parts extends CI_Controller {
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				//
+				$cha = implode(',', $this->input->post('chassis'));
+				$model_select= implode(',', $this->input->post('model_id'));
+				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
+					$all_models=$this->car->get_classes();
+					$model_select= array();
+					foreach ($all_models as $single_model) {
+						$model_select = array_merge($model_select, array($single_model->id));
+					}
+
+					$model_select = implode(',', $model_select);
+				}
+
 				if ($cha == "all") {
 
 					$model_list = explode(",", $model_select);
@@ -302,7 +324,7 @@ class Parts extends CI_Controller {
 					foreach ($model_list as $single_model) {
 						$model_chassis = $this->part->get_chassis_by_model($single_model);
 						foreach ($model_chassis as $single_chassis) {
-							echo $single_chassis->id;
+//							echo $single_chassis->id;
 							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
 						}
 					}
@@ -372,16 +394,45 @@ class Parts extends CI_Controller {
 				$j = 0;
 				$files = $_FILES;
 //				$dataInfo = array();
-				foreach ($_POST["old"] as $key => $value) {
-					if ($value) {
-						//OLD
-						$single_img = array_search($value, array_column($previous_photos, 'id'));
-//						print_r($single_img);
-						//						return;
-						//						echo $j;
-						$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
-					} else {
-						//New
+				if(isset($_POST["old"])) {
+					foreach ($_POST["old"] as $key => $value) {
+						if ($value) {
+							//OLD
+							$single_img = array_search($value, array_column($previous_photos, 'id'));
+							//						print_r($single_img);
+							//						return;
+							//						echo $j;
+							$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
+						} else {
+							//New
+							$_FILES['file']['name'] = $files['image']['name'][$i];
+							$_FILES['file']['type'] = $_FILES['image']['type'][$i];
+							$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+							$_FILES['file']['error'] = $_FILES['image']['error'][$i];
+							$_FILES['file']['size'] = $_FILES['image']['size'][$i];
+							$config = array();
+							$config['upload_path'] = './upload/';
+							$config['allowed_types'] = 'gif|jpg|png|jpeg';
+							$this->upload->initialize($config);
+							if ($this->upload->do_upload('file')) {
+								//							$dataInfo[] = $this->upload->data();
+								$photo_array['photo_name'] = $this->upload->data()['file_name'];
+							}
+							$i++;
+						}
+						if ($j == 0) {
+							$photo_array['is_default'] = "yes";
+						} else {
+							$photo_array['is_default'] = "no";
+						}
+
+						$this->partphotos->add_part_photos($photo_array);
+						$j++;
+					}
+				}else{
+					$cpt = count($_FILES['image']['name']);
+					for ($i = 0; $i < $cpt; $i++) {
+
 						$_FILES['file']['name'] = $files['image']['name'][$i];
 						$_FILES['file']['type'] = $_FILES['image']['type'][$i];
 						$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
@@ -392,19 +443,22 @@ class Parts extends CI_Controller {
 						$config['allowed_types'] = 'gif|jpg|png|jpeg';
 						$this->upload->initialize($config);
 						if ($this->upload->do_upload('file')) {
-//							$dataInfo[] = $this->upload->data();
-							$photo_array['photo_name'] = $this->upload->data()['file_name'];
+							$dataInfo[] = $this->upload->data();
 						}
-						$i++;
-					}
-					if ($j == 0) {
-						$photo_array['is_default'] = "yes";
-					} else {
-						$photo_array['is_default'] = "no";
 					}
 
-					$this->partphotos->add_part_photos($photo_array);
-					$j++;
+					for ($i = 0; $i < sizeof($dataInfo); $i++) {
+
+						if ($i == 0) {
+							$photo_array['is_default'] = "yes";
+							$photo_array['photo_name'] = $dataInfo[0]['file_name'];
+						} else {
+							$photo_array['is_default'] = "no";
+							$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
+						}
+						$this->partphotos->add_part_photos($photo_array);
+
+					}
 				}
 //				return;
 				//				$dataInfo = array();

@@ -225,7 +225,7 @@ for ($i = 0; $i < $remaining_count; $i++) {
 											<label class="control-label ">Select Class </label>
 											<?php $model_arr = explode(",", $rec->model_id);?>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
-												<option value="">Select Option</option>
+												<option value="0">All</option>
 
 												<?php foreach ($model_name as $model) {
 	?>
@@ -393,7 +393,7 @@ foreach ($part_photos as $us) {
                     console.log(value)
                     var valueArr= value.split(',');
                     var availableChassis= []
-                    if(!$(this).val()){
+                    if(!$(this).val() || $(this).val() == 0 || valueArr.indexOf("0") != -1){
                         availableChassis= chassis.slice()
                     }else{
                         availableChassis= chassis.filter(function (ch) {

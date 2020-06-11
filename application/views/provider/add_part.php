@@ -182,7 +182,7 @@
 										<div class="col-md-9">
 											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
-												<option value=""><?php echo lang("Select_Option"); ?></option>
+												<option value="0">All</option>
 												<?php foreach ($model_name as $model) {?>
 													<?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
 
@@ -264,7 +264,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3"><?php echo lang("Set_Date_of_Listing"); ?></label>
                                         <div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo $this->input->post("add_date") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>" class="form-control">
+											<input required type="date" data-date-format='yyyy-mm-dd'  name="add_date" value="<?php echo date("Y-m-d") ?>" id="datepicker"   min="<?php echo date('Y-m-d'); ?>" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
 									<div class="form-group">
 										<label class="control-label col-md-3"><?php echo lang("date_of_Expiry"); ?></label>
 										<div class="col-md-9">
-											<input required type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
+											<input type="date" data-date-format='yyyy-mm-dd'  name="date_expire" value="<?php echo $this->input->post("date_expire") ?>" id="datepicker3"   min="<?php echo date('Y-m-d'); ?>"/ class="form-control">
 										</div>
 									</div>
 								</div>
@@ -365,7 +365,7 @@
                     console.log(value)
 					var valueArr= value.split(',');
                     var availableChassis= []
-					if(!$(this).val()){
+					if(!$(this).val() || $(this).val() == 0 || valueArr.indexOf("0") != -1){
                         availableChassis= chassis.slice()
 					}else{
                         availableChassis= chassis.filter(function (ch) {

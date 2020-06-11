@@ -99,7 +99,16 @@ class part extends MY_Controller {
 				$file_name = $_FILES['image']['name'];
 
 				$cha = implode(',', $this->input->post('chassis'));
-				$model_select = implode(',', $this->input->post('model_id'));
+				$model_select= implode(',', $this->input->post('model_id'));
+				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
+					$all_models=$this->car->get_classes();
+					$model_select= array();
+					foreach ($all_models as $single_model) {
+						$model_select = array_merge($model_select, array($single_model->id));
+					}
+
+					$model_select = implode(',', $model_select);
+				}
 				if ($cha == "all") {
 
 					$model_list = explode(",", $model_select);
@@ -237,8 +246,19 @@ class part extends MY_Controller {
 
 		if ($this->input->post()) {
 
-			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
-			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+//			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+//			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+			$cha = implode(',', $this->input->post('chassis'));
+			$model_select= implode(',', $this->input->post('model_id'));
+			if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
+				$all_models=$this->car->get_classes();
+				$model_select= array();
+				foreach ($all_models as $single_model) {
+					$model_select = array_merge($model_select, array($single_model->id));
+				}
+
+				$model_select = implode(',', $model_select);
+			}
 
 			if ($cha == "all") {
 
@@ -344,16 +364,45 @@ class part extends MY_Controller {
 				$j = 0;
 				$files = $_FILES;
 //				$dataInfo = array();
-				foreach ($_POST["old"] as $key => $value) {
-					if ($value) {
-						//OLD
-						$single_img = array_search($value, array_column($previous_photos, 'id'));
-//						print_r($single_img);
-						//						return;
-						//						echo $j;
-						$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
-					} else {
-						//New
+				if(isset($_POST["old"])) {
+					foreach ($_POST["old"] as $key => $value) {
+						if ($value) {
+							//OLD
+							$single_img = array_search($value, array_column($previous_photos, 'id'));
+	//						print_r($single_img);
+							//						return;
+							//						echo $j;
+							$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
+						} else {
+							//New
+							$_FILES['file']['name'] = $files['image']['name'][$i];
+							$_FILES['file']['type'] = $_FILES['image']['type'][$i];
+							$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+							$_FILES['file']['error'] = $_FILES['image']['error'][$i];
+							$_FILES['file']['size'] = $_FILES['image']['size'][$i];
+							$config = array();
+							$config['upload_path'] = './upload/';
+							$config['allowed_types'] = 'gif|jpg|png|jpeg';
+							$this->upload->initialize($config);
+							if ($this->upload->do_upload('file')) {
+	//							$dataInfo[] = $this->upload->data();
+								$photo_array['photo_name'] = $this->upload->data()['file_name'];
+							}
+							$i++;
+						}
+						if ($j == 0) {
+							$photo_array['is_default'] = "yes";
+						} else {
+							$photo_array['is_default'] = "no";
+						}
+
+						$this->partphotos->add_part_photos($photo_array);
+						$j++;
+					}
+				}else{
+					$cpt = count($_FILES['image']['name']);
+					for ($i = 0; $i < $cpt; $i++) {
+
 						$_FILES['file']['name'] = $files['image']['name'][$i];
 						$_FILES['file']['type'] = $_FILES['image']['type'][$i];
 						$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
@@ -364,20 +413,24 @@ class part extends MY_Controller {
 						$config['allowed_types'] = 'gif|jpg|png|jpeg';
 						$this->upload->initialize($config);
 						if ($this->upload->do_upload('file')) {
-//							$dataInfo[] = $this->upload->data();
-							$photo_array['photo_name'] = $this->upload->data()['file_name'];
+							$dataInfo[] = $this->upload->data();
 						}
-						$i++;
-					}
-					if ($j == 0) {
-						$photo_array['is_default'] = "yes";
-					} else {
-						$photo_array['is_default'] = "no";
 					}
 
-					$this->partphotos->add_part_photos($photo_array);
-					$j++;
+					for ($i = 0; $i < sizeof($dataInfo); $i++) {
+
+						if ($i == 0) {
+							$photo_array['is_default'] = "yes";
+							$photo_array['photo_name'] = $dataInfo[0]['file_name'];
+						} else {
+							$photo_array['is_default'] = "no";
+							$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
+						}
+						$this->partphotos->add_part_photos($photo_array);
+
+					}
 				}
+
 //				return;
 				//				$dataInfo = array();
 				//				$files = $_FILES;

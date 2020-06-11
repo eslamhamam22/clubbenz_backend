@@ -233,7 +233,7 @@ $chassis_numb = $this->part->get_chassis_by_id($rec->chassis_id);
 											<label class="control-label "><?php echo lang("Select_Class"); ?> </label>
 											<?php $model_arr = explode(",", $rec->model_id);?>
 											<select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
-												<option value=""><?php echo lang("Select_Option"); ?></option>
+												<option value="0">All</option>
 												<?php foreach ($model_name as $model) {
 	?>
 
@@ -500,7 +500,7 @@ foreach ($part_photos as $us) {
                     console.log(value)
                     var valueArr= value.split(',');
                     var availableChassis= []
-                    if(!$(this).val()){
+                    if(!$(this).val() || $(this).val() == 0 || valueArr.indexOf("0") != -1){
                         availableChassis= chassis.slice()
                     }else{
                         availableChassis= chassis.filter(function (ch) {
