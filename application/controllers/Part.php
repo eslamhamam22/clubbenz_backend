@@ -14,6 +14,7 @@ class part extends MY_Controller {
 		$this->load->model('Part_photos_model', 'partphotos');
 		$this->load->model('location_model', 'location');
 		$this->load->model('Provider_model', 'provider');
+		$this->load->model('Provider_plan_model');
 		$this->load->model('Car_model', 'car');
 		$this->load->model('provider_model');
 		$this->load->model('Car_guide_model', 'car_guide');
@@ -243,6 +244,7 @@ class part extends MY_Controller {
 
 //		$user = $this->ion_auth->user()->row();
 		//		$usname = $user->username;
+		$this->data['rec'] = $this->part->edit_part($id);
 
 		if ($this->input->post()) {
 
@@ -312,6 +314,11 @@ class part extends MY_Controller {
 					$addDate = $this->input->post('updated_date');
 				} else {
 					$addDate = $this->input->post('add_date');
+				}
+				if($this->data['rec']->status != "approve" && $this->input->post('status') == "approve"){
+					if(!$this->check_maximum_parts_for_plan($this->data['rec']->provider_id)){
+						$this->part->activate($id);
+					}
 				}
 
 				$new_array = array(
@@ -478,7 +485,6 @@ class part extends MY_Controller {
 		$this->data['chassis'] = $this->data['chassis_number'];
 		$this->data['usname'] = $this->session->userdata("user_name");
 		$this->data['location'] = $this->location->manage_location();
-		$this->data['rec'] = $this->part->edit_part($id);
 		$this->data['part_photos'] = $photos_array;
 		$this->data['remaining_count'] = $remaining_count;
 		$this->data['brand'] = $this->part->manage_brand();
@@ -526,8 +532,34 @@ class part extends MY_Controller {
 		echo base_url('part?success=Deleted Successfully');
 		return true;
 	}
+	private function check_maximum_parts_for_plan($provider_id) {
+		$active_parts = array_filter($this->provider->get_parts($provider_id), function ($part) {
+			return $part->active == 1 ? true : false;
+		});
+		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
+
+		if (!$current_plan) {
+			return "Please subscribe to a plan first";
+		}
+
+		if ($current_plan->status == "expired") {
+			return "Please renew your plan first";
+		}
+
+		if (count($active_parts) >= $current_plan->plan->num_parts) {
+			return "According to your plan you cannot activate more than " . $current_plan->plan->num_parts . " parts";
+		}
+
+		return false;
+	}
+
 	public function approve($id) {
 		$this->part->approve_part($id);
+		$part= $this->part->edit_part($id);
+		if(!$this->check_maximum_parts_for_plan($part->provider_id)){
+			$this->part->activate($id);
+		}
+
 		redirect(base_url('part?success=updated  successfully!'));
 	}
 	public function reject($id) {
