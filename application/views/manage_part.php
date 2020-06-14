@@ -46,7 +46,8 @@
                                 <tbody>
                                 <?php
 foreach ($rec as $us) {
-	$chassis_number = $this->part->get_chassis_number($us->chassis_id);
+	// $chassis_number = $this->part->get_chassis_number($us->chassis_id);
+	$chassis_arr = explode(",", $us->chassis_id, 5);
 	$model_number = $this->part->get_model_number($us->model_id);
 
 	/*$brand=  explode(",",$us->part_brand);*/
@@ -75,7 +76,34 @@ foreach ($rec as $us) {
                                         </td>
                                         <td><?php echo $us->title . "<br>" . $us->part_number; ?></td>
                                         <td><?php echo $cat->name . "<br>" . $scat->name; ?> </td>
-                                        <td><?php echo $chassis_number->chassis_num; ?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
+
+
+
+                                        <td><?php $cou = count($chassis_arr);?>
+        <?php
+if ($cou <= 4) {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+	} else {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+		echo "More...";
+	}
+	?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
+
+
+
+
+
+
                                         <td><?php echo $us->part_case; ?> </td>
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>

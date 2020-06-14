@@ -37,6 +37,7 @@ class Car_guide extends MY_Controller {
 	}
 	public function index() {
 		$this->data['rec'] = $this->car_guide->get_car_guide();
+		$this->data['chassis_number'] = $this->car_guide->get_chassis_num();
 		$this->data['title'] = 'Car Guide';
 		$this->load->view('car_guide', $this->data);
 	}
@@ -404,6 +405,7 @@ class Car_guide extends MY_Controller {
 	}
 	public function manage_cluster_error() {
 		$this->data['rec'] = $this->car_guide->get_cluster_error();
+		$this->data['chassis_number'] = $this->car_guide->get_chassis_num();
 		$this->data['title'] = 'Cluster Errors';
 		$this->load->view('manage_cluster_error', $this->data);
 	}

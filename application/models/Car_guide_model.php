@@ -138,6 +138,15 @@ class Car_guide_model extends CI_Model {
 		}
 
 	}
+
+	public function get_chassis_num() {
+		$this->db->select('*');
+		$this->db->from('chassis');
+		$this->db->where('chassis_num  !=', 'All');
+		$this->db->order_by('chassis_num', 'asc');
+		$q = $this->db->get();
+		return $q->result();
+	}
 	public function get_chassis_by_id($id) {
 		$this->db->select('*');
 		$this->db->where('id', $id);

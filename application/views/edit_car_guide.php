@@ -81,11 +81,11 @@ if (in_array($model->id, $model_arr)) {
                                         <img style="width:200px;" src="<?php echo base_url('upload/') . $rec->pic1; ?>" >
                                     </div>
                                     <div align="center" style="padding: 30px">
-										<input hidden type="text" name="is_full_chassis_info" value="<?php echo $rec->pic1 ?>" >
+                                        <input hidden type="text" name="is_full_chassis_info" value="<?php echo $rec->pic1 ?>" >
 
-										<input required type="radio" name="full_chassis_info" value="image" <?php if ($rec->pic1) {?> checked <?php }?>>
+                                        <input required type="radio" name="full_chassis_info" value="image" <?php if ($rec->pic1) {?> checked <?php }?>>
 
-										<label  for="inputEmail3" class="control-label"> Upload Image</label>
+                                        <label  for="inputEmail3" class="control-label"> Upload Image</label>
                                         <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"   value="<?php echo $rec->pic1 ?>" />
                                         <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                     </div>
@@ -99,7 +99,7 @@ if (in_array($model->id, $model_arr)) {
 
 
                                     <div align="center">
-										<input type="radio" name="full_chassis_info" value="link" <?php if ($rec->link1) {?> checked <?php }?>>
+                                        <input type="radio" name="full_chassis_info" value="link" <?php if ($rec->link1) {?> checked <?php }?>>
                                         <label class="control-label ">Enter Link </label>
                                         <input type="text" style="width: 400px" name="link1" class=" form-control"  value="<?php echo $rec->link1 ?>" /> </div>
 
@@ -170,12 +170,12 @@ if (in_array($model->id, $model_arr)) {
                                     <h4 style="padding: 50px"><b>3 . Fues & Rely Location ! Chassis</b></h4>
                                     <div align="center" class="" style="">
                                         <a href=" <?php echo base_url('upload/') . $rec->pic3; ?>" title="Show" rel="bookmark" target="_blank"> Show </a>
-										<input hidden type="text" name="is_fues_rely_location" value="<?php echo $rec->pic3 ?>" >
+                                        <input hidden type="text" name="is_fues_rely_location" value="<?php echo $rec->pic3 ?>" >
 
-									</div>
+                                    </div>
                                     <div align="center" style="padding: 30px">
-										<input required type="radio" name="fues_rely_location" value="pdf" <?php if ($rec->pic3) {?> checked <?php }?>>
-										<label  for="inputEmail3" class="control-label"> Upload File PDF</label>
+                                        <input required type="radio" name="fues_rely_location" value="pdf" <?php if ($rec->pic3) {?> checked <?php }?>>
+                                        <label  for="inputEmail3" class="control-label"> Upload File PDF</label>
                                         <input style="width: 400px" type="file" class= "form-control btn btn-default" name="pdf"size="20"/>
                                     </div>
 
@@ -188,9 +188,9 @@ if (in_array($model->id, $model_arr)) {
 
 
                                     <div align="center">
-										<input type="radio" name="fues_rely_location" value="link" <?php if ($rec->link3) {?> checked <?php }?>>
+                                        <input type="radio" name="fues_rely_location" value="link" <?php if ($rec->link3) {?> checked <?php }?>>
 
-										<label class="control-label ">Enter Link </label>
+                                        <label class="control-label ">Enter Link </label>
                                         <input type="text" style="width: 400px" name="link3" class=" form-control"  value="<?php echo $rec->link3 ?>" /> </div>
 
                                 </div>
@@ -214,13 +214,13 @@ if (in_array($model->id, $model_arr)) {
                                     <h4 style="padding: 50px"><b>4 . Tire Pressure & Configuration ! Chassis</b></h4>
                                     <div align="center" class="" style="">
                                         <img style="width:200px;" src="<?php echo base_url('upload/') . $rec->pic4; ?>" >
-										<input hidden type="text" name="is_tire_pressure" value="<?php echo $rec->pic4 ?>" >
+                                        <input hidden type="text" name="is_tire_pressure" value="<?php echo $rec->pic4 ?>" >
 
-									</div>
+                                    </div>
                                     <div align="center" style="padding: 30px">
-										<input required type="radio" name="tire_pressure" value="image"  <?php if ($rec->pic4) {?> checked <?php }?>>
+                                        <input required type="radio" name="tire_pressure" value="image"  <?php if ($rec->pic4) {?> checked <?php }?>>
 
-										<label  for="inputEmail3" class="control-label"> Upload Image</label>
+                                        <label  for="inputEmail3" class="control-label"> Upload Image</label>
                                         <input style="width: 400px" type="file" class= "form-control btn btn-default" name="image[]"  id="logo_image" size="20" multiple="multiple"  />
                                         <span style="color: red; font-size: 12px;">Image Size should be 600*400</span>
                                     </div>
@@ -234,9 +234,9 @@ if (in_array($model->id, $model_arr)) {
 
 
                                     <div align="center">
-										<input type="radio" name="tire_pressure" value="link" <?php if ($rec->link4) {?> checked <?php }?>>
+                                        <input type="radio" name="tire_pressure" value="link" <?php if ($rec->link4) {?> checked <?php }?>>
 
-										<label class="control-label ">Enter Link </label>
+                                        <label class="control-label ">Enter Link </label>
                                         <input type="text" style="width: 400px" name="link4" class=" form-control"  value="<?php echo $rec->link4 ?>" /> </div>
 
 

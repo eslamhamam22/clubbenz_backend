@@ -36,11 +36,35 @@
                              <tbody>
                                 <?php
 foreach ($rec as $us) {
-	$chassis_number = $this->car_guide->get_chassis_number($us->chassis);
+	// $chassis_number = $this->car_guide->get_chassis_number($us->chassis);
+	$chassis_arr = explode(",", $us->chassis, 5);
 
 	?>
                                 <tr>
-                                    <td><?php echo $chassis_number->chassis_num; ?></td>
+                                    <td>
+        <?php $cou = count($chassis_arr);
+	?>
+
+        <?php
+if ($cou <= 4) {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+	} else {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+		echo "More...";
+	}
+	?>
+
+                                    </td>
                                     <td>
                                         <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('car_guide/edit_car_guide') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
                                         <a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('car_guide/del_car_guide/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>

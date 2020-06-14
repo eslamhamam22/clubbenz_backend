@@ -44,24 +44,42 @@
 
                                 <?php
 foreach ($rec as $us) {
-	$chassis_number = $this->car_guide->get_chassis_number($us->chassis);
+	// $chassis_number = $this->car_guide->get_chassis_number($us->chassis);
+	$chassis_arr = explode(",", $us->chassis, 5);
+
 	$shop = $this->car_guide->get_shop_name_by_id($us->shop_type, $us->shop_id);
 	?>
                                 <tr>
-                                    <td><?php echo $chassis_number->chassis_num; ?></td>
+                                    <td>
+        <?php $cou = count($chassis_arr);
+	?>
+
+        <?php
+if ($cou <= 4) {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+	} else {
+		foreach ($chassis_number as $chassis_n) {
+			if (in_array($chassis_n->id, $chassis_arr)) {
+
+				echo $chassis_n->chassis_num . ', ';
+
+			}}
+		echo "More...";
+	}
+	?>
+
+                                    </td>
 
                                     <td><?php echo $us->title . '<br>' . $us->title_arabic ?></td>
                                     <td><?php echo $us->description; ?></td>
 
                                     <td><?php echo $us->shop_type ?></td>
-                                    <td>
-                                    <?php
-if ($shop != "") {
-		echo $shop->name;
-	}
-
-	?>
-                                    </td>
+                                    <td><?php if ($shop != "") {echo $shop->name;}?> </td>
 
                                     <td>
                                         <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('car_guide/edit_cluster_error') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>

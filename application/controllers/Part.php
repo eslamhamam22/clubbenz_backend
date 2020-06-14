@@ -39,6 +39,7 @@ class part extends MY_Controller {
 		$identity = $this->session->userdata('identity');
 		$this->data['rec'] = $this->part->manage_part($identity);
 		$this->data['providers'] = $this->provider_model->select_provider();
+		$this->data['chassis_number'] = $this->car_guide->get_chassis_num();
 		$this->data['cars'] = $this->car->get_classes();
 		$this->data['title'] = 'Manage Listing Parts';
 		$this->load->view('manage_part', $this->data);
@@ -100,10 +101,10 @@ class part extends MY_Controller {
 				$file_name = $_FILES['image']['name'];
 
 				$cha = implode(',', $this->input->post('chassis'));
-				$model_select= implode(',', $this->input->post('model_id'));
-				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
-					$all_models=$this->car->get_classes();
-					$model_select= array();
+				$model_select = implode(',', $this->input->post('model_id'));
+				if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
+					$all_models = $this->car->get_classes();
+					$model_select = array();
 					foreach ($all_models as $single_model) {
 						$model_select = array_merge($model_select, array($single_model->id));
 					}
@@ -249,12 +250,12 @@ class part extends MY_Controller {
 		if ($this->input->post()) {
 
 //			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
-//			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+			//			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 			$cha = implode(',', $this->input->post('chassis'));
-			$model_select= implode(',', $this->input->post('model_id'));
-			if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
-				$all_models=$this->car->get_classes();
-				$model_select= array();
+			$model_select = implode(',', $this->input->post('model_id'));
+			if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
+				$all_models = $this->car->get_classes();
+				$model_select = array();
 				foreach ($all_models as $single_model) {
 					$model_select = array_merge($model_select, array($single_model->id));
 				}
@@ -315,8 +316,8 @@ class part extends MY_Controller {
 				} else {
 					$addDate = $this->input->post('add_date');
 				}
-				if($this->data['rec']->status != "approve" && $this->input->post('status') == "approve"){
-					if(!$this->check_maximum_parts_for_plan($this->data['rec']->provider_id)){
+				if ($this->data['rec']->status != "approve" && $this->input->post('status') == "approve") {
+					if (!$this->check_maximum_parts_for_plan($this->data['rec']->provider_id)) {
 						$this->part->activate($id);
 					}
 				}
@@ -371,12 +372,12 @@ class part extends MY_Controller {
 				$j = 0;
 				$files = $_FILES;
 //				$dataInfo = array();
-				if(isset($_POST["old"])) {
+				if (isset($_POST["old"])) {
 					foreach ($_POST["old"] as $key => $value) {
 						if ($value) {
 							//OLD
 							$single_img = array_search($value, array_column($previous_photos, 'id'));
-	//						print_r($single_img);
+							//						print_r($single_img);
 							//						return;
 							//						echo $j;
 							$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
@@ -392,7 +393,7 @@ class part extends MY_Controller {
 							$config['allowed_types'] = 'gif|jpg|png|jpeg';
 							$this->upload->initialize($config);
 							if ($this->upload->do_upload('file')) {
-	//							$dataInfo[] = $this->upload->data();
+								//							$dataInfo[] = $this->upload->data();
 								$photo_array['photo_name'] = $this->upload->data()['file_name'];
 							}
 							$i++;
@@ -406,7 +407,7 @@ class part extends MY_Controller {
 						$this->partphotos->add_part_photos($photo_array);
 						$j++;
 					}
-				}else{
+				} else {
 					$cpt = count($_FILES['image']['name']);
 					for ($i = 0; $i < $cpt; $i++) {
 
@@ -555,8 +556,8 @@ class part extends MY_Controller {
 
 	public function approve($id) {
 		$this->part->approve_part($id);
-		$part= $this->part->edit_part($id);
-		if(!$this->check_maximum_parts_for_plan($part->provider_id)){
+		$part = $this->part->edit_part($id);
+		if (!$this->check_maximum_parts_for_plan($part->provider_id)) {
 			$this->part->activate($id);
 		}
 

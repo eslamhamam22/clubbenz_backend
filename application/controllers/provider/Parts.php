@@ -48,6 +48,7 @@ class Parts extends CI_Controller {
 		$identity = $this->session->userdata('identity');
 		$this->data['title'] = 'Manage Part';
 		$this->data['rec'] = $this->Provider_Model->get_parts($this->session->userdata("id"));
+		$this->data['chassis_number'] = $this->Provider_Model->get_chassis_num();
 		$this->load->view('provider/manage_part', $this->data);
 	}
 	public function add_part() {
@@ -107,10 +108,10 @@ class Parts extends CI_Controller {
 				$file_name = $_FILES['image']['name'];
 
 				$cha = implode(',', $this->input->post('chassis'));
-				$model_select= implode(',', $this->input->post('model_id'));
-				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
-					$all_models=$this->car->get_classes();
-					$model_select= array();
+				$model_select = implode(',', $this->input->post('model_id'));
+				if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
+					$all_models = $this->car->get_classes();
+					$model_select = array();
 					foreach ($all_models as $single_model) {
 						$model_select = array_merge($model_select, array($single_model->id));
 					}
@@ -306,10 +307,10 @@ class Parts extends CI_Controller {
 				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				//
 				$cha = implode(',', $this->input->post('chassis'));
-				$model_select= implode(',', $this->input->post('model_id'));
-				if(!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))){
-					$all_models=$this->car->get_classes();
-					$model_select= array();
+				$model_select = implode(',', $this->input->post('model_id'));
+				if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
+					$all_models = $this->car->get_classes();
+					$model_select = array();
 					foreach ($all_models as $single_model) {
 						$model_select = array_merge($model_select, array($single_model->id));
 					}
@@ -394,7 +395,7 @@ class Parts extends CI_Controller {
 				$j = 0;
 				$files = $_FILES;
 //				$dataInfo = array();
-				if(isset($_POST["old"])) {
+				if (isset($_POST["old"])) {
 					foreach ($_POST["old"] as $key => $value) {
 						if ($value) {
 							//OLD
@@ -429,7 +430,7 @@ class Parts extends CI_Controller {
 						$this->partphotos->add_part_photos($photo_array);
 						$j++;
 					}
-				}else{
+				} else {
 					$cpt = count($_FILES['image']['name']);
 					for ($i = 0; $i < $cpt; $i++) {
 
