@@ -71,8 +71,8 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
-		$config['smtp_pass'] = 'ahmedtotti';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -82,7 +82,7 @@ class Reviews extends MY_Controller {
 		$to = $this->review->get_email($id);
 		$name = $this->review->get_name($id);
 		$this->email->initialize($config);
-		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
 		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
 		$this->email->message(
@@ -114,8 +114,8 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
-		$config['smtp_pass'] = 'ahmedtotti';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -126,7 +126,7 @@ class Reviews extends MY_Controller {
 		$name = $this->review->get_name($id);
 
 		$this->email->initialize($config);
-		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
 		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
 		$this->email->message('Dear ' . $name . '<br> Thank you for your feedback, we have reviewed your message, unfortunately، the content of your message may not be aligned to CluBenz review terms and rules. <br> Your voice matters, to re-enter your feedback please go to link to the app provider page <br>
@@ -163,8 +163,8 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
-		$config['smtp_pass'] = 'ahmedtotti';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -174,7 +174,7 @@ class Reviews extends MY_Controller {
 		$to = $this->review->get_email($id);
 		$name = $this->review->get_name($id);
 		$this->email->initialize($config);
-		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
 		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
 		$this->email->message(
@@ -206,8 +206,8 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
-		$config['smtp_pass'] = 'ahmedtotti';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -218,7 +218,7 @@ class Reviews extends MY_Controller {
 		$name = $this->review->get_name($id);
 
 		$this->email->initialize($config);
-		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
 		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
 		$this->email->message('Dear ' . $name . '<br> Thank you for your feedback, we have reviewed your message, unfortunately، the content of your message may not be aligned to CluBenz review terms and rules. <br> Your voice matters, to re-enter your feedback please go to link to the app provider page <br>
