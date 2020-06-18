@@ -71,20 +71,24 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
+		$config['smtp_pass'] = 'ahmedtotti';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
 		$config['mailtype'] = 'html'; // or html
 		$config['validation'] = TRUE; // bool whether to validate email or not
 
-		// $user = $this->review->get_user($id);
+		$to = $this->review->get_email($id);
+		$name = $this->review->get_name($id);
 		$this->email->initialize($config);
-		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
-		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
-		$this->email->message('Your review has been accepted');
+		$this->email->message(
+			'Dear ' . $name .
+			'<br> Thank you for your valuable feedback, please note that your review has been added and now it can be seen by others. <br>
+			شكراً لوقتك، برجاء العلم انه قد تم اضافة تقييمك، و سيراه الآخرين للأستفادة من تجربتك');
 		if ($this->email->send()) {
 			$this->review->approve_part($id);
 			date_default_timezone_set('Egypt');
@@ -110,20 +114,23 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
+		$config['smtp_pass'] = 'ahmedtotti';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
 		$config['mailtype'] = 'html'; // or html
 		$config['validation'] = TRUE; // bool whether to validate email or not
 
-		// $user = $this->review->get_user($id);
+		$to = $this->review->get_email($id);
+		$name = $this->review->get_name($id);
+
 		$this->email->initialize($config);
-		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
-		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
-		$this->email->message('Your review has been Rejected');
+		$this->email->message('Dear ' . $name . '<br> Thank you for your feedback, we have reviewed your message, unfortunately، the content of your message may not be aligned to CluBenz review terms and rules. <br> Your voice matters, to re-enter your feedback please go to link to the app provider page <br>
+			شكراً لوقتك، برجاء العلم انه قد تمت مراجعة تقييمك، و قد ترأى لنا انه لا يتناسب مع سياسات التقييم الخاصة  بنا.. ');
 		if ($this->email->send()) {
 			$this->review->reject_part($id);
 			date_default_timezone_set('Egypt');
@@ -156,20 +163,24 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
+		$config['smtp_pass'] = 'ahmedtotti';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
 		$config['mailtype'] = 'html'; // or html
 		$config['validation'] = TRUE; // bool whether to validate email or not
 
-		// $user = $this->review->get_user($id);
+		$to = $this->review->get_email($id);
+		$name = $this->review->get_name($id);
 		$this->email->initialize($config);
-		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
-		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
-		$this->email->message('Your review has been accepted');
+		$this->email->message(
+			'Dear ' . $name .
+			'<br> Thank you for your valuable feedback, please note that your review has been added and now it can be seen by others. <br>
+			شكراً لوقتك، برجاء العلم انه قد تم اضافة تقييمك، و سيراه الآخرين للأستفادة من تجربتك');
 		if ($this->email->send()) {
 			$this->review->approve_part($id);
 			date_default_timezone_set('Egypt');
@@ -179,12 +190,12 @@ class Reviews extends MY_Controller {
 				"date_updated" => date("Y-m-d H:i"),
 			);
 			$this->review->status_update($data, $id);
-			redirect(base_url('reviews/?success=updated  successfully!'));
+			redirect(base_url('reviews?success=updated  successfully!'));
 		} else {
 			show_error($this->email->print_debugger());
 			return false;
 			$this->review->approve_part($id);
-			redirect(base_url('reviews/?error=error!'));
+			redirect(base_url('reviews?error=error!'));
 		}
 
 	}
@@ -195,20 +206,23 @@ class Reviews extends MY_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'mohamedhamdytotti@gmail.com';
+		$config['smtp_pass'] = 'ahmedtotti';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
 		$config['mailtype'] = 'html'; // or html
 		$config['validation'] = TRUE; // bool whether to validate email or not
 
-		// $user = $this->review->get_user($id);
+		$to = $this->review->get_email($id);
+		$name = $this->review->get_name($id);
+
 		$this->email->initialize($config);
-		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
-		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->from('mohamedhamdytotti@gmail.com', 'Clubenz--NoReply');
+		$this->email->to($to);
 		$this->email->subject('Review Request Clubenz');
-		$this->email->message('Your review has been Rejected');
+		$this->email->message('Dear ' . $name . '<br> Thank you for your feedback, we have reviewed your message, unfortunately، the content of your message may not be aligned to CluBenz review terms and rules. <br> Your voice matters, to re-enter your feedback please go to link to the app provider page <br>
+			شكراً لوقتك، برجاء العلم انه قد تمت مراجعة تقييمك، و قد ترأى لنا انه لا يتناسب مع سياسات التقييم الخاصة  بنا.. ');
 		if ($this->email->send()) {
 			$this->review->reject_part($id);
 			date_default_timezone_set('Egypt');
@@ -218,7 +232,7 @@ class Reviews extends MY_Controller {
 				"date_updated" => date("Y-m-d H:i"),
 			);
 			$this->review->status_update($data, $id);
-			redirect(base_url('reviews/?success=updated  successfully!'));
+			redirect(base_url('reviews?success=updated  successfully!'));
 		} else {
 			show_error($this->email->print_debugger());
 			return false;
@@ -230,7 +244,7 @@ class Reviews extends MY_Controller {
 				"date_updated" => date("Y-m-d H:i"),
 			);
 			$this->review->status_update($data, $id);
-			redirect(base_url('reviews/?error=error!'));
+			redirect(base_url('reviews?error=error!'));
 		}
 	}
 

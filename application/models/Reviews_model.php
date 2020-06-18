@@ -108,6 +108,19 @@ class Reviews_model extends CI_Model {
 		return $sendTo;
 	}
 
+	public function get_name($id) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('reviews', 'reviews.user_id = users.id');
+		$this->db->where('reviews.id', $id);
+		$q = $this->db->get();
+		$rows = $q->result();
+		foreach ($rows as $row) {
+			$sendTo = $row->first_name . " " . $row->last_name;
+		}
+		return $sendTo;
+	}
+
 }
 
 ?>
