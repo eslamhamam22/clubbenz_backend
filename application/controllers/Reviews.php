@@ -63,5 +63,176 @@ class Reviews extends MY_Controller {
 			}
 		}
 	}
+
+	public function approve($id) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+
+		// $user = $this->review->get_user($id);
+		$this->email->initialize($config);
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->subject('Review Request Clubenz');
+		$this->email->message('Your review has been accepted');
+		if ($this->email->send()) {
+			$this->review->approve_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/provider?success=updated  successfully!'));
+		} else {
+			show_error($this->email->print_debugger());
+			return false;
+			$this->review->approve_part($id);
+			redirect(base_url('reviews/provider?error=error!'));
+		}
+
+	}
+	public function reject($id) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+
+		// $user = $this->review->get_user($id);
+		$this->email->initialize($config);
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->subject('Review Request Clubenz');
+		$this->email->message('Your review has been Rejected');
+		if ($this->email->send()) {
+			$this->review->reject_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/provider?success=updated  successfully!'));
+		} else {
+			show_error($this->email->print_debugger());
+			return false;
+			$this->review->reject_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/provider?error=error!'));
+		}
+	}
+
+	public function status_approve($id) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+
+		// $user = $this->review->get_user($id);
+		$this->email->initialize($config);
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->subject('Review Request Clubenz');
+		$this->email->message('Your review has been accepted');
+		if ($this->email->send()) {
+			$this->review->approve_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/?success=updated  successfully!'));
+		} else {
+			show_error($this->email->print_debugger());
+			return false;
+			$this->review->approve_part($id);
+			redirect(base_url('reviews/?error=error!'));
+		}
+
+	}
+	public function status_reject($id) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'developer.clubenz@gmail.com';
+		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+
+		// $user = $this->review->get_user($id);
+		$this->email->initialize($config);
+		$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+		$ss = $this->email->to($this->review->get_email($id));
+		$this->email->subject('Review Request Clubenz');
+		$this->email->message('Your review has been Rejected');
+		if ($this->email->send()) {
+			$this->review->reject_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/?success=updated  successfully!'));
+		} else {
+			show_error($this->email->print_debugger());
+			return false;
+			$this->review->reject_part($id);
+			date_default_timezone_set('Egypt');
+			$data = array(
+				// 'status' => $this->input->post('status'),
+				"updated_by" => $this->ion_auth->user()->row()->id,
+				"date_updated" => date("Y-m-d H:i"),
+			);
+			$this->review->status_update($data, $id);
+			redirect(base_url('reviews/?error=error!'));
+		}
+	}
+
 }
 ?>

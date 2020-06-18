@@ -32,6 +32,22 @@ class Reviews_model extends CI_Model {
 		return "";
 	}
 
+	public function get_user($id) {
+		if ($id != 0 && $id != "") {
+			$this->db->select("*");
+			$this->db->where('id', $id);
+			$this->db->from('users');
+			$this->db->join('reviews', 'reviews.user_id = users.id');
+			$this->db->limit(1);
+			$query = $this->db->get();
+			if ($query->num_rows() == 1) {
+				$val = $query->row();
+				return $val->email;
+			}
+		}
+		return "";
+	}
+
 	public function get_shop_name($id, $type) {
 
 		if ($id != 0 && $id != '' && $type != "") {
@@ -66,6 +82,32 @@ class Reviews_model extends CI_Model {
 		$this->db->update('reviews', $data);
 		return true;
 	}
+
+	public function approve_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('reviews', ["status" => 'approve']);
+		return $this->db->affected_rows();
+	}
+
+	public function reject_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('reviews', ["status" => 'reject']);
+		return $this->db->affected_rows();
+	}
+
+	public function get_email($id) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('reviews', 'reviews.user_id = users.id');
+		$this->db->where('reviews.id', $id);
+		$q = $this->db->get();
+		$rows = $q->result();
+		foreach ($rows as $row) {
+			$sendTo = $row->email;
+		}
+		return $sendTo;
+	}
+
 }
 
 ?>

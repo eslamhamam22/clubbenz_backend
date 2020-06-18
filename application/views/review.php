@@ -41,13 +41,11 @@
                                     <th>Discription</th>
                                     <th>Review Photo</th>
                                     <th>Date Created</th>
-                                    <th>Status</th>
                                     <th>Type</th>
                                     <th>Shop Name</th>
 									<th>Admin Name</th>
                                     <th>Date Updated</th>
-                                    <th>Action</th>
-
+                                    <th>Approve/Reject</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,7 +79,6 @@ foreach ($rec as $r) {
                                         <?php } else {echo "No image";}?>
                                     </td>
                                     <td><?php echo $r->date_created; ?></td>
-                                    <td><?php echo $r->status; ?></td>
                                     <td><?php echo $r->type; ?></td>
                                     <td><?php echo $shop_name; ?></td>
 
@@ -90,10 +87,17 @@ foreach ($rec as $r) {
 									<td><?php if ($updated_by != "") {echo $updated_by->first_name . " " . $updated_by->last_name;}?></td>
 
 									<td><?php echo $r->date_updated; ?></td>
-                                    <td>
-                                        <!-- <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('review/') ?><?php echo $r->shop_id; ?>"><i class="ti-marker-alt"></i></a> -->
-                                        <a class="text-inverse pr-2" title="Edit"  data-original-title="Edit" href="javascript:void(0)"  data-toggle="modal" data-target="#edit_role" onclick="update('<?php echo $r->id; ?>','<?php echo $r->status; ?>')"><i class="ti-marker-alt"></i></a>
+
+                                    <td> <?php if ($r->status == "pending" || $r->status == "reject") {?>
+                                            <a href="<?php echo base_url('reviews/status_approve/') ?><?php echo $r->id; ?>">
+                                            <button class="btn btn-small btn-primary"><i class="fa fa-check"></i></button></a>
+
+                                        <?php }?>
+                                        <?php if ($r->status == "pending" || $r->status == "approve") {?>
+                                            <a href="<?php echo base_url('reviews/status_reject/') ?><?php echo $r->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
+                                        <?php }?>
                                     </td>
+
                                 </tr>
                                 <?php }?>
                             </tbody>
@@ -106,7 +110,7 @@ foreach ($rec as $r) {
             </div>
         </div>
 
-        <div id="edit_role" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;">
+<!--         <div id="edit_role" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -135,7 +139,7 @@ foreach ($rec as $r) {
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
         <?php $this->load->view('common/common_script');?>
         <script>
             $(document).ready( function () {
