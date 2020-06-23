@@ -115,6 +115,7 @@ class Parts extends REST_Controller {
 
 			return true;
 		});
+		$arr['top_products']= array_values($arr['top_products']);
 		$arr['success'] = true;
 		$arr['data'] = $data;
 		$this->response($arr, 200);
