@@ -38,6 +38,9 @@ class Parts extends REST_Controller {
 
 		$new_array = array();
 		foreach ($arr['shops'] as $val) {
+			if($val->featured == "0")
+				$val->featured= false;
+
 			$val->main_image = $this->Part_model->get_part_main_image($val->id, 'main');
 			$val->part_brand = $this->Brand_model->get_bands_by_ids($val->part_brand);
 			$val->part_category = $this->Partcategory_model->get_category_by_id($val->part_category);
