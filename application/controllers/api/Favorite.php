@@ -23,7 +23,7 @@ class Favorite extends REST_Controller {
 		$favorites= $this->Favorite_model->get_favorites_by_user_id($user_id);
 		foreach ($favorites as $favorite){
 			$favorite->part= $this->Part_model->get_details($favorite->part_id);
-			$favorite->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($favorite->part->provider_id);
+			$favorite->part->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($favorite->part->provider_id);
 			$favorite->part->main_image = $this->Part_model->get_part_main_image($favorite->part->id, 'main');
 			$favorite->part->part_brand = $this->Brand_model->get_bands_by_ids($favorite->part->part_brand);
 			$favorite->part->part_category = $this->Partcategory_model->get_category_by_id($favorite->part->part_category);
