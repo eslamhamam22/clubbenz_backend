@@ -305,8 +305,8 @@ class Part_model extends CI_Model {
 	public function get_parts_by_categories_id($chassis) {
 		//	$this->db->where_in('part_category',$ids);
 		$this->db->select('*');
-		$this->db->where("chassis_id", '24');
-		$this->db->or_where("chassis_id", $chassis);
+//		$this->db->where("chassis_id", '24');
+//		$this->db->or_where("chassis_id", $chassis);
 		$this->db->limit(10, 0);
 		$this->db->order_by("views", "desc");
 		$this->db->from('parts');
