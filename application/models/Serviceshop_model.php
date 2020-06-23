@@ -43,11 +43,13 @@ class Serviceshop_model extends CI_Model {
 
 		if ($data['search'] != '') {
 			// $where.=" and (serch_tag like '%".$data['search']."%' )";
-			$this->db->like("serch_tag_arabic", $data['search']);
-			$this->db->or_like("serch_tag", $data['search']);
-			$this->db->or_like("arabic_name", $data['search']);
-			$this->db->or_like("name", $data['search']);
-			$this->db->or_like("service_tag_string", $data['search']);
+			$this->db->group_start()
+				->like("serch_tag_arabic", $data['search'])
+				->or_like("serch_tag", $data['search'])
+				->or_like("arabic_name", $data['search'])
+				->or_like("name", $data['search'])
+				->or_like("service_tag_string", $data['search'])
+				->group_end();
 		}
 		if ($data['service_id'] != '') {
 			$this->db->like("service_type", $data['service_id']);
