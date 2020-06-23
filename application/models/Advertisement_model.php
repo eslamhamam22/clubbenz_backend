@@ -29,7 +29,7 @@ class Advertisement_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
-	public function manage_advertisement_banner($type) {
+	public function manage_advertisement_banner_active($type) {
 		$this->db->select('*');
 		$this->db->where("status", "active");
 		$this->db->where("pagename", "banner");
@@ -38,7 +38,7 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
-	public function manage_workshop_banner($type) {
+	public function manage_workshop_banner_active($type) {
 		$this->db->select('*');
 		$this->db->where("status", "active");
 		$this->db->where("pagename", "workshop");
@@ -47,7 +47,7 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
-	public function manage_partshops_banner($type) {
+	public function manage_partshops_banner_active($type) {
 		$this->db->select('*');
 		$this->db->where("status", "active");
 		$this->db->where("pagename", "partshops");
@@ -56,7 +56,7 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
-	public function manage_services_banner($type) {
+	public function manage_services_banner_active($type) {
 		$this->db->select('*');
 		$this->db->where("status", "active");
 		$this->db->where("pagename", "services");
@@ -65,10 +65,64 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
-	public function manage_partcatlog_banner($type) {
+	public function manage_partcatlog_banner_active($type) {
 		$this->db->select('*');
 		$this->db->where("status", "active");
 		$this->db->where("pagename", "partcatlog");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function manage_advertisement_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "banner")
+			->or_where("type", "Provider Listing")->where("pagename", "banner")
+			->or_where("type", "Company Profile")->where("pagename", "banner")
+			->or_where("type", "Review Comment")->where("pagename", "banner");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function manage_workshop_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "workshop")
+			->or_where("type", "Provider Listing")->where("pagename", "workshop")
+			->or_where("type", "Company Profile")->where("pagename", "workshop")
+			->or_where("type", "Review Comment")->where("pagename", "workshop");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function manage_partshops_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "partshops")
+			->or_where("type", "Provider Listing")->where("pagename", "partshops")
+			->or_where("type", "Company Profile")->where("pagename", "partshops")
+			->or_where("type", "Review Comment")->where("pagename", "partshops");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function manage_services_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "services")
+			->or_where("type", "Provider Listing")->where("pagename", "services")
+			->or_where("type", "Company Profile")->where("pagename", "services")
+			->or_where("type", "Review Comment")->where("pagename", "services");
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function manage_partcatlog_banner($type) {
+		$this->db->select('*');
+		$this->db->where("type", "Home Page Bottom")->where("pagename", "partcatlog")
+			->or_where("type", "Provider Listing")->where("pagename", "partcatlog")
+			->or_where("type", "Company Profile")->where("pagename", "partcatlog")
+			->or_where("type", "Review Comment")->where("pagename", "partcatlog");
 		$this->db->from('advertisement');
 		$q = $this->db->get();
 		return $q->result();
