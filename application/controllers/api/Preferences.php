@@ -35,7 +35,7 @@ class Preferences extends REST_Controller {
 
 		$arr['home_slide'] = $this->Advertisement_model->manage_advertisement_home("active");
 		$arr['timeDisplay'] = $this->Advertisement_model->manage_advertisement_timeDisplay("active");
-		$arr['banner'] = $this->Advertisement_model->manage_advertisement_banner_active("active");
+		$arr['banner'] = $this->Advertisement_model->manage_advertisement_banner("active");
 		$arr['workshop'] = $this->Advertisement_model->manage_workshop_banner_active("active");
 		$arr['partshops'] = $this->Advertisement_model->manage_partshops_banner_active("active");
 		$arr['services'] = $this->Advertisement_model->manage_services_banner_active("active");
