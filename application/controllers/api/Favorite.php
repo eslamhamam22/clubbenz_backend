@@ -31,6 +31,10 @@ class Favorite extends REST_Controller {
 		}
 		$favorites = array_filter($favorites, function ($favorite) {
 			$part= $favorite->part;
+			if($part->active == 0){
+				return false;
+			}
+
 			if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d")) > strtotime($part->date_expire)) {
 				return false;
 			}

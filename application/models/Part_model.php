@@ -309,6 +309,7 @@ class Part_model extends CI_Model {
 //		$this->db->or_where("chassis_id", $chassis);
 		$this->db->limit(10, 0);
 		$this->db->order_by("views", "desc");
+		$this->db->where("active", 1);
 		$this->db->from('parts');
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {
