@@ -45,6 +45,7 @@ class Favorite extends REST_Controller {
 
 			return true;
 		});
+		$favorites= array_values($favorites);
 		$this->response($favorites, 200);
 	}
 	function add_favorite_post(){
