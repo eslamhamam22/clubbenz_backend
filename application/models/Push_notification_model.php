@@ -24,6 +24,15 @@ class Push_notification_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
+	public function get_notifications_limit_10($id) {
+		$this->db->select('*');
+		$this->db->where('user_id', $id);
+		$this->db->from('notifications');
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(10);
+		$q = $this->db->get();
+		return $q->result();
+	}
 
 	public function get_cars($fuel_id, $year, $class_id, $chassis_id) {
 		$this->db->select("*");

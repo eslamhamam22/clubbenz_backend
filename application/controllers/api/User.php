@@ -17,7 +17,7 @@ class User extends REST_Controller {
 	}
 	function get_notifications_get() {
 		$id = $this->get('id');
-		$arr = $this->notification->get_notifications($id);
+		$arr = $this->notification->get_notifications_limit_10($id);
 
 		foreach ($arr as $val) {
 			if ($val->shop_type == "workshop") {
