@@ -158,5 +158,13 @@ class Advertisement_model extends CI_Model {
 		return $q->result();
 	}
 
+	public function get_active_ads() {
+		$this->db->select('*');
+		$this->db->where('status', 'active');
+		$this->db->from('advertisement');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 }
 ?>

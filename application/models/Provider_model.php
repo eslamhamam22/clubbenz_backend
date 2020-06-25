@@ -84,6 +84,40 @@ class Provider_model extends CI_model {
 
 	}
 
+	public function get_parts_admin() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$q = $this->db->get();
+		if ($toArray) {
+			return $q->result_array();
+		} else {
+			return $q->result();
+		}
+	}
+
+	public function get_partss() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	public function provider_parts() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
+		$this->db->where('parts.status', 'approve');
+
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
 	public function get_chassis_num() {
 		$this->db->select('*');
 		$this->db->from('chassis');
