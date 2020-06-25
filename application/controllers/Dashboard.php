@@ -48,10 +48,10 @@ class Dashboard extends MY_Controller {
 		$this->data['provider_parts'] = $this->Provider_Model->provider_parts();
 
 		$this->data['active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
-			return $part->active == 1 ? true : false;
+			return $part->status == 'approve' ? true : false;
 		});
 		$this->data['in_active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
-			return $part->active == 0 ? true : false;
+			return $part->status == 'reject' ? true : false;
 		});
 		$this->data["favorites"] = $this->Favorite_model->get_favorites();
 		$this->data['title'] = 'Dashboard';

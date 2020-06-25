@@ -394,12 +394,12 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 1 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts WHERE status = 'approve' AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_in_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 0 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts WHERE status = 'reject' AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
