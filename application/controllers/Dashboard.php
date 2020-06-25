@@ -5,6 +5,11 @@ class Dashboard extends MY_Controller {
 		$this->load->database();
 		$this->load->model('Workshop_model', 'workshop');
 		$this->load->model('Users_model', 'user');
+		$this->load->model('Provider_Model');
+		$this->load->model('Reviews_model');
+		$this->load->model('Favorite_model');
+		$this->load->model('Booking_model');
+		$this->load->model('Advertisement_model');
 		$this->load->model('Serviceshop_model', 'serviceshop');
 		$this->load->model('Partsshop_model', 'partshop');
 		$this->load->model('Membership_model', 'membership');
@@ -32,6 +37,23 @@ class Dashboard extends MY_Controller {
 		$this->data['chassis'] = $this->user->get_allusers_chassis();
 		$this->data['classes'] = $this->user->get_allclasses();
 		$this->data['classes'] = $this->classes->get_classes();
+		$this->data['parts'] = $this->Provider_Model->get_partss();
+		$this->data['booking_completed'] = $this->Booking_model->get_booking_completed();
+		$this->data['booking_pending'] = $this->Booking_model->get_booking_pending();
+		$this->data['booking_rejected'] = $this->Booking_model->get_booking_rejected();
+		$this->data['reviews_pending'] = $this->Reviews_model->get_reviews_pending();
+		$this->data['reviews_rejected'] = $this->Reviews_model->get_reviews_rejected();
+		$this->data['reviews_approved'] = $this->Reviews_model->get_reviews_approved();
+		$this->data['active_ads'] = $this->Advertisement_model->get_active_ads();
+		$this->data['provider_parts'] = $this->Provider_Model->provider_parts();
+
+		$this->data['active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
+			return $part->active == 1 ? true : false;
+		});
+		$this->data['in_active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
+			return $part->active == 0 ? true : false;
+		});
+		$this->data["favorites"] = $this->Favorite_model->get_favorites();
 		$this->data['title'] = 'Dashboard';
 		/*$this->data['count_user_x'] = 0;
 			$this->data['ios_user'] = 0;
@@ -259,12 +281,32 @@ class Dashboard extends MY_Controller {
 			$carowners = $this->user->month_carowners($date, $datef);
 			$membership = $this->user->month_membership($date, $datef);
 			$membership_users = $this->user->month_memberships_users($date, $datef);
+			$active_parts = $this->user->month_active_parts($date, $datef);
+			$in_active_parts = $this->user->month_in_active_parts($date, $datef);
+			$favorites = $this->user->month_favorites($date, $datef);
+			$booking_completed = $this->user->month_booking_completed($date, $datef);
+			$booking_pending = $this->user->month_booking_pending($date, $datef);
+			$booking_rejected = $this->user->month_booking_rejected($date, $datef);
+			$reviews_pending = $this->user->month_reviews_pending($date, $datef);
+			$reviews_rejected = $this->user->month_reviews_rejected($date, $datef);
+			$reviews_approved = $this->user->month_reviews_approved($date, $datef);
+			$active_ads = $this->user->month_active_ads($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
 			$this->data['membership'] = $membership;
 			$this->data['membership_users'] = $membership_users;
+			$this->data['active_parts'] = $active_parts;
+			$this->data['in_active_parts'] = $in_active_parts;
+			$this->data['favorites'] = $favorites;
+			$this->data['booking_completed'] = $booking_completed;
+			$this->data['booking_pending'] = $booking_pending;
+			$this->data['booking_rejected'] = $booking_rejected;
+			$this->data['reviews_pending'] = $reviews_pending;
+			$this->data['reviews_rejected'] = $reviews_rejected;
+			$this->data['reviews_approved'] = $reviews_approved;
+			$this->data['active_ads'] = $active_ads;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 		} else {
 			$ts = strtotime($date);
@@ -277,12 +319,34 @@ class Dashboard extends MY_Controller {
 			$carowners = $this->user->month_carowners($date, $datef);
 			$membership = $this->user->month_membership($date, $datef);
 			$membership_users = $this->user->month_memberships_users($date, $datef);
+			$active_parts = $this->user->month_active_parts($date, $datef);
+			$in_active_parts = $this->user->month_in_active_parts($date, $datef);
+			$favorites = $this->user->month_favorites($date, $datef);
+			$booking_completed = $this->user->month_booking_completed($date, $datef);
+			$booking_pending = $this->user->month_booking_pending($date, $datef);
+			$booking_rejected = $this->user->month_booking_rejected($date, $datef);
+			$reviews_pending = $this->user->month_reviews_pending($date, $datef);
+			$reviews_rejected = $this->user->month_reviews_rejected($date, $datef);
+			$reviews_approved = $this->user->month_reviews_approved($date, $datef);
+			$active_ads = $this->user->month_active_ads($date, $datef);
+
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
 			$this->data['membership'] = $membership;
 			$this->data['membership_users'] = $membership_users;
+			$this->data['active_parts'] = $active_parts;
+			$this->data['in_active_parts'] = $in_active_parts;
+			$this->data['favorites'] = $favorites;
+			$this->data['booking_completed'] = $booking_completed;
+			$this->data['booking_pending'] = $booking_pending;
+			$this->data['booking_rejected'] = $booking_rejected;
+			$this->data['reviews_pending'] = $reviews_pending;
+			$this->data['reviews_rejected'] = $reviews_rejected;
+			$this->data['reviews_approved'] = $reviews_approved;
+			$this->data['active_ads'] = $active_ads;
+
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 
 		}

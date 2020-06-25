@@ -26,6 +26,31 @@ class Booking_model extends CI_Model {
 		return $q->result();
 	}
 
+	public function get_booking_completed() {
+		$this->db->select('*');
+		$this->db->from('booking');
+		$this->db->where('status', 'completed');
+		$this->db->order_by('id', 'DESC');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function get_booking_pending() {
+		$this->db->select('*');
+		$this->db->from('booking');
+		$this->db->where('status', 'pending');
+		$this->db->order_by('id', 'DESC');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function get_booking_rejected() {
+		$this->db->select('*');
+		$this->db->from('booking');
+		$this->db->where('status', 'rejected');
+		$this->db->order_by('id', 'DESC');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 	// public function update_active() {
 	// 	$id = $_REQUEST['sid'];
 	// 	$sval = $_REQUEST['sval'];

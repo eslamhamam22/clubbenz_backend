@@ -121,6 +121,33 @@ class Reviews_model extends CI_Model {
 		return $sendTo;
 	}
 
+	public function get_reviews_pending() {
+		$this->db->select("*");
+		$this->db->from("reviews");
+		$this->db->where('status', 'pending');
+		$q = $this->db->get();
+		return $q->result();
+
+	}
+
+	public function get_reviews_approved() {
+		$this->db->select("*");
+		$this->db->from("reviews");
+		$this->db->where('status', 'approve');
+		$q = $this->db->get();
+		return $q->result();
+
+	}
+
+	public function get_reviews_rejected() {
+		$this->db->select("*");
+		$this->db->from("reviews");
+		$this->db->where('status', 'reject');
+		$q = $this->db->get();
+		return $q->result();
+
+	}
+
 }
 
 ?>

@@ -393,6 +393,21 @@ class Users_model extends CI_Model {
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
+	public function month_active_parts($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 1 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_in_active_parts($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 0 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_favorites($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN favorites ON favorites.part_id = parts.id WHERE parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
 	public function count_classes_month($sdate, $ldate, $class) {
 		$query = "SELECT COUNT(*) as total FROM users WHERE  created_date >= '$sdate' AND created_date <= '$ldate'and model_id='$class'";
 		$q = $this->db->query($query);
@@ -422,6 +437,46 @@ class Users_model extends CI_Model {
 		}
 		return 0;
 	}
+	public function month_booking_completed($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'completed' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_booking_pending($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'pending' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_booking_rejected($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'rejected' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
+	public function month_reviews_pending($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'pending' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
+	public function month_reviews_rejected($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'reject' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
+	public function month_reviews_approved($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'approve' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
+	public function month_active_ads($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM advertisement WHERE status = 'active' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
 	public function user_type_and($usertype, $date, $datef) {
 		$this->db->select('*');
 		$this->db->from('users');
