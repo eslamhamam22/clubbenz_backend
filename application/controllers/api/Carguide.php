@@ -110,7 +110,7 @@ class Carguide extends REST_Controller
 //			}
 			
 			$response['success'] = true;
-			$response['data'] = $arr;
+			$response['data'] = array_values($arr);
 		}else{
 			$response['success'] = false;
 			$response['message'] = "No Record found";
