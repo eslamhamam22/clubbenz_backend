@@ -142,5 +142,21 @@ class Push_notification_model extends CI_Model {
 		}
 		return "";
 	}
+
+	public function manage_notification_provider() {
+		$this->db->select('*');
+		$this->db->where('shop_id !=', '0');
+		$this->db->from('notifications');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function manage_notification_users() {
+		$this->db->select('*');
+		$this->db->where('shop_id', '0');
+		$this->db->from('notifications');
+		$q = $this->db->get();
+		return $q->result();
+	}
 }
 ?>

@@ -8,6 +8,7 @@ class Dashboard extends MY_Controller {
 		$this->load->model('Provider_Model');
 		$this->load->model('Reviews_model');
 		$this->load->model('Favorite_model');
+		$this->load->model('Push_notification_model');
 		$this->load->model('Booking_model');
 		$this->load->model('Advertisement_model');
 		$this->load->model('Serviceshop_model', 'serviceshop');
@@ -46,6 +47,8 @@ class Dashboard extends MY_Controller {
 		$this->data['reviews_approved'] = $this->Reviews_model->get_reviews_approved();
 		$this->data['active_ads'] = $this->Advertisement_model->get_active_ads();
 		$this->data['provider_parts'] = $this->Provider_Model->provider_parts();
+		$this->data['notification_provider'] = $this->Push_notification_model->manage_notification_provider();
+		$this->data['notification_users'] = $this->Push_notification_model->manage_notification_users();
 
 		$this->data['active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
 			return $part->status == 'approve' ? true : false;
@@ -291,6 +294,9 @@ class Dashboard extends MY_Controller {
 			$reviews_rejected = $this->user->month_reviews_rejected($date, $datef);
 			$reviews_approved = $this->user->month_reviews_approved($date, $datef);
 			$active_ads = $this->user->month_active_ads($date, $datef);
+			$provider_parts = $this->user->month_provider_parts($date, $datef);
+			$notification_provider = $this->user->month_notification_provider($date, $datef);
+			$notification_users = $this->user->month_notification_users($date, $datef);
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
 			$this->data['partshop'] = $partshop;
@@ -307,6 +313,9 @@ class Dashboard extends MY_Controller {
 			$this->data['reviews_rejected'] = $reviews_rejected;
 			$this->data['reviews_approved'] = $reviews_approved;
 			$this->data['active_ads'] = $active_ads;
+			$this->data['provider_parts'] = $provider_parts;
+			$this->data['notification_provider'] = $notification_provider;
+			$this->data['notification_users'] = $notification_users;
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 		} else {
 			$ts = strtotime($date);
@@ -329,6 +338,9 @@ class Dashboard extends MY_Controller {
 			$reviews_rejected = $this->user->month_reviews_rejected($date, $datef);
 			$reviews_approved = $this->user->month_reviews_approved($date, $datef);
 			$active_ads = $this->user->month_active_ads($date, $datef);
+			$provider_parts = $this->user->month_provider_parts($date, $datef);
+			$notification_provider = $this->user->month_notification_provider($date, $datef);
+			$notification_users = $this->user->month_notification_users($date, $datef);
 
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
@@ -346,6 +358,9 @@ class Dashboard extends MY_Controller {
 			$this->data['reviews_rejected'] = $reviews_rejected;
 			$this->data['reviews_approved'] = $reviews_approved;
 			$this->data['active_ads'] = $active_ads;
+			$this->data['provider_parts'] = $provider_parts;
+			$this->data['notification_provider'] = $notification_provider;
+			$this->data['notification_users'] = $notification_users;
 
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 

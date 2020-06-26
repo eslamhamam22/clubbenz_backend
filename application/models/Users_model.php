@@ -477,6 +477,23 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 
+	public function month_notification_provider($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id != 0 AND add_time >= '$sdate' AND add_time <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+	public function month_notification_users($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id = 0 AND add_time >= '$sdate' AND add_time <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
+	public function month_provider_parts($sdate, $ldate) {
+		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN provider_user ON parts.provider_id = provider_user.id  WHERE parts.status = 'approve' AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
+		$q = $this->db->query($query);
+		return $q->row()->total;
+	}
+
 	public function user_type_and($usertype, $date, $datef) {
 		$this->db->select('*');
 		$this->db->from('users');
