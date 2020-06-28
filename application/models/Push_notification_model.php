@@ -51,6 +51,28 @@ class Push_notification_model extends CI_Model {
 		return $cars;
 	}
 
+	public function multi_get_cars($fuel_id, $year, $class_id, $chassis_id) {
+		$this->db->select("*");
+		$this->db->where('fuel_type', $fuel_id);
+		$this->db->where('model_id', $class_id);
+		$chassis = explode(",", $chassis_id);
+		$this->db->group_start();
+		foreach ($chassis as $single_chassis) {
+			$this->db->or_where('chassis', $single_chassis);
+		}
+		$this->db->group_end();
+		$this->db->where(" (model_year_start <='" . $year . "' or model_year_end >='" . $year . "')", null, true);
+		$this->db->from('cars');
+		$q = $this->db->get();
+		$cars = '<option value="">select option</option>';
+		foreach ($q->result_array() as $car) {
+			if ($car['model_text'] != '') {
+				$cars .= '<option value="' . $car['vin_prefix'] . '">' . $car['model'] . '</option>';
+			}
+		}
+		return $cars;
+	}
+
 	public function get_shops($type) {
 		$this->db->select('*');
 		if ($type == "workshop") {
@@ -95,9 +117,9 @@ class Push_notification_model extends CI_Model {
 			$this->db->where('car_type_id', $data['fuel_id']);
 		}
 
-		if ($data['chassis'] != '') {
-			$this->db->where('chassis', $data['chassis']);
-		}
+		// if ($data['chassis'] != '') {
+		// 	$this->db->where('chassis', $data['chassis']);
+		// }
 
 		if ($data['car_vin_prefix'] != '') {
 			$this->db->where('car_vin_prefix', $data['car_vin_prefix']);

@@ -238,7 +238,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                                                 <?php echo count($in_active_parts); ?>
                                         </li>
                                         <li class="col-middle">
-                                            <h4>active parts</h4>
+                                            <h4>In active Parts</h4>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                                     <span class="sr-only">40% Complete (success)</span>
@@ -270,7 +270,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                                             </h3>
                                         </li>
                                         <li class="col-middle">
-                                            <h4>Favorite</h4>
+                                            <h4>Favorite parts</h4>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                                     <span class="sr-only">40% Complete (success)</span>
@@ -441,7 +441,7 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                                                 <?php echo count($provider_parts); ?>
                                         </li>
                                         <li class="col-middle">
-                                            <h4>Active advertisement</h4>
+                                            <h4>Provider Parts</h4>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                                     <span class="sr-only">40% Complete (success)</span>

@@ -67,12 +67,25 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Chassis</label>
                                 <div class="col-sm-9">
-                                     <select name="chassis" id="chassis" class="form-control">
+                                     <!-- <select name="chassis" id="chassis" class="form-control">
                                         <option value="">Select Chassis</option>
                                         <?php foreach ($chassis as $ca) {?>
                                         <option data-class="<?php echo $ca->model_id; ?>" value="<?php echo $ca->id; ?>" ><?php echo $ca->chassis_num; ?></option>
                                         <?php }?>
-                                     </select>
+                                     </select> -->
+
+
+
+                                    <select name="chassis[]" id="chassis" class="form-control js-example-tokenizer3" multiple>
+                                        <!-- <option value="<?php foreach ($chassis as $ca) {echo $ca->id . ',';}?>">All</option> -->
+                                        <?php foreach ($chassis as $ca) {?>
+                                            <?php echo '<option data-class="' . $ca->model_id . '" value="' . $ca->id . '">' . $ca->chassis_num . '</option>'; ?>
+                                        <?php }?>
+                                    </select>
+
+
+
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -177,7 +190,7 @@
                     }
                     var prevValue= $('#chassis').val();
                     $('#chassis').empty();
-                    $('#chassis').append('<option value="">Select Option</option>');
+                    $('#chassis_select').append('<option value="all">All</option>');
                     availableChassis.forEach( function(ch){
                         console.log(ch.id)
                         $('#chassis').append('<option data-class="'+ch.model_id+'" value="'+ch.id+'">'+ch.chassis_num+'</option>');
@@ -192,21 +205,24 @@
             $(document).ready(function(){
                 $('#chassis').change(function () {
                     // var class_id = $('#class').val();
+                    // alert('asd');
                     var class_id = $('#chassis option:selected').data("class");
                     var fuel_id = $('#fuel').val();
                     var year_id = $('#year').val();
-                    var chassis_id = $('#chassis').val();
-                    if(class_id > 0 && fuel_id > 0 && year_id > 0 && chassis_id > 0){
+                    var chassis_id = $('#chassis').val().join(",");
+                    // alert(JSON.stringify(chassis_id))
+                    // var chassis_id = $('#chassis').data("chassis");
+                    // if(class_id > 0 && fuel_id > 0 && year_id > 0 && chassis_id > 0){
                         $.ajax({
                             type: 'post',
-                            url:'<?php echo base_url("push_notification/cars") ?>',
+                            url:'<?php echo base_url("push_notification/multi_cars") ?>',
                             data: {'class_id':class_id,'fuel_id':fuel_id,'year_id':year_id, 'chassis_id':chassis_id},
                             success: function (mydata) {
                                     console.log(mydata);
                                     $('#car').html(mydata);
                             }
                         });
-                    }
+                    // }
                 });
 
 

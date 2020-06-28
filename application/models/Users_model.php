@@ -443,12 +443,12 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_booking_pending($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'pending' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'pending' AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_booking_rejected($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'rejected' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'rejected' AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}

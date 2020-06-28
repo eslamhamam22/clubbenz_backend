@@ -60,6 +60,16 @@ class Push_notification extends MY_Controller {
 		echo $this->notification->get_cars($fuel_id, $year, $class_id, $chassis_id);
 	}
 
+	public function multi_cars() {
+		$class_id = $this->input->post('class_id');
+		$fuel_id = $this->input->post('fuel_id');
+		$year_id = $this->input->post('year_id');
+		$chassis_id = $this->input->post('chassis_id');
+		$year = $this->year->get_year_by_id($year_id);
+
+		echo $this->notification->multi_get_cars($fuel_id, $year, $class_id, $chassis_id);
+	}
+
 	public function shops() {
 		$type = $this->input->post('type');
 		echo $this->notification->get_shops($type);
@@ -81,6 +91,8 @@ class Push_notification extends MY_Controller {
 			$payload['priority'] = "high";
 			$payload['icon'] = "ic_stat";
 			$payload['show_in_foreground'] = true;
+			// print_r($posted_data);
+			// return $this->input->post("chassiss");
 
 			// $payload['data']['body'] 	= $posted_data['text'];
 			// $payload['data']['title'] 	= $posted_data['title']; //$this->post('name');
