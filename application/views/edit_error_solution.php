@@ -30,7 +30,7 @@
             <div col-md-12 col-lg-12>
                <div class="white-box">
                   <h3 class="box-title">Error Images : </h3>
-                  <?php if (count($cluster_error) > 0) {?>
+                  <?php if (count(array($cluster_error)) > 0) {?>
                   <div class="row row-in">
                      <div class="col-lg-3 col-sm-6 row-in-br">
                         <?php if ($cluster_error->pic1) {?> <img style="width:200px;" src="<?php echo base_url('upload/') . $cluster_error->pic1; ?>"> <?php }?>
@@ -59,7 +59,7 @@
 	if (strpos($this->data['user']->profile_picture, 'fbsbx') !== false) {
 		$profile_picture = $this->data['user']->profile_picture;
 	} else {
-		$profile_picture = base_url('upload/profile_picture/') . $us->profile_picture;
+		$profile_picture = base_url('upload/profile_picture/') . $this->data['user']->profile_picture;
 	}
 } else {
 	$profile_picture = '';

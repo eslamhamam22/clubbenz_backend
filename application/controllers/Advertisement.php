@@ -54,6 +54,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('image_input_id_' . $i);
 			$data['status'] = $this->input->post('home_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// print_r($data);
 			// echo $id;
@@ -149,6 +150,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('banner_image_input_id_' . $i);
 			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// echo "<pre>";
 			// print_r($data);
@@ -193,6 +195,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('workshop_image_input_id_' . $i);
 			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// echo "<pre>";
 			// print_r($data);
@@ -237,6 +240,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('partshops_image_input_id_' . $i);
 			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// echo "<pre>";
 			// print_r($data);
@@ -281,6 +285,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('services_image_input_id_' . $i);
 			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// echo "<pre>";
 			// print_r($data);
@@ -325,6 +330,7 @@ class Advertisement extends MY_Controller {
 			$data['image'] = $this->input->post('partcatlog_image_input_id_' . $i);
 			$data['status'] = $this->input->post('status_' . $i) != "active" ? "deactive" : "active";
 			$data['link'] = $this->input->post('link_' . $i);
+			$data['created_date'] = date("Y-m-d");
 			$id = $this->input->post('id_' . $i);
 			// echo "<pre>";
 			// print_r($data);

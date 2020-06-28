@@ -3,16 +3,28 @@
         <div class="sidebar-head">
             <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
         <ul class="nav" id="side-menu">
-            <li> <a href="<?php echo base_url('/provider/home') ?>" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo lang("Dashboard"); ?> <span class="label label-rouded label-inverse pull-right">
-            </span></span></a></li>
+            <li> <a href="<?php echo base_url('/provider/home') ?>" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo lang("Dashboard"); ?> </span></a></li>
 
+<?php
+$sql = "SELECT * FROM provider_user";
+$query = $this->db->query($sql);
 
-			<?php if ($this->session->userdata('status') == 'active') {?>
-				<li> <a href="<?php echo base_url('/provider/parts') ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> <?php echo lang("Parts"); ?> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
-			<?php }?>
+if ($query->num_rows() > 0) {
+	foreach ($query->result() as $row) {
+		if ($this->session->userdata('id') == $row->id) {
+			if ($row->status == 'active') {?>
+			<li> <a href="<?php echo base_url('/provider/parts') ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> <?php echo lang("Parts"); ?> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
+		<?php }}}}?>
 
-			<?php if ($this->session->userdata('status') == 'active') {?>
+			<?php
+$sql = "SELECT * FROM provider_user";
+$query = $this->db->query($sql);
+
+if ($query->num_rows() > 0) {
+	foreach ($query->result() as $row) {
+		if ($this->session->userdata('id') == $row->id) {
+			if ($row->status == 'active') {?>
 			<li>
 				<a href="<?php echo base_url('/provider/shipping') ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu"> <?php echo lang("Shipping"); ?> <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 				<ul class="nav nav-third-level collapse <?php if ($this->uri->segment(2) == 'shipping') {?>in<?php }?>">
@@ -20,7 +32,7 @@
 					<li> <a href="<?php echo base_url('/provider/shipping/request') ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw">R</i><span class="hide-menu"> <?php echo lang("Shipping_request"); ?> <span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 				</ul>
 			</li>
-			<?php }?>
+			<?php }}}}?>
 
 			<li>
 				<a href="<?php echo base_url('/provider/plan') ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw">P</i><span class="hide-menu"> <?php echo lang("Plans"); ?> <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
