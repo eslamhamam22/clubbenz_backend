@@ -753,10 +753,11 @@ class Parts extends CI_Controller {
 					$part_brand = $column[$start_index + 8];
 					$add_date = $column[$start_index + 9];
 					$description = $column[$start_index + 10];
-					$chassis_id = $column[$start_index + 11];
-					$available_location = $column[$start_index + 12];
-					$date_active = $column[$start_index + 13];
-					$num_stock = $column[$start_index + 14];
+					$model_id = $column[$start_index + 11];
+					$chassis_id = $column[$start_index + 12];
+					$available_location = $column[$start_index + 13];
+					$date_active = $column[$start_index + 14];
+					$num_stock = $column[$start_index + 15];
 
 					$new_array = array(
 						'title' => $title,
@@ -774,11 +775,14 @@ class Parts extends CI_Controller {
 						'email' => $this->session->userdata("user_email"),
 						'phone' => $this->session->userdata("user_mobile"),
 						'chassis_id' => $chassis_id,
+						'model_id' => $model_id,
 						'available_location' => $available_location,
-						'date_active' => $date_active,
+						'date_expire' => $date_active,
 						'num_stock' => $num_stock,
 						'provider_id' => $this->session->userdata("id"),
 					);
+					if($title== "" || $part_category== "" || $part_sub_category== "" || $chassis_id== "")
+						continue;
 
 					if (is_numeric($part_category)) {
 						if (!$this->Partcategory_model->get_by_id($part_category)) {

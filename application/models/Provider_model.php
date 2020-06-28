@@ -127,7 +127,7 @@ class Provider_model extends CI_model {
 		return $q->result();
 	}
 	public function get_parts_for_export($id, $toArray = false) {
-		$this->db->select('id, title, title_arabic, part_number, part_category, part_sub_category, price, discount, part_case, part_brand, add_date, description, chassis_id, available_location, date_active, num_stock');
+		$this->db->select('id, title, title_arabic, part_number, part_category, part_sub_category, price, discount, part_case, part_brand, add_date as set_date, description, model_id as class_id, chassis_id, available_location, date_expire, num_stock');
 		$this->db->where('provider_id', $id);
 
 		$this->db->order_by("id", "desc");
