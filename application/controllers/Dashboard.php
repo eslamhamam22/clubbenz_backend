@@ -251,8 +251,9 @@ class Dashboard extends MY_Controller {
 			$daterange = new DatePeriod($begin, $interval, $end);
 			foreach ($daterange as $value) {
 				$date = $value->format('Y-m-d');
-				$ios_user[] = $this->user->get_ios_users($date);
-				$android_user[] = $this->user->get_android_users($date);
+				$endat = $value->format('Y-m-d');
+				$ios_user[] = $this->user->month_ios_users($date, endat);
+				$android_user[] = $this->user->month_android_users($date, endat);
 				$gt_date[] = $this->user->user_type_apl($date);
 			}
 			foreach ($ios_user as $i) {

@@ -3,6 +3,7 @@ class Reviews_model extends CI_Model {
 	public function get_review() {
 		$this->db->select("*");
 		$this->db->from("reviews");
+		$this->db->order_by("created_date", "DESC");
 		$q = $this->db->get();
 		return $q->result();
 

@@ -703,8 +703,8 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                     var chassis = $(this).val();
                     var period= $('#period').val();
                     if(period == 'WEEK'){
-                        var datef =  $('#datepicker2').val();
                         var date =  $('#datepicker1').val();
+                        var datef =  $('#datepicker2').val();
 
                     }
                     if(period == 'MONTH'){
