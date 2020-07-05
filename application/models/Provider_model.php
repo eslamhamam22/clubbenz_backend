@@ -87,11 +87,21 @@ class Provider_model extends CI_model {
 	public function get_parts_admin() {
 		$this->db->select('*');
 		$this->db->from('parts');
-		$q = $this->db->get();
-		if ($toArray) {
-			return $q->result_array();
+		$this->db->where('active', 1);
+		if ($query = $this->db->get()) {
+			return $query->result();
 		} else {
-			return $q->result();
+			return false;
+		}
+	}
+	public function in_active_parts() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$this->db->where('active', 0);
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
 		}
 	}
 
@@ -109,7 +119,7 @@ class Provider_model extends CI_model {
 		$this->db->select('*');
 		$this->db->from('parts');
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
-		$this->db->where('parts.status', 'approve');
+		$this->db->where('parts.active', 1);
 
 		if ($query = $this->db->get()) {
 			return $query->result();

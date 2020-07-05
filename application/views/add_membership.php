@@ -33,9 +33,21 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label"> Benefit Ar</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name_ar" class="form-control" id="name_ar" placeholder="Benefit Ar" required> </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label"> Details</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="details[]" class="form-control" id="details" placeholder="Details" required> </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label"> Details Ar</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="details_ar[]" class="form-control" id="details_ar" placeholder="Details Ar" required> </div>
                                     </div>
                                     <!-- <div class="row margin-top"  style="margin-bottom: 20px; ">
                                         <div align="center" >

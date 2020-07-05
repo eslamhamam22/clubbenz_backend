@@ -62,6 +62,7 @@ class Membership extends MY_Controller {
 			if ($this->form_validation->run()) {
 
 				$new_array['name'] = $this->input->post('name');
+				$new_array['name_ar'] = $this->input->post('name_ar');
 
 				$result = $this->membership->add_membership($new_array);
 
@@ -72,6 +73,7 @@ class Membership extends MY_Controller {
 					for ($i = 0; $i < $ct; $i++) {
 
 						$new_data['details'] = $this->input->post('details')[$i];
+						$new_data['details_ar'] = $this->input->post('details_ar')[$i];
 						$new_data['benefit_id'] = $result;
 
 						$rec = $this->membership->add_membership_rel($new_data);
@@ -130,6 +132,7 @@ class Membership extends MY_Controller {
 			if ($this->form_validation->run()) {
 
 				$new_array['name'] = $this->input->post('name');
+				$new_array['name_ar'] = $this->input->post('name_ar');
 
 				$val = $this->membership->membership_update($new_array, $id);
 
@@ -137,6 +140,7 @@ class Membership extends MY_Controller {
 				$ct = count($this->input->post('details'));
 				for ($i = 0; $i < $ct; $i++) {
 					$new_data['details'] = $this->input->post('details')[$i];
+					$new_data['details_ar'] = $this->input->post('details_ar')[$i];
 					$new_data['benefit_id'] = $id;
 					// $error_id = $this->input->post('error_id')[$i];
 
@@ -198,6 +202,10 @@ class Membership extends MY_Controller {
 				$new_array['name'] = $this->input->post('name');
 				$new_array['price'] = $this->input->post('price');
 				$new_array['duration'] = $this->input->post('duration');
+				$new_array['msg_en'] = $this->input->post('msg_en');
+				$new_array['msg_ar'] = $this->input->post('msg_ar');
+				date_default_timezone_set('Egypt');
+				$new_array['created_date'] = date("Y-m-d");
 
 				if ($file_name != '') {
 					$config['upload_path'] = './upload/';
@@ -235,6 +243,8 @@ class Membership extends MY_Controller {
 			$new_array['name'] = $this->input->post('name');
 			$new_array['price'] = $this->input->post('price');
 			$new_array['duration'] = $this->input->post('duration');
+			$new_array['msg_en'] = $this->input->post('msg_en');
+			$new_array['msg_ar'] = $this->input->post('msg_ar');
 			if ($file_name != '') {
 				$config['upload_path'] = './upload/';
 				$config['file_name'] = time() . $file_name;

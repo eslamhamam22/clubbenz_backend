@@ -86,18 +86,25 @@ if ($cou <= 4) {
 	?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
                             <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
+
+
                             <td>
                                 <?php if ($us->status == "pending") {?>
-                                    <button class="btn btn-small btn-info"><?php echo lang("Pending"); ?></button>
+                                    <button class="btn-inactive"></button>
                                 <?php } else if ($us->status == "approve") {?>
                                     <?php if ($us->active) {?>
-                                        <a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Deactivate"); ?></button></a>
+
+                                        <a href="<?php echo base_url('provider/parts/deactivate/') ?><?php echo $us->id; ?>">
+                                            <button class="btn-active"></button>
+                                        </a>
 										<p style="display: none"><?php echo lang("Active"); ?></p>
 										<?php if (!empty($us->date_expire) && (strtotime(date("Y-m-d H:i:s")) > strtotime($us->date_expire))) {?>
 											<p class="color: red">*<?php echo lang("Expired"); ?></p>
 										<?php }?>
                                     <?php } else {?>
-                                        <a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Activate"); ?></button></a>
+                                        <a href="<?php echo base_url('provider/parts/activate/') ?><?php echo $us->id; ?>">
+                                            <button class="btn-inactive"></button>
+                                        </a>
                                         <p style="display: none"><?php echo lang("inactive"); ?></p>
                                     <?php }?>
                                 <?php } else {?>
@@ -105,14 +112,19 @@ if ($cou <= 4) {
                                     <p style="display: none"><?php echo lang("rejectedd"); ?></p>
                                 <?php }?>
                             </td>
+
+
                             <td>
                                 <?php if ($us->status == "pending") {?>
-<!--                                    <button class="btn btn-small btn-info">Pending</button>-->
+                                    <button class="btn-inactive"></button>
                                 <?php } else if ($us->status == "approve" && $us->active == 1) {?>
                                     <?php if ($us->featured == 0) {?>
-                                        <a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-success"><?php echo lang("Add"); ?></button></a>
+                                        <a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>">
+                                            <button class="btn-inactive"></button>
+                                        </a>
                                     <?php } else {?>
-                                        <a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><?php echo lang("Remove"); ?></button></a>
+                                        <a href="<?php echo base_url('provider/parts/remove_from_featured/') ?><?php echo $us->id; ?>"><button class="btn-active"></button>
+                                        </a>
                                         <p style="display: none"><?php echo lang("featured"); ?></p>
                                     <?php }?>
                                 <?php } else {?>

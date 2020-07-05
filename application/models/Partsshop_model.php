@@ -151,7 +151,12 @@ class Partsshop_model extends CI_Model {
 		return $this->db->count_all('partshop');
 	}
 	public function total_membership() {
-		return $this->db->count_all('memberships');
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('memberships_users', 'memberships_users.user_id = users.id');
+		$this->db->where('memberships_users.status', 'approve');
+		$q = $this->db->get();
+		return $q->result();
 	}
 	public function total_memberships_users() {
 		return $this->db->count_all('memberships_users');

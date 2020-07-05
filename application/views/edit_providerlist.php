@@ -34,7 +34,7 @@
 foreach ($rec as $us) {?>
                                         <input type="hidden" name="id" value="<?php echo $us->id; ?>">
                                     <div class="form-group">
-                                        <label  class="col-sm-3 control-label"> Upload Service Icon</label>
+                                        <label  class="col-sm-3 control-label"> Update Provider Image</label>
                                         <div class="col-sm-9">
                                           <input type="file" class= "form-control btn btn-default" name="logo" id="logo" size="20"/>
 
@@ -115,7 +115,7 @@ foreach ($rec as $us) {?>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Business or personal website</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="business_website" class="form-control" value="<?php echo $us->business_website ?>" required>
+                                            <input type="text" name="business_website" class="form-control" value="<?php echo $us->business_website ?>">
                                         </div>
                                     </div>
 

@@ -29,8 +29,10 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        <th>image</th>
                                         <th>Duration</th>
+                                        <th>image</th>
+                                        <th>Message En</th>
+                                        <th>Message Ar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,6 +48,8 @@ foreach ($rec as $us) {
                                         <td>
                                             <img class="img_size" src="<?php echo base_url() . "/upload/$us->image" ?>">
                                         </td>
+                                         <td><?php echo $us->msg_en ?></td>
+                                        <td><?php echo $us->msg_ar ?></td>
                                          <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('membership/edit_membership_features') ?>/<?php echo $us->id ?>"><i class="ti-marker-alt"></i></a>
                                             <a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('membership/membership_features_del/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>

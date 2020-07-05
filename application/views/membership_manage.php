@@ -29,7 +29,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Benefit</th>
+                                        <th>Benefit Ar</th>
                                         <th>Details</th>
+                                        <th>Details Ar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -40,8 +42,12 @@ foreach ($rec as $us) {
                                     <tr>
                                         <td><?php echo $us->id ?></td>
                                         <td><?php echo $us->name ?></td>
+                                        <td><?php echo $us->name_ar ?></td>
                                         <td><?php foreach ($rel as $re) {?>
                                             <?php if ($us->id == $re->benefit_id) {echo '-' . $re->details . '<br>';}}?>
+                                        </td>
+                                        <td><?php foreach ($rel as $re) {?>
+                                            <?php if ($us->id == $re->benefit_id) {echo '-' . $re->details_ar . '<br>';}}?>
                                         </td>
                                          <td>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('membership/edit_membership') ?>/<?php echo $us->id ?>"><i class="ti-marker-alt"></i></a>

@@ -1,8 +1,16 @@
 
 <div class="form-group delete_col">
+<div class="form-group">
 <label for="inputEmail3" class="col-sm-3 control-label"> Details</label>
 <div class="col-sm-9">
 <input type="text" name="details[]" class="form-control" id="details" placeholder="Details" required>
+</div>
+</div>
+<div class="form-group">
+<label for="inputEmail3" class="col-sm-3 control-label"> Details Ar</label>
+<div class="col-sm-9">
+<input type="text" name="details_ar[]" class="form-control" id="details_ar" placeholder="Details Ar" required>
+</div>
 </div>
 <div align="center" style="margin-top:12px; ">
      <input style="width: 150px; height: 40px; margin-top:20px; background-color: forestgreen " type="button" name="delete" class="remove_field btn btn-primary" value="Delete">

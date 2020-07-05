@@ -66,6 +66,20 @@ foreach ($rec as $us) {
                                             <input type="number" name="duration" class="form-control" value="<?php echo $us->duration ?>" required> </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Message En</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="msg_en" rows="4" class="form-control"><?php echo $us->msg_en ?></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Message Ar</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="msg_ar" rows="4" class="form-control"><?php echo $us->msg_ar ?></textarea>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Update</button>

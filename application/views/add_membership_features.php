@@ -52,6 +52,20 @@
                                             <input type="number" name="duration" class="form-control" id="duration" placeholder="Duration" required> </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Message En</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="msg_en" class="form-control" rows="6" placeholder="Message En"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Message Ar</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="msg_ar" class="form-control" rows="6" placeholder="Message Ar"></textarea>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button  type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>

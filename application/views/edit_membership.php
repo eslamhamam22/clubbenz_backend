@@ -38,7 +38,15 @@ foreach ($rec as $us) {
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Benefit</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="name" class="form-control" id="name"value="<?php echo $us->name; ?>" required> </div>
+                                            <input type="text" name="name" class="form-control" id="name"value="<?php echo $us->name; ?>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Benefit Ar</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name_ar" class="form-control" id="name_ar"value="<?php echo $us->name_ar; ?>" required>
+                                        </div>
                                     </div>
 
 <?php
@@ -52,6 +60,12 @@ $error_solution = $this->membership->get_membership_rel_id($us->id);
                                         <label for="inputEmail3" class="col-sm-3 control-label">Details</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="details[]" class="form-control" id="details"value="<?php echo $es->details; ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Details Ar</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="details_ar[]" class="form-control" id="details_ar"value="<?php echo $es->details_ar; ?>" required>
                                         </div>
                                     </div>
                                     <div class="row margin-top">

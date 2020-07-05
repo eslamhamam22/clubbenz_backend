@@ -384,7 +384,7 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_membership($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM memberships WHERE  created_date >= '$sdate' AND created_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM users INNER JOIN memberships_users ON memberships_users.user_id = users.id WHERE memberships_users.status = 'approve' AND memberships_users.created_date >= '$sdate' AND memberships_users.created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
@@ -394,12 +394,12 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE status = 'approve' AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 1 AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_in_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE status = 'reject' AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 0 AND add_date >= '$sdate' AND add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
@@ -438,35 +438,41 @@ class Users_model extends CI_Model {
 		return 0;
 	}
 	public function month_booking_completed($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'completed' AND created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_booking_pending($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'pending' AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'pending' AND created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_booking_rejected($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'rejected' AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM booking WHERE status = 'rejected' AND created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 
 	public function month_reviews_pending($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'pending' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'pending' AND date_updated >= '$sdate' AND date_updated <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 
 	public function month_reviews_rejected($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'reject' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'reject' AND date_updated >= '$sdate' AND date_updated <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 
 	public function month_reviews_approved($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'approve' AND created_date >= '$sdate' AND created_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM reviews WHERE status = 'approve' AND date_updated >= '$sdate' AND date_updated <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
@@ -478,18 +484,20 @@ class Users_model extends CI_Model {
 	}
 
 	public function month_notification_provider($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id != 0 AND add_time >= '$sdate' AND add_time <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id != 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_notification_users($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id = 0 AND add_time >= '$sdate' AND add_time <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id = 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 
 	public function month_provider_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN provider_user ON parts.provider_id = provider_user.id  WHERE parts.status = 'approve' AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN provider_user ON parts.provider_id = provider_user.id  WHERE parts.active = 1 AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}

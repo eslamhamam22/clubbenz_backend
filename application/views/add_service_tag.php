@@ -12,11 +12,11 @@
             <div class="container-fluid" >
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                      <h4 class="page-title">Add Services</h4> 
+                      <h4 class="page-title">Add Services</h4>
                     </div>
-                   
+
                 </div>
-                
+
                 <div class="col-md-4 col-lg-3" >
                     <div >
                         <!-- <div id="morris-area-chart2" style="height:200px;visibility: hidden;"></div> -->
@@ -24,36 +24,37 @@
                 </div>
                 <div class="col-md-6" style="background: white">
                     <div class="white-box">
-                       
-                        <?php $this->load->view('message');?>    
-                        <form class="form-horizontal" method="post" action="<?php echo base_url();?>service_tag/add_service_tag">
+
+                        <?php $this->load->view('message');?>
+                        <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>service_tag/add_service_tag">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" class="form-control" id="inputEmail3" placeholder=" Name" required> </div>
+                                    <input type="text" name="name" class="form-control" id="inputEmail3" maxlength="20" placeholder=" Name" required> </div>
+                                    <input type="checkbox" name="mycheckbox" class="onoffswitch3-checkbox" id="myonoffswitch3">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name AR</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="arabic_name" class="form-control" id="inputEmail3" placeholder=" Name AR" required> 
+                                    <input type="text" name="arabic_name" class="form-control" id="inputEmail3" placeholder=" Name AR" required>
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Select Shop Type</label>
-                                <div class="col-sm-9">           
+                                <div class="col-sm-9">
                                     <select name="shop_type"  class="form-control ">
                                         <option>Select shop Type</option>
-                                       
+
                                         <option value="workshop" >workshop</option>
                                         <option value="serviceshop" >serviceshop</option>
                                         <option value="partshop" >partshop</option>
-                                    </select>    
-                                </div>           
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Keywords</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="keywords" class="form-control js-example-tokenizer" id="inputEmail3" placeholder="Keywords" multiple="multiple"> 
+                                    <input type="text" name="keywords" class="form-control js-example-tokenizer" id="inputEmail3" placeholder="Keywords" multiple="multiple">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -73,7 +74,7 @@
                 <?php $this->load->view('common/common_footer');?>
             </div>
         </div>
-        <?php $this->load->view('common/common_script');?>    
+        <?php $this->load->view('common/common_script');?>
         <!-- serch token -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>

@@ -109,14 +109,17 @@ if ($cou <= 4) {
 	echo "<br>" . $us->username?></td>
                                         <td> <?php if ($us->status == "pending" || $us->status == "reject") {?>
                                             <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>">
-                                            <button class="btn btn-small btn-primary"><i class="fa fa-check"></i></button></a>
+                                            <button class="btn-inactive"></button></a>
                                         <?php }?>
-                                        <?php if ($us->status == "pending" || $us->status == "approve") {?>
-                                            <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
+                                        <?php if ($us->status == "approve") {?>
+                                            <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>">
+                                                <button class="btn-active"></button>
+                                            </a>
                                         <?php }?>
                                         </td>
 
                                         <td>
+                                            <!-- <input type="checkbox" class="btn-active" name=""> -->
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('Part/edit_part') ?>/<?php echo $us->id; ?>"><i class="ti-marker-alt"></i></a>
                                             <a class="text-inverse " data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('part/del_part/') ?><?php echo $us->id; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>
 <!--                                            <a class="text-inverse " data-toggle="tooltip" data-original-title="Part Photo Listing" href="--><?php //echo base_url('part_photos/manage_part_photos/')?><!----><?php //echo $us->id;?><!--"><i class="ti-image"></i></a>-->

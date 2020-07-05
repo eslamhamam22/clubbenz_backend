@@ -49,13 +49,9 @@ class Dashboard extends MY_Controller {
 		$this->data['provider_parts'] = $this->Provider_Model->provider_parts();
 		$this->data['notification_provider'] = $this->Push_notification_model->manage_notification_provider();
 		$this->data['notification_users'] = $this->Push_notification_model->manage_notification_users();
+		$this->data['active_parts'] = $this->Provider_Model->get_parts_admin();
+		$this->data['in_active_parts'] = $this->Provider_Model->in_active_parts();
 
-		$this->data['active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
-			return $part->status == 'approve' ? true : false;
-		});
-		$this->data['in_active_parts'] = array_filter($this->Provider_Model->get_parts_admin(), function ($part) {
-			return $part->status == 'reject' ? true : false;
-		});
 		$this->data["favorites"] = $this->Favorite_model->get_favorites();
 		$this->data['title'] = 'Dashboard';
 		/*$this->data['count_user_x'] = 0;
@@ -175,10 +171,11 @@ class Dashboard extends MY_Controller {
 			echo $this->load->view('ajx_class_chart', $this->data, true);
 		} else {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
+			$end = date('Y-m-d', strtotime($datef));
 			$ldate = $week_start;
 			$begin = new DateTime($week_start);
-			$end = new DateTime($ldate);
-			$end = $end->modify('+7 day');
+			// $end = new DateTime($end_date);
+			// $end = $end->modify('+7 day');
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
 
@@ -192,6 +189,7 @@ class Dashboard extends MY_Controller {
 			}
 			$this->data['count_user_x'] = json_encode($gt_date);
 			$this->data['class'] = json_encode($tt);
+
 			echo $this->load->view('ajx_class_chart', $this->data, true);
 		}
 	}
@@ -326,22 +324,22 @@ class Dashboard extends MY_Controller {
 			$workshop = $this->user->month_workshop($start_date, $end_date);
 			$serviceshop = $this->user->month_serviceshop($start_date, $end_date);
 			$partshop = $this->user->month_partshop($start_date, $end_date);
-			$carowners = $this->user->month_carowners($date, $datef);
-			$membership = $this->user->month_membership($date, $datef);
-			$membership_users = $this->user->month_memberships_users($date, $datef);
-			$active_parts = $this->user->month_active_parts($date, $datef);
-			$in_active_parts = $this->user->month_in_active_parts($date, $datef);
-			$favorites = $this->user->month_favorites($date, $datef);
-			$booking_completed = $this->user->month_booking_completed($date, $datef);
-			$booking_pending = $this->user->month_booking_pending($date, $datef);
-			$booking_rejected = $this->user->month_booking_rejected($date, $datef);
-			$reviews_pending = $this->user->month_reviews_pending($date, $datef);
-			$reviews_rejected = $this->user->month_reviews_rejected($date, $datef);
-			$reviews_approved = $this->user->month_reviews_approved($date, $datef);
-			$active_ads = $this->user->month_active_ads($date, $datef);
-			$provider_parts = $this->user->month_provider_parts($date, $datef);
-			$notification_provider = $this->user->month_notification_provider($date, $datef);
-			$notification_users = $this->user->month_notification_users($date, $datef);
+			$carowners = $this->user->month_carowners($start_date, $end_date);
+			$membership = $this->user->month_membership($start_date, $end_date);
+			$membership_users = $this->user->month_memberships_users($start_date, $end_date);
+			$active_parts = $this->user->month_active_parts($start_date, $end_date);
+			$in_active_parts = $this->user->month_in_active_parts($start_date, $end_date);
+			$favorites = $this->user->month_favorites($start_date, $end_date);
+			$booking_completed = $this->user->month_booking_completed($start_date, $end_date);
+			$booking_pending = $this->user->month_booking_pending($start_date, $end_date);
+			$booking_rejected = $this->user->month_booking_rejected($start_date, $end_date);
+			$reviews_pending = $this->user->month_reviews_pending($start_date, $end_date);
+			$reviews_rejected = $this->user->month_reviews_rejected($start_date, $end_date);
+			$reviews_approved = $this->user->month_reviews_approved($start_date, $end_date);
+			$active_ads = $this->user->month_active_ads($start_date, $end_date);
+			$provider_parts = $this->user->month_provider_parts($start_date, $end_date);
+			$notification_provider = $this->user->month_notification_provider($start_date, $end_date);
+			$notification_users = $this->user->month_notification_users($start_date, $end_date);
 
 			$this->data['serviceshop'] = $serviceshop;
 			$this->data['workshop'] = $workshop;
@@ -367,4 +365,5 @@ class Dashboard extends MY_Controller {
 
 		}
 	}
+
 }
