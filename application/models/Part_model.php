@@ -92,7 +92,7 @@ class Part_model extends CI_Model {
 
 			$this->db->like("title", $data['search']);
 			$this->db->or_like('part_number', $data['search']);
-			$this->db->or_like('id', $data['search']);
+			$this->db->or_like('parts.id', $data['search']);
 //			$this->db->like("chassis_id",'2', "both" );
 			//			$this->db->like("chassis_id",'3', "both" );
 			//			$this->db->or_like("chassis_id", $chassis , "both" );
