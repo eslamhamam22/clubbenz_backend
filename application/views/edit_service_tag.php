@@ -14,9 +14,9 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                        <h4 class="page-title">Edit Services</h4>
                     </div>
-                   
+
                 </div>
-                
+
                 <div class="col-md-4 col-lg-3" >
                     <div >
                         <!-- <div id="morris-area-chart2" style="height:200px;visibility: hidden;"></div> -->
@@ -24,43 +24,43 @@
                 </div>
                 <div class="col-md-6" style="background: white">
                     <div class="white-box">
-                       
-                        <?php $this->load->view('message');?>    
-                        <form class="form-horizontal" method="post" action="<?php echo base_url();?>service_tag/update_service_tag">
+
+                        <?php $this->load->view('message');?>
+                        <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>service_tag/update_service_tag">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" class="form-control" id="inputEmail3" value="<?php echo $service->name?>" > </div>
+                                    <input type="text" name="name" class="form-control" id="inputEmail3" maxlength="20" value="<?php echo $service->name ?>" > </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name AR</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="arabic_name" class="form-control" id="inputEmail3" value="<?php echo $service->arabic_name?>"> 
+                                    <input type="text" name="arabic_name" class="form-control" id="inputEmail3" maxlength="20" value="<?php echo $service->arabic_name ?>">
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Select Shop Type</label>
-                                <div class="col-sm-9">           
+                                <div class="col-sm-9">
                                     <select name="shop_type"  class="form-control ">
-                                        <option><?php echo $service->shop_type?></option>
-                                       
+                                        <option><?php echo $service->shop_type ?></option>
+
                                         <option value="workshop" >workshop</option>
                                         <option value="serviceshop" >serviceshop</option>
                                         <option value="partshop" >partshop</option>
-                                    </select>    
-                                </div>           
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Keywords</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="keywords" class="form-control js-example-tokenizer" id="inputEmail3" value="<?php echo $service->keywords?>"> 
+                                    <input type="text" name="keywords" class="form-control js-example-tokenizer" id="inputEmail3" value="<?php echo $service->keywords ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Sorting</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="sorting" class="form-control" id="inputEmail3" value="<?php echo $service->sorting?>"> </div>
-                                <input type="hidden" name="id" value="<?php echo $service->id?>">
+                                    <input type="text" name="sorting" class="form-control" id="inputEmail3" value="<?php echo $service->sorting ?>"> </div>
+                                <input type="hidden" name="id" value="<?php echo $service->id ?>">
                             </div>
                             <div class="form-group m-b-0">
                                 <div class="col-sm-offset-3 col-sm-9">
