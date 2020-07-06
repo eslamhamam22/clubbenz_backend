@@ -71,9 +71,9 @@ if (!empty($ser)) {
 
                                 <td>
                                      <?php $active = $us->active;if ($active == 1) {?>
-                                    <a href="<?php echo base_url('workshop/update_active?sid=') ?><?php echo $us->id; ?>&sval=<?php echo $active; ?> " class="btn btn-danger">in Active</a>
+                                    <a href="<?php echo base_url('workshop/update_active?sid=') ?><?php echo $us->id; ?>&sval=<?php echo $active; ?>"><button class="btn-active"></button></a>
                                     <?php } else {?>
-                                         <a href="<?php echo base_url('workshop/update_active?sid=') ?><?php echo $us->id; ?>&sval=<?php echo $active; ?> " class="btn btn-success">Active</a>
+                                         <a href="<?php echo base_url('workshop/update_active?sid=') ?><?php echo $us->id; ?>&sval=<?php echo $active; ?> "><button class="btn-inactive"></button></a>
                                     <?php }?>
                                 </td>
 
