@@ -31,7 +31,6 @@
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="name" class="form-control" id="inputEmail3" maxlength="20" placeholder=" Name" required> </div>
-                                    <input type="checkbox" name="mycheckbox" class="onoffswitch3-checkbox" id="myonoffswitch3">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label"> Name AR</label>
