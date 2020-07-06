@@ -568,6 +568,9 @@ class Serviceshop extends MY_Controller {
 
 					}
 				}
+				if (empty($data['rating_image']) && empty($this->input->post('image_input'))) {
+					$data['rating_image'] = '';
+				}
 				$this->serviceshop->update_service_shop($data, $id);
 				redirect(base_url('serviceshop/?success=update Service Shop successfully!'));
 			} else {

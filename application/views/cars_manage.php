@@ -47,7 +47,7 @@ foreach ($rec as $us) {
                                 <tr>
                                     <td><?php echo $year->name . "<br>" . $us->model; ?></td>
                                     <td><?php echo $us->model_year_start . "<br>" . $us->model_year_end; ?></td>
-                                    <td><?php echo $chassis_number->chassis_num; ?></td>
+                                    <td><?php if (isset($chassis_number)) {echo $chassis_number->chassis_num;}?></td>
                                     <td><?php echo $us->vin_prefix; ?></td>
                                     <td><?php echo $fuel_name->name; ?></td>
                                     <td>

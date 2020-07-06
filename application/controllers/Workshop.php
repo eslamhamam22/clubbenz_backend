@@ -607,6 +607,12 @@ class Workshop extends MY_Controller {
 					}
 				}
 
+				if (empty($data['photo_selection_arround_rating']) && empty($this->input->post('image_input'))) {
+					//	echo  "p1";
+					$data['photo_selection_arround_rating'] = '';
+
+				}
+
 				$result = $this->workshop->update_ws($data, $id);
 				if ($result) {
 					redirect(base_url('workshop/?success=update  successfully!'));
@@ -637,6 +643,13 @@ class Workshop extends MY_Controller {
 			}
 			return redirect('workshop');
 		}
+	}
+
+	public function delete_workshop_image() {
+
+		$id = $this->input->post('id');
+
+		echo $this->workshop->delete_workshop_image($id);
 	}
 
 }

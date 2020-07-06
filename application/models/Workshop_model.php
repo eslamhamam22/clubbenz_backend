@@ -226,4 +226,10 @@ class Workshop_model extends CI_Model {
 		return $this->db->update('workshop', $data);
 	}
 
+	public function delete_workshop_image($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('photo_selection_arround_rating');
+		return $this->db->affected_rows();
+	}
+
 }

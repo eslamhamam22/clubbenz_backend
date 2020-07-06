@@ -19,26 +19,34 @@
             <?php $this->load->view("message");?>
 
             <form name="frm" method="post" action="<?php echo base_url('workshop/update_workshop') ?>" enctype="multipart/form-data" >
+
                 <div class="form-body"style="background: white;padding-bottom:30px">
                     <h3 class="box-title" style="padding-top:30px;text-align:center;"></h3>
                     <div align= "center">
                     <div align="center" style="padding: 20px;width: 80% ; height: 190px ; margin-left: px ; border:1px solid black" >
-                        <img style="height: 100px;width: 100px;margin-bottom: 6px;" src="<?php echo base_url('upload/') . $rec->workshop_bg_img; ?>" >
-                        <input style="width: 400px" type="file" id="img1" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"/>
-                        <span style="color: red; font-size: 12px;">Image Size should be 1000X660</span>
+                        <img style="height: 100px;width: 100px;margin-bottom: 6px; display: block;" src="<?php echo base_url('upload/') . $rec->workshop_bg_img; ?>" >
+                        <label for="img1" style="margin-left: 0px;border: 1px solid #ccc;display: inline-block;padding: 6px 12px;cursor: pointer;">
+                            <i class="fa fa-cloud-upload"></i> Upload Background
+                        </label>
+                        <input style="width: 400px; display: none" type="file" id="img1" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"/>
+                        <span style="color: red; font-size: 12px; display: block;">Image Size should be 1000X660</span>
                     </div>
 
                     </div>
                     <div align="center">
 
-                        <img style="margin-top: 20px;border-radius: 50% ; height: 150px;width:150px;" src="<?php echo base_url('upload/') . $rec->workshop_logo; ?>" >
-
-                        <input style="width: 300px " type="file" class= "form-control btn btn-default" name="image[]" multiple="multiple" id="img2" size="20"  />
-                        <span style="color: red; font-size: 12px;">Image Size should be 700X500</span>
+                        <img style="margin-top: 20px;border-radius: 50% ; height: 150px;width:150px; display: block;" src="<?php echo base_url('upload/') . $rec->workshop_logo; ?>" >
+                        <label for="img2" style=" margin-top: 20px;margin-left: 0px;border: 1px solid #ccc;display: inline-block;padding: 6px 12px;cursor: pointer;">
+                                    <i class="fa fa-cloud-upload"></i> Upload Round Logo
+                        </label>
+                        <input style="width: 300px; display: none " type="file" class= "form-control btn btn-default" name="image[]" multiple="multiple" id="img2" size="20"  />
+                        <span style="color: red; font-size: 12px; display: block;">Image Size should be 700X500</span>
                     </div>
 
 
                     <div style="margin-left: 50px">
+
+                        <input type="hidden" name="id" value="<?php echo $rec->id ?>" >
 
                     <div class="row margin-top">
                         <div class="col-md-6">
@@ -207,12 +215,18 @@
                         <div class="col-md-6">
 
                             <div class="col-sm-9">
-                                <label  for="inputEmail3" class="">Photo Selection  Arround rating </label>
+                                <label  for="inputEmail3" class="">Photo Selection Arround rating </label>
 
                                 <input type="file" class= "form-control btn btn-default" name="image[]" id="image" multiple="multiple" size="20"  />
                             </div>
                             <div class="col-md-6" style="padding-left: 200px">
-                                <img style="width:200px;" src="<?php echo base_url('upload/') . $rec->photo_selection_arround_rating; ?>" >
+
+                            <div class="deletImageBar">
+                                <p onClick="deleteImage('image_id_1' , 'image_input')">X</p>
+                                </div>
+
+                                    <img style="width:200px; height: 100px; margin-top:20px;" id='image_id_1' src="<?php echo base_url('upload/') . $rec->photo_selection_arround_rating; ?>" >
+                                    <input type="hidden"  name='image_input' id='image_input' value="<?php echo $rec->photo_selection_arround_rating; ?>" />
                             </div>
                         </div>
                     </div>
@@ -277,7 +291,6 @@
 
 
                     </div>
-                    <input type="hidden" name="id" value="<?php echo $rec->id ?>" >
 
                     <div align="center" class="margin-top">
                         <input type="submit" style="width: 150px" name="submit" class="btn btn-primary" value="Update">
@@ -291,6 +304,18 @@
         <?php $this->load->view('common/common_footer')?>
     </div>
 </div>
+
+<style type="text/css">
+.deletImageBar{
+   position: absolute;
+   background: #2a2c2d;
+   margin-left: 61%;
+   width: 20px;
+   color: white;
+   height: 20px;
+   top: 20px;
+}
+</style>
 
 
 
@@ -338,6 +363,16 @@
         },
         showAutocompleteOnFocus: true
     })
+</script>
+
+<script>
+function deleteImage(id , image_input_input_id){
+
+    $("#"+id).attr("src","");
+
+    $("#"+image_input_input_id).val("");
+
+}
 </script>
 
 

@@ -532,12 +532,15 @@ class Partshop extends MY_Controller {
 					'tweeter' => $this->input->post('twitter'),
 
 				);
+				$files = $_FILES;
+
 				$cpt = count($_FILES['image']['name']);
 				for ($i = 0; $i < $cpt; $i++) {
 					if (!empty($files['image']['name'][$i])) {
 
 						$fname = $_FILES['file_name']['name'] = $files['image']['name'][$i];
 						$_FILES['file_name']['tmp_name'] = $files['image']['tmp_name'][$i];
+						$_FILES['file_name']['size'] = $_FILES['image']['size'][$i];
 
 						$config = array();
 						$config['upload_path'] = './upload/';
@@ -555,6 +558,10 @@ class Partshop extends MY_Controller {
 						}
 
 					}
+				}
+
+				if (empty($data['rating_image']) && empty($this->input->post('image_input'))) {
+					$data['rating_image'] = '';
 				}
 
 				$this->partshop->update_part_shop($data, $id);
