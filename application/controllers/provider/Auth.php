@@ -142,12 +142,12 @@ class Auth extends CI_Controller {
 	private function _forgotpassword($data) {
 
 		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_host'] = 'mail.clubenz.com';
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'support@clubenz.com';
+		$config['smtp_pass'] = 'Support@2020';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -161,7 +161,7 @@ class Auth extends CI_Controller {
 				$resetTimeStemp = time();
 				$resetToken = $resetToken . "" . $resetTimeStemp;
 				$this->email->initialize($config);
-				$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+				$this->email->from('support@clubenz.com', 'Clubenz--NoReply');
 				$this->email->to($user->user_email);
 				$users['resetlink'] = $resetToken;
 				$mesg = $this->load->view('provider/reset_password_view', $users, true);

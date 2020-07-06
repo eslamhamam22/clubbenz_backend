@@ -108,8 +108,9 @@ if ($cou <= 4) {
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
                                         <td> <?php if ($us->status == "pending" || $us->status == "reject") {?>
-                                            <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>">
-                                            <button class="btn-inactive"></button></a>
+                                        <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>">
+                                            <button class="btn-inactive"></button>
+                                        </a>
                                         <?php }?>
                                         <?php if ($us->status == "approve") {?>
                                             <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>">
