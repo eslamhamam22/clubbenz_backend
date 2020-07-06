@@ -109,6 +109,19 @@ foreach ($rec as $us) {
                                         <img style="width:200px;" src="<?php echo base_url('upload/') . $us->licence_rear; ?>" >
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Status</label>
+                                        <div class="col-sm-9">
+                                            <select id="status"  name="status" class="form-control">
+                                                <?php if (!empty($us->status)) {?>
+                                                <option value="pending" <?php echo $us->status == 'pending' ? 'selected' : ''; ?>>pending</option>
+                                                <option value="approve" <?php echo $us->status == 'approve' ? 'selected' : ''; ?>>Complete</option>
+                                                <option value="reject" <?php echo $us->status == 'reject' ? 'selected' : ''; ?>>Delivery</option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group m-b-0">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" id="btn" class="btn btn-info waves-effect waves-light m-t-10">Update</button>

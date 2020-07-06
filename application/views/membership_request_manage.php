@@ -53,14 +53,13 @@
                                         <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->nid_front" ?>"></td>
                                         <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->licence_front" ?>"></td>
                                         <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->licence_rear" ?>"></td>
-                                        <td> <?php if ($s->status == "pending" || $s->status == "reject") {?>
-                                            <a href="<?php echo base_url('membership/approve/') ?><?php echo $s->id; ?>">
-                                            <button class="btn btn-small btn-primary">Delivery</button></a>
-                                        <?php }?>
-                                        <?php if ($s->status == "pending" || $s->status == "approve") {?>
-                                            <a href="<?php echo base_url('membership/reject/') ?><?php echo $s->id; ?>"><button class="btn btn-small btn-danger">Complete</button></a>
-                                        <?php }?>
-                                        </td>
+                                        <td>
+                                            <?php if ($s->status == 'pending') {echo "pending";}?>
+                                            <?php if ($s->status == 'approve') {echo "Complete";}?>
+                                            <?php if ($s->status == 'reject') {echo "Delivery";}?>
+
+                                            </td>
+
                                          <td>
                                              <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Edit" href="<?php echo base_url('membership/edit_memberships_users') ?>/<?php echo $s->id ?>"><i class="ti-marker-alt"></i></a>
                                             <a class="text-inverse pr-2" data-toggle="tooltip" data-original-title="Delete" href="<?php echo base_url('membership/membership_request_del/') ?><?php echo $s->id ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="ti-trash"></i></a>

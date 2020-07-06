@@ -326,6 +326,7 @@ class Membership extends MY_Controller {
 				$file_name = $_FILES['licence_rear']['name'];
 				$new_array['address'] = $this->input->post('address');
 				$new_array['nid'] = $this->input->post('nid');
+				$new_array['status'] = $this->input->post('status');
 
 				if ($file_name != '') {
 					$config['upload_path'] = './upload/';
