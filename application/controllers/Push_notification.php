@@ -131,5 +131,52 @@ class Push_notification extends MY_Controller {
 			}
 		}
 	}
+
+	public function notification_setting() {
+		$this->data['rec'] = $this->notification->notification_setting();
+		$this->data['title'] = 'Manage Notification Setting';
+		$this->load->view('manage_notification_setting', $this->data);
+	}
+
+	public function edit_notification_setting($id) {
+
+		$data['rec'] = $this->notification->edit_notification_setting($id);
+		$data['title'] = 'Edit Notification Setting';
+		$this->load->view('edit_notification_setting', $data);
+
+	}
+
+	public function update_notification_setting() {
+
+		$id = $this->input->post('id');
+		if ($this->input->post()) {
+
+			$rules = array(
+				array(
+					'field' => 'interval_hours',
+					'label' => 'interval_hours',
+					'rules' => 'trim|required',
+				),
+			);
+
+			$this->form_validation->set_rules($rules);
+			if ($this->form_validation->run()) {
+				$new_array['interval_hours'] = $this->input->post('interval_hours');
+				$new_array['max_distance'] = $this->input->post('max_distance');
+				$new_array['message'] = $this->input->post('message');
+
+				$val = $this->notification->update_notification_setting($new_array, $id);
+				if ($val) {
+					redirect(base_url('push_notification/notification_setting/?success=Update  successfully!'));
+				} else {
+					redirect(base_url('push_notification/notification_setting/?success=Update  successfully!'));
+				}
+			} else {
+				$error = validation_errors();
+				redirect(base_url('push_notification/edit_notification_setting/' . $id . '?error=' . $error));
+			}
+		}
+	}
+
 }
 ?>

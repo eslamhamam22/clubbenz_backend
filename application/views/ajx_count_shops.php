@@ -107,7 +107,33 @@
                                         </li>
                                         <li class="col-last">
 
-                                            <h3 class="counter text-right m-t-15"><?php echo $membership_users; ?></h3>
+                                            <h3 class="counter text-right m-t-15">
+<?php
+$fdate = $this->input->post('date');
+$datef = $this->input->post('datef');
+?>
+                                            <?php //date_default_timezone_set('Egypt');?>
+                                            <?php //$now = date('Y-m-d H:i:s');?>
+                                            <?php $counter = 0?>
+                                            <?php foreach ($memberships_users_fun as $memberships_user) {
+	?>
+                                            <?php foreach ($memberships_fun as $membership) {
+		?>
+
+<?php
+$uploadDate = $memberships_user->created_date;
+		$date = strtotime($uploadDate);
+		$date = strtotime($membership->duration * 30 . "day", $date);
+		$date = date('Y-m-d', $date);
+		?>
+                                            <?php if ($memberships_user->membership_id == $membership->id) {?>
+                                            <?php if ($date >= $fdate && $date <= $datef) {?>
+                                             <?php $counter++;}}}}?>
+                                            <?php echo $counter; ?>
+
+
+
+</h3>
                                         </li>
                                         <li class="col-middle">
                                             <h4>Total Expired Members</h4>

@@ -211,7 +211,20 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 			<?php }?>
 
 
-			<?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Push Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li> <?php }?>
+			<?php if (in_array('Push_notification/active', $c_a) || $group_id[0]->name == 'admin') {?>
+
+				<li>
+					<a href="index.html" class="waves-effect "><i data-icon="" class="linea-icon linea-basic fa-fw">P</i> <span class="hide-menu"> Notification <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+
+					<ul class="nav nav-second-level <?php if ($this->uri->segment(1) == 'notification_setting' || $this->uri->segment(1) == 'manage_notification') {?>in<?php }?>">
+
+						<li> <a href="<?php echo base_url() ?>push_notification/manage_notification/"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Push Notification<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+						<li> <a href="<?php echo base_url() ?>push_notification/notification_setting/"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Notification Setting<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
+
+					</ul>
+				</li>
+
+				 <?php }?>
 
 			<?php if (in_array('Reviews/index', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>reviews/index"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> user reviews <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 

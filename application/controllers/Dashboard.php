@@ -33,7 +33,9 @@ class Dashboard extends MY_Controller {
 		$this->data['partshop'] = $this->partshop->total_partshop();
 		$this->data['carowners'] = $this->partshop->total_carowners();
 		$this->data['membership'] = $this->partshop->total_membership();
-		$this->data['membership_users'] = $this->partshop->total_memberships_users();
+		// $this->data['membership_users'] = $this->partshop->total_memberships_users();
+		$this->data['memberships_users_fun'] = $this->partshop->memberships_users_fun();
+		$this->data['memberships_fun'] = $this->partshop->memberships_fun();
 		$this->data['rec'] = $this->acl_model->get_all_users();
 		$this->data['chassis'] = $this->user->get_allusers_chassis();
 		$this->data['classes'] = $this->user->get_allclasses();
@@ -282,7 +284,7 @@ class Dashboard extends MY_Controller {
 			$partshop = $this->user->month_partshop($date, $datef);
 			$carowners = $this->user->month_carowners($date, $datef);
 			$membership = $this->user->month_membership($date, $datef);
-			$membership_users = $this->user->month_memberships_users($date, $datef);
+			// $membership_users = $this->user->month_memberships_users($date, $datef);
 			$active_parts = $this->user->month_active_parts($date, $datef);
 			$in_active_parts = $this->user->month_in_active_parts($date, $datef);
 			$favorites = $this->user->month_favorites($date, $datef);
@@ -301,7 +303,7 @@ class Dashboard extends MY_Controller {
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
 			$this->data['membership'] = $membership;
-			$this->data['membership_users'] = $membership_users;
+			// $this->data['membership_users'] = $membership_users;
 			$this->data['active_parts'] = $active_parts;
 			$this->data['in_active_parts'] = $in_active_parts;
 			$this->data['favorites'] = $favorites;
@@ -315,6 +317,9 @@ class Dashboard extends MY_Controller {
 			$this->data['provider_parts'] = $provider_parts;
 			$this->data['notification_provider'] = $notification_provider;
 			$this->data['notification_users'] = $notification_users;
+			$this->data['memberships_users_fun'] = $this->partshop->memberships_users_fun();
+			$this->data['memberships_fun'] = $this->partshop->memberships_fun();
+
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 		} else {
 			$ts = strtotime($date);
@@ -326,7 +331,7 @@ class Dashboard extends MY_Controller {
 			$partshop = $this->user->month_partshop($start_date, $end_date);
 			$carowners = $this->user->month_carowners($start_date, $end_date);
 			$membership = $this->user->month_membership($start_date, $end_date);
-			$membership_users = $this->user->month_memberships_users($start_date, $end_date);
+			// $membership_users = $this->user->month_memberships_users($start_date, $end_date);
 			$active_parts = $this->user->month_active_parts($start_date, $end_date);
 			$in_active_parts = $this->user->month_in_active_parts($start_date, $end_date);
 			$favorites = $this->user->month_favorites($start_date, $end_date);
@@ -346,7 +351,7 @@ class Dashboard extends MY_Controller {
 			$this->data['partshop'] = $partshop;
 			$this->data['carowners'] = $carowners;
 			$this->data['membership'] = $membership;
-			$this->data['membership_users'] = $membership_users;
+			// $this->data['membership_users'] = $membership_users;
 			$this->data['active_parts'] = $active_parts;
 			$this->data['in_active_parts'] = $in_active_parts;
 			$this->data['favorites'] = $favorites;
@@ -360,6 +365,8 @@ class Dashboard extends MY_Controller {
 			$this->data['provider_parts'] = $provider_parts;
 			$this->data['notification_provider'] = $notification_provider;
 			$this->data['notification_users'] = $notification_users;
+			$this->data['memberships_users_fun'] = $this->partshop->memberships_users_fun();
+			$this->data['memberships_fun'] = $this->partshop->memberships_fun();
 
 			echo $this->load->view('ajx_count_shops', $this->data, true);
 

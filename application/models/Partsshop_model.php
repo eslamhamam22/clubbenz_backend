@@ -158,8 +158,37 @@ class Partsshop_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
-	public function total_memberships_users() {
-		return $this->db->count_all('memberships_users');
+
+	// public function total_memberships_users() {
+	// 	// return $this->db->count_all('memberships_users');
+	// 	$this->db->select('*');
+	// 	$this->db->from('memberships_users');
+	// 	$this->db->join('memberships', 'memberships.id = memberships_users.membership_id');
+	// 	$this->db->where('CURDATE() <=', DATE_ADD('memberships_users.created_date', 'INTERVAL memberships.duration *30 DAY'));
+	// 	$q = $this->db->get();
+	// 	return $q->result();
+	// }
+
+	// public function total_memberships_users() {
+	// 	date_default_timezone_set('Egypt');
+	// 	$now = date('Y-m-d H:i:s');
+	// 	$query = "SELECT memberships_users.created_date FROM `memberships` INNER JOIN memberships_users ON memberships.id = memberships_users.membership_id WHERE '$now' <= DATE_ADD('memberships_users.created_date', INTERVAL memberships.duration *30 DAY)";
+	// 	$q = $this->db->query($query);
+	// 	return $q->row()->total;
+	// }
+	//
+	public function memberships_users_fun() {
+		$this->db->select('*');
+		$this->db->from('memberships_users');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function memberships_fun() {
+		$this->db->select('*');
+		$this->db->from('memberships');
+		$q = $this->db->get();
+		return $q->result();
 	}
 	public function total_carowners() {
 		$this->db->select('*');

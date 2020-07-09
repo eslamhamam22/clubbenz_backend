@@ -19,6 +19,14 @@ class Push_notification_model extends CI_Model {
 		return $q->result();
 	}
 
+	public function notification_setting() {
+		$this->db->select('*');
+		$this->db->order_by("id", "desc");
+		$this->db->from('notification_setting');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
 	public function insert($data) {
 		$this->db->insert("notifications", $data);
 	}
@@ -186,6 +194,19 @@ class Push_notification_model extends CI_Model {
 		$this->db->from('notifications');
 		$q = $this->db->get();
 		return $q->result();
+	}
+
+	public function edit_notification_setting($id) {
+		$this->db->where('id', $id);
+		$this->db->from('notification_setting');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function update_notification_setting($new_array, $id) {
+		$this->db->where('id', $id);
+		$this->db->update('notification_setting', $new_array);
+		return $this->db->affected_rows();
 	}
 }
 ?>

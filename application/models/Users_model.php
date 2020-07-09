@@ -389,7 +389,11 @@ class Users_model extends CI_Model {
 		return $q->row()->total;
 	}
 	public function month_memberships_users($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM memberships_users WHERE  date_created >= '$sdate' AND date_created <= '$ldate'";
+		// $query = "SELECT COUNT(*) as total FROM memberships_users WHERE  date_created >= '$sdate' AND date_created <= '$ldate'";
+		// $q = $this->db->query($query);
+		// return $q->row()->total;
+		//
+		$query = "SELECT COUNT(*) as total FROM memberships_users INNER JOIN memberships ON memberships.id = memberships_users.membership_id WHERE  DATE_ADD(memberships_users.created_date, INTERVAL memberships.duration *30 DAY) >= '$sdate' AND DATE_ADD(memberships_users.created_date, INTERVAL memberships.duration *30 DAY) <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
