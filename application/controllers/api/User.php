@@ -14,6 +14,8 @@ class User extends REST_Controller {
 		$this->load->model('Serviceshop_model');
 		$this->load->model('Workshop_model');
 		$this->load->model('Partsshop_model');
+		$this->load->model('Service_tag_model');
+		define('FIREBASE_API_KEY', 'AAAAIDGWJ6Y:APA91bFyMeIkXy_kSS6R_l5VfCox6UqjMiv5uU8CVnzlmavattG1_hZFAv3m_HHbPGMgeSslcy8d_rcZIMZIXsXPjf3ItXM6An2i2Ljvw8bKXvsDHogx1FZO388tJ6qJBmxkINXvFjRJ');
 	}
 	function get_notifications_get() {
 		$id = $this->get('id');
@@ -809,6 +811,72 @@ class User extends REST_Controller {
 			$arr['success'] = false;
 			$this->response($arr, 200);
 		}
+	}
+	public function schedule_notifications_post(){
+		$user_id = $this->post('user_id');
+		$position = $this->post('position');
+		$notification_settings= $this->notification->settings();
+		$this->load->library('firebase');
+
+
+		$start = 0;
+		$lat = $position["coords"]["latitude"];
+		$lon = $position["coords"]["longitude"];
+		$limit = 0;
+		$search = "";
+		$search_arr['search'] = $search;
+		$search_arr['shop_open'] = '';
+
+		$arr['total'] = 0;
+		$workShops = $this->Workshop_model->get_workshops($search_arr, $start, $limit);
+
+		$new_array = array();
+		foreach ($workShops as $val) {
+			$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
+			$val->avg_rating = $this->Workshop_model->average_rating($val->id, "workshop");
+			$new_array[] = $val;
+		}
+
+		if ($workShops) {
+			usort($workShops, function ($a, $b) {
+				if ($a->distance == $b->distance) {
+					return $a->avg_rating < $b->avg_rating;
+				} else {
+					return $a->distance > $b->distance;
+				}
+			});
+		}
+		$workshop= $workShops[0];
+		print_r($workshop);
+
+		if($workshop->distance <= $notification_settings->max_distance){
+			$payload = array();
+			$data['body'] = $notification_settings->message;
+			$data['title'] = $workshop->name;
+			$data['message'] = $notification_settings->message;
+			$data['shop_id'] = $workshop->id;
+			$data['shop_type'] = "workshop";
+			$data['badge'] = 1;
+			$data['priority'] = "high";
+			$data['icon'] = "ic_stat";
+			$data['show_in_foreground'] = true;
+
+			$user = $this->users_model->get_user_by_id($user_id);
+
+			if ($user->fcm_token != "") {
+				$response = '';
+				$response = $this->firebase->send($user->fcm_token, $payload, $data);
+				$response = $this->firebase->sendGoogleCloudMessage($payload, $user->fcm_token);
+				$d['data'] = json_encode($response);
+				$this->db->insert("data_logs", $d);
+				$data['user_id'] = $user->id;
+				$this->db->insert("notifications", $data);
+			}
+			$this->response(["done"=> $workshop, "workshops" => $workShops], 200);
+		}else{
+			$this->response(["error"=> "no workshops available", "workshops" => $workShops], 200);
+		}
+
 	}
 
 }

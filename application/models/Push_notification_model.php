@@ -4,6 +4,13 @@ class Push_notification_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function settings() {
+		$this->db->select('*');
+		$this->db->where("id", 1);
+		$this->db->from('notification_setting');
+		$q = $this->db->get();
+		return $q->row();
+	}
 	public function manage_notification() {
 		$this->db->select('*');
 		$this->db->order_by("id", "desc");
