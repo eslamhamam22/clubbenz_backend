@@ -858,8 +858,8 @@ class User extends REST_Controller {
 				$latest_notification= $this->notification->get_latest_notification($user_id, $workshop->shop_type, $workshop->id);
 				$send= false;
 				if($latest_notification){
-					echo date("Y-m-d H:i:s")."\n";
-					echo $latest_notification->created_at."\n";
+//					echo date("Y-m-d H:i:s")."\n";
+//					echo $latest_notification->created_at."\n";
 					$difference= (strtotime(date("Y-m-d H:i:s")) - strtotime($latest_notification->created_at))/3600;
 //					echo $difference;
 					if($difference >= $interval_hours)
@@ -905,6 +905,7 @@ class User extends REST_Controller {
 
 			}
 		}
+		$this->response([], 200);
 
 	}
 
