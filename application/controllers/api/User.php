@@ -816,6 +816,7 @@ class User extends REST_Controller {
 		$user_id = $this->post('user_id');
 		$position = $this->post('position');
 		$notification_settings= $this->notification->settings();
+		$interval_hours= $notification_settings->interval_hours;
 		$this->load->library('firebase');
 
 
@@ -834,6 +835,7 @@ class User extends REST_Controller {
 		foreach ($workShops as $val) {
 			$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
 			$val->avg_rating = $this->Workshop_model->average_rating($val->id, "workshop");
+			$val->shop_type= "workshop";
 			$new_array[] = $val;
 		}
 
@@ -846,35 +848,61 @@ class User extends REST_Controller {
 				}
 			});
 		}
-		$workshop= $workShops[0];
-		print_r($workshop);
+//		$workshop= $workShops[0];
 
-		if($workshop->distance <= $notification_settings->max_distance){
-			$payload = array();
-			$data['body'] = $notification_settings->message;
-			$data['title'] = $workshop->name;
-			$data['message'] = $notification_settings->message;
-			$data['shop_id'] = $workshop->id;
-			$data['shop_type'] = "workshop";
-			$data['badge'] = 1;
-			$data['priority'] = "high";
-			$data['icon'] = "ic_stat";
-			$data['show_in_foreground'] = true;
+		$user = $this->users_model->get_user_by_id($user_id);
 
-			$user = $this->users_model->get_user_by_id($user_id);
+		foreach ($workShops as $workshop){
+			if($workshop->distance <= $notification_settings->max_distance){
 
-			if ($user->fcm_token != "") {
-				$response = '';
-				$response = $this->firebase->send($user->fcm_token, $payload, $data);
-				$response = $this->firebase->sendGoogleCloudMessage($payload, $user->fcm_token);
-				$d['data'] = json_encode($response);
-				$this->db->insert("data_logs", $d);
-				$data['user_id'] = $user->id;
-				$this->db->insert("notifications", $data);
+				$latest_notification= $this->notification->get_latest_notification($user_id, $workshop->shop_type, $workshop->id);
+				$send= false;
+				if($latest_notification){
+					echo date("Y-m-d H:m:s")."\n";
+					echo $latest_notification->created_at."\n";
+					$difference= (strtotime(date("Y-m-d H:m:s")) - strtotime($latest_notification->created_at))/3600;
+					if($difference >= $interval_hours)
+						$send= true;
+				}else{
+					$send= true;
+				}
+				if($send){
+					$payload = array();
+					$payload['body'] = $notification_settings->message;
+					$payload['title'] = $workshop->name;
+					$payload['message'] = $notification_settings->message;
+					$payload['shop_id'] = $workshop->id;
+					$payload['shop_type'] = "workshop";
+					$payload['badge'] = 1;
+					$payload['priority'] = "high";
+					$payload['icon'] = "ic_stat";
+					$payload['created_at'] = date("Y-m-d H:m:s");
+					$payload['show_in_foreground'] = true;
+
+					$data['body'] = $notification_settings->message;
+					$data['title'] = $workshop->name;
+					$data['message'] = $notification_settings->message;
+					$data['shop_id'] = $workshop->id;
+					$data['shop_type'] = "workshop";
+					$data['badge'] = 1;
+					$data['priority'] = "high";
+					$data['icon'] = "ic_stat";
+					$data['created_at'] = date("Y-m-d H:m:s");
+					$data['show_in_foreground'] = true;
+
+
+					if ($user->fcm_token != "") {
+						$response = '';
+						$response = $this->firebase->send($user->fcm_token, $payload, $data);
+						$response = $this->firebase->sendGoogleCloudMessage($payload, $user->fcm_token);
+						$d['data'] = json_encode($response);
+						$this->db->insert("data_logs", $d);
+						$data['user_id'] = $user->id;
+						$this->db->insert("notifications", $data);
+					}
+				}
+
 			}
-			$this->response(["done"=> $workshop, "workshops" => $workShops], 200);
-		}else{
-			$this->response(["error"=> "no workshops available", "workshops" => $workShops], 200);
 		}
 
 	}

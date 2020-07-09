@@ -4,6 +4,19 @@ class Push_notification_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function get_latest_notification($user_id, $shop_type, $shop_id) {
+		$this->db->select('*');
+		$this->db->where("user_id", $user_id);
+		$this->db->where("shop_type", $shop_type);
+		$this->db->where("shop_id", $shop_id);
+		$this->db->order_by("id", "desc");
+		$this->db->from('notifications');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->row();
+		}
+		return false;
+	}
 	public function settings() {
 		$this->db->select('*');
 		$this->db->where("id", 1);
