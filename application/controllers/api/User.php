@@ -858,9 +858,10 @@ class User extends REST_Controller {
 				$latest_notification= $this->notification->get_latest_notification($user_id, $workshop->shop_type, $workshop->id);
 				$send= false;
 				if($latest_notification){
-					echo date("Y-m-d H:m:s")."\n";
+					echo date("Y-m-d H:i:s")."\n";
 					echo $latest_notification->created_at."\n";
-					$difference= (strtotime(date("Y-m-d H:m:s")) - strtotime($latest_notification->created_at))/3600;
+					$difference= (strtotime(date("Y-m-d H:i:s")) - strtotime($latest_notification->created_at))/3600;
+//					echo $difference;
 					if($difference >= $interval_hours)
 						$send= true;
 				}else{
@@ -876,7 +877,7 @@ class User extends REST_Controller {
 					$payload['badge'] = 1;
 					$payload['priority'] = "high";
 					$payload['icon'] = "ic_stat";
-					$payload['created_at'] = date("Y-m-d H:m:s");
+//					$payload['created_at'] = date("Y-m-d H:i:s");
 					$payload['show_in_foreground'] = true;
 
 					$data['body'] = $notification_settings->message;
@@ -887,7 +888,7 @@ class User extends REST_Controller {
 					$data['badge'] = 1;
 					$data['priority'] = "high";
 					$data['icon'] = "ic_stat";
-					$data['created_at'] = date("Y-m-d H:m:s");
+//					$data['created_at'] = date("Y-m-d H:i:s");
 					$data['show_in_foreground'] = true;
 
 
