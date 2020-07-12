@@ -53,6 +53,8 @@ class Memberships extends REST_Controller {
 		$new_array["state"] = $this->post('state');
 		$new_array["city"] = $this->post('city');
 		$new_array["method"] = $this->post('method');
+		if($this->post('licenseID'))
+			$new_array["license_id"] = $this->post('licenseID');
 		$new_array["membership_id"] = $this->post('membership');
 		$new_array["nid"] = $this->post('nid');
 		if (isset($_FILES['idFrontPhoto']) && !empty($_FILES['idFrontPhoto'])) {
