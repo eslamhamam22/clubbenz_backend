@@ -3,17 +3,17 @@
         <div>
             <canvas id="chart2" height="277" width="555" style="width: 555px; height: 277px;"></canvas>
         </div>
-    
+
 
 
 <script type="text/javascript">
 	$( document ).ready(function() {
 		var ctx2 = document.getElementById("chart2").getContext("2d");
-    var date= <?php echo $count_user_x?> 
+    var date= <?php echo $count_user_x; ?> ;
       console.log('date',date)
-      var ios= <?php echo $ios_user?> 
+      var ios= <?php echo $ios_user; ?> ;
         console.log('ios',ios)
-         var android= <?php echo $android_user?> 
+         var android= <?php echo $android_user; ?> ;
         console.log('android',android)
     var data2 = {
         labels: date,
@@ -32,11 +32,11 @@
                 strokeColor: "rgba(180,193,215,0.8)",
                 highlightFill: "rgba(180,193,215,1)",
                 highlightStroke: "rgba(180,193,215,1)",
-                data:android, 
+                data:android,
             }
         ]
     };
-    
+
     var chart2 = new Chart(ctx2).Bar(data2, {
         scaleBeginAtZero : true,
         scaleShowGridLines : true,

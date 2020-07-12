@@ -724,7 +724,7 @@ $uploadDate = $memberships_user->created_date;
                     var chassis = $(this).val();
                     var period= $('#period').val();
                     if(period == 'WEEK'){
-                        var date =  $('#datepicker2').val();
+                        var datef =  $('#datepicker2').val();
                         var date =  $('#datepicker1').val();
 
                     }
@@ -736,7 +736,7 @@ $uploadDate = $memberships_user->created_date;
                     $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/user_by_chassis") ?>',
-                        data: {'chassis':chassis,'date':date,'datef':datef},
+                        data: {'chassis':chassis,'date':date,'datef':datef, 'period':period},
                         success: function (mydata) {
                                 console.log(mydata);
                                 $('#chart_chassis').html(mydata);
@@ -766,7 +766,7 @@ $uploadDate = $memberships_user->created_date;
                     $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/count_classes") ?>',
-                        data: {'classes':classes,'date':date,'datef':datef},
+                        data: {'classes':classes,'date':date,'datef':datef, 'period':period},
                         success: function (mydata) {
                                 console.log(mydata);
                                 $('#chart_classes').html(mydata);
@@ -808,7 +808,7 @@ $uploadDate = $memberships_user->created_date;
                        $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/app_user_couunt") ?>',
-                        data: {'date':date,'datef':datef},
+                        data: {'date':date,'datef':datef, 'period':period},
                         success: function (mydata) {
                                  $('#fresh').hide();
                                 console.log(mydata);
@@ -834,7 +834,7 @@ $uploadDate = $memberships_user->created_date;
                     $.ajax({
                         type: 'post',
                         url:'<?php echo base_url("dashboard/shop_count") ?>',
-                        data: {'date':date,'datef':datef},
+                        data: {'date':date,'datef':datef, 'period':period},
                         success: function (mydata) {
                                  $('#fresh').hide();
                                 console.log(mydata);

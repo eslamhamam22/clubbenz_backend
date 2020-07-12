@@ -9,9 +9,9 @@
 <script type="text/javascript">
 	$( document ).ready(function() {
 		var ctx2 = document.getElementById("chart3").getContext("2d");
-	    var date= <?php echo $count_user_x ?>
+	    var date= <?php echo $count_user_x; ?>;
       	console.log('date',date)
-      	var chassis_users= <?php echo $chassis_users ?>
+      	var chassis_users= <?php echo $chassis_users; ?>;
         console.log('chassis_users',chassis_users)
 	    var data2 = {
 	        labels: date,

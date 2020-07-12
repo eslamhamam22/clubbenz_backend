@@ -3,15 +3,15 @@
         <div>
             <canvas id="chart4" height="277" width="555" style="width: 555px; height: 277px;"></canvas>
         </div>
-    
+
 
 
 <script type="text/javascript">
 	$( document ).ready(function() {
 		var ctx2 = document.getElementById("chart4").getContext("2d");
-	    var date= <?php echo $count_user_x?> 
+	    var date= <?php echo $count_user_x; ?> ;
       	console.log('date',date)
-      	var classes= <?php echo $class?> 
+      	var classes= <?php echo $class; ?> ;
         console.log('classes',classes)
 	    var data2 = {
 	        labels: date,
@@ -24,10 +24,10 @@
 	                highlightStroke: "rgba(255,118,118,1)",
 	                data:classes,
 	            },
-	            
+
 	        ]
 	    };
-	    
+
 	    var chart4 = new Chart(ctx2).Bar(data2, {
 	        scaleBeginAtZero : true,
 	        scaleShowGridLines : true,

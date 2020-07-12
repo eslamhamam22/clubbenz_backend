@@ -72,8 +72,9 @@ class Dashboard extends MY_Controller {
 	public function user_by_chassis() {
 		$date = $this->input->post('date');
 		$datef = $this->input->post('datef');
+		$period = $this->input->post('period');
 		$chassis = $this->input->post('chassis');
-		if ($datef) {
+		if ($period == 'MONTH') {
 			$earlier = new DateTime($date);
 			$later = new DateTime($datef);
 			$diff = $later->diff($earlier)->format("%a");
@@ -111,12 +112,15 @@ class Dashboard extends MY_Controller {
 			echo $this->load->view('ajx_chassis_chart', $this->data, true);
 		} else {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
+			$begin = new DateTime(date("Y-m-d", strtotime($date)));
+			$end = new DateTime(date("Y-m-d", strtotime($datef)));
 			$ldate = $week_start;
-			$begin = new DateTime($week_start);
-			$end = new DateTime($ldate);
-			$end = $end->modify('+7 day');
+			// $begin = $date;
+			// $end = new DateTime($ldate);
+			// $end = $end->modify('+7 day');
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
+			// print_r($daterange);
 			foreach ($daterange as $value) {
 				$date = $value->format('Y-m-d');
 				$user_by_chassis[] = $this->user->get_users_by_chassis($date, $chassis);
@@ -134,8 +138,9 @@ class Dashboard extends MY_Controller {
 	public function count_classes() {
 		$date = $this->input->post('date');
 		$datef = $this->input->post('datef');
+		$period = $this->input->post('period');
 		$classes = $this->input->post('classes');
-		if ($datef) {
+		if ($period == 'MONTH') {
 			$earlier = new DateTime($date);
 			$later = new DateTime($datef);
 			$diff = $later->diff($earlier)->format("%a");
@@ -173,11 +178,9 @@ class Dashboard extends MY_Controller {
 			echo $this->load->view('ajx_class_chart', $this->data, true);
 		} else {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
-			$end = date('Y-m-d', strtotime($datef));
+			$begin = new DateTime(date("Y-m-d", strtotime($date)));
+			$end = new DateTime(date("Y-m-d", strtotime($datef)));
 			$ldate = $week_start;
-			$begin = new DateTime($week_start);
-			// $end = new DateTime($end_date);
-			// $end = $end->modify('+7 day');
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
 
@@ -198,7 +201,8 @@ class Dashboard extends MY_Controller {
 	public function app_user_couunt() {
 		$date = $this->input->post('date');
 		$datef = $this->input->post('datef');
-		if ($datef) {
+		$period = $this->input->post('period');
+		if ($period == 'MONTH') {
 			$earlier = new DateTime($date);
 			$later = new DateTime($datef);
 			$diff = $later->diff($earlier)->format("%a");
@@ -243,17 +247,16 @@ class Dashboard extends MY_Controller {
 			echo $this->load->view('ajx_app_user_chart', $this->data, true);
 		} else {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
+			$begin = new DateTime(date("Y-m-d", strtotime($date)));
+			$end = new DateTime(date("Y-m-d", strtotime($datef)));
 			$ldate = $week_start;
-			$begin = new DateTime($week_start);
-			$end = new DateTime($ldate);
-			$end = $end->modify('+7 day');
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
+
 			foreach ($daterange as $value) {
 				$date = $value->format('Y-m-d');
-				$endat = $value->format('Y-m-d');
-				$ios_user[] = $this->user->month_ios_users($date, endat);
-				$android_user[] = $this->user->month_android_users($date, endat);
+				$ios_user[] = $this->user->get_ios_users($date);
+				$android_user[] = $this->user->get_android_users($date);
 				$gt_date[] = $this->user->user_type_apl($date);
 			}
 			foreach ($ios_user as $i) {
