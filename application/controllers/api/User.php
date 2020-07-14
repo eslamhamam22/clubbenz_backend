@@ -670,9 +670,9 @@ class User extends REST_Controller {
 							"car_vin_prefix" => $this->post('car_vin_prefix'),
 
 						);
-						if($this->post('password') && $this->post('password') != ""){
-							$data["password"]= md5($this->post('password'));
-						}
+//						if($this->post('password') && $this->post('password') != ""){
+//							$data["password"]= md5($this->post('password'));
+//						}
 
 						if ($file_name != '') {
 							$config['upload_path'] = './upload/profile_picture';
@@ -742,9 +742,6 @@ class User extends REST_Controller {
 								"car_vin_prefix" => $this->post('car_vin_prefix'),
 
 							);
-							if($this->post('password') && $this->post('password') != ""){
-								$data["password"]= md5($this->post('password'));
-							}
 
 							if ($file_name != '') {
 								$config['upload_path'] = './upload/profile_picture';
