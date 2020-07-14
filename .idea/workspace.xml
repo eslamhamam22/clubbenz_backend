@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd3540f2-e808-4801-be68-6305b5534c15" name="Default Changelist" comment="-Button For tables">
+      <change afterPath="$PROJECT_DIR$/upload/1589105633bg_top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas22.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas23.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas24.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas25.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas26.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Abbas27.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Ellipse_2_copy_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Ellipse_34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Layer_40.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(1)4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(10).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(11).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(18).png" afterDir="false" />
@@ -15,10 +28,12 @@
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(2)5.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/Screenshot_(3)4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4)1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(4)2.png" afterDir="false" />
@@ -28,10 +43,12 @@
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(5)3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(6).png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/upload/Screenshot_(7).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/ba24e597-1ea1-488f-a6ea-55f301d2be68.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/ba24e597-1ea1-488f-a6ea-55f301d2be681.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/provider/Parts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/provider/Parts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Push_notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Push_notification.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +61,13 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,7 +116,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/views" />
+    <property name="last_opened_file_path" value="C:/projects/web/goldprice" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -100,16 +125,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\clubbenz\application\language\english" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\views" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\models" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\controllers" />
+      <recent name="C:\xampp\htdocs\clubbenz\assets\file-upload\dist" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\clubbenz\application\views" />
-      <recent name="C:\xampp\htdocs\clubbenz\application\views\provider" />
-      <recent name="C:\xampp\htdocs\clubbenz\application\models" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\clubbenz\assets\file-upload\dist" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\views\provider\common" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\language\english\provider" />
+      <recent name="C:\xampp\htdocs\clubbenz\application\language\arabic" />
       <recent name="C:\xampp\htdocs\clubbenz\application\views\provider" />
     </key>
   </component>
@@ -147,51 +177,392 @@
       <workItem from="1586089179738" duration="2039000" />
       <workItem from="1586200611943" duration="20214000" />
       <workItem from="1586861799091" duration="50667000" />
-      <workItem from="1587549296543" duration="79996000" />
+      <workItem from="1587549296543" duration="92611000" />
+      <workItem from="1588627332655" duration="34974000" />
+      <workItem from="1588776885997" duration="21000" />
+      <workItem from="1588792495522" duration="3053000" />
+      <workItem from="1589105109963" duration="1839000" />
+      <workItem from="1589543261178" duration="497000" />
+      <workItem from="1589545184053" duration="13199000" />
+      <workItem from="1589898093440" duration="7371000" />
+      <workItem from="1589933394502" duration="444000" />
+      <workItem from="1590005727837" duration="3064000" />
+      <workItem from="1590013887734" duration="1096000" />
+      <workItem from="1590662544058" duration="7026000" />
+      <workItem from="1591275433284" duration="928000" />
+      <workItem from="1591556737514" duration="3353000" />
+      <workItem from="1591625477530" duration="605000" />
+      <workItem from="1591640207125" duration="9000" />
+      <workItem from="1591722827176" duration="14555000" />
+      <workItem from="1591868736847" duration="7077000" />
+      <workItem from="1591879040389" duration="1638000" />
+      <workItem from="1591894452793" duration="12000" />
+      <workItem from="1592830448408" duration="771000" />
+      <workItem from="1592852562960" duration="2302000" />
+      <workItem from="1592855394863" duration="5863000" />
+      <workItem from="1592903666899" duration="7045000" />
+      <workItem from="1592918157466" duration="3110000" />
+      <workItem from="1593090998227" duration="3333000" />
+      <workItem from="1593107514234" duration="43000" />
+      <workItem from="1593107632686" duration="1969000" />
+      <workItem from="1593164564110" duration="11000" />
+      <workItem from="1593192847731" duration="1051000" />
+      <workItem from="1593343092741" duration="10037000" />
+      <workItem from="1593955232775" duration="1142000" />
+      <workItem from="1594029067157" duration="2678000" />
+      <workItem from="1594033782523" duration="1195000" />
+      <workItem from="1594149005599" duration="632000" />
+      <workItem from="1594283196544" duration="12811000" />
+      <workItem from="1594316334012" duration="20000" />
+      <workItem from="1594539113321" duration="1080000" />
+      <workItem from="1594545126400" duration="1159000" />
+      <workItem from="1594578106227" duration="5000" />
+      <workItem from="1594723410298" duration="240000" />
     </task>
-    <task id="LOCAL-00001" summary="-datatables">
-      <created>1588250032806</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00029" summary="-Expire Date">
+      <created>1589911597631</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1588250032806</updated>
+      <updated>1589911597631</updated>
     </task>
-    <task id="LOCAL-00002" summary="-Upload">
-      <created>1588293986461</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+    <task id="LOCAL-00030" summary="-Reviews">
+      <created>1590006236506</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1588293986461</updated>
+      <updated>1590006236506</updated>
     </task>
-    <task id="LOCAL-00003" summary="-Photos Upload">
-      <created>1588340646232</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+    <task id="LOCAL-00031" summary="-Expired">
+      <created>1590006776127</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1588340646232</updated>
+      <updated>1590006776127</updated>
     </task>
-    <task id="LOCAL-00004" summary="-Photos Upload">
-      <created>1588346346749</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+    <task id="LOCAL-00032" summary="-Expire">
+      <created>1590006888684</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1588346346749</updated>
+      <updated>1590006888684</updated>
     </task>
-    <task id="LOCAL-00005" summary="-Extra Days">
-      <created>1588349226690</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+    <task id="LOCAL-00033" summary="-Expire">
+      <created>1590014228815</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1588349226690</updated>
+      <updated>1590014228815</updated>
     </task>
-    <task id="LOCAL-00006" summary="-Button For tables">
-      <created>1588354753760</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+    <task id="LOCAL-00034" summary="-Button For tables">
+      <created>1590693294827</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1588354753760</updated>
+      <updated>1590693294827</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00035" summary="-subscribe_post">
+      <created>1590693657531</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1590693657531</updated>
+    </task>
+    <task id="LOCAL-00036" summary="-Button For tables">
+      <created>1590694843581</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1590694843581</updated>
+    </task>
+    <task id="LOCAL-00037" summary="API Memberships">
+      <created>1591724652411</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1591724652411</updated>
+    </task>
+    <task id="LOCAL-00038" summary="-Button For tables">
+      <created>1591783478375</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1591783478375</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Subscribe">
+      <created>1591785609633</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1591785609633</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fixed">
+      <created>1591786337725</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1591786337725</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Upload">
+      <created>1591787928253</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1591787928253</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Error">
+      <created>1591788135901</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1591788135901</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fixed">
+      <created>1591788218999</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1591788218999</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Problem Solved">
+      <created>1591788381592</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1591788381592</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Current Membership">
+      <created>1591789371650</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1591789371650</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Expire date for memberships">
+      <created>1591789761920</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1591789761920</updated>
+    </task>
+    <task id="LOCAL-00047" summary="SMS Problem">
+      <created>1591792307410</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1591792307410</updated>
+    </task>
+    <task id="LOCAL-00048" summary="-[registration]:website -Logo -zip code &gt; are optional &#10;-[add part]:add &quot;all&quot; option to class list&#10;-[add part]:make set date by default = today if not chosen &#10;-[Expiary date] should be optional , also when not set make it null&#10;-images Part Catalogue">
+      <created>1591876640312</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1591876640312</updated>
+    </task>
+    <task id="LOCAL-00049" summary="-Button For tables">
+      <created>1591878287567</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1591878287567</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Search fixed">
+      <created>1591879619294</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1591879619295</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Fixed Search in Servershops">
+      <created>1592854535476</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1592854535477</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fixed Active Ads">
+      <created>1592855079429</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1592855079429</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Fixed Ads">
+      <created>1592856971146</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1592856971147</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Fixed adds and services">
+      <created>1592905314742</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1592905314743</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Fixed Services">
+      <created>1592905832350</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1592905832350</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Fixed adds">
+      <created>1592906005156</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1592906005156</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Favorites">
+      <created>1592907054028</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1592907054028</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Favorites">
+      <created>1592907154602</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1592907154602</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Featured">
+      <created>1592907317776</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1592907317776</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Featured">
+      <created>1592910691434</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1592910691434</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Values only">
+      <created>1592911308406</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1592911308406</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Ads">
+      <created>1592918220941</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1592918220941</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Active">
+      <created>1592919335816</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1592919335816</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Favorites">
+      <created>1592919748357</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1592919748357</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Featured">
+      <created>1592920101274</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1592920101275</updated>
+    </task>
+    <task id="LOCAL-00066" summary="cluster error">
+      <created>1593091469903</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1593091469904</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Cluster Error">
+      <created>1593093124284</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1593093124284</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Limit Notifications">
+      <created>1593108230819</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1593108230820</updated>
+    </task>
+    <task id="LOCAL-00069" summary="-Import&#10;-Export">
+      <created>1593347082340</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1593347082340</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Memberships">
+      <created>1593546288582</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1593546288582</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Search by ID">
+      <created>1594030914752</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1594030914752</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Search">
+      <created>1594032061006</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1594032061006</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Scheduled Notifications">
+      <created>1594287255089</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1594287255091</updated>
+    </task>
+    <task id="LOCAL-00074" summary="-Button For tables">
+      <created>1594295631046</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1594295631046</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Latest Notifications">
+      <created>1594298879707</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1594298879707</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Notifications latest">
+      <created>1594302144237</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1594302144237</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Memberships">
+      <created>1594545213920</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1594545213920</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,12 +582,34 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="-datatables" />
-    <MESSAGE value="-Upload" />
-    <MESSAGE value="-Photos Upload" />
-    <MESSAGE value="-Extra Days" />
+    <MESSAGE value="SMS Problem" />
+    <MESSAGE value="-[registration]:website -Logo -zip code &gt; are optional &#10;-[add part]:add &quot;all&quot; option to class list&#10;-[add part]:make set date by default = today if not chosen &#10;-[Expiary date] should be optional , also when not set make it null&#10;-images Part Catalogue" />
+    <MESSAGE value="Search fixed" />
+    <MESSAGE value="Fixed Search in Servershops" />
+    <MESSAGE value="Fixed Active Ads" />
+    <MESSAGE value="Fixed Ads" />
+    <MESSAGE value="Fixed adds and services" />
+    <MESSAGE value="Fixed Services" />
+    <MESSAGE value="Fixed adds" />
+    <MESSAGE value="Values only" />
+    <MESSAGE value="Ads" />
+    <MESSAGE value="Active" />
+    <MESSAGE value="Favorites" />
+    <MESSAGE value="Featured" />
+    <MESSAGE value="cluster error" />
+    <MESSAGE value="Cluster Error" />
+    <MESSAGE value="Limit Notifications" />
+    <MESSAGE value="-Import&#10;-Export" />
+    <MESSAGE value="Search by ID" />
+    <MESSAGE value="Search" />
+    <MESSAGE value="Scheduled Notifications" />
     <MESSAGE value="-Button For tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Button For tables" />
+    <MESSAGE value="Latest Notifications" />
+    <MESSAGE value="Notifications latest" />
+    <MESSAGE value="Memberships" />
+    <option name="LAST_COMMIT_MESSAGE" value="Memberships" />
   </component>
 </project>

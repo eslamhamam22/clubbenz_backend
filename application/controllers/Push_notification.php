@@ -31,7 +31,7 @@ class Push_notification extends MY_Controller {
 			$this->data['success'] = $this->input->get('success');
 		}
 
-		define('FIREBASE_API_KEY', 'AAAAIDGWJ6Y:APA91bFyMeIkXy_kSS6R_l5VfCox6UqjMiv5uU8CVnzlmavattG1_hZFAv3m_HHbPGMgeSslcy8d_rcZIMZIXsXPjf3ItXM6An2i2Ljvw8bKXvsDHogx1FZO388tJ6qJBmxkINXvFjRJ');
+		define('FIREBASE_API_KEY', 'AAAAFGlvySM:APA91bEGYmrBnqQ42KtKRTZUhwNQBD7VXifw1JDOTfAkUcrFnhRz3TQ-0duk4bFqqCdjubuv0gBNvbivDA0SK5Ydl3S6oy7HebFPRIRj-R0IWKsuqq2EMTcExpDtEZH3nj3qfWmuq7qD');
 	}
 
 	public function send_notification() {
