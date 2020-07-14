@@ -15,7 +15,7 @@ class User extends REST_Controller {
 		$this->load->model('Workshop_model');
 		$this->load->model('Partsshop_model');
 		$this->load->model('Service_tag_model');
-		define('FIREBASE_API_KEY', 'AAAAIDGWJ6Y:APA91bFyMeIkXy_kSS6R_l5VfCox6UqjMiv5uU8CVnzlmavattG1_hZFAv3m_HHbPGMgeSslcy8d_rcZIMZIXsXPjf3ItXM6An2i2Ljvw8bKXvsDHogx1FZO388tJ6qJBmxkINXvFjRJ');
+		define('FIREBASE_API_KEY', 'AAAAFGlvySM:APA91bEGYmrBnqQ42KtKRTZUhwNQBD7VXifw1JDOTfAkUcrFnhRz3TQ-0duk4bFqqCdjubuv0gBNvbivDA0SK5Ydl3S6oy7HebFPRIRj-R0IWKsuqq2EMTcExpDtEZH3nj3qfWmuq7qD');
 	}
 	function get_notifications_get() {
 		$id = $this->get('id');
@@ -670,6 +670,9 @@ class User extends REST_Controller {
 							"car_vin_prefix" => $this->post('car_vin_prefix'),
 
 						);
+						if($this->post('password') && $this->post('password') != ""){
+							$data["password"]= md5($this->post('password'));
+						}
 
 						if ($file_name != '') {
 							$config['upload_path'] = './upload/profile_picture';
@@ -739,6 +742,9 @@ class User extends REST_Controller {
 								"car_vin_prefix" => $this->post('car_vin_prefix'),
 
 							);
+							if($this->post('password') && $this->post('password') != ""){
+								$data["password"]= md5($this->post('password'));
+							}
 
 							if ($file_name != '') {
 								$config['upload_path'] = './upload/profile_picture';
