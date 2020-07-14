@@ -198,7 +198,6 @@ foreach ($permissions_groups as $methodlist => $controllerlist) {
                                         <li class="col-last">
 
                                            <h3 class="counter text-right m-t-15">
-                                            <?php //echo count($membership_users); ?>
                                             <?php date_default_timezone_set('Egypt');?>
 	                                        <?php $now = date('Y-m-d H:i:s');?>
                                             <?php $counter = 0?>
@@ -279,6 +278,25 @@ $uploadDate = $memberships_user->created_date;
                                 <div class="col-lg-3 col-sm-6 row-in-br">
                                     <ul class="col-in">
                                         <li>
+                                            <span class="circle circle-md bg-info"><i class=" ti-shopping-cart"></i></span>
+                                        </li>
+                                        <li class="col-last">
+                                            <h3 class="counter text-right m-t-15">
+                                                <?php echo count($provider_parts); ?>
+                                        </li>
+                                        <li class="col-middle">
+                                            <h4>Total Provider Parts</h4>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">40% Complete (success)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 row-in-br">
+                                    <ul class="col-in">
+                                        <li>
                                             <span class="circle circle-md bg-danger"><i class=" ti-shopping-cart"></i></span>
                                         </li>
                                         <li class="col-last">
@@ -339,25 +357,7 @@ $uploadDate = $memberships_user->created_date;
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-lg-3 col-sm-6 row-in-br">
-                                    <ul class="col-in">
-                                        <li>
-                                            <span class="circle circle-md bg-info"><i class=" ti-shopping-cart"></i></span>
-                                        </li>
-                                        <li class="col-last">
-                                            <h3 class="counter text-right m-t-15">
-                                                <?php echo count($provider_parts); ?>
-                                        </li>
-                                        <li class="col-middle">
-                                            <h4>Provider Parts</h4>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                    <span class="sr-only">40% Complete (success)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+
                              </div>
                         </div>
                     </div>

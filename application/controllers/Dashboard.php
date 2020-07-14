@@ -114,10 +114,8 @@ class Dashboard extends MY_Controller {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
 			$begin = new DateTime(date("Y-m-d", strtotime($date)));
 			$end = new DateTime(date("Y-m-d", strtotime($datef)));
+			$end->modify('+1 day');
 			$ldate = $week_start;
-			// $begin = $date;
-			// $end = new DateTime($ldate);
-			// $end = $end->modify('+7 day');
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
 			// print_r($daterange);
@@ -180,6 +178,7 @@ class Dashboard extends MY_Controller {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
 			$begin = new DateTime(date("Y-m-d", strtotime($date)));
 			$end = new DateTime(date("Y-m-d", strtotime($datef)));
+			$end->modify('+1 day');
 			$ldate = $week_start;
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);
@@ -249,6 +248,7 @@ class Dashboard extends MY_Controller {
 			$week_start = date("Y-m-d", strtotime('monday this week', strtotime($date)));
 			$begin = new DateTime(date("Y-m-d", strtotime($date)));
 			$end = new DateTime(date("Y-m-d", strtotime($datef)));
+			$end->modify('+1 day');
 			$ldate = $week_start;
 			$interval = new DateInterval('P1D');
 			$daterange = new DatePeriod($begin, $interval, $end);

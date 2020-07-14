@@ -119,7 +119,7 @@ class Provider_model extends CI_model {
 		$this->db->select('*');
 		$this->db->from('parts');
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
-		$this->db->where('parts.active', 1);
+		$this->db->where('parts.active', 1)->or_where('parts.active', 0);
 
 		if ($query = $this->db->get()) {
 			return $query->result();

@@ -501,7 +501,7 @@ class Users_model extends CI_Model {
 	}
 
 	public function month_provider_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN provider_user ON parts.provider_id = provider_user.id  WHERE parts.active = 1 AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN provider_user ON parts.provider_id = provider_user.id  WHERE parts.active = 1 AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate' OR parts.active = 0 AND  parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}

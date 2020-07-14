@@ -105,9 +105,9 @@ class Membership extends MY_Controller {
 	public function membership_request_del($id) {
 		$id = $this->membership->membership_request_del($id);
 		if ($id) {
-			redirect(base_url('membership/?success= Delete successfully!'));
+			redirect(base_url('membership/membership_request/?success= Delete successfully!'));
 		} else {
-			redirect(base_url('membership/?error=Some error!'));
+			redirect(base_url('membership/membership_request/?error=Some error!'));
 		}
 	}
 	public function edit_membership($id) {

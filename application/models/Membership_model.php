@@ -160,6 +160,20 @@ class Membership_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function get_current_membership_by($user_id) {
+		$this->db->select('*');
+		$this->db->from('memberships_users');
+		$this->db->where('user_id', $user_id);
+		$this->db->order_by('id', "DESC");
+		$this->db->limit(1);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			return $query->result()[0];
+		} else {
+			return false;
+		}
+	}
 	public function subscribe($new_array) {
 		$new_array["status"] = "pending";
 		$this->db->insert('memberships_users', $new_array);

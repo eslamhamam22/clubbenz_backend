@@ -307,7 +307,7 @@ class Part_model extends CI_Model {
 		//	$this->db->where_in('part_category',$ids);
 		$this->db->select('*');
 //		$this->db->where("chassis_id", '24');
-//		$this->db->or_where("chassis_id", $chassis);
+		//		$this->db->or_where("chassis_id", $chassis);
 		$this->db->limit(10, 0);
 		$this->db->order_by("views", "desc");
 		$this->db->where("active", 1);
@@ -400,13 +400,15 @@ class Part_model extends CI_Model {
 		return $sub_item;
 	}
 	public function activate($id) {
+		date_default_timezone_set('Egypt');
 		$this->db->where('id', $id);
-		$this->db->update('parts', ["active" => 1]);
+		$this->db->update('parts', ["active" => 1, "update_date" => date("Y-m-d H:i:s")]);
 		return $this->db->affected_rows();
 	}
 	public function deactivate($id) {
+		date_default_timezone_set('Egypt');
 		$this->db->where('id', $id);
-		$this->db->update('parts', ["active" => 0]);
+		$this->db->update('parts', ["active" => 0, "update_date" => date("Y-m-d H:i:s")]);
 		return $this->db->affected_rows();
 	}
 	public function add_to_featured($id) {
