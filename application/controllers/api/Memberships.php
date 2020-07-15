@@ -8,6 +8,7 @@ class Memberships extends REST_Controller {
 		error_reporting(1);
 		$this->load->model('users_model');
 		$this->load->model('Membership_model');
+		$this->load->model('World_model');
 
 		$this->load->library('upload');
 		$this->load->database();
@@ -37,8 +38,14 @@ class Memberships extends REST_Controller {
 				}
 			}
 		}
-
 		$data["memberships"]= $memberships;
+
+		$states= $this->World_model->get_states_by_country(65);
+		$data["states"]= $states;
+
+		$cities= $this->World_model->get_cities();
+		$data["cities"]= $cities;
+
 		$this->response($data, 200);
 	}
 	public function add_months_to_date($date, $months) {

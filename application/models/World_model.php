@@ -11,6 +11,15 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
+	public function get_cities(){
+		$this->db->select('*');
+		$this->db->from('cities');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 	public function get_country_by_id($id){
 		$this->db->select('*');
 		$this->db->where('id', $id);
