@@ -390,4 +390,131 @@ class Membership extends MY_Controller {
 			}
 		}
 	}
+
+	public function states() {
+		$this->data['rec'] = $this->membership->states_manage();
+		$this->data['title'] = 'State details';
+		$this->load->view('states_manage', $this->data);
+	}
+
+	public function add_states() {
+		if ($this->input->post()) {
+
+			$data = array(
+				'name' => $this->input->post('name'),
+				'name_ar' => $this->input->post('name_ar'),
+			);
+			$result = $this->membership->add_states($data);
+			if ($result == false) {
+				redirect(base_url('membership/add_states/?error=error!'));
+
+			} else {
+				redirect(base_url('membership/states/?success=Add  successfully!'));
+			}
+
+		}
+		$this->data['title'] = 'Add State';
+		$this->load->view('add_states', $this->data);
+
+	}
+
+	public function states_del($id) {
+		$id = $this->membership->states_del($id);
+		if ($id) {
+			redirect(base_url('membership/states/?success= Delete successfully!'));
+		} else {
+			redirect(base_url('membership/states/?error=Some error!'));
+		}
+	}
+
+	public function edit_states($id) {
+		$data['rec'] = $this->membership->edit_states($id);
+		$data['title'] = 'Edit State';
+		$this->load->view('edit_states', $data);
+	}
+
+	public function states_update() {
+
+		$id = $this->input->post('id');
+		if ($this->input->post()) {
+
+			$new_array['name'] = $this->input->post('name');
+			$new_array['name_ar'] = $this->input->post('name_ar');
+
+			$val = $this->membership->states_update($new_array, $id);
+
+			if ($val) {
+				redirect(base_url('membership/states/?success=Update  successfully!'));
+			} else {
+				redirect(base_url('membership/states/?error=Some error!'));
+			}
+
+		}
+	}
+
+	public function cities() {
+		$this->data['rec'] = $this->membership->cities_manage();
+		$this->data['states'] = $this->membership->states_manage();
+		$this->data['title'] = 'Cities details';
+		$this->load->view('cities_manage', $this->data);
+	}
+
+	public function add_cities() {
+		if ($this->input->post()) {
+
+			$data = array(
+				'name' => $this->input->post('name'),
+				'name_ar' => $this->input->post('name_ar'),
+				'state_id' => $this->input->post('state_id'),
+			);
+			$result = $this->membership->add_cities($data);
+			if ($result == false) {
+				redirect(base_url('membership/add_cities/?error=error!'));
+
+			} else {
+				redirect(base_url('membership/cities/?success=Add  successfully!'));
+			}
+
+		}
+		$this->data['states'] = $this->membership->states_manage();
+		$this->data['title'] = 'Add State';
+		$this->load->view('add_cities', $this->data);
+
+	}
+
+	public function cities_del($id) {
+		$id = $this->membership->cities_del($id);
+		if ($id) {
+			redirect(base_url('membership/cities/?success= Delete successfully!'));
+		} else {
+			redirect(base_url('membership/cities/?error=Some error!'));
+		}
+	}
+
+	public function edit_cities($id) {
+		$data['rec'] = $this->membership->edit_cities($id);
+		$data['states'] = $this->membership->states_manage();
+		$data['title'] = 'Edit State';
+		$this->load->view('edit_cities', $data);
+	}
+
+	public function cities_update() {
+
+		$id = $this->input->post('id');
+		if ($this->input->post()) {
+
+			$new_array['name'] = $this->input->post('name');
+			$new_array['name_ar'] = $this->input->post('name_ar');
+			$new_array['state_id'] = $this->input->post('state_id');
+
+			$val = $this->membership->cities_update($new_array, $id);
+
+			if ($val) {
+				redirect(base_url('membership/cities/?success=Update  successfully!'));
+			} else {
+				redirect(base_url('membership/cities/?error=Some error!'));
+			}
+
+		}
+	}
 }

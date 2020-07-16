@@ -248,4 +248,87 @@ class Membership_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
+
+	public function states_manage() {
+		$this->db->select('*');
+		$this->db->from('states');
+		$this->db->where('country_id ', 65);
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	public function add_states($data) {
+		$insert = $this->db->insert('states', $data);
+
+		if (!$insert) {
+			return false;
+		} else {
+
+			return $this->db->insert_id();
+		}
+	}
+
+	public function states_del($id) {
+		$this->db->where('id', $id);
+		$this->db->delete('states');
+		return $this->db->affected_rows();
+
+	}
+
+	public function edit_states($id) {
+		$this->db->where('id', $id);
+		$this->db->from('states');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function states_update($new_array, $id) {
+		$this->db->where('id', $id);
+		$this->db->update('states', $new_array);
+		return $this->db->affected_rows();
+	}
+
+	public function cities_manage() {
+		$this->db->select('*');
+		$this->db->from('cities');
+		if ($query = $this->db->get()) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	public function add_cities($data) {
+		$insert = $this->db->insert('cities', $data);
+
+		if (!$insert) {
+			return false;
+		} else {
+
+			return $this->db->insert_id();
+		}
+	}
+
+	public function cities_del($id) {
+		$this->db->where('id', $id);
+		$this->db->delete('cities');
+		return $this->db->affected_rows();
+
+	}
+
+	public function edit_cities($id) {
+		$this->db->where('id', $id);
+		$this->db->from('cities');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function cities_update($new_array, $id) {
+		$this->db->where('id', $id);
+		$this->db->update('cities', $new_array);
+		return $this->db->affected_rows();
+	}
 }
