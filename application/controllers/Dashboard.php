@@ -32,7 +32,7 @@ class Dashboard extends MY_Controller {
 		$this->data['workshop'] = $this->workshop->total_workshop();
 		$this->data['partshop'] = $this->partshop->total_partshop();
 		$this->data['carowners'] = $this->partshop->total_carowners();
-		$this->data['membership'] = $this->partshop->total_membership();
+		// $this->data['membership'] = $this->partshop->total_membership();
 		// $this->data['membership_users'] = $this->partshop->total_memberships_users();
 		$this->data['memberships_users_fun'] = $this->partshop->memberships_users_fun();
 		$this->data['memberships_fun'] = $this->partshop->memberships_fun();
