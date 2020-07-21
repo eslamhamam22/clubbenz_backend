@@ -83,7 +83,7 @@ if ($cou <= 4) {
 			}}
 		echo "More...";
 	}
-	?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
+	?> </td>
                             <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
 

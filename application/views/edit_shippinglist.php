@@ -44,7 +44,10 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label"> Part Name</label>
                                         <div class="col-sm-9">
-                                            <h4><?php echo $us->part_id; ?></h4>
+                                            <?php foreach ($parts as $part) {?>
+                                            <?php if ($us->part_id == $part->id) {?>
+                                            <h4><?php echo $part->title; ?></h4>
+                                            <?php }}?>
                                         </div>
                                     </div>
 

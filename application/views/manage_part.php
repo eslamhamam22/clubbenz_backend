@@ -36,7 +36,7 @@
                                     <th>Provider Logo</th>
                                     <th>Part name/Part number</th>
                                     <th>Category/Sub Category</th>
-                                    <th>class/Chassis</th>
+                                    <th>Chassis</th>
                                     <th>Part Case</th>
                                     <th>Brand/User</th>
                                     <th>Approve/Reject</th>
@@ -97,7 +97,7 @@ if ($cou <= 4) {
 			}}
 		echo "More...";
 	}
-	?> <br> <?php if (empty($model_number)) {echo "No Class";} else {echo $model_number->name;}?> </td>
+	?> </td>
 
 
 

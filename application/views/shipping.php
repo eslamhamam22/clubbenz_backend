@@ -35,6 +35,7 @@
                          <table  id="myTable" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Provider Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
@@ -50,6 +51,7 @@
                                 <?php foreach ($rec as $r) {
 	?>
                                 <tr>
+                                    <td><?php echo $r['id']; ?></td>
                                     <td>
     <?php foreach ($providers as $provider) {
 		if ($r['provider_id'] == $provider['id']) {

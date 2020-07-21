@@ -36,7 +36,7 @@ foreach ($rec as $us) {?>
                                             <a class="aclick" href=" <?php echo base_url('upload/') . $us['file']; ?>" title="Show" rel="bookmark" target="_blank"> Show </a>
                                         </div>
                                     <?php }?>
-                                        <h4 style="padding: 50px"><b>Upload File PDF</b></h4>
+                                        <h4 style="padding: 50px"><b>Upload Image or Pdf</b></h4>
                                         <div align="center" class="" style="">
                                             <div align="center" style="padding: 30px">
                                                 <input style="width: 400px" type="file" class= "form-control btn btn-default" name="file" size="20"  />

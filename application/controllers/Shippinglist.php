@@ -29,6 +29,7 @@ class Shippinglist extends MY_Controller {
 	public function edit_shippinglist($id) {
 		$data['rec'] = $this->shipping_model->edit_shippinglist($id);
 		$data['providers'] = $this->provider_model->select_provider();
+		$data['parts'] = $this->provider_model->select_parts();
 		$data['title'] = 'Edit Shipping Request';
 		$this->load->view('edit_shippinglist', $data);
 	}

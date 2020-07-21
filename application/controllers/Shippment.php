@@ -39,7 +39,7 @@ class Shippment extends MY_Controller {
 			if ($file_name != '') {
 				$config['upload_path'] = './upload/';
 				$config['file_name'] = time() . $file_name;
-				$config['allowed_types'] = 'pdf';
+				$config['allowed_types'] = 'pdf|gif|jpg|png|jpeg';
 				$this->upload->initialize($config);
 				if (!$this->upload->do_upload('file')) {
 					echo ($this->upload->display_errors());

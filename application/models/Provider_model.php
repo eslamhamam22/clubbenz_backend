@@ -11,6 +11,12 @@ class Provider_model extends CI_model {
 			return false;
 		}
 	}
+	public function select_parts() {
+		$this->db->select('*');
+		$this->db->from('parts');
+		$q = $this->db->get();
+		return $q->result();
+	}
 
 	public function providerlist_del($id) {
 		$this->db->where('id', $id);
