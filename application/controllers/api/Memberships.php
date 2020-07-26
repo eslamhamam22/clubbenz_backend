@@ -32,9 +32,9 @@ class Memberships extends REST_Controller {
 			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
 			$data["current"]= $current_membership;
 			if($data["current"]){
-				$data["current"]->end_date= $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration);
-				if (strtotime(date("Y-m-d H:i:s")) > strtotime($data["current"]->end_date)) {
-					$data["current"] = false;
+				$end_date= $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration);
+				if (strtotime(date("Y-m-d H:i:s")) > strtotime($end_date)) {
+					$data["allow"] = true;
 				}
 			}
 		}
