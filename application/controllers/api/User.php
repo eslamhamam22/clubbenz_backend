@@ -555,8 +555,8 @@ class User extends REST_Controller {
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user'] = 'developer.clubenz@gmail.com';
-		$config['smtp_pass'] = 'Clubenz@2019';
+		$config['smtp_user'] = 'support@clubenz.com';
+		$config['smtp_pass'] = 'Support@2020';
 		$config['charset'] = 'utf-8';
 		$config['newline'] = "\r\n";
 		$config['wordwrap'] = TRUE;
@@ -579,7 +579,7 @@ class User extends REST_Controller {
 				$resetTimeStemp = time();
 				$resetToken = $resetToken . "" . $resetTimeStemp;
 				$this->email->initialize($config);
-				$this->email->from('developer.clubenz@gmail.com', 'Clubenz--NoReply');
+				$this->email->from('support@clubenz.comments', 'Clubenz--NoReply');
 				$this->email->to($user->email);
 				$users['resetlink'] = $resetToken;
 				$mesg = $this->load->view('reset_password_view', $users, true);
@@ -671,8 +671,8 @@ class User extends REST_Controller {
 
 						);
 //						if($this->post('password') && $this->post('password') != ""){
-//							$data["password"]= md5($this->post('password'));
-//						}
+						//							$data["password"]= md5($this->post('password'));
+						//						}
 
 						if ($file_name != '') {
 							$config['upload_path'] = './upload/profile_picture';
@@ -815,13 +815,12 @@ class User extends REST_Controller {
 			$this->response($arr, 200);
 		}
 	}
-	public function schedule_notifications_post(){
+	public function schedule_notifications_post() {
 		$user_id = $this->post('user_id');
 		$position = $this->post('position');
-		$notification_settings= $this->notification->settings();
-		$interval_hours= $notification_settings->interval_hours;
+		$notification_settings = $this->notification->settings();
+		$interval_hours = $notification_settings->interval_hours;
 		$this->load->library('firebase');
-
 
 		$start = 0;
 		$lat = $position["coords"]["latitude"];
@@ -838,7 +837,7 @@ class User extends REST_Controller {
 		foreach ($workShops as $val) {
 			$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
 			$val->avg_rating = $this->Workshop_model->average_rating($val->id, "workshop");
-			$val->shop_type= "workshop";
+			$val->shop_type = "workshop";
 			$new_array[] = $val;
 		}
 
@@ -855,22 +854,24 @@ class User extends REST_Controller {
 
 		$user = $this->users_model->get_user_by_id($user_id);
 
-		foreach ($workShops as $workshop){
-			if($workshop->distance <= $notification_settings->max_distance){
+		foreach ($workShops as $workshop) {
+			if ($workshop->distance <= $notification_settings->max_distance) {
 
-				$latest_notification= $this->notification->get_latest_notification($user_id, $workshop->shop_type, $workshop->id);
-				$send= false;
-				if($latest_notification){
+				$latest_notification = $this->notification->get_latest_notification($user_id, $workshop->shop_type, $workshop->id);
+				$send = false;
+				if ($latest_notification) {
 //					echo date("Y-m-d H:i:s")."\n";
-//					echo $latest_notification->created_at."\n";
-					$difference= (strtotime(date("Y-m-d H:i:s")) - strtotime($latest_notification->created_at))/3600;
+					//					echo $latest_notification->created_at."\n";
+					$difference = (strtotime(date("Y-m-d H:i:s")) - strtotime($latest_notification->created_at)) / 3600;
 //					echo $difference;
-					if($difference >= $interval_hours)
-						$send= true;
-				}else{
-					$send= true;
+					if ($difference >= $interval_hours) {
+						$send = true;
+					}
+
+				} else {
+					$send = true;
 				}
-				if($send){
+				if ($send) {
 					$payload = array();
 					$payload['body'] = $notification_settings->message;
 					$payload['title'] = $workshop->name;
@@ -893,7 +894,6 @@ class User extends REST_Controller {
 					$data['icon'] = "ic_stat";
 //					$data['created_at'] = date("Y-m-d H:i:s");
 					$data['show_in_foreground'] = true;
-
 
 					if ($user->fcm_token != "") {
 						$response = '';

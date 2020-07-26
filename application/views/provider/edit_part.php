@@ -77,6 +77,18 @@
 <!--								</div>-->
 <!--							</div>-->
 
+
+							<div class="row" style="padding-top: 20px">
+                                <div class="col-md-6">
+									<div class="form-group">
+                                        <label class="control-label col-md-3">id</label>
+                                        <div class="col-md-9">
+                                        	<input type="text" name="id" class="form-control" value="<?php echo $rec->id ?>" disabled>
+                                        </div>
+                                    </div>
+								</div>
+                            </div>
+
                             <div class="row" style="padding-top: 20px">
 
 

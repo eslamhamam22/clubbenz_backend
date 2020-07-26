@@ -76,6 +76,7 @@ foreach ($rec as $us) {?>
                                                 <option value="3" <?php echo $us->frequency == '3' ? 'selected' : ''; ?>>3 month</option>
                                                 <option value="6" <?php echo $us->frequency == '6' ? 'selected' : ''; ?>>6 month</option>
                                                 <option value="9" <?php echo $us->frequency == '9' ? 'selected' : ''; ?>>9 month</option>
+                                                 <option value="12" <?php echo $us->frequency == '12' ? 'selected' : ''; ?>>12 month</option>
                                                 <?php }?>
                                             </select>
                                         </div>
