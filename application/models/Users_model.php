@@ -6,6 +6,10 @@ class Users_model extends CI_Model {
 		parent::__construct();
 	}
 
+	function delete_by_phone($phone) {
+		$this->db->where('phone', $phone);
+		$this->db->delete('users');
+	}
 	function insert_in_table($table, $data) {
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();

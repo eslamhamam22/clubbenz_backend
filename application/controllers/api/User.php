@@ -911,5 +911,9 @@ class User extends REST_Controller {
 		$this->response([], 200);
 
 	}
+	public function remove_user_post(){
+		$phone = $this->post('phone');
+		$user = $this->users_model->delete_by_phone($phone);
+	}
 
 }
