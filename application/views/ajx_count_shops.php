@@ -100,14 +100,15 @@ $datef = $this->input->post('datef');
 		?>
 
 <?php
-$uploadDate = $memberships_user->created_date;
+$mm = date('Y-m-d', strtotime($memberships_user->created_date));
+		$uploadDate = $memberships_user->created_date;
 		$date = strtotime($uploadDate);
 		$date = strtotime($membership->duration * 30 . "day", $date);
 		$date = date('Y-m-d', $date);
 		?>
             <?php if ($memberships_user->membership_id == $membership->id) {
 			?>
-            <?php if ($date <= $fdate && $date >= $datef) {$datef = $datef . ' 23:59:59';?>
+            <?php if ($mm >= $fdate && $date >= $datef) {$datef = $datef . ' 23:59:59';?>
                                             <?php $counter++;}}}}?>
                                             <?php echo $counter; ?></h3>
                                         </li>
