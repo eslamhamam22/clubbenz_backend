@@ -368,50 +368,55 @@ class Users_model extends CI_Model {
 		return $q->result();
 	}
 	public function month_workshop($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM workshop WHERE  created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_serviceshop($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM service_shop WHERE  created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_partshop($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM partshop WHERE  created_date >= '$sdate' AND created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_carowners($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM users INNER JOIN users_groups ON users.id = users_groups.user_id  WHERE  users.created_date >= '$sdate' AND users.created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_membership($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM users INNER JOIN memberships_users ON memberships_users.user_id = users.id WHERE memberships_users.status = 'approve' AND memberships_users.created_date >= '$sdate' AND memberships_users.created_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_memberships_users($sdate, $ldate) {
-		// $query = "SELECT COUNT(*) as total FROM memberships_users WHERE  date_created >= '$sdate' AND date_created <= '$ldate'";
-		// $q = $this->db->query($query);
-		// return $q->row()->total;
-		//
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM memberships_users INNER JOIN memberships ON memberships.id = memberships_users.membership_id WHERE  DATE_ADD(memberships_users.created_date, INTERVAL memberships.duration *30 DAY) >= '$sdate' AND DATE_ADD(memberships_users.created_date, INTERVAL memberships.duration *30 DAY) <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 1 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 1 AND update_date >= '$sdate' AND update_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_in_active_parts($sdate, $ldate) {
-		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 0 AND add_date >= '$sdate' AND add_date <= '$ldate'";
+		$ldate = $ldate . ' 23:59:59';
+		$query = "SELECT COUNT(*) as total FROM parts WHERE active = 0 AND update_date >= '$sdate' AND update_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_favorites($sdate, $ldate) {
+		$ldate = $ldate . ' 23:59:59';
 		$query = "SELECT COUNT(*) as total FROM parts INNER JOIN favorites ON favorites.part_id = parts.id WHERE parts.add_date >= '$sdate' AND parts.add_date <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
