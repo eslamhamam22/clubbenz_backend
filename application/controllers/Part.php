@@ -567,4 +567,8 @@ class part extends MY_Controller {
 		$this->part->reject_part($id);
 		redirect(base_url('part?success=updated  successfully!'));
 	}
+	public function pending($id) {
+		$this->part->pending_part($id);
+		redirect(base_url('part?success=updated  successfully!'));
+	}
 }

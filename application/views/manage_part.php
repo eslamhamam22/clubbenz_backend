@@ -107,17 +107,15 @@ if ($cou <= 4) {
                                         <td><?php echo $us->part_case; ?> </td>
                                         <td><?php if ($brand) {echo $brand->name;}
 	echo "<br>" . $us->username?></td>
-                                        <td> <?php if ($us->status == "pending" || $us->status == "reject") {?>
-                                        <a href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>">
-                                            <button class="btn-inactive"></button>
-                                        </a>
-                                        <?php }?>
-                                        <?php if ($us->status == "approve") {?>
-                                            <a href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>">
-                                                <button class="btn-active"></button>
-                                            </a>
-                                        <?php }?>
+
+                                        <td>
+                                            <select class="form-control karim-select" onchange="">
+                                                <option href="<?php echo base_url('part/approve/') ?><?php echo $us->id; ?>" value="approve" <?php echo $us->status == 'approve' ? 'selected' : ''; ?>>Approve</option>
+                                                <option href="<?php echo base_url('part/pending/') ?><?php echo $us->id; ?>" value="pending" <?php echo $us->status == 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                                <option href="<?php echo base_url('part/reject/') ?><?php echo $us->id; ?>" value="reject" <?php echo $us->status == 'reject' ? 'selected' : ''; ?>>Reject</option>
+                                            </select>
                                         </td>
+
 
                                         <td>
                                             <!-- <input type="checkbox" class="btn-active" name=""> -->
@@ -142,7 +140,6 @@ if ($cou <= 4) {
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-
         <script>
             $(document).ready( function () {
         var table= $('#myTable').DataTable({
@@ -226,8 +223,15 @@ if ($cou <= 4) {
             }
             console.log(table.rows( { selected: true } ).data())
         });
+
+        $(".karim-select").change(function(){
+            location.href= $(this).find("option:selected").attr("href");
+          });
             });
         </script>
+
+
+
     </body>
 
 </html>

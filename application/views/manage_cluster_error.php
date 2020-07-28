@@ -29,7 +29,6 @@
                         <table id="myTable" class="table table-striped" >
                             <thead>
                                 <tr>
-                                    <th>image</th>
                                     <th>Chassis</th>
                                      <th>Title/Title Arabic</th>
 
@@ -51,9 +50,6 @@ foreach ($rec as $us) {
 	$shop = $this->car_guide->get_shop_name_by_id($us->shop_type, $us->shop_id);
 	?>
                                 <tr>
-                                    <td>
-                                        <image class="img_size" src="<?php echo base_url('upload/') . $us->pic1; ?>">
-                                    </td>
                                     <td>
         <?php $cou = count($chassis_arr);
 	?>

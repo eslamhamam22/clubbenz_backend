@@ -251,6 +251,12 @@ class Part_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+	public function pending_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('parts', ["status" => 'pending']);
+		return $this->db->affected_rows();
+	}
+
 	public function edit_part($id) {
 		$this->db->where('id', $id);
 		$this->db->from('parts');
