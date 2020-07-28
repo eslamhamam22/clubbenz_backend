@@ -88,14 +88,14 @@ foreach ($rec as $r) {
 
 									<td><?php echo $r->date_updated; ?></td>
 
-                                    <td> <?php if ($r->status == "pending" || $r->status == "reject") {?>
-                                            <a href="<?php echo base_url('reviews/status_approve/') ?><?php echo $r->id; ?>">
-                                            <button class="btn btn-small btn-primary"><i class="fa fa-check"></i></button></a>
+                                    <td>
+                                        <select class="form-control karim-select" onchange="">
+                                            <option href="#" value="pending" <?php echo $r->status == 'pending' ? 'selected' : ''; ?>>Pending</option>
 
-                                        <?php }?>
-                                        <?php if ($r->status == "pending" || $r->status == "approve") {?>
-                                            <a href="<?php echo base_url('reviews/status_reject/') ?><?php echo $r->id; ?>"><button class="btn btn-small btn-danger"><i class="fa fa-times"></i></button></a>
-                                        <?php }?>
+                                            <option href="<?php echo base_url('reviews/status_approve/') ?><?php echo $r->id; ?>" value="approve" <?php echo $r->status == 'approve' ? 'selected' : ''; ?>>Approve</option>
+
+                                            <option href="<?php echo base_url('reviews/status_reject/') ?><?php echo $r->id; ?>" value="reject" <?php echo $r->status == 'reject' ? 'selected' : ''; ?>>Reject</option>
+                                        </select>
                                     </td>
 
                                 </tr>
@@ -144,6 +144,10 @@ foreach ($rec as $r) {
         <script>
             $(document).ready( function () {
                 $('#myTable').DataTable({"bSort": false});
+
+                $(".karim-select").change(function(){
+            location.href= $(this).find("option:selected").attr("href");
+          });
             } );
         </script>
         <script type="text/javascript">

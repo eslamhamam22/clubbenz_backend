@@ -96,6 +96,12 @@ class Reviews_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+	public function pending_part($id) {
+		$this->db->where('id', $id);
+		$this->db->update('reviews', ["status" => 'pending']);
+		return $this->db->affected_rows();
+	}
+
 	public function get_email($id) {
 		$this->db->select('*');
 		$this->db->from('users');
