@@ -109,7 +109,7 @@ class Parts extends REST_Controller {
 		}
 		$arr['top_products'] = array_filter($arr['top_products'], function ($part) use ($chassis) {
 			$chassis_ids= explode(",", $part->chassis_id);
-			if(!in_array($chassis_ids, $chassis)){
+			if(!in_array($chassis, $chassis_ids)){
 				return false;
 			}
 			if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d")) > strtotime($part->date_expire)) {
