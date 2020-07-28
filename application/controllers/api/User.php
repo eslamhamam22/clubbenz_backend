@@ -881,6 +881,7 @@ class User extends REST_Controller {
 					$payload['badge'] = 1;
 					$payload['priority'] = "high";
 					$payload['icon'] = "ic_stat";
+					$payload['auto'] = 1;
 //					$payload['created_at'] = date("Y-m-d H:i:s");
 					$payload['show_in_foreground'] = true;
 
@@ -892,6 +893,7 @@ class User extends REST_Controller {
 					$data['badge'] = 1;
 					$data['priority'] = "high";
 					$data['icon'] = "ic_stat";
+					$data['auto'] = 1;
 //					$data['created_at'] = date("Y-m-d H:i:s");
 					$data['show_in_foreground'] = true;
 
