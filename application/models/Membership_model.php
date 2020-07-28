@@ -147,7 +147,7 @@ class Membership_model extends CI_Model {
 	}
 
 	public function get_current_membership_by_user($user_id) {
-		$this->db->select('*');
+		$this->db->select('memberships.name, memberships.image, memberships.price, memberships.duration, "memberships.msg_ar", "memberships.msg_en", memberships_users.*');
 		$this->db->from('memberships_users');
 		$this->db->where('user_id', $user_id);
 		$this->db->join('memberships', 'memberships_users.membership_id = memberships.id');
