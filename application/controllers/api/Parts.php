@@ -107,7 +107,11 @@ class Parts extends REST_Controller {
 			$val->main_image = $this->Part_model->get_part_main_image($val->id, 'main');
 			$new_array[] = $val;
 		}
-		$arr['top_products'] = array_filter($arr['top_products'], function ($part) {
+		$arr['top_products'] = array_filter($arr['top_products'], function ($part) use ($chassis) {
+			$chassis_ids= explode(",", $part->chassis_id);
+			if(!in_array($chassis_ids, $chassis)){
+				return false;
+			}
 			if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d")) > strtotime($part->date_expire)) {
 				return false;
 			}
