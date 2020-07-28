@@ -551,7 +551,7 @@ class User extends REST_Controller {
 		// );
 
 		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_host'] = 'mail.clubenz.com';
 		$config['smtp_crypto'] = 'tls';
 		$config['smtp_port'] = '587';
 		$config['smtp_timeout'] = '7';
@@ -579,7 +579,7 @@ class User extends REST_Controller {
 				$resetTimeStemp = time();
 				$resetToken = $resetToken . "" . $resetTimeStemp;
 				$this->email->initialize($config);
-				$this->email->from('support@clubenz.comments', 'Clubenz--NoReply');
+				$this->email->from('support@clubenz.com', 'Clubenz--NoReply');
 				$this->email->to($user->email);
 				$users['resetlink'] = $resetToken;
 				$mesg = $this->load->view('reset_password_view', $users, true);
@@ -911,7 +911,7 @@ class User extends REST_Controller {
 		$this->response([], 200);
 
 	}
-	public function remove_user_post(){
+	public function remove_user_post() {
 		$phone = $this->post('phone');
 		$user = $this->users_model->delete_by_phone($phone);
 	}
