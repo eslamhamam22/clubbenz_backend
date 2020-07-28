@@ -73,6 +73,7 @@ foreach ($rec as $us) {?>
                                         <div class="col-sm-9">
                                             <select id="frequency"  name="frequency" class="form-control" required >
                                                 <?php if (isset($us->frequency)) {?>
+                                                <option value="1" <?php echo $us->frequency == '1' ? 'selected' : ''; ?>>1 month</option>
                                                 <option value="3" <?php echo $us->frequency == '3' ? 'selected' : ''; ?>>3 month</option>
                                                 <option value="6" <?php echo $us->frequency == '6' ? 'selected' : ''; ?>>6 month</option>
                                                 <option value="9" <?php echo $us->frequency == '9' ? 'selected' : ''; ?>>9 month</option>
