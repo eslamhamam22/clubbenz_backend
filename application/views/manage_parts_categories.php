@@ -39,7 +39,7 @@ foreach ($rec as $us) {
 
                                                 </div>
                                                 <div class="el-card-content">
-                                                    <h3 class="box-title"><?php echo $us->name; ?></h3> <small><?php echo $us->arabic_name; ?></small> <p><?php echo $us->id; ?></p>
+                                                    <h3 class="box-title"><?php echo $us->name; ?></h3> <small><?php echo $us->arabic_name; ?></small> <h5> ID :<?php echo $us->id; ?></h5>
                                                     <br> </div>
                                             </div>
                                         </div>
