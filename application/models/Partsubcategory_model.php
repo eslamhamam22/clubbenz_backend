@@ -65,13 +65,13 @@ class Partsubcategory_model extends CI_Model {
 		return $data;
 
 	}
-	public function get_subcategory_with_parts($id, $chassis_id, $phone= "") {
+	public function get_subcategory_with_parts($id, $chassis_id, $phone = "") {
 
 		$this->db->select('*');
 		$this->db->where('category', $id);
 		$this->db->from('parts_sub_categories');
 		// $this->db->join('parts', 'parts_sub_categories.id = parts.part_sub_category');
-//		$this->db->where('active', 1);
+		//		$this->db->where('active', 1);
 		$this->db->order_by('sorting', 'asc');
 		$q = $this->db->get();
 		$data = array();
@@ -79,12 +79,12 @@ class Partsubcategory_model extends CI_Model {
 			$data = $q->result_array();
 			foreach ($data as $key => $value) {
 //				$this->db->select('*');
-//				$this->db->where('part_sub_category', $data[$key]["id"]);
-//				$this->db->where('chassis_id', $chassis_id);
-//				$this->db->where('active', 1);
-//				$this->db->from('parts');
-//				$data[$key]["parts"] = $this->db->get()->num_rows();
-				$search_data['sub_category']= $data[$key]["id"];
+				//				$this->db->where('part_sub_category', $data[$key]["id"]);
+				//				$this->db->where('chassis_id', $chassis_id);
+				//				$this->db->where('active', 1);
+				//				$this->db->from('parts');
+				//				$data[$key]["parts"] = $this->db->get()->num_rows();
+				$search_data['sub_category'] = $data[$key]["id"];
 				$data[$key]["all_parts"] = $this->Part_model->get_shop($search_data, 0, 10, $chassis_id, $phone);
 				$data[$key]["parts"] = count($data[$key]["all_parts"]);
 			}

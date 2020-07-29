@@ -25,6 +25,7 @@
                              <table id="myTable" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>id</th>
                                         <th>image</th>
                                         <th>Brand Name</th>
                                         <th>Arabic Name</th>
@@ -36,6 +37,7 @@
                                     <?php
 foreach ($rec as $us) {?>
                                     <tr>
+                                        <td><?php echo $us->id; ?></td>
                                         <td><img class="img_size" src="<?php echo base_url('upload/') . $us->image; ?>"></td>
                                         <td><?php echo $us->name; ?></td>
                                         <td><?php echo $us->arabic_name; ?></td>

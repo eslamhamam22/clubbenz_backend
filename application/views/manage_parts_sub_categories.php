@@ -52,7 +52,7 @@ foreach ($partcat as $cat) {
                                         </div>
                                     </div>
                                     <div class="el-card-content">
-                                        <h3 class="box-title"><?php echo $subcat['name']; ?></h3> <small><?php echo $subcat['arabic_name']; ?></small>
+                                        <h3 class="box-title"><?php echo $subcat['name']; ?></h3> <small><?php echo $subcat['arabic_name']; ?></small> <p><?php echo $subcat['id']; ?></p>
                                     </div>
                                 </div>
                             </div>

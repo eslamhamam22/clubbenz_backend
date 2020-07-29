@@ -33,6 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
+                                        <th>id</th>
                                         <th>Image</th>
                                         <th>Name En</th>
                                         <th>Name Ar</th>
@@ -45,6 +46,7 @@ foreach ($rec as $us) {
 	?>
                                     <tr>
                                          <td><?php echo $us->sorting; ?></td>
+                                         <td><?php echo $us->id; ?></td>
                                         <td><img class="img_size" src="<?php echo base_url('upload/') . $us->image; ?>"></td>
                                         <td><?php echo $us->name; ?></td>
                                         <td><?php echo $us->arabic_name; ?></td>

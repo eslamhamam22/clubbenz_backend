@@ -675,7 +675,7 @@ class Car_guide extends MY_Controller {
 
 			$files = $_FILES;
 			$new_data = array();
-			$ct = count(array($this->input->post('descriptions')));
+			$ct = count($this->input->post('descriptions'));
 			$indexx = 0;
 			$counter = 0;
 			for ($i = 0; $i < $ct; $i++) {
@@ -701,6 +701,7 @@ class Car_guide extends MY_Controller {
 					}
 
 				}
+
 				$new_data['description'] = $this->input->post('descriptions')[$i];
 				$new_data['status'] = "approve";
 				$new_data['description_arabic'] = $this->input->post('description_arabics')[$i];
@@ -725,12 +726,11 @@ class Car_guide extends MY_Controller {
 				}
 			}
 
-			// redirect(base_url('car_guide/manage_cluster_error?success=update  successfully!'));
-			/*}
-		else{
-			$error=validation_errors();
+			redirect(base_url('car_guide/manage_cluster_error?success=update  successfully!'));
+		} else {
+			$error = validation_errors();
 			$this->data['error'] = $error;
-		}*/
+
 		}
 		$this->data['chassis_number'] = $this->car_guide->get_chassis();
 		$this->data['chassis'] = $this->car_guide->get_car_chassis();

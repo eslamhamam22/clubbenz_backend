@@ -29,6 +29,7 @@
                 <thead>
                 <tr>
                     <th>Sr.no</th>
+                    <th>Id</th>
                     <th>Chassis</th>
                     <th>Class</th>
                     <th>Option</th>
@@ -42,6 +43,7 @@ foreach ($rec as $us) {
 	?>
                     <tr>
                         <td><?php echo ++$index; ?></td>
+                        <td><?php echo $us->id ?></td>
                         <td><?php echo $us->chassis_num ?></td>
                         <td>
                             <?php foreach ($model_name as $model) {?>
