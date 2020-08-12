@@ -141,22 +141,26 @@ foreach ($rec as $r) {
             </div>
         </div> -->
         <?php $this->load->view('common/common_script');?>
-        <script>
-            $(document).ready( function () {
-                $('#myTable').DataTable({"bSort": false});
+<script type="text/javascript">
+$(document).ready( function () {
+$(".karim-select").change(function(){
+location.href= $(this).find("option:selected").attr("href");
+});
+});
+</script>
+<script>
+$(document).ready( function () {
+$('#myTable').DataTable({"bSort": false});
 
-                $(".karim-select").change(function(){
-            location.href= $(this).find("option:selected").attr("href");
-          });
-            } );
-        </script>
-        <script type="text/javascript">
-            function update(uid,status){
-                $("#id").val(uid);
-                $("#status").val(status);
-               }
+});
+</script>
+<script type="text/javascript">
+function update(uid,status){
+$("#id").val(uid);
+$("#status").val(status);
+}
 
-        </script>
+</script>
     </body>
 
 </html>

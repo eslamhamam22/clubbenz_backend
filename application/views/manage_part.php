@@ -140,95 +140,100 @@ if ($cou <= 4) {
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-        <script>
-            $(document).ready( function () {
-        var table= $('#myTable').DataTable({
-            dom: 'Bfrtip',
-            columnDefs: [ {
-                orderable: false,
-                className: 'select-checkbox',
-                targets:   0
-            } ],
-            select: {
-                style:    'multi+shift',
-                selector: 'td:first-child'
-            },
-            buttons: [
-                'excel',
-                {
-                    text: 'Approve',
-                    action: function () {
-                        var arr= [];
-                        var data= table.rows( { selected: true } ).data().toArray();;
-                        data.forEach(function (part) {
-                            arr.push(part[1])
-                        })
-                        $.ajax({
-                            type: 'post',
-                            url:'<?php echo base_url("part/approve_many") ?>',
-                            data: {parts: arr},
-                            success: function (mydata) {
-                                console.log(mydata);
-                                location.href= mydata
-                            }
-                        });
-                    }
-                },
-                {
-                    text: 'Reject',
-                    action: function () {
-                        var arr= [];
-                        var data= table.rows( { selected: true } ).data().toArray();;
-                        data.forEach(function (part) {
-                            arr.push(part[1])
-                        })
-                        $.ajax({
-                            type: 'post',
-                            url:'<?php echo base_url("part/reject_many") ?>',
-                            data: {parts: arr},
-                            success: function (mydata) {
-                                console.log(mydata);
-                                location.href= mydata
-                            }
-                        });
-                    }
-                },
-                {
-                    text: 'Delete',
-                    action: function () {
-                        var arr= [];
-                        var data= table.rows( { selected: true } ).data().toArray();;
-                        data.forEach(function (part) {
-                            arr.push(part[1])
-                        })
-                        $.ajax({
-                            type: 'post',
-                            url:'<?php echo base_url("part/delete_many") ?>',
-                            data: {parts: arr},
-                            success: function (mydata) {
-                                console.log(mydata);
-                                location.href= mydata
-                            }
-                        });
-                    }
-                },
-            ],
-            "bSort": false
-        });
-        $(".selectAll").on( "click", function(e) {
-            if ($(this).is( ":checked" )) {
-                table.rows({ page: 'current' }).select();
-            } else {
-                table.rows({ page: 'current' }).deselect();
-            }
-            console.log(table.rows( { selected: true } ).data())
-        });
-
-        $(".karim-select").change(function(){
+<script type="text/javascript">
+	$(document).ready( function () {
+		$(".karim-select").change(function(){
             location.href= $(this).find("option:selected").attr("href");
           });
-            });
-        </script>
+      });
+</script>
+<script>
+    $(document).ready( function () {
+var table= $('#myTable').DataTable({
+    dom: 'Bfrtip',
+    columnDefs: [ {
+        orderable: false,
+        className: 'select-checkbox',
+        targets:   0
+    } ],
+    select: {
+        style:    'multi+shift',
+        selector: 'td:first-child'
+    },
+    buttons: [
+        'excel',
+        {
+            text: 'Approve',
+            action: function () {
+                var arr= [];
+                var data= table.rows( { selected: true } ).data().toArray();;
+                data.forEach(function (part) {
+                    arr.push(part[1])
+                })
+                $.ajax({
+                    type: 'post',
+                    url:'<?php echo base_url("part/approve_many") ?>',
+                    data: {parts: arr},
+                    success: function (mydata) {
+                        console.log(mydata);
+                        location.href= mydata
+                    }
+                });
+            }
+        },
+        {
+            text: 'Reject',
+            action: function () {
+                var arr= [];
+                var data= table.rows( { selected: true } ).data().toArray();;
+                data.forEach(function (part) {
+                    arr.push(part[1])
+                })
+                $.ajax({
+                    type: 'post',
+                    url:'<?php echo base_url("part/reject_many") ?>',
+                    data: {parts: arr},
+                    success: function (mydata) {
+                        console.log(mydata);
+                        location.href= mydata
+                    }
+                });
+            }
+        },
+        {
+            text: 'Delete',
+            action: function () {
+                var arr= [];
+                var data= table.rows( { selected: true } ).data().toArray();;
+                data.forEach(function (part) {
+                    arr.push(part[1])
+                })
+                $.ajax({
+                    type: 'post',
+                    url:'<?php echo base_url("part/delete_many") ?>',
+                    data: {parts: arr},
+                    success: function (mydata) {
+                        console.log(mydata);
+                        location.href= mydata
+                    }
+                });
+            }
+        },
+    ],
+    "bSort": false
+});
+$(".selectAll").on( "click", function(e) {
+    if ($(this).is( ":checked" )) {
+        table.rows({ page: 'current' }).select();
+    } else {
+        table.rows({ page: 'current' }).deselect();
+    }
+    console.log(table.rows( { selected: true } ).data())
+});
+
+
+    });
+</script>
 
 
 

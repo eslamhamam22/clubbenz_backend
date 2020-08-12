@@ -207,14 +207,14 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 
 
 
-						<li><a href="index.html" class="waves-effect "><span class="hide-menu"> Cities <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
+<!-- 						<li><a href="index.html" class="waves-effect "><span class="hide-menu"> Cities <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 							<ul class="nav nav-second-level"><?php if ($group_id[0]->name == 'admin') {?>
 								<li> <a href="<?php echo base_url() ?>membership/states"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Status<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 
 								<li> <a href="<?php echo base_url() ?>membership/cities"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu">Cities<span class="label label-rouded label-inverse pull-right"></span></span></a></li>
 							<?php }?>
 							</ul>
-						</li>
+						</li> -->
 
 					</ul>
 				</li>
