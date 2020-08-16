@@ -321,6 +321,9 @@ class part extends MY_Controller {
 						$this->part->activate($id);
 					}
 				}
+				if ($this->input->post('status') == "reject") {
+					$this->part->deactivate($id);
+				}
 
 				$new_array = array(
 					'title' => $title,

@@ -111,7 +111,7 @@ class Push_notification extends MY_Controller {
 			$data['show_in_foreground'] = true;
 
 			$result = $this->notification->get_all_users($posted_data);
-			$sent= false;
+			$show_admin= true;
 
 			if (!empty($result)) {
 				foreach ($result as $value) {
@@ -123,10 +123,9 @@ class Push_notification extends MY_Controller {
 						$this->db->insert("data_logs", $d);
 						$data['user_id'] = $value->id;
 //						print_r($value);
-						if(!$sent){
-							$this->db->insert("notifications", $data);
-							$sent= true;
-						}
+						$data['show_admin']= $show_admin;
+						$show_admin= false;
+						$this->db->insert("notifications", $data);
 					}
 				}
 				redirect(base_url('push_notification/manage_notification/?success=Notifications sent successfully!'));

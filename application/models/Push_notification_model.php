@@ -28,6 +28,7 @@ class Push_notification_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->order_by("id", "desc");
 		$this->db->where("auto", 0);
+		$this->db->where('show_admin', '1');
 		$this->db->from('notifications');
 		$q = $this->db->get();
 		return $q->result();
