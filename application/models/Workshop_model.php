@@ -180,7 +180,7 @@ class Workshop_model extends CI_Model {
 	}
 
 	function fetch_data() {
-		$this->db->select(array('name', 'arabic_name', 'web', 'city', 'country', 'location_lat', 'location_lon', 'address', 'opening_hour', 'closing_hour', 'day_off', 'phone', 'offers_photo', 'twitter', 'email', 'serch_tag', 'serch_tag_arabic', 'photo_selection', 'facebook_page_link', 'created_date'));
+		$this->db->select(array('name', 'arabic_name', 'city', 'country', 'location_lat', 'location_lon', 'address', 'opening_hour', 'closing_hour', 'day_off', 'phone', 'offers_photo', 'twitter', 'email', 'serch_tag', 'serch_tag_arabic', 'photo_selection', 'facebook_page_link', 'created_date'));
 		$this->db->from("workshop");
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {
