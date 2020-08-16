@@ -56,6 +56,7 @@ class Push_notification_model extends CI_Model {
 	public function get_notifications_limit_10($id) {
 		$this->db->select('*');
 		$this->db->where('user_id', $id);
+		$this->db->where('auto', 0);
 		$this->db->from('notifications');
 		$this->db->order_by('id', 'DESC');
 		$this->db->limit(10);
