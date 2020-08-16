@@ -839,8 +839,8 @@ class User extends REST_Controller {
 
 		$user = $this->users_model->get_user_by_id($user_id);
 
-//		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
-//		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
+		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
+		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
 		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
 		$this->response([], 200);
 
