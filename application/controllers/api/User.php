@@ -832,12 +832,24 @@ class User extends REST_Controller {
 
 		$arr['total'] = 0;
 		$workShops = $this->Workshop_model->get_workshops($search_arr, $start, $limit);
+		$partshops = $this->Partsshop_model->get_shop($search_arr, $start, $limit);
+		$serviceshops = $this->Serviceshop_model->get_shop($search_arr, $start, $limit);
 
+//		$workshop= $workShops[0];
+
+		$user = $this->users_model->get_user_by_id($user_id);
+
+//		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
+//		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
+		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
+		$this->response([], 200);
+
+	}
+	public function send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, $type){
 		$new_array = array();
 		foreach ($workShops as $val) {
 			$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
-			$val->avg_rating = $this->Workshop_model->average_rating($val->id, "workshop");
-			$val->shop_type = "workshop";
+			$val->shop_type = $type;
 			$new_array[] = $val;
 		}
 
@@ -850,10 +862,6 @@ class User extends REST_Controller {
 				}
 			});
 		}
-//		$workshop= $workShops[0];
-
-		$user = $this->users_model->get_user_by_id($user_id);
-
 		foreach ($workShops as $workshop) {
 			if ($workshop->distance <= $notification_settings->max_distance) {
 
@@ -910,8 +918,6 @@ class User extends REST_Controller {
 
 			}
 		}
-		$this->response([], 200);
-
 	}
 	public function remove_user_post() {
 		$phone = $this->post('phone');

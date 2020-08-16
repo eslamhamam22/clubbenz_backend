@@ -741,7 +741,7 @@ class Parts extends CI_Controller {
 					if (is_numeric($column[0])) {
 						$start_index = 1;
 					}
-					echo $start_index;
+//					echo $start_index;
 					$title = $column[$start_index + 0];
 					$title_arabic = $column[$start_index + 1];
 					$part_number = $column[$start_index + 2];
@@ -781,17 +781,20 @@ class Parts extends CI_Controller {
 						'num_stock' => $num_stock,
 						'provider_id' => $this->session->userdata("id"),
 					);
-					if($title== "" || $part_category== "" || $part_sub_category== "" || $chassis_id== "")
+					if($title== "" || $part_category== "" || $part_sub_category== "" || $chassis_id== ""){
 						continue;
+					}
 
 					if (is_numeric($part_category)) {
 						if (!$this->Partcategory_model->get_by_id($part_category)) {
+							echo $start_index.": No Category available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Partcategory_model->get_by_name($part_category);
-						if ($object) {
+						if (!$object) {
+							echo $start_index.": No Category available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_category'] = $object[0]->id;
@@ -801,12 +804,14 @@ class Parts extends CI_Controller {
 
 					if (is_numeric($part_sub_category)) {
 						if (!$this->Partsubcategory_model->get_by_id($part_sub_category)) {
+							echo $start_index.": No subcategory available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Partsubcategory_model->get_by_name($part_sub_category);
-						if ($object) {
+						if (!$object) {
+							echo $start_index.": No subcategory available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_sub_category'] = $object[0]->id;
@@ -815,12 +820,14 @@ class Parts extends CI_Controller {
 					}
 					if (is_numeric($part_brand)) {
 						if (!$this->Brand_model->get_by_id($part_brand)) {
+							echo $start_index.": No Brand available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Brand_model->get_by_name($part_brand);
-						if ($object) {
+						if (!$object) {
+							echo $start_index.": No Brand available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_brand'] = $object[0]->id;
@@ -829,15 +836,16 @@ class Parts extends CI_Controller {
 					}
 					if (is_numeric($chassis_id)) {
 						if (!$this->Chassis_model->get_by_id($chassis_id)) {
+							echo $start_index.": No Chassis available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Chassis_model->get_by_name($chassis_id);
-						if ($object) {
-							$new_array['chassis_id'] = $object[0]->id;
-						} else {
+						if (!$object) {
 							$new_array['chassis_id'] = $chassis_id;
+						} else {
+							$new_array['chassis_id'] = $object[0]->id;
 						}
 
 					}
