@@ -835,9 +835,9 @@ class Parts extends CI_Controller {
 					} else {
 						$object = $this->Chassis_model->get_by_name($chassis_id);
 						if ($object) {
-							continue;
-						} else {
 							$new_array['chassis_id'] = $object[0]->id;
+						} else {
+							$new_array['chassis_id'] = $chassis_id;
 						}
 
 					}
