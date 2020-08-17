@@ -51,7 +51,7 @@ class Serviceshop_model extends CI_Model {
 				->or_like("service_tag_string", $data['search'])
 				->group_end();
 		}
-		if ($data['service_id'] != '') {
+		if (array_key_exists('service_id', $data) && $data['service_id'] != '') {
 			$this->db->like("service_type", $data['service_id']);
 
 			// $where.=" and (service_type like '%".$data['service_id']."%' )";

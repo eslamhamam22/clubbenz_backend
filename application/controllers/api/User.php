@@ -840,8 +840,8 @@ class User extends REST_Controller {
 		$user = $this->users_model->get_user_by_id($user_id);
 
 		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
-		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
-		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
+//		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
+//		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
 		$this->response([], 200);
 
 	}
@@ -853,15 +853,15 @@ class User extends REST_Controller {
 			$new_array[] = $val;
 		}
 
-		if ($workShops) {
-			usort($workShops, function ($a, $b) {
-				if ($a->distance == $b->distance) {
-					return $a->avg_rating < $b->avg_rating;
-				} else {
-					return $a->distance > $b->distance;
-				}
-			});
-		}
+//		if ($workShops) {
+//			usort($workShops, function ($a, $b) {
+//				if ($a->distance == $b->distance) {
+//					return $a->avg_rating < $b->avg_rating;
+//				} else {
+//					return $a->distance > $b->distance;
+//				}
+//			});
+//		}
 		foreach ($workShops as $workshop) {
 			if ($workshop->distance <= $notification_settings->max_distance) {
 
