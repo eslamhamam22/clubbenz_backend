@@ -168,7 +168,7 @@ class Workshop extends MY_Controller {
 					'photo_selection_arround_rating' => $dataInfo[2]['file_name'],
 					'name' => $title,
 					'arabic_name' => $arabicTitle,
-					// 'web' => $this->input->post('web'),
+					'web' => $this->input->post('web'),
 					'city' => $this->input->post('city'),
 					'country' => $this->input->post('country'),
 					'location_lat' => $this->input->post('location_lat'),
@@ -342,7 +342,7 @@ class Workshop extends MY_Controller {
 					// 'photo_selection_arround_rating' => $dataInfo[2]['file_name'],
 					'name' => $title,
 					'arabic_name' => $arabicTitle,
-					// 'web' => $this->input->post('web'),
+					'web' => $this->input->post('web'),
 					'city' => $this->input->post('city'),
 					'country' => $this->input->post('country'),
 					'location_lat' => $this->input->post('location_lat'),
@@ -359,7 +359,7 @@ class Workshop extends MY_Controller {
 					'facebook_page_link' => $this->input->post('fb_link'),
 					"created_date" => date("Y-m-d"),
 					'service_tag_string' => $service_tag_string,
-					// 'service_tag' => $service_tag,
+					'service_tag' => $service_tag,
 				);
 
 				$result = $this->workshop->add_workshop($data);
@@ -388,7 +388,7 @@ class Workshop extends MY_Controller {
 
 		$object->setActiveSheetIndex(0);
 
-		$table_columns = array("name", "arabic_name", "city", "country", "location_lat", "location_lon", "address", "opening_hour", "closing_hour", "day_off", "phone", "twitter", "email", "serch_tag", "serch_tag_arabic", "facebook_page_link", "created_date");
+		$table_columns = array("name", "arabic_name", "web", "city", "country", "location_lat", "location_lon", "address", "opening_hour", "closing_hour", "day_off", "phone", "twitter", "email", "serch_tag", "serch_tag_arabic", "facebook_page_link", "service_tag", "created_date");
 
 		$column = 0;
 
@@ -404,21 +404,23 @@ class Workshop extends MY_Controller {
 		foreach ($employee_data as $row) {
 			$object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->name);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->arabic_name);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->city);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row->country);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row->location_lat);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row->location_lon);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row->address);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row->opening_hour);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row->closing_hour);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->day_off);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row->phone);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row->twitter);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row->email);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row->serch_tag);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row->serch_tag_arabic);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row->facebook_page_link);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->created_date);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->web);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row->city);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row->country);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row->location_lat);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row->location_lon);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row->address);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row->opening_hour);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->closing_hour);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row->day_off);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row->phone);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row->twitter);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row->email);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row->serch_tag);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row->serch_tag_arabic);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->facebook_page_link);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, $row->service_tag);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(18, $excel_row, $row->created_date);
 			$excel_row++;
 		}
 
@@ -560,7 +562,7 @@ class Workshop extends MY_Controller {
 				$data = array(
 					'name' => $title,
 					'arabic_name' => $arabicTitle,
-					// 'web' => $this->input->post('web'),
+					'web' => $this->input->post('web'),
 					'city' => $this->input->post('city'),
 					'country' => $this->input->post('country'),
 					'location_lat' => $this->input->post('location_lat'),

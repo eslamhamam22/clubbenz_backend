@@ -36,6 +36,7 @@
                                             <table class="table table-hover manage-u-table">
                                                 <thead>
                                                     <tr>
+                                                        <th width="70" class="text-center">Id</th>
                                                         <th width="70" class="text-center">#</th>
                                                         <th>NAME</th>
                                                         <th width="300">MANAGE</th>
@@ -44,6 +45,7 @@
                                                 <tbody>
                                                      <?php foreach ($workshop as $us) {?>
                                                     <tr>
+                                                        <td class="text-center"><?php echo $us->id ?></td>
                                                         <td class="text-center"><?php echo $us->sorting ?></td>
                                                         <td><?php echo $us->name ?></td>
                                                         <td>
@@ -64,6 +66,7 @@
                                             <table class="table table-hover manage-u-table">
                                                 <thead>
                                                     <tr>
+                                                        <th width="70" class="text-center">Id</th>
                                                         <th width="70" class="text-center">#</th>
                                                         <th>NAME</th>
                                                         <th width="300">MANAGE</th>
@@ -72,6 +75,7 @@
                                                 <tbody>
                                                      <?php foreach ($partshop as $us) {?>
                                                     <tr>
+                                                        <td class="text-center"><?php echo $us->id ?></td>
                                                         <td class="text-center"><?php echo $us->sorting ?></td>
                                                         <td><?php echo $us->name ?></td>
                                                         <td>
@@ -92,6 +96,7 @@
                                             <table class="table table-hover manage-u-table">
                                                 <thead>
                                                     <tr>
+                                                        <th width="70" class="text-center">id</th>
                                                         <th width="70" class="text-center">#</th>
                                                         <th>NAME</th>
                                                         <th width="300">MANAGE</th>
@@ -100,6 +105,7 @@
                                                 <tbody>
                                                      <?php foreach ($serviceshop as $us) {?>
                                                     <tr>
+                                                        <td class="text-center"><?php echo $us->id ?></td>
                                                         <td class="text-center"><?php echo $us->sorting ?></td>
                                                         <td><?php echo $us->name ?></td>
                                                         <td>

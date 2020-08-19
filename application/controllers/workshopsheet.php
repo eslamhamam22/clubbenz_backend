@@ -81,25 +81,68 @@ class workshopsheet extends CI_Controller {
 				$failed = 0;
 
 				for ($row = 2; $row <= count($allDataInSheet); $row++) {
+
+					$name = $allDataInSheet[$row]['A'];
+					$arabic_name = $allDataInSheet[$row]['B'];
+					$web = $allDataInSheet[$row]['C'];
+					$city = $allDataInSheet[$row]['D'];
+					$country = $allDataInSheet[$row]['E'];
+					$location_lat = $allDataInSheet[$row]['F'];
+					$location_lon = $allDataInSheet[$row]['G'];
+					$address = $allDataInSheet[$row]['H'];
+					$opening_hour = $allDataInSheet[$row]['I'];
+					$closing_hour = $allDataInSheet[$row]['J'];
+					$day_off = $allDataInSheet[$row]['K'];
+					$phone = $allDataInSheet[$row]['L'];
+					$twitter = $allDataInSheet[$row]['M'];
+					$email = $allDataInSheet[$row]['N'];
+					$serch_tag = $allDataInSheet[$row]['O'];
+					$serch_tag_arabic = $allDataInSheet[$row]['P'];
+					$facebook_page_link = $allDataInSheet[$row]['Q'];
+					$service_tag = $allDataInSheet[$row]['R'];
+					$created_date = $allDataInSheet[$row]['S'];
+
 					$data = array(
-						'name' => $allDataInSheet[$row]['A'],
-						'arabic_name' => $allDataInSheet[$row]['B'],
-						'city' => $allDataInSheet[$row]['C'],
-						'country' => $allDataInSheet[$row]['D'],
-						'location_lat' => $allDataInSheet[$row]['E'],
-						'location_lon' => $allDataInSheet[$row]['F'],
-						'address' => $allDataInSheet[$row]['G'],
-						'opening_hour' => $allDataInSheet[$row]['H'],
-						'closing_hour' => $allDataInSheet[$row]['I'],
-						'day_off' => $allDataInSheet[$row]['J'],
-						'phone' => $allDataInSheet[$row]['K'],
-						'twitter' => $allDataInSheet[$row]['L'],
-						'email' => $allDataInSheet[$row]['M'],
-						'serch_tag' => $allDataInSheet[$row]['N'],
-						'serch_tag_arabic' => $allDataInSheet[$row]['O'],
-						'facebook_page_link' => $allDataInSheet[$row]['P'],
-						'created_date' => $allDataInSheet[$row]['Q'],
+						'name' => $name,
+						'arabic_name' => $arabic_name,
+						'web' => $web,
+						'city' => $city,
+						'country' => $country,
+						'location_lat' => $location_lat,
+						'location_lon' => $location_lon,
+						'address' => $address,
+						'opening_hour' => $opening_hour,
+						'closing_hour' => $closing_hour,
+						'day_off' => $day_off,
+						'phone' => $phone,
+						'twitter' => $twitter,
+						'email' => $email,
+						'serch_tag' => $serch_tag,
+						'serch_tag_arabic' => $serch_tag_arabic,
+						'facebook_page_link' => $facebook_page_link,
+						'service_tag' => $service_tag,
+						'created_date' => $created_date,
 					);
+
+					if ($service_tag == "") {
+						continue;
+					}
+
+					if (is_numeric($service_tag)) {
+						if (!$this->workshop->get_by_id($service_tag)) {
+							echo $start_index . ": No Services Type with the given ID or Name\n";
+							continue;
+						}
+
+					} else {
+						$object = $this->workshop->get_by_name($service_tag);
+						if (!$object) {
+							$new_array['service_tag'] = $service_tag;
+						} else {
+							$new_array['service_tag'] = $object[0]->id;
+						}
+
+					}
 
 					if ($result = $this->workshop->add_workshop($data)) {
 //						print_r($column);

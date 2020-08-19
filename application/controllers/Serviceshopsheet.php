@@ -81,29 +81,89 @@ class Serviceshopsheet extends CI_Controller {
 				$failed = 0;
 
 				for ($row = 2; $row <= count($allDataInSheet); $row++) {
+
+					$name = $allDataInSheet[$row]['A'];
+					$arabic_name = $allDataInSheet[$row]['B'];
+					$web_link = $allDataInSheet[$row]['C'];
+					$city = $allDataInSheet[$row]['D'];
+					$country = $allDataInSheet[$row]['E'];
+					$location_latitude = $allDataInSheet[$row]['F'];
+					$location_longitude = $allDataInSheet[$row]['G'];
+					$opening_hours = $allDataInSheet[$row]['H'];
+					$closing_hours = $allDataInSheet[$row]['I'];
+					$off_day = $allDataInSheet[$row]['J'];
+					$phone = $allDataInSheet[$row]['K'];
+					$facebok_link = $allDataInSheet[$row]['L'];
+					$address = $allDataInSheet[$row]['M'];
+					$serch_tag = $allDataInSheet[$row]['N'];
+					$serch_tag_arabic = $allDataInSheet[$row]['O'];
+					$email = $allDataInSheet[$row]['P'];
+					$created_date = $allDataInSheet[$row]['Q'];
+					$tweeter = $allDataInSheet[$row]['R'];
+					$service_type = $allDataInSheet[$row]['S'];
+					$service_tag = $allDataInSheet[$row]['T'];
+
 					$data = array(
-						'name' => $allDataInSheet[$row]['A'],
-						'arabic_name' => $allDataInSheet[$row]['B'],
-						'web_link' => $allDataInSheet[$row]['C'],
-						'city' => $allDataInSheet[$row]['D'],
-						'country' => $allDataInSheet[$row]['E'],
-						'location_latitude' => $allDataInSheet[$row]['F'],
-						'location_longitude' => $allDataInSheet[$row]['G'],
-						'opening_hours' => $allDataInSheet[$row]['H'],
-						'closing_hours' => $allDataInSheet[$row]['I'],
-						'off_day' => $allDataInSheet[$row]['J'],
-						'phone' => $allDataInSheet[$row]['K'],
-						'facebok_link' => $allDataInSheet[$row]['L'],
-						'address' => $allDataInSheet[$row]['M'],
-						'serch_tag' => $allDataInSheet[$row]['N'],
-						'serch_tag_arabic' => $allDataInSheet[$row]['O'],
-						'email' => $allDataInSheet[$row]['P'],
-						'created_date' => $allDataInSheet[$row]['Q'],
-						'tweeter' => $allDataInSheet[$row]['R'],
+						'name' => $name,
+						'arabic_name' => $arabic_name,
+						'web_link' => $web_link,
+						'city' => $city,
+						'country' => $country,
+						'location_latitude' => $location_latitude,
+						'location_longitude' => $location_longitude,
+						'opening_hours' => $opening_hours,
+						'closing_hours' => $closing_hours,
+						'off_day' => $off_day,
+						'phone' => $phone,
+						'facebok_link' => $facebok_link,
+						'address' => $address,
+						'serch_tag' => $serch_tag,
+						'serch_tag_arabic' => $serch_tag_arabic,
+						'email' => $email,
+						'created_date' => $created_date,
+						'tweeter' => $tweeter,
+						'service_type' => $service_type,
+						'service_tag' => $service_tag,
 					);
 
+					if ($service_type == "" || $service_tag == "") {
+						continue;
+					}
+
+					if (is_numeric($service_type)) {
+						if (!$this->serviceshop->get_by_id($service_type)) {
+							echo $start_index . ": No Services Type with the given ID or Name\n";
+							continue;
+						}
+
+					} else {
+						$object = $this->serviceshop->get_by_name($service_type);
+						if (!$object) {
+							$new_array['service_type'] = $service_type;
+						} else {
+							$new_array['service_type'] = $object[0]->id;
+						}
+
+					}
+
+					if (is_numeric($service_tag)) {
+						if (!$this->serviceshop->get_service_tag_by_id($service_tag)) {
+							echo $start_index . ": No Services Type with the given ID or Name\n";
+							continue;
+						}
+
+					} else {
+						$object = $this->serviceshop->get_service_tag_by_name($service_tag);
+						if (!$object) {
+							$new_array['service_tag'] = $service_tag;
+						} else {
+							$new_array['service_tag'] = $object[0]->id;
+						}
+
+					}
+
 					if ($result = $this->serviceshop->add_service_shop($data)) {
-//						print_r($column);
+						// print_r($data);
 						$counter++;
 					} else {
 						$failed++;

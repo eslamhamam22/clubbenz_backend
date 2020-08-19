@@ -205,19 +205,7 @@ class Serviceshop extends MY_Controller {
 		if ($this->input->post()) {
 			$search_tag = implode(',', $this->input->post('serch_tag'));
 			$search_tag_ar = implode(',', $this->input->post('serch_tag_arabic'));
-			// $servicetag = !empty($this->input->post('service_tag')) ? implode(',', $this->input->post('service_tag')) : "";
 			$day_off = !empty($this->input->post('day_off')) ? implode(',', $this->input->post('day_off')) : "";
-
-			// $service_english = ($this->input->post('service_english') != '') ? implode(',', $this->input->post('service_english')) : "";
-
-			// if ($this->input->post('service_tag')) {
-			// 	$getSelectService = $this->service_tag->getSelectService($this->input->post('service_tag'));
-			// 	$service_tag_string = '';
-			// 	foreach ($getSelectService as $service) {
-
-			// 		$service_tag_string = $service_tag_string . $service->keywords;
-			// 	}
-			// }
 
 			$rules = array(
 				array(
@@ -265,11 +253,7 @@ class Serviceshop extends MY_Controller {
 					'label' => 'Address',
 					'rules' => 'trim|required',
 				),
-				// array(
-				// 	'field'   => 'day_off',
-				// 	'label'   => 'Day Off',
-				// 	'rules'   => 'trim|required'
-				// ),
+
 				array(
 					'field' => 'service_english[]',
 					'label' => 'Service Type',
@@ -284,23 +268,7 @@ class Serviceshop extends MY_Controller {
 
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
-				// $dataInfo = array();
-				// $files = $_FILES;
 
-				// $cpt = count($_FILES['image']['name']);
-				// for ($i = 0; $i < $cpt; $i++) {
-
-				// 	$fname = $_FILES['file_name']['name'] = $files['image']['name'][$i];
-				// 	$_FILES['file_name']['tmp_name'] = $files['image']['tmp_name'][$i];
-				// 	$_FILES['file_name']['size'] = $_FILES['image']['size'][$i];
-				// 	$config = array();
-				// 	$config['upload_path'] = './upload/';
-				// 	$config['file_name'] = time() . $fname;
-				// 	$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				// 	$this->upload->initialize($config);
-				// 	$this->upload->do_upload('file_name');
-				// 	$dataInfo[] = $this->upload->data();
-				// }
 				$title = $this->input->post('ws_name');
 				$arabicTitle = $this->input->post('arabic_name');
 
@@ -310,22 +278,13 @@ class Serviceshop extends MY_Controller {
 					$arabicTitle = $title;
 				}
 
-				//	date_default_timezone_set('Africa/Cairo');
 				$opening_hour = strtotime($this->input->post('opening_hour'));
-				//	date_default_timezone_get();
-				//	date_default_timezone_set("UTC");
 				$opening_hours = date("H:i", $opening_hour);
 
-				//	date_default_timezone_set('Africa/Cairo');
 				$closing_hour = strtotime($this->input->post('closing_hour'));
-				//	date_default_timezone_get();
-				//	date_default_timezone_set("UTC");
 				$closing_hours = date("H:i", $closing_hour);
 
 				$data = array(
-					// 'service_bg_image' => $dataInfo[0]['file_name'],
-					// 'service_logo_image' => $dataInfo[1]['file_name'],
-					// 'rating_image' => $dataInfo[2]['file_name'],
 					'name' => $title,
 					'arabic_name' => $arabicTitle,
 					'web_link' => $this->input->post('web'),
@@ -341,8 +300,8 @@ class Serviceshop extends MY_Controller {
 					'address' => $this->input->post('address'),
 					'serch_tag' => $search_tag,
 					'serch_tag_arabic' => $search_tag_ar,
-					// 'service_type' => $service_english,
-					// 'service_tag' => $servicetag,
+					'service_type' => $service_english,
+					'service_tag' => $servicetag,
 					// 'service_tag_string' => $service_tag_string,
 					'email' => $this->input->post('email'),
 					"created_date" => date("Y-m-d"),
@@ -375,7 +334,7 @@ class Serviceshop extends MY_Controller {
 
 		$object->setActiveSheetIndex(0);
 
-		$table_columns = array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "email", "created_date", "tweeter");
+		$table_columns = array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "email", "created_date", "tweeter", "service_type", "service_tag");
 
 		$column = 0;
 
@@ -407,6 +366,8 @@ class Serviceshop extends MY_Controller {
 			$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row->email);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->created_date);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, $row->tweeter);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(18, $excel_row, $row->service_type);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(19, $excel_row, $row->service_tag);
 			$excel_row++;
 		}
 

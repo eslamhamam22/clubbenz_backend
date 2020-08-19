@@ -313,10 +313,10 @@ class Partshop extends MY_Controller {
 					'phone' => $this->input->post('phone'),
 					'facebok_link' => $this->input->post('fb_link'),
 					'address' => $this->input->post('address'),
-					// 'brand' => $brand,
+					'brand' => $brand,
 					'serch_tag' => $search_tag,
 					'serch_tag_arabic' => $search_tag_ar,
-					// 'service_tag' => $servicetag,
+					'service_tag' => $servicetag,
 					// 'service_tag_string' => $service_tag_string,
 					"created_date" => date("Y-m-d"),
 					'email' => $this->input->post('email'),
@@ -352,7 +352,7 @@ class Partshop extends MY_Controller {
 
 		$object->setActiveSheetIndex(0);
 
-		$table_columns = array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter");
+		$table_columns = array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter", "brand", "service_tag");
 
 		$column = 0;
 
@@ -385,6 +385,8 @@ class Partshop extends MY_Controller {
 			$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->created_date);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, $row->email);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(18, $excel_row, $row->tweeter);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(19, $excel_row, $row->brand);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(20, $excel_row, $row->service_tag);
 			$excel_row++;
 		}
 

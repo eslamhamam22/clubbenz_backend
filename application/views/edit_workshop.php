@@ -263,14 +263,14 @@
                     </div>
 
                     <div class="row margin-top">
-<!--                        <div class="col-md-6">-->
-<!--                            <div class="form-group">-->
-<!--                                <label class="control-label col-md-3">Web Site</label>-->
-<!--                                <div class="col-md-9">-->
-<!--                                    <input type="text" name="web" class="form-control" value="--><?php // echo$rec->web?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                       <div class="col-md-6">
+                           <div class="form-group">
+                               <div class="col-md-9">
+                                <label class="">Web Site</label>
+                                   <input type="text" name="web" class="form-control" value="<?php echo $rec->web ?>">
+                               </div>
+                           </div>
+                       </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="col-md-9">

@@ -105,6 +105,49 @@ class Serviceshop_model extends CI_Model {
 		$this->db->insert('service_shop', $data);
 		return $this->db->insert_id();
 	}
+
+	public function get_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('services');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('services');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+	public function get_service_tag_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('service_tag');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_service_tag_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('service_tag');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
 	public function service_data($id) {
 		$this->db->select('*');
 		$this->db->where('id', $id);
@@ -142,7 +185,7 @@ class Serviceshop_model extends CI_Model {
 		return $this->db->count_all('service_shop');
 	}
 	function fetch_data() {
-		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "email", "created_date", "tweeter"));
+		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "email", "created_date", "tweeter", "service_type", "service_tag"));
 		$this->db->from("service_shop");
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {

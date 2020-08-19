@@ -118,6 +118,52 @@ class Partsshop_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function get_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('brands');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('brands');
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_service_tag_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('service_tag');
+		$this->db->where('shop_type', "partshop");
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_service_tag_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('service_tag');
+		$this->db->where('shop_type', "partshop");
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
 	public function partshop_del($id) {
 		$this->db->where('id', $id);
 		$this->db->delete('partshop');
@@ -184,7 +230,7 @@ class Partsshop_model extends CI_Model {
 	}
 
 	function fetch_data() {
-		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter"));
+		$this->db->select(array("name", "arabic_name", "web_link", "city", "country", "location_latitude", "location_longitude", "opening_hours", "closing_hours", "part_type", "off_day", "phone", "facebok_link", "address", "serch_tag", "serch_tag_arabic", "created_date", "email", "tweeter", "brand", "service_tag"));
 		$this->db->from("partshop");
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {

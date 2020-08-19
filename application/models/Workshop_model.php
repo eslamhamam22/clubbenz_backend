@@ -180,7 +180,7 @@ class Workshop_model extends CI_Model {
 	}
 
 	function fetch_data() {
-		$this->db->select(array('name', 'arabic_name', 'city', 'country', 'location_lat', 'location_lon', 'address', 'opening_hour', 'closing_hour', 'day_off', 'phone', 'offers_photo', 'twitter', 'email', 'serch_tag', 'serch_tag_arabic', 'photo_selection', 'facebook_page_link', 'created_date'));
+		$this->db->select(array('name', 'arabic_name', 'web', 'city', 'country', 'location_lat', 'location_lon', 'address', 'opening_hour', 'closing_hour', 'day_off', 'phone', 'offers_photo', 'twitter', 'email', 'serch_tag', 'serch_tag_arabic', 'photo_selection', 'facebook_page_link', "service_tag", "created_date"));
 		$this->db->from("workshop");
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {
@@ -192,6 +192,29 @@ class Workshop_model extends CI_Model {
 	public function add_workshop($data) {
 		$this->db->insert('workshop', $data);
 		return $this->db->insert_id();
+	}
+	public function get_by_id($id) {
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$this->db->from('service_tag');
+		$this->db->where('shop_type', "workshop");
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
+	}
+
+	public function get_by_name($name) {
+		$this->db->select('*');
+		$this->db->where('name', $name);
+		$this->db->from('service_tag');
+		$this->db->where('shop_type', "workshop");
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return false;
 	}
 	public function ws_del($id) {
 		$this->db->where('id', $id);

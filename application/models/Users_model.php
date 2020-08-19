@@ -498,13 +498,13 @@ class Users_model extends CI_Model {
 
 	public function month_notification_provider($sdate, $ldate) {
 		$ldate = $ldate . ' 23:59:59';
-		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id != 0 AND auto = 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE show_admin = 1 AND shop_id != 0 AND auto = 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
 	public function month_notification_users($sdate, $ldate) {
 		$ldate = $ldate . ' 23:59:59';
-		$query = "SELECT COUNT(*) as total FROM notifications WHERE shop_id = 0 AND auto = 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
+		$query = "SELECT COUNT(*) as total FROM notifications WHERE show_admin = 1 AND shop_id = 0 AND auto = 0 AND created_at >= '$sdate' AND created_at <= '$ldate'";
 		$q = $this->db->query($query);
 		return $q->row()->total;
 	}
