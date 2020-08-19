@@ -90,6 +90,29 @@ class User extends REST_Controller {
 		}
 		$this->response($arr, 200);
 	}
+	public function resend_code_email_post() {
+		$phone = $this->input->post('phone');
+		$code = $this->input->post('code');
+		if ($phone) {
+			$user = $this->users_model->get_user_by_mobile($phone);
+			if ($user) {
+				$this->send_code($code, $phone);
+				$this->send_email($user->email, $code);
+
+				$arr['message'] = "Code send successfully";
+				$arr['success'] = true;
+
+			} else {
+				$arr['message'] = "User Not exist";
+				$arr['success'] = false;
+			}
+
+		} else {
+			$arr['message'] = "Please Provide Phone Number";
+			$arr['success'] = false;
+		}
+		$this->response($arr, 200);
+	}
 	public function forgotpassword_post() {
 		if ($this->post()) {
 			$arr = $this->_forgotpassword($this->post());
@@ -603,6 +626,44 @@ class User extends REST_Controller {
 		}
 		return $arr;
 	}
+	private function send_email($email, $code) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'mail.clubenz.com';
+		$config['smtp_crypto'] = 'tls';
+		$config['smtp_port'] = '587';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user'] = 'support@clubenz.com';
+		$config['smtp_pass'] = 'Support@2020';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html'; // or html
+		$config['validation'] = TRUE; // bool whether to validate email or not
+		// $this->email->initialize($config);
+		// $this->email->from('carigologistics@gmail.com', 'Clubenz--NoReply');
+		// $this->email->to($data['email']);
+		// $mesg = 	$this->load->view('reset_password_view','',true);
+		// $this->email->subject('Reset Password Request Clubenz');
+		// $this->email->message($mesg);
+		// $this->email->send();
+		// $this->form_validation->set_error_delimiters('','');
+		// $this->form_validation->set_rules($rules);
+
+		$this->email->initialize($config);
+		$this->email->from('support@clubenz.com', 'Clubenz--NoReply');
+		$this->email->to($email);
+		$users['code'] = $code;
+		$mesg = $this->load->view('verify_account_email', $users, true);
+		$this->email->subject('Verify Account Request Clubenz');
+		$this->email->message($mesg);
+		$this->email->send();
+
+		$arr['message'] = "The code was sent successfully";
+		$arr['success'] = true;
+
+		return $arr;
+	}
 
 	function verification_phone_post() {
 		$phone = $this->post('phone');
@@ -840,8 +901,8 @@ class User extends REST_Controller {
 		$user = $this->users_model->get_user_by_id($user_id);
 
 		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
-//		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
-//		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
+		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
+		$this->send_auto_notifications($serviceshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "serviceshop");
 		$this->response([], 200);
 
 	}
