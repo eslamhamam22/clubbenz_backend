@@ -324,6 +324,9 @@ class part extends MY_Controller {
 				if ($this->input->post('status') == "reject") {
 					$this->part->deactivate($id);
 				}
+				if ($this->input->post('status') == "pending") {
+					$this->part->deactivate($id);
+				}
 
 				$new_array = array(
 					'title' => $title,
@@ -568,10 +571,13 @@ class part extends MY_Controller {
 	}
 	public function reject($id) {
 		$this->part->reject_part($id);
+		$this->part->deactivate($id);
+//		$this->part->deac($id);
 		redirect(base_url('part?success=updated  successfully!'));
 	}
 	public function pending($id) {
 		$this->part->pending_part($id);
+		$this->part->deactivate($id);
 		redirect(base_url('part?success=updated  successfully!'));
 	}
 }
