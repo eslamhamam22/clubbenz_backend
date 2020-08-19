@@ -115,8 +115,8 @@ if ($cou <= 4) {
 
 
                             <td>
-                                <?php if ($us->status == "pending") {?>
-                                    <button class="btn-inactive"></button>
+                                <?php if ($us->status == "pending" || $us->status == "reject") {?>
+                                    <!-- <button class="btn-inactive"></button> -->
                                 <?php } else if ($us->status == "approve" && $us->active == 1) {?>
                                     <?php if ($us->featured == 0) {?>
                                         <a href="<?php echo base_url('provider/parts/add_to_featured/') ?><?php echo $us->id; ?>">
