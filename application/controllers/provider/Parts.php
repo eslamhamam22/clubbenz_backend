@@ -605,7 +605,9 @@ class Parts extends CI_Controller {
 		if ($check) {
 			redirect(base_url('provider/parts?error=' . $check));
 		}
-
+		if($this->part->edit_part($id)->status == "pending" || $this->part->edit_part($id)->status == "rejected"){
+			redirect(base_url('provider/parts?error=Cannot activate successfully!'));
+		}
 		$this->part->activate($id);
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
@@ -627,6 +629,7 @@ class Parts extends CI_Controller {
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
 	public function activate_many() {
+		$working= true;
 		if ($_POST["parts"]) {
 			$parts = $_POST["parts"];
 			foreach ($parts as $part) {
@@ -635,10 +638,19 @@ class Parts extends CI_Controller {
 					echo base_url('provider/parts?error=' . $check);
 					return;
 				}
-				$this->part->activate($part);
+				if($this->part->edit_part($part)->status == "pending" || $this->part->edit_part($part)->status == "rejected"){
+					$working= false;
+				}else{
+
+					$this->part->activate($part);
+				}
 			}
 		}
-		echo base_url('provider/parts?success=Updated Successfully');
+		if($working)
+			echo base_url('provider/parts?success=Updated Successfully');
+		else
+			echo base_url('provider/parts?error=Cannot activate these parts');
+
 		return true;
 	}
 	public function deactivate_many() {
