@@ -59,3 +59,4 @@ $lang["Parts_Brand"] = "أجزاء العلامة التجارية";
 $lang["By_clicking_Update_you_agree_to_our_Terms_of_use_and_Posting_Rules"] = "بالنقر فوق تحديث ، فإنك توافق على شروط الاستخدام وقواعد النشر الخاصة بنا";
 $lang["Update"] = "تحديث";
 $lang["Update_Date"] = "تاريخ التحديث";
+$lang["Pending"] = "قيد الانتظار";

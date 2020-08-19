@@ -90,7 +90,7 @@ if ($cou <= 4) {
 
                             <td>
                                 <?php if ($us->status == "pending") {?>
-                                    <button class="btn-inactive"></button>
+                                    <button class="btn btn-small btn-info"><?php echo lang("Pending"); ?></button>
                                 <?php } else if ($us->status == "approve") {?>
                                     <?php if ($us->active) {?>
 

@@ -58,3 +58,4 @@ $lang["Part_Case"] = "Part Case";
 $lang["Parts_Brand"] = "Parts Brand";
 $lang["Update_Date"] = "Update Date";
 $lang["By_clicking_Update_you_agree_to_our_Terms_of_use_and_Posting_Rules"] = "By clicking Update you agree to our Terms of use and Posting Rules";
+$lang["Pending"] = "Pending";
