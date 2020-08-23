@@ -5,7 +5,7 @@ class Dashboard extends MY_Controller {
 		$this->load->database();
 		$this->load->model('Workshop_model', 'workshop');
 		$this->load->model('Users_model', 'user');
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Reviews_model');
 		$this->load->model('Favorite_model');
 		$this->load->model('Push_notification_model');
@@ -40,7 +40,7 @@ class Dashboard extends MY_Controller {
 		$this->data['chassis'] = $this->user->get_allusers_chassis();
 		$this->data['classes'] = $this->user->get_allclasses();
 		$this->data['classes'] = $this->classes->get_classes();
-		$this->data['parts'] = $this->Provider_Model->get_partss();
+		$this->data['parts'] = $this->Provider_model->get_partss();
 		$this->data['booking_completed'] = $this->Booking_model->get_booking_completed();
 		$this->data['booking_pending'] = $this->Booking_model->get_booking_pending();
 		$this->data['booking_rejected'] = $this->Booking_model->get_booking_rejected();
@@ -48,11 +48,11 @@ class Dashboard extends MY_Controller {
 		$this->data['reviews_rejected'] = $this->Reviews_model->get_reviews_rejected();
 		$this->data['reviews_approved'] = $this->Reviews_model->get_reviews_approved();
 		$this->data['active_ads'] = $this->Advertisement_model->get_active_ads();
-		$this->data['provider_parts'] = $this->Provider_Model->provider_parts();
+		$this->data['provider_parts'] = $this->Provider_model->provider_parts();
 		$this->data['notification_provider'] = $this->Push_notification_model->manage_notification_provider();
 		$this->data['notification_users'] = $this->Push_notification_model->manage_notification_users();
-		$this->data['active_parts'] = $this->Provider_Model->get_parts_admin();
-		$this->data['in_active_parts'] = $this->Provider_Model->in_active_parts();
+		$this->data['active_parts'] = $this->Provider_model->get_parts_admin();
+		$this->data['in_active_parts'] = $this->Provider_model->in_active_parts();
 
 		$this->data["favorites"] = $this->Favorite_model->get_favorites();
 		$this->data['title'] = 'Dashboard';

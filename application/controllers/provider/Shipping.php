@@ -12,7 +12,7 @@ class Shipping extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(['url', 'language']);
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Shipping_model');
 		$this->load->model('Shippment_model');
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -43,7 +43,7 @@ class Shipping extends CI_Controller {
 	}
 	public function add_request() {
 		$provider_id = $this->session->userdata("id");
-		$data['parts'] = $this->Provider_Model->get_parts($provider_id);
+		$data['parts'] = $this->Provider_model->get_parts($provider_id);
 		$data["requests"] = $this->Shipping_model->select_shipping_by_provider($provider_id);
 		$data['title'] = 'Add Shipping Request';
 		$this->load->view('provider/add_request', $data);

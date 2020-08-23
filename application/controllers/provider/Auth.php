@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 		$this->load->database();
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('World_model');
 		$this->load->model('Acl_model');
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -46,7 +46,7 @@ class Auth extends CI_Controller {
 			$pass = $this->input->post("password");
 //			$remember = $this->input->post('remember_me');
 			if (strlen($email) > 0 && strlen($pass) > 0) {
-				$login = $this->Provider_Model->login($email, md5($pass));
+				$login = $this->Provider_model->login($email, md5($pass));
 				if ($login) {
 //					print_r($login[0]);
 					$this->session->set_userdata($login[0]);
@@ -95,9 +95,9 @@ class Auth extends CI_Controller {
 				$file_name = $data["file_name"];
 				$provider_user["logo"] = $file_name;
 			}
-			if ($this->Provider_Model->email_check($provider_user["user_email"])) {
+			if ($this->Provider_model->email_check($provider_user["user_email"])) {
 				$this->session->set_flashdata('success', "You have signed up successfully");
-				$this->Provider_Model->signup($provider_user);
+				$this->Provider_model->signup($provider_user);
 				redirect('/provider');
 				// } else {
 				// redirect('/provider/auth/register');
@@ -106,9 +106,9 @@ class Auth extends CI_Controller {
 				$file_name = $data["file_name"];
 				$provider_user["logo"] = $file_name;
 			}
-			if ($this->Provider_Model->email_check($provider_user["user_email"])) {
+			if ($this->Provider_model->email_check($provider_user["user_email"])) {
 				$this->session->set_flashdata('success', "You have signed up successfully");
-				$this->Provider_Model->signup($provider_user);
+				$this->Provider_model->signup($provider_user);
 				redirect('/provider');
 			} else {
 				$this->session->set_flashdata('error', "User already exists.");

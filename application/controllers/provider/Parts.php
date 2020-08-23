@@ -13,7 +13,7 @@ class Parts extends CI_Controller {
 		$this->load->model('Part_model', 'part');
 		$this->load->model('Part_photos_model', 'partphotos');
 		$this->load->model('location_model', 'location');
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Provider_plan_model');
 		$this->load->model('Plan_model');
 
@@ -47,8 +47,8 @@ class Parts extends CI_Controller {
 
 		$identity = $this->session->userdata('identity');
 		$this->data['title'] = 'Manage Part';
-		$this->data['rec'] = $this->Provider_Model->get_parts($this->session->userdata("id"));
-		$this->data['chassis_number'] = $this->Provider_Model->get_chassis_num();
+		$this->data['rec'] = $this->Provider_model->get_parts($this->session->userdata("id"));
+		$this->data['chassis_number'] = $this->Provider_model->get_chassis_num();
 		$this->load->view('provider/manage_part', $this->data);
 	}
 	public function add_part() {
@@ -560,7 +560,7 @@ class Parts extends CI_Controller {
 
 	private function check_maximum_parts_for_plan() {
 		$provider_id = $this->session->userdata("id");
-		$active_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part) {
+		$active_parts = array_filter($this->Provider_model->get_parts($provider_id), function ($part) {
 			return $part->active == 1 ? true : false;
 		});
 		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
@@ -581,7 +581,7 @@ class Parts extends CI_Controller {
 	}
 	private function check_maximum_featured_for_plan() {
 		$provider_id = $this->session->userdata("id");
-		$featured_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part) {
+		$featured_parts = array_filter($this->Provider_model->get_parts($provider_id), function ($part) {
 			return $part->featured == 1 ? true : false;
 		});
 		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);
@@ -605,7 +605,7 @@ class Parts extends CI_Controller {
 		if ($check) {
 			redirect(base_url('provider/parts?error=' . $check));
 		}
-		if($this->part->edit_part($id)->status == "pending" || $this->part->edit_part($id)->status == "rejected"){
+		if ($this->part->edit_part($id)->status == "pending" || $this->part->edit_part($id)->status == "rejected") {
 			redirect(base_url('provider/parts?error=Cannot activate successfully!'));
 		}
 		$this->part->activate($id);
@@ -629,7 +629,7 @@ class Parts extends CI_Controller {
 		redirect(base_url('provider/parts?success=updated  successfully!'));
 	}
 	public function activate_many() {
-		$working= true;
+		$working = true;
 		if ($_POST["parts"]) {
 			$parts = $_POST["parts"];
 			foreach ($parts as $part) {
@@ -638,18 +638,19 @@ class Parts extends CI_Controller {
 					echo base_url('provider/parts?error=' . $check);
 					return;
 				}
-				if($this->part->edit_part($part)->status == "pending" || $this->part->edit_part($part)->status == "rejected"){
-					$working= false;
-				}else{
+				if ($this->part->edit_part($part)->status == "pending" || $this->part->edit_part($part)->status == "rejected") {
+					$working = false;
+				} else {
 
 					$this->part->activate($part);
 				}
 			}
 		}
-		if($working)
+		if ($working) {
 			echo base_url('provider/parts?success=Updated Successfully');
-		else
+		} else {
 			echo base_url('provider/parts?error=Cannot activate these parts');
+		}
 
 		return true;
 	}
@@ -729,7 +730,7 @@ class Parts extends CI_Controller {
 		header("Content-Transfer-Encoding: binary");
 	}
 	public function export() {
-		$array = $this->Provider_Model->get_parts_for_export($this->session->userdata("id"), true);
+		$array = $this->Provider_model->get_parts_for_export($this->session->userdata("id"), true);
 		$this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
 		echo $this->array2csv($array);
 		die();
@@ -793,20 +794,20 @@ class Parts extends CI_Controller {
 						'num_stock' => $num_stock,
 						'provider_id' => $this->session->userdata("id"),
 					);
-					if($title== "" || $part_category== "" || $part_sub_category== "" || $chassis_id== ""){
+					if ($title == "" || $part_category == "" || $part_sub_category == "" || $chassis_id == "") {
 						continue;
 					}
 
 					if (is_numeric($part_category)) {
 						if (!$this->Partcategory_model->get_by_id($part_category)) {
-							echo $start_index.": No Category available with the given ID or Name\n";
+							echo $start_index . ": No Category available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Partcategory_model->get_by_name($part_category);
 						if (!$object) {
-							echo $start_index.": No Category available with the given ID or Name\n";
+							echo $start_index . ": No Category available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_category'] = $object[0]->id;
@@ -816,14 +817,14 @@ class Parts extends CI_Controller {
 
 					if (is_numeric($part_sub_category)) {
 						if (!$this->Partsubcategory_model->get_by_id($part_sub_category)) {
-							echo $start_index.": No subcategory available with the given ID or Name\n";
+							echo $start_index . ": No subcategory available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Partsubcategory_model->get_by_name($part_sub_category);
 						if (!$object) {
-							echo $start_index.": No subcategory available with the given ID or Name\n";
+							echo $start_index . ": No subcategory available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_sub_category'] = $object[0]->id;
@@ -832,14 +833,14 @@ class Parts extends CI_Controller {
 					}
 					if (is_numeric($part_brand)) {
 						if (!$this->Brand_model->get_by_id($part_brand)) {
-							echo $start_index.": No Brand available with the given ID or Name\n";
+							echo $start_index . ": No Brand available with the given ID or Name\n";
 							continue;
 						}
 
 					} else {
 						$object = $this->Brand_model->get_by_name($part_brand);
 						if (!$object) {
-							echo $start_index.": No Brand available with the given ID or Name\n";
+							echo $start_index . ": No Brand available with the given ID or Name\n";
 							continue;
 						} else {
 							$new_array['part_brand'] = $object[0]->id;
@@ -848,7 +849,7 @@ class Parts extends CI_Controller {
 					}
 					if (is_numeric($chassis_id)) {
 						if (!$this->Chassis_model->get_by_id($chassis_id)) {
-							echo $start_index.": No Chassis available with the given ID or Name\n";
+							echo $start_index . ": No Chassis available with the given ID or Name\n";
 							continue;
 						}
 

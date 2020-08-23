@@ -12,7 +12,7 @@ class Provider extends CI_Controller {
 		$this->load->database();
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('World_model');
 		$this->load->model('Acl_model');
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -36,7 +36,7 @@ class Provider extends CI_Controller {
 
 	public function index() {
 		$provider_id = $this->session->userdata("id");
-		$user = $this->Provider_Model->get_provider_by_id($provider_id);
+		$user = $this->Provider_model->get_provider_by_id($provider_id);
 		$this->data['countries'] = $this->World_model->get_countries();
 		$this->data["user"] = $user[0];
 		$this->data['states'] = $this->World_model->get_states_by_country($user[0]->country);
@@ -80,7 +80,7 @@ class Provider extends CI_Controller {
 				$file_name = $data["file_name"];
 				$provider_user["logo"] = $file_name;
 			}
-			$this->Provider_Model->edit($provider_user, $provider_id);
+			$this->Provider_model->edit($provider_user, $provider_id);
 			$this->session->set_flashdata('success', "You have edited your profile successfully");
 		}
 

@@ -11,7 +11,7 @@ class Plan extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(['url', 'language']);
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Provider_plan_model');
 		$this->load->model('Plan_model');
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -60,11 +60,11 @@ class Plan extends CI_Controller {
 	public function subscribe($id) {
 		$provider_id = $this->session->userdata("id");
 		$extra_days = $this->input->get("extra_days") || 0;
-		$data['parts'] = $this->Provider_Model->get_parts($provider_id);
-		$active_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part) {
+		$data['parts'] = $this->Provider_model->get_parts($provider_id);
+		$active_parts = array_filter($this->Provider_model->get_parts($provider_id), function ($part) {
 			return $part->active == 1 ? true : false;
 		});
-		$featured_parts = array_filter($this->Provider_Model->get_parts($provider_id), function ($part) {
+		$featured_parts = array_filter($this->Provider_model->get_parts($provider_id), function ($part) {
 			return $part->featured == 1 ? true : false;
 		});
 		$current_plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);

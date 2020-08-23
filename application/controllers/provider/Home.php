@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 		$this->load->database();
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Part_model');
 		$this->load->model('Shipping_model');
 		$this->load->model('Provider_plan_model');
@@ -38,8 +38,8 @@ class Home extends CI_Controller {
 
 	public function index() {
 		$provider_id = $this->session->userdata("id");
-		$data['parts'] = $this->Provider_Model->get_parts($provider_id);
-		$data['active_parts'] = array_filter($this->Provider_Model->get_parts($provider_id), function ($part) {
+		$data['parts'] = $this->Provider_model->get_parts($provider_id);
+		$data['active_parts'] = array_filter($this->Provider_model->get_parts($provider_id), function ($part) {
 			return $part->active == 1 ? true : false;
 		});
 		$data["current_plan"] = $this->Provider_plan_model->get_current_plan_with_details_by_provider($provider_id);

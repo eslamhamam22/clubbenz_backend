@@ -45,8 +45,16 @@
                                     <tr>
                                         <td><?php echo $s->id ?></td>
 
-                                        <td><?php echo $user->username; ?></td>
-                                        <td><?php echo $memberships->name; ?></td>
+                                        <td>
+                                            <?php if (isset($user->username)) {?>
+                                            <?php echo $user->username; ?>
+                                            <?php } else {echo "No User Found";}?>
+                                        </td>
+                                        <td>
+                                            <?php if (isset($memberships->name)) {?>
+                                            <?php echo $memberships->name; ?>
+                                            <?php } else {echo "No Membership Found";}?>
+                                        </td>
                                         <td><?php echo $s->address; ?></td>
                                         <td><?php echo $s->nid; ?></td>
                                         <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->nid_front" ?>"></td>
