@@ -909,7 +909,12 @@ class User extends REST_Controller {
 	public function send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, $type){
 		$new_array = array();
 		foreach ($workShops as $val) {
-			$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
+			if($type == "workshop"){
+				$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
+			}else{
+				$val->distance = $this->Service_tag_model->distance($val->location_latitude, $val->location_longitude, $lat, $lon, "K");
+			}
+//			echo $val->distance."\n";
 			$val->shop_type = $type;
 			$new_array[] = $val;
 		}
@@ -941,12 +946,13 @@ class User extends REST_Controller {
 					$send = true;
 				}
 				if ($send) {
+					echo $type."\n";
 					$payload = array();
 					$payload['body'] = $notification_settings->message;
 					$payload['title'] = $workshop->name;
 					$payload['message'] = $notification_settings->message;
 					$payload['shop_id'] = $workshop->id;
-					$payload['shop_type'] = "workshop";
+					$payload['shop_type'] = $workshop->shop_type;
 					$payload['badge'] = 1;
 					$payload['priority'] = "high";
 					$payload['icon'] = "ic_stat";
@@ -958,7 +964,7 @@ class User extends REST_Controller {
 					$data['title'] = $workshop->name;
 					$data['message'] = $notification_settings->message;
 					$data['shop_id'] = $workshop->id;
-					$data['shop_type'] = "workshop";
+					$data['shop_type'] = $workshop->shop_type;
 					$data['badge'] = 1;
 					$data['priority'] = "high";
 					$data['icon'] = "ic_stat";
