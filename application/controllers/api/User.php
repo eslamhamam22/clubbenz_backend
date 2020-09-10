@@ -3,7 +3,7 @@ class User extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Cars_model');
 		$this->load->library('upload');
@@ -906,12 +906,12 @@ class User extends REST_Controller {
 		$this->response([], 200);
 
 	}
-	public function send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, $type){
+	public function send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, $type) {
 		$new_array = array();
 		foreach ($workShops as $val) {
-			if($type == "workshop"){
+			if ($type == "workshop") {
 				$val->distance = $this->Service_tag_model->distance($val->location_lat, $val->location_lon, $lat, $lon, "K");
-			}else{
+			} else {
 				$val->distance = $this->Service_tag_model->distance($val->location_latitude, $val->location_longitude, $lat, $lon, "K");
 			}
 //			echo $val->distance."\n";
@@ -920,14 +920,14 @@ class User extends REST_Controller {
 		}
 
 //		if ($workShops) {
-//			usort($workShops, function ($a, $b) {
-//				if ($a->distance == $b->distance) {
-//					return $a->avg_rating < $b->avg_rating;
-//				} else {
-//					return $a->distance > $b->distance;
-//				}
-//			});
-//		}
+		//			usort($workShops, function ($a, $b) {
+		//				if ($a->distance == $b->distance) {
+		//					return $a->avg_rating < $b->avg_rating;
+		//				} else {
+		//					return $a->distance > $b->distance;
+		//				}
+		//			});
+		//		}
 		foreach ($workShops as $workshop) {
 			if ($workshop->distance <= $notification_settings->max_distance) {
 
@@ -946,7 +946,7 @@ class User extends REST_Controller {
 					$send = true;
 				}
 				if ($send) {
-					echo $type."\n";
+					echo $type . "\n";
 					$payload = array();
 					$payload['body'] = $notification_settings->message;
 					$payload['title'] = $workshop->name;

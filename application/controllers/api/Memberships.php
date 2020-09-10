@@ -6,7 +6,7 @@ class Memberships extends REST_Controller {
 		parent::__construct();
 		ini_set("display_errors", 1);
 		error_reporting(1);
-		$this->load->model('users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Membership_model');
 		$this->load->model('World_model');
 
@@ -15,25 +15,25 @@ class Memberships extends REST_Controller {
 		ini_set('display_errors', 1);
 	}
 
-	public function get_memberships_get(){
+	public function get_memberships_get() {
 		$user_id = $this->get('user_id');
-		$memberships= $this->Membership_model->membership_features_manage();
-		if($memberships){
-			foreach ($memberships as $membership){
-				$membership->benefits= $this->Membership_model->get_benefits_by_membership($membership->id);
-				foreach ($membership->benefits as $benefit){
-					$benefit->details= $this->Membership_model->get_membership_rel_id($benefit->id);
+		$memberships = $this->Membership_model->membership_features_manage();
+		if ($memberships) {
+			foreach ($memberships as $membership) {
+				$membership->benefits = $this->Membership_model->get_benefits_by_membership($membership->id);
+				foreach ($membership->benefits as $benefit) {
+					$benefit->details = $this->Membership_model->get_membership_rel_id($benefit->id);
 				}
 			}
 		}
 
-		$data["current"]= null;
-		if($user_id){
-			$current_membership= $this->Membership_model->get_current_membership_by_user($user_id);
-			$data["current"]= $current_membership;
-			if($data["current"]){
-				$data["current"]->end_date= $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration);
-				$end_date= $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration - 1);
+		$data["current"] = null;
+		if ($user_id) {
+			$current_membership = $this->Membership_model->get_current_membership_by_user($user_id);
+			$data["current"] = $current_membership;
+			if ($data["current"]) {
+				$data["current"]->end_date = $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration);
+				$end_date = $this->add_months_to_date($data["current"]->created_date, $data["current"]->duration - 1);
 				if (strtotime(date("Y-m-d H:i:s")) > strtotime($data["current"]->end_date)) {
 					$data["current"] = false;
 				}
@@ -42,13 +42,13 @@ class Memberships extends REST_Controller {
 				}
 			}
 		}
-		$data["memberships"]= $memberships;
+		$data["memberships"] = $memberships;
 
-		$states= $this->World_model->get_states_by_country(65);
-		$data["states"]= $states;
+		$states = $this->World_model->get_states_by_country(65);
+		$data["states"] = $states;
 
-		$cities= $this->World_model->get_cities();
-		$data["cities"]= $cities;
+		$cities = $this->World_model->get_cities();
+		$data["cities"] = $cities;
 
 		$this->response($data, 200);
 	}
@@ -56,16 +56,18 @@ class Memberships extends REST_Controller {
 		return date("Y-m-d H:i:s", strtotime($months . " month", strtotime($date)));
 	}
 
-	public function subscribe_post(){
-		$arr= array();
+	public function subscribe_post() {
+		$arr = array();
 		$new_array["user_id"] = $this->post('user_id');
 		$new_array["address"] = $this->post('address');
 		$new_array["country"] = $this->post('country');
 		$new_array["state"] = $this->post('state');
 		$new_array["city"] = $this->post('city');
 		$new_array["method"] = $this->post('method');
-		if($this->post('licenseID'))
+		if ($this->post('licenseID')) {
 			$new_array["license_id"] = $this->post('licenseID');
+		}
+
 		$new_array["membership_id"] = $this->post('membership');
 		$new_array["nid"] = $this->post('nid');
 		if (isset($_FILES['idFrontPhoto']) && !empty($_FILES['idFrontPhoto'])) {
@@ -129,7 +131,7 @@ class Memberships extends REST_Controller {
 			}
 		}
 
-		$output= $this->Membership_model->subscribe($new_array);
+		$output = $this->Membership_model->subscribe($new_array);
 
 		$this->response($arr, 200);
 	}

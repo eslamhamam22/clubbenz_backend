@@ -4,14 +4,13 @@ class Preferences extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('users_model');
-		$this->load->model('cars_model');
+		$this->load->model('Users_model');
+		$this->load->model('Cars_model');
 		$this->load->model('Years_model');
 		$this->load->model('Fuel_model');
 		$this->load->library('upload');
 		$this->load->model('Car_guide_model', 'car_guide');
 		$this->load->model('Classes_model');
-		$this->load->model('Users_model');
 		$this->load->model('Workshop_model');
 		$this->load->model('Service_model');
 		$this->load->model('Serviceshop_model');

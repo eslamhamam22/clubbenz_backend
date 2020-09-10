@@ -6,7 +6,7 @@ class Parts extends REST_Controller {
 		parent::__construct();
 		ini_set("display_errors", 1);
 		error_reporting(1);
-		$this->load->model('users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Serviceshop_model');
 		$this->load->model('Workshop_model');
@@ -38,8 +38,9 @@ class Parts extends REST_Controller {
 
 		$new_array = array();
 		foreach ($arr['shops'] as $val) {
-			if($val->featured == "0")
-				$val->featured= false;
+			if ($val->featured == "0") {
+				$val->featured = false;
+			}
 
 			$val->main_image = $this->Part_model->get_part_main_image($val->id, 'main');
 			$val->part_brand = $this->Brand_model->get_bands_by_ids($val->part_brand);
@@ -48,21 +49,21 @@ class Parts extends REST_Controller {
 //			$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
 			$new_array[] = $val;
 		}
-		$country= null;
+		$country = null;
 //		$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
-//			if(!$part->plan || $part->plan->status != "active")
-//				return false;
-//			if($part->available_location == "National" && $phone){
-//				$phonecode= "+".$part->phonecode;
-//				if(strpos($phone, $phonecode) !== false){
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//			return true;
-//		});
-//		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
+		//			if(!$part->plan || $part->plan->status != "active")
+		//				return false;
+		//			if($part->available_location == "National" && $phone){
+		//				$phonecode= "+".$part->phonecode;
+		//				if(strpos($phone, $phonecode) !== false){
+		//					return true;
+		//				}else{
+		//					return false;
+		//				}
+		//			}
+		//			return true;
+		//		});
+		//		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
 		$this->response($arr, 200);
 	}
 
@@ -108,8 +109,8 @@ class Parts extends REST_Controller {
 			$new_array[] = $val;
 		}
 		$arr['top_products'] = array_filter($arr['top_products'], function ($part) use ($chassis) {
-			$chassis_ids= explode(",", $part->chassis_id);
-			if(!in_array($chassis, $chassis_ids)){
+			$chassis_ids = explode(",", $part->chassis_id);
+			if (!in_array($chassis, $chassis_ids)) {
 				return false;
 			}
 			if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d")) > strtotime($part->date_expire)) {
@@ -122,7 +123,7 @@ class Parts extends REST_Controller {
 
 			return true;
 		});
-		$arr['top_products']= array_values($arr['top_products']);
+		$arr['top_products'] = array_values($arr['top_products']);
 		$arr['success'] = true;
 		$arr['data'] = $data;
 		$this->response($arr, 200);
