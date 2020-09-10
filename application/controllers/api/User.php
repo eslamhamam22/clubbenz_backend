@@ -410,7 +410,8 @@ class User extends REST_Controller {
 
 						if ($userID) {
 							$user = $this->users_model->get_user_by_id($userID);
-							$this->send_code($verification_code, $user->phone);
+							$result = $this->users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
+//							$this->send_code($verification_code, $user->phone);
 							$arr['message'] = "Code sent successfully!";
 
 							$arr["name"] = $user->first_name . " " . $user->last_name;
@@ -493,7 +494,8 @@ class User extends REST_Controller {
 					$userID = $this->ion_auth->register($new_array['email'], $save_data['password'], $new_array['email'], $additional_detail, array(2));
 					if ($userID) {
 						$user = $this->users_model->get_user_by_id($userID);
-						$this->send_code($verification_code, $user->phone);
+						$result = $this->users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
+//						$this->send_code($verification_code, $user->phone);
 						$arr['message'] = "Code sent successfully!";
 
 						$arr["name"] = $user->first_name . " " . $user->last_name;
