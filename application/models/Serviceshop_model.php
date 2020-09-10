@@ -193,6 +193,13 @@ class Serviceshop_model extends CI_Model {
 		}
 		return 0;
 	}
+
+	public function manage_service_type() {
+		$this->db->select('*');
+		$this->db->from('services_type');
+		$q = $this->db->get();
+		return $q->result();
+	}
 }
 
 ?>

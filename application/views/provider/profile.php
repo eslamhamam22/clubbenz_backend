@@ -99,7 +99,7 @@
 					<div class="form-group">
 						<div class="col-xs-12">
 							<label><?php echo lang("Business_Website"); ?></label>
-							<input class="form-control" type="text" required name="business_website" placeholder="" value="<?php echo $user->business_website; ?>">
+							<input class="form-control" type="text" name="business_website" placeholder="" value="<?php echo $user->business_website; ?>">
 						</div>
 					</div>
 					<div class="form-group">

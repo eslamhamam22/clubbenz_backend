@@ -113,7 +113,8 @@ class Phpspreadsheet extends CI_Controller {
 				if (true) {
 
 					$this->load->helper('url');
-					redirect('http://66.45.230.53/~clubenz/live/cars/?success=Data%20Imported%20successfully!', 'refresh');
+					// redirect('http://66.45.230.53/~clubenz/live/cars/?success=Data%20Imported%20successfully!', 'refresh');
+					redirect(base_url('cars/?success= cars were added successfully'));
 					return;
 				}
 				// else{

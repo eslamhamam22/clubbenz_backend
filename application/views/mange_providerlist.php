@@ -26,6 +26,7 @@
 
                                 <thead>
                                     <tr>
+                                        <th>Logo</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>City</th>
@@ -42,6 +43,11 @@ foreach ($rec as $us) {
 
 	?>
                                     <tr>
+                                        <td>
+                                            <?php if (!empty($us['logo'])) {?>
+                                                <img class="img_size" src="<?php echo base_url('upload/') . $us['logo']; ?>">
+                                            <?php } else {echo "No image";}?>
+                                        </td>
                                         <td><?php echo $us['user_name']; ?></td>
                                         <td><?php echo $us['user_email']; ?></td>
                                         <td><?php echo $us['city']; ?></td>

@@ -195,6 +195,7 @@ class Serviceshop extends MY_Controller {
 			}
 		}
 		$this->data['service'] = $this->serviceshop->service_manage();
+		$this->data['service_type_id'] = $this->serviceshop->manage_service_type();
 		$this->data['service_tag'] = $this->service_tag->manage_serviceshop();
 		$this->data['title'] = 'Add Services Shop';
 		$this->load->view('add_service_shop', $this->data);
@@ -540,6 +541,7 @@ class Serviceshop extends MY_Controller {
 			}
 		}
 		$this->data['service_tag'] = $this->service_tag->manage_serviceshop();
+		$this->data['service_type_id'] = $this->serviceshop->manage_service_type();
 		$this->data['rec'] = $this->serviceshop->edit_service_shop($id);
 		$this->data['service'] = $this->serviceshop->service_manage();
 		$this->data['title'] = 'Edit Services Shop';

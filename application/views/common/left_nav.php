@@ -77,10 +77,14 @@ if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><l
 							<li>
 								<a href="index.html" class="waves-effect"><i data-icon="" class="mdi mdi-home fa-fw"></i> <span class="hide-menu"> Manage Shops <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right"></span></span></a>
 								<ul class="nav nav-third-level collapse <?php if ($this->uri->segment(1) == 'location' || $this->uri->segment(1) == 'service_tag' || $this->uri->segment(1) == 'service') {?>in<?php }?>">
-									<?php
-if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>service_tag/"><i data-icon="" class=" mdi mdi-settings fa-fw"></i><span class="hide-menu">Manage Service Tags</span></a> </li>  <?php }
-		if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>service/"><i data-icon="" class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Service Types</span></a> </li> <?php }
-		?>
+									<?php if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?>
+
+									<li> <a href="<?php echo base_url() ?>service_tag/manage_service_type/"><i data-icon="" class=" mdi mdi-settings fa-fw"></i><span class="hide-menu">manage service group</span></a> </li>
+
+									<li> <a href="<?php echo base_url() ?>service_tag/index"><i data-icon="" class=" mdi mdi-settings fa-fw"></i><span class="hide-menu">Manage Service Tags</span></a> </li>
+
+								  <?php }if (in_array('Preferances/active', $c_a) || $group_id[0]->name == 'admin') {?>
+									<li> <a href="<?php echo base_url() ?>service/"><i data-icon="" class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Service Types</span></a> </li> <?php }?>
 								</ul>
 							</li>
 						<?php }

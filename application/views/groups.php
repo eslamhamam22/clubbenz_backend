@@ -26,7 +26,6 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Link Page</th>
 
                             </tr>
                         </thead>
@@ -48,13 +47,6 @@
                                 <td><?php echo $index++ ?></td>
                                 <td><?php echo $g['name'] ?></td>
                                 <td><?php echo $g['description'] ?></td>
-                                <td><?php if ($g->name == 'admin') {
-		echo "yes";
-	} else {
-		echo "no";
-	}
-	?></td>
-
                             </tr>
                         <?php }?>
                         </tbody>

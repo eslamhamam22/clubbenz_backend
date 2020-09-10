@@ -4,6 +4,8 @@ class Provider_model extends CI_model {
 	public function select_provider() {
 		$this->db->select('*');
 		$this->db->from('provider_user');
+		$this->db->order_by("status = 'pending'", 'DESC');
+		$this->db->order_by('status');
 
 		if ($query = $this->db->get()) {
 			return $query->result_array();

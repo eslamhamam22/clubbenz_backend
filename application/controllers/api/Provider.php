@@ -1,9 +1,7 @@
 <?php require APPPATH . '/libraries/REST_Controller.php';
-class Provider extends REST_Controller
-{
+class Provider extends REST_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->library('upload');
 		$this->load->library(['ion_auth', 'form_validation']);
@@ -16,16 +14,14 @@ class Provider extends REST_Controller
 		$this->load->model('Plan_model');
 	}
 
-	function providers_get()
-	{
-		$arr= array();
+	function providers_get() {
+		$arr = array();
 		$this->response($arr, 200);
 	}
 
-	function get_provider_by_id_get()
-	{
+	function get_provider_by_id_get() {
 		$provider_id = $this->get('provider_id');
-		$provider= $this->Provider_Model->get_provider_by_id($provider_id);
+		$provider = $this->Provider_Model->get_provider_by_id($provider_id);
 		$provider[0]->reviews = $this->Workshop_model->get_reviews($provider_id, "provider");
 		foreach ($provider[0]->reviews as $r) {
 			$user = $this->Workshop_model->get_user_picture($r->user_id);
@@ -33,8 +29,8 @@ class Provider extends REST_Controller
 			$r->user_name = $user->username;
 		}
 		$provider[0]->avg_rating = $this->Workshop_model->average_rating($provider_id, "provider");
-		$provider[0]->country= $this->World_model->get_country_by_id($provider[0]->country);
-		$provider[0]->governorate= $this->World_model->get_state_by_id($provider[0]->governorate);
+		$provider[0]->country = $this->World_model->get_country_by_id($provider[0]->country);
+		$provider[0]->governorate = $this->World_model->get_state_by_id($provider[0]->governorate);
 		$this->response($provider[0], 200);
 	}
 }

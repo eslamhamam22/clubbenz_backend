@@ -10,6 +10,7 @@ class Service_tag extends MY_Controller {
 		$this->load->model('cars_model', 'cars');
 		$this->load->model('offers_model', 'offers');
 		$this->load->model('service_tag_model', 'service');
+		$this->load->model('Service_model', 'service_model');
 		$this->load->model('location_model', 'location');
 		$this->load->model('acl_model');
 		$this->load->model('Workshop_model');
@@ -52,6 +53,7 @@ class Service_tag extends MY_Controller {
 					'shop_type' => $this->input->post('shop_type'),
 					'keywords' => $this->input->post('keywords'),
 					'sorting' => $this->input->post('sorting'),
+					'service_type_id' => $this->input->post('service_type_id'),
 				);
 				$id = $this->service->add_service_tag($name);
 				if ($id) {
@@ -64,6 +66,7 @@ class Service_tag extends MY_Controller {
 				redirect(base_url('service_tag/add_service_tag?error=' . $error));
 			}
 		}
+		$this->data['service_type'] = $this->service_model->manage_service_type();
 		$this->data['title'] = 'Add Services Tag';
 		$this->load->view('add_service_tag', $this->data);
 	}
@@ -79,6 +82,7 @@ class Service_tag extends MY_Controller {
 	public function edit_service_tag($id) {
 
 		$this->data['service'] = $this->service->edit_service_tag($id);
+		$this->data['service_type'] = $this->service_model->manage_service_type();
 		$this->data['title'] = 'Edit Services Tag';
 		$this->load->view('edit_service_tag', $this->data);
 	}
@@ -102,6 +106,7 @@ class Service_tag extends MY_Controller {
 					'shop_type' => $this->input->post('shop_type'),
 					'keywords' => $this->input->post('keywords'),
 					'sorting' => $this->input->post('sorting'),
+					'service_type_id' => $this->input->post('service_type_id'),
 				);
 
 				$id = $this->service->update_service_tag($data, $id);
@@ -166,6 +171,88 @@ class Service_tag extends MY_Controller {
 				$error = validation_errors();
 				redirect(base_url('service_tag/update_service_tag?error=' . $error));
 
+			}
+		}
+	}
+
+	// Services Type
+
+	public function manage_service_type() {
+		$this->data['service_type'] = $this->service_model->manage_service_type();
+		$this->data['title'] = 'Manage Services Type';
+		$this->load->view('manage_service_type', $this->data);
+	}
+
+	public function add_services_type() {
+		if ($this->input->post()) {
+			$rules = array(
+				array(
+					'field' => 'name',
+					'label' => 'name',
+					'rules' => 'trim|required',
+				),
+			);
+
+			$this->form_validation->set_rules($rules);
+			if ($this->form_validation->run()) {
+				$new_array['name'] = $this->input->post('name');
+
+				$result = $this->service_model->add_services_type($new_array);
+				if ($result) {
+					redirect(base_url('service_tag/manage_service_type/?success=Add  successfully!'));
+				} else {
+					redirect(base_url('service_tag/manage_service_type/?error=Some error!'));
+				}
+			} else {
+				$error = validation_errors();
+				redirect(base_url('service/?error=' . $error));
+			}
+		}
+		$this->data['title'] = 'Add Services Type';
+		$this->load->view('add_services_type', $this->data);
+	}
+
+	public function service_type_del($id) {
+		$id = $this->service_model->service_type_del($id);
+		if ($id) {
+			redirect(base_url('service_tag/manage_service_type/?success= Delete successfully!'));
+		} else {
+			redirect(base_url('service_tag/manage_service_type/?error=Some error!'));
+		}
+	}
+
+	public function edit_service_type($id) {
+		$data['rec'] = $this->service_model->edit_service_type($id);
+		$data['title'] = 'Edit Services Type';
+		$this->load->view('edit_service_type', $data);
+	}
+
+	public function service_type_update() {
+
+		$id = $this->input->post('id');
+		if ($this->input->post()) {
+
+			$rules = array(
+				array(
+					'field' => 'name',
+					'label' => 'name',
+					'rules' => 'trim|required',
+				),
+			);
+
+			$this->form_validation->set_rules($rules);
+			if ($this->form_validation->run()) {
+				$new_array['name'] = $this->input->post('name');
+
+				$val = $this->service_model->service_type_update($new_array, $id);
+				if ($val) {
+					redirect(base_url('service_tag/manage_service_type/?success=Update  successfully!'));
+				} else {
+					redirect(base_url('service_tag/manage_service_type/?success=Update  successfully!'));
+				}
+			} else {
+				$error = validation_errors();
+				redirect(base_url('service_tag/edit_service_type/' . $id . '?error=' . $error));
 			}
 		}
 	}

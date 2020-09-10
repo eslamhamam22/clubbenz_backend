@@ -173,7 +173,6 @@ class Parts extends CI_Controller {
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id"),
 				);
-				print_r($new_array);
 				$result = $this->part->add_part($new_array);
 
 				$photo_array = array(

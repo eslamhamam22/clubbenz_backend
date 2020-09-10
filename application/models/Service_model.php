@@ -87,5 +87,36 @@ class Service_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
+	public function add_services_type($new_array) {
+		$this->db->insert('services_type', $new_array);
+		return $this->db->insert_id();
+	}
+
+	public function manage_service_type() {
+		$this->db->select('*');
+		$this->db->from('services_type');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function service_type_del($id) {
+		$this->db->where('id', $id);
+		$this->db->delete('services_type');
+		return $this->db->affected_rows();
+
+	}
+
+	public function edit_service_type($id) {
+		$this->db->where('id', $id);
+		$this->db->from('services_type');
+		$q = $this->db->get();
+		return $q->result();
+	}
+
+	public function service_type_update($new_array, $id) {
+		$this->db->where('id', $id);
+		$this->db->update('services_type', $new_array);
+		return $this->db->affected_rows();
+	}
 
 }

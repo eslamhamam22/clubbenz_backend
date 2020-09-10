@@ -85,8 +85,7 @@ if (in_array($cn->id, $chassis_arr)) {
                                     <div class="deletImage">
                                     <p onClick="deleteImage('image_id_1' , 'image_input_id_1')">X</p>
                                     </div>
-
-                                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_1' src="<?php echo base_url('upload/') . $rec->pic1; ?>" >
+                                    <a href="<?php echo base_url('upload/') . $rec->pic1; ?>" target="_blank"> <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_1' src="<?php echo base_url('upload/') . $rec->pic1; ?>" ></a>
                                         <input type="hidden"  name='image_input_id_1' id='image_input_id_1' value="<?php echo $rec->pic1; ?>" />
 
                                         <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
@@ -100,7 +99,7 @@ if (in_array($cn->id, $chassis_arr)) {
                                     <div class="deletImage">
                                     <p onClick="deleteImage('image_id_2' , 'image_input_id_2')">X</p>
                                     </div>
-                                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_2' name='image_id_2'  src="<?php echo base_url('upload/') . $rec->pic2; ?>" >
+                                        <a href="<?php echo base_url('upload/') . $rec->pic2; ?>" target="_blank"><img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_2' name='image_id_2'  src="<?php echo base_url('upload/') . $rec->pic2; ?>" ></a>
                                         <input type="hidden"  name='image_input_id_2' id='image_input_id_2' value="<?php echo $rec->pic2; ?>" />
                                         <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" id="logo_image" multiple="multiple"  />
                                         <span style="color: red; font-size: 12px;">Image Size should be 960X720</span>
@@ -112,7 +111,7 @@ if (in_array($cn->id, $chassis_arr)) {
                                     <div class="deletImage">
                                     <p onClick="deleteImage('image_id_3', 'image_input_id_3')">X</p>
                                     </div>
-                                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_3' name='image_id_3' src="<?php echo base_url('upload/') . $rec->pic3; ?>" >
+                                        <a href="<?php echo base_url('upload/') . $rec->pic3; ?>" target="_blank"> <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_3' name='image_id_3' src="<?php echo base_url('upload/') . $rec->pic3; ?>" ></a>
                                         <input type="hidden"  name='image_input_id_3' id='image_input_id_3' value="<?php echo $rec->pic3 ?>" />
                                         <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" multiple="multiple"  />
                                         <span style="color: red; font-size: 12px;">Image Size should be 960X720</span>
@@ -124,7 +123,7 @@ if (in_array($cn->id, $chassis_arr)) {
                                     <div class="deletImage">
                                     <p onClick="deleteImage('image_id_4', 'image_input_id_4')">X</p>
                                     </div>
-                                        <img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_4'  name='image_id_4' src="<?php echo base_url('upload/') . $rec->pic4; ?>" >
+                                        <a href="<?php echo base_url('upload/') . $rec->pic4; ?>" target="_blank"><img style="height:130px;width:130px;margin-bottom: 8px;" id='image_id_4'  name='image_id_4' src="<?php echo base_url('upload/') . $rec->pic4; ?>" ></a>
                                         <input type="hidden"  name='image_input_id_4'  id='image_input_id_4' value="<?php echo $rec->pic4; ?>" />
                                         <input style="width: 210px" type="file" class= "form-control btn btn-default" name="image[]"size="20" id="logo_image" multiple="multiple"  />
                                         <span style="color: red; font-size: 12px;">Image Size should be 960X720</span>

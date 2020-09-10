@@ -215,25 +215,53 @@
                      </div>
                      <div class="row margin-top">
                         <div class="col-md-6">
-                               <div class="form-group">
+                           <div class="form-group">
                               <div class="col-md-9">
-                              <label class="control-label " style="width:100%">Service Tags</label>
-                                                               <?php $service_tag_arr = explode(',', $rec->service_tag);?>
-                                                               <select name="service_tag[]"  class="form-control js-example-tokenizer" multiple="multiple" >
-                                                                  <?php foreach ($service_tag as $sr) {?>
-                                                                  <option <?php if (in_array($sr->id, $service_tag_arr)) {?> selected="selected" <?php }?> value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
-                                                                  <?php }?>
-                                                               </select>
-                                                               <script type="text/javascript">
-                                                                  document.frm.service_tag.value='<?php echo explode(",", $rec->service_tag) ?>'
-                                                               </script>
+                              <label class="control-label " style="width:100%">Service Tags Type</label>
+                              <select name="service_type_id[]"  class="form-control js-example-tokenizer3" id="classes_select" multiple >
+                                 <?php foreach ($service_type_id as $service_type) {?>
+                                 <option  selected="selected"  value="<?php echo $service_type->id; ?>" ><?php echo $service_type->name ?></option>
+                                 <?php }?>
+                              </select>
 
                               </div>
                            </div>
+                        </div>
 
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <div class="col-md-9">
+                              <label class="control-label " style="width:100%">Service Tags</label>
+                              <?php $service_tag_arr = explode(',', $rec->service_tag);?>
+                              <select id="chassis_select" name="service_tag[]"  class="form-control js-example-tokenizer" multiple="multiple">
+                                 <?php foreach ($service_tag as $sr) {?>
+                                 <option <?php if (in_array($sr->id, $service_tag_arr)) {?> selected="selected" <?php }?> value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
+                                 <?php }?>
+                              </select>
+                              <script type="text/javascript">
+                                 document.frm.service_tag.value='<?php echo explode(",", $rec->service_tag) ?>'
+                              </script>
+
+                              </div>
+                           </div>
+                        </div>
+
+
+
+                     </div>
+                     <div class="row margin-top">
+                        <div class="col-md-6" >
+                          <div class="col-sm-9" >
+                             <label class="control-label ">Select service group</label>
+                              <?php $service_type_arr = explode(',', $rec->service_type);?>
+                              <select name="service_english[]" id="groups" multiple="multiple" class="form-control js-example-tokenizer">
+                                 <?php foreach ($service as $sr) {?>
+                                 <option <?php if (in_array($sr->id, $service_type_arr)) {?> selected="selected" <?php }?> value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
+                                 <?php }?>
+                              </select>
+                           </div>
                         </div>
                         <div class="col-md-6" style="width: 500px">
-                           <div class="form-group">
                               <div class="col-md-9">
 
                               <label  for="inputEmail3" class=" control-label">Photo Selection  Arround rating </label>
@@ -248,30 +276,10 @@
                               <input style="display:none;"  type="file" class= "form-control btn btn-default" name="image[]" id="image" multiple="multiple" size="20"/>
 
                               </div>
-                           </div>
 
-                           <!--                                <img style="width:200px;" src="--><?php //echo base_url?><!--" >-->
                         </div>
                      </div>
-                     <div class="row margin-top">
-                        <div class="col-md-6" >
-                    <div class="col-sm-9" >
 
-                    <label class="control-label ">Select Service Type</label>
-                                                                                 <?php $service_type_arr = explode(',', $rec->service_type);?>
-                                                                                 <select name="service_english[]" id="groups" multiple="multiple" class="form-control js-example-tokenizer">
-                                                                                    <?php foreach ($service as $sr) {?>
-                                                                                    <option <?php if (in_array($sr->id, $service_type_arr)) {?> selected="selected" <?php }?> value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
-                                                                                    <?php }?>
-                                                                                 </select>
-
-
-
-
-
-                           </div>
-                        </div>
-                     </div>
                   </div>
                   <div align="center">
                      <div align="center" style="; margin: 25px; height: 2px; background-color: grey">
@@ -333,6 +341,53 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+          $(".js-example-tokenizer").select2({
+              tags: true,
+              placeholder: "Please select option",
+              tokenSeparators: [',', ' ']
+          });
+           $(".js-example-tokenizer2").select2({
+              placeholder: "Please select option",
+              tokenSeparators: [',', ' ']
+          });
+           $(".js-example-tokenizer3").select2({
+              placeholder: "Please select option",
+              tokenSeparators: [',', ' ']
+          });
+           var service_tag= [];
+          <?php foreach ($service_tag as $sr) {?>
+          service_tag.push({
+              id: <?php echo $sr->id; ?>,
+              name: "<?php echo $sr->name; ?>",
+              service_type_id: "<?php echo $sr->service_type_id; ?>"
+          })
+          <?php }?>
+          $('#classes_select').change( function () {
+              var value = $(this).val() + ''
+              console.log(value)
+              var valueArr= value.split(',');
+              var availableChassis= []
+              if(!$(this).val()){
+                  availableChassis= service_tag.slice()
+              }else{
+                  availableChassis= service_tag.filter(function (ch) {
+                      return valueArr.indexOf(ch.service_type_id) != -1
+                  })
+              }
+              var prevValue= $('#chassis_select').val();
+              $('#chassis_select').empty();
+              // $('#chassis_select').append('<option value="">Select Option</option>');
+              // $('#chassis_select').append('<option value="all">All</option>');
+              availableChassis.forEach( function(ch){
+                  console.log(ch.id)
+                  $('#chassis_select').append('<option value="'+ch.id+'">'+ch.name+'</option>');
+              })
+              $('#chassis_select').val(prevValue || '')
+          });
+      });
+  </script>
    <script type="text/javascript">
       $(document).ready(function() {
           $(".js-example-tokenizer").select2({

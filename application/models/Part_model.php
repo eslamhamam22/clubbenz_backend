@@ -199,6 +199,8 @@ class Part_model extends CI_Model {
 			$this->db->where('email', $email);
 		}
 
+		$this->db->order_by("status = 'pending'", 'DESC');
+		$this->db->order_by('status');
 		$this->db->order_by("id", "desc");
 		$this->db->from('parts');
 		$q = $this->db->get();

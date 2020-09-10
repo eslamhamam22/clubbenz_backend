@@ -41,12 +41,24 @@
                              <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Select Shop Type</label>
                                 <div class="col-sm-9">
-                                    <select name="shop_type"  class="form-control ">
+                                    <select name="shop_type"  class="form-control " onchange='CheckColors(this.value);'>
                                         <option>Select shop Type</option>
 
                                         <option value="workshop" >workshop</option>
                                         <option value="serviceshop" >serviceshop</option>
                                         <option value="partshop" >partshop</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style='display:none;' id="service_id">
+                                <label for="inputEmail3" class="col-sm-3 control-label">service group Name</label>
+                                <div class="col-sm-9">
+                                    <select id="service_type_id" type="text" name="service_type_id" class="form-control" >
+                                        <option value="">Select Option</option>
+                                        <?php foreach ($service_type as $service) {?>
+                                            <?php echo '<option value="' . $service->id . '">' . $service->name . '</option>'; ?>
+
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
@@ -89,5 +101,16 @@
           showAutocompleteOnFocus: true
         })
     </script>
+
+    <script type="text/javascript">
+        function CheckColors(val){
+         var element=document.getElementById('service_id');
+         if(val=='Select shop Type'||val=='serviceshop')
+           element.style.display='block';
+         else
+           element.style.display='none';
+        }
+    </script>
+
 
 </html>

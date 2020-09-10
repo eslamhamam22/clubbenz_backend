@@ -191,10 +191,41 @@
 
                                 </div>
                                 <div class="row margin-top">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-9">
+                                                <label class="control-label " style="width:100%">Service Tags Type</label>
+
+                                                <select name="service_type_id[]" class="form-control js-example-tokenizer3" id="classes_select" require multiple>
+                                                    <option>Select option</option>
+                                                    <?php foreach ($service_type_id as $service_type) {?>
+                                                        <option value="<?php echo $service_type->id ?>"><?php echo $service_type->name ?></option>
+                                                    <?php }?>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-9">
+                                            <label class="control-label " style="width:100%">Service Tags</label>
+
+                                            <select id="chassis_select" name="service_tag[]" class="form-control js-example-tokenizer" multiple="multiple" require>
+                                                <?php foreach ($service_tag as $ar) {?>
+                                                    <option value="<?php echo $ar->id ?>"><?php echo $ar->name ?></option>
+                                                <?php }?>
+                                            </select> <span class="help-block"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-top">
                                     <div class="col-md-6" >
                                         <div class="form-group">
                                             <div class="col-md-9">
-                                            <label class="control-label ">Select Service Type</label>
+                                            <label class="control-label ">Select service group</label>
                                             <select name="service_english[]" id="groups" multiple="multiple" class="form-control js-example-tokenizer" require>
                                                 <?php foreach ($service as $sr) {?>
                                                     <option value="<?php echo $sr->id; ?>" ><?php echo $sr->name ?></option>
@@ -205,20 +236,6 @@
                                     </div>
 
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="col-md-9">
-                                            <label class="control-label " style="width:100%">Service Tags</label>
-
-                                            <select name="service_tag[]" class="form-control js-example-tokenizer" multiple="multiple" require>
-                                                <?php foreach ($service_tag as $ar) {?>
-                                                    <option value="<?php echo $ar->id ?>"><?php echo $ar->name ?></option>
-                                                <?php }?>
-                                            </select> <span class="help-block"></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6" style="width: 500px">
                                         <div class="col-sm-9" >
                                             <label  for="inputEmail3" class=" control-label">Photo Selection  Arround rating </label>
@@ -320,6 +337,53 @@
               },
               showAutocompleteOnFocus: true
             })
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".js-example-tokenizer").select2({
+                    tags: true,
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer2").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 var service_tag= [];
+                <?php foreach ($service_tag as $ar) {?>
+                service_tag.push({
+                    id: <?php echo $ar->id; ?>,
+                    name: "<?php echo $ar->name; ?>",
+                    service_type_id: "<?php echo $ar->service_type_id; ?>"
+                })
+                <?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val()){
+                        availableChassis= service_tag.slice()
+                    }else{
+                        availableChassis= service_tag.filter(function (ch) {
+                            return valueArr.indexOf(ch.service_type_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
+                    // $('#chassis_select').append('<option value="all">All</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.name+'</option>');
+                    })
+                    $('#chassis_select').val(prevValue || '')
+                });
+            });
         </script>
         <script type="text/javascript">
 
