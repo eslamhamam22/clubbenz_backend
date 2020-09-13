@@ -6,7 +6,7 @@ class Workshop extends REST_Controller {
 		parent::__construct();
 		ini_set("display_errors", 1);
 		error_reporting(1);
-		$this->load->model('Users_model');
+		$this->load->model('Users_model', 'users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Workshop_model');
 		$this->load->model('Cars_model');

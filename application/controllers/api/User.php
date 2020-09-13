@@ -3,7 +3,7 @@ class User extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Users_model');
+		$this->load->model('Users_model','users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Cars_model');
 		$this->load->library('upload');

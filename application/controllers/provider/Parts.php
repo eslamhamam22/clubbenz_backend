@@ -17,7 +17,7 @@ class Parts extends CI_Controller {
 		$this->load->model('Provider_plan_model');
 		$this->load->model('Plan_model');
 
-		$this->load->model('Acl_model');
+		$this->load->model('Acl_model', 'acl_model');
 		$this->load->model('Users_model');
 		$this->load->model('Partsubcategory_model');
 		$this->load->model('Partcategory_model');

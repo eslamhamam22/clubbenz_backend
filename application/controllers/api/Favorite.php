@@ -6,7 +6,7 @@ class Favorite extends REST_Controller {
 		parent::__construct();
 		ini_set("display_errors", 1);
 		error_reporting(1);
-		$this->load->model('Users_model');
+		$this->load->model('Users_model','users_model');
 		$this->load->model('Part_model');
 		$this->load->model('Brand_model');
 		$this->load->model('Partcategory_model');
