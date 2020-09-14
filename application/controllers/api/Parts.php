@@ -10,7 +10,7 @@ class Parts extends REST_Controller {
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Serviceshop_model');
 		$this->load->model('Workshop_model');
-		$this->load->model('Part_model');
+		$this->load->model('Part_model', 'part_model');
 		$this->load->model('Brand_model');
 		$this->load->model('Partcategory_model');
 		$this->load->model('Partsubcategory_model');
@@ -33,8 +33,8 @@ class Parts extends REST_Controller {
 		$phone = $this->get('phone');
 
 		$search_arr['type'] = $type;
-		$arr['total'] = $this->Part_model->count_shop($search_arr, $start, $limit, $chassis);
-		$arr['shops'] = $this->Part_model->get_shop($search_arr, $start, $limit, $chassis, $phone);
+		$arr['total'] = $this->part_model->count_shop($search_arr, $start, $limit, $chassis);
+		$arr['shops'] = $this->part_model->get_shop($search_arr, $start, $limit, $chassis, $phone);
 
 		$new_array = array();
 		foreach ($arr['shops'] as $val) {
@@ -42,7 +42,7 @@ class Parts extends REST_Controller {
 				$val->featured = false;
 			}
 
-			$val->main_image = $this->Part_model->get_part_main_image($val->id, 'main');
+			$val->main_image = $this->part_model->get_part_main_image($val->id, 'main');
 			$val->part_brand = $this->Brand_model->get_bands_by_ids($val->part_brand);
 			$val->part_category = $this->Partcategory_model->get_category_by_id($val->part_category);
 			$val->part_sub_category = $this->Partsubcategory_model->get_subcategory_by_id($val->part_sub_category);
@@ -69,7 +69,7 @@ class Parts extends REST_Controller {
 
 	function part_detail_get() {
 		$id = $this->get("id");
-		$arr['shop_detail'] = $this->Part_model->get_details($id);
+		$arr['shop_detail'] = $this->part_model->get_details($id);
 		$arr['reviews'] = $this->Workshop_model->get_reviews($id, "parts");
 		foreach ($arr['reviews'] as $r) {
 			$user = $this->Workshop_model->get_user_picture($r->user_id);
@@ -80,32 +80,32 @@ class Parts extends REST_Controller {
 		$arr['shop_detail']->part_brand = $this->Brand_model->get_bands_by_ids($arr['shop_detail']->part_brand);
 		$part_category = $arr['shop_detail']->part_category;
 		$arr['shop_detail']->part_category = $this->Partcategory_model->get_category_by_id($arr['shop_detail']->part_category);
-		$arr['similer_parts'] = $this->Part_model->same_part($part_category, $id);
-		$arr['parts_brand'] = $this->Part_model->part_brand();
-		$arr['images'] = $this->Part_model->get_part_main_image($id, 'all');
+		$arr['similer_parts'] = $this->part_model->same_part($part_category, $id);
+		$arr['parts_brand'] = $this->part_model->part_brand();
+		$arr['images'] = $this->part_model->get_part_main_image($id, 'all');
 
 		$views = $arr['shop_detail']->views;
 		$data = array(
 			'views' => $views + 1,
 		);
-		$this->Part_model->views_update($id, $data);
+		$this->part_model->views_update($id, $data);
 		$arr['shop_detail']->part_sub_category = $this->Partsubcategory_model->get_subcategory_by_id($arr['shop_detail']->part_sub_category);
 		$this->response($arr, 200);
 	}
 
 	function get_partcategory_post() {
 		$chassis = $this->post('chassis');
-		$data = $this->Part_model->get_all_parts();
+		$data = $this->part_model->get_all_parts();
 		$arr['part_categories'] = $data;
 		$part_cat_ids = array(0);
 		foreach ($data as $row) {
 			$part_cat_ids[] = $row->id;
 		}
-		$arr['top_products'] = $this->Part_model->get_parts_by_categories_id($chassis);
+		$arr['top_products'] = $this->part_model->get_parts_by_categories_id($chassis);
 		$new_array = array();
 		foreach ($arr['top_products'] as $val) {
 			$val->plan = $this->Provider_plan_model->get_current_plan_with_details_by_provider($val->provider_id);
-			$val->main_image = $this->Part_model->get_part_main_image($val->id, 'main');
+			$val->main_image = $this->part_model->get_part_main_image($val->id, 'main');
 			$new_array[] = $val;
 		}
 		$arr['top_products'] = array_filter($arr['top_products'], function ($part) use ($chassis) {

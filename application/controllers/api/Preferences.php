@@ -29,7 +29,7 @@ class Preferences extends REST_Controller {
 		$arr['fuel_types'] = $this->Fuel_model->fuel_manage();
 		$arr['models'] = $this->Classes_model->model_manage();
 		$arr['home_page_services'] = $this->Service_model->get_home_page_service_api();
-		$arr['profile_pictures'] = $this->Users_model->get_profile_pictures();
+		$arr['profile_pictures'] = $this->users_model->get_profile_pictures();
 		$arr['home_ads'] = $this->Advertisement_model->manage_advertisement();
 
 		$arr['home_slide'] = $this->Advertisement_model->manage_advertisement_home("active");
@@ -153,7 +153,7 @@ class Preferences extends REST_Controller {
 				// $this->response($arr[0], 200);
 
 				if ($arr[0]) {
-					$user = $this->Users_model->get_user_by_id($user_id);
+					$user = $this->users_model->get_user_by_id($user_id);
 					if ($user->fcm_token) {
 						$arr[0]->fcm_token = $user->fcm_token;
 					}
@@ -370,7 +370,7 @@ class Preferences extends REST_Controller {
 						}
 					}
 				}
-				$user_row = $this->Users_model->get_user_by_token($this->post("token"));
+				$user_row = $this->users_model->get_user_by_token($this->post("token"));
 
 				date_default_timezone_set('Egypt');
 

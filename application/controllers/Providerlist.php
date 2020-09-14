@@ -38,6 +38,8 @@ class Providerlist extends MY_Controller {
 
 	public function edit_providerlist($id) {
 		$data['rec'] = $this->provider_model->edit_providerlist($id);
+		$data['countries'] = $this->provider_model->select_countries();
+		$data['states'] = $this->provider_model->select_states();
 		$data['title'] = 'Edit Provider List';
 		$this->load->view('edit_providerlist', $data);
 	}

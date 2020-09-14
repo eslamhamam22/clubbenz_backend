@@ -1,8 +1,7 @@
 <?php
 
-class World_model extends CI_Model
-{
-	public function get_countries(){
+class World_model extends CI_Model {
+	public function get_countries() {
 		$this->db->select('*');
 		$this->db->from('countries');
 		if ($query = $this->db->get()) {
@@ -11,7 +10,7 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
-	public function get_cities(){
+	public function get_cities() {
 		$this->db->select('*');
 		$this->db->from('cities');
 		if ($query = $this->db->get()) {
@@ -20,7 +19,7 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
-	public function get_country_by_id($id){
+	public function get_country_by_id($id) {
 		$this->db->select('*');
 		$this->db->where('id', $id);
 		$this->db->from('countries');
@@ -30,7 +29,7 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
-	public function get_state_by_id($id){
+	public function get_state_by_id($id) {
 		$this->db->select('*');
 		$this->db->where('id', $id);
 		$this->db->from('states');
@@ -40,7 +39,7 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
-	public function get_states_by_country($country_id){
+	public function get_states_by_country($country_id) {
 		$this->db->select('*');
 		$this->db->from('states');
 		$this->db->where('country_id', $country_id);
@@ -50,7 +49,7 @@ class World_model extends CI_Model
 			return false;
 		}
 	}
-	public function get_states_by_country_as_options($country_id){
+	public function get_states_by_country_as_options($country_id) {
 		$this->db->select('*');
 		$this->db->where('country_id', $country_id);
 		$this->db->from('states');

@@ -191,6 +191,27 @@ class Provider_model extends CI_model {
 		$this->db->where('id', $id);
 		return $this->db->update('parts', $data);
 	}
+
+	public function select_countries() {
+		$this->db->select('*');
+		$this->db->from('countries');
+		if ($query = $this->db->get()) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	public function select_states() {
+		$this->db->select('*');
+		$this->db->from('states');
+		if ($query = $this->db->get()) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
 }
 
 ?>
