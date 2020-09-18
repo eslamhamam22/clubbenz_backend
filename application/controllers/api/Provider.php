@@ -6,7 +6,7 @@ class Provider extends REST_Controller {
 		$this->load->library('upload');
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->database();
-		$this->load->model('Provider_Model');
+		$this->load->model('Provider_model');
 		$this->load->model('Shipping_model');
 		$this->load->model('World_model');
 		$this->load->model('Workshop_model');
@@ -21,7 +21,7 @@ class Provider extends REST_Controller {
 
 	function get_provider_by_id_get() {
 		$provider_id = $this->get('provider_id');
-		$provider = $this->Provider_Model->get_provider_by_id($provider_id);
+		$provider = $this->Provider_model->get_provider_by_id($provider_id);
 		$provider[0]->reviews = $this->Workshop_model->get_reviews($provider_id, "provider");
 		foreach ($provider[0]->reviews as $r) {
 			$user = $this->Workshop_model->get_user_picture($r->user_id);

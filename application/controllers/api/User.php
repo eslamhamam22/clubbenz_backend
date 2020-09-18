@@ -3,7 +3,7 @@ class User extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Users_model', 'users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Cars_model');
 		$this->load->library('upload');
@@ -70,12 +70,12 @@ class User extends REST_Controller {
 	public function resend_code_post() {
 		$phone = $this->input->post('phone');
 		if ($phone) {
-			$user = $this->users_model->get_user_by_mobile($phone);
+			$user = $this->Users_model->get_user_by_mobile($phone);
 			if ($user) {
 				$verification_code = rand(100000, 999999);
 				$this->send_code($verification_code, $phone);
 
-				$this->users_model->update($user->id, array("verification_code" => $verification_code, "verification_phone" => 0));
+				$this->Users_model->update($user->id, array("verification_code" => $verification_code, "verification_phone" => 0));
 				$arr['message'] = "Code send successfully";
 				$arr['success'] = true;
 
@@ -94,7 +94,7 @@ class User extends REST_Controller {
 		$phone = $this->input->post('phone');
 		$code = $this->input->post('code');
 		if ($phone) {
-			$user = $this->users_model->get_user_by_mobile($phone);
+			$user = $this->Users_model->get_user_by_mobile($phone);
 			if ($user) {
 				$this->send_code($code, $phone);
 				$this->send_email($user->email, $code);
@@ -145,7 +145,7 @@ class User extends REST_Controller {
 		$token = $this->input->post('token');
 		$mobile = $this->input->post('mobile');
 		$email = $this->input->post('email');
-		$result = $this->users_model->check_activation_code($code, $token, $mobile, $email);
+		$result = $this->Users_model->check_activation_code($code, $token, $mobile, $email);
 		if ($result) {
 			$arr['success'] = true;
 			$arr['message'] = "Verified successfully";
@@ -159,7 +159,7 @@ class User extends REST_Controller {
 	public function booking_post() {
 		$token = $this->input->post('token');
 		if ($token) {
-			$user_row = $this->users_model->get_user_by_token($token);
+			$user_row = $this->Users_model->get_user_by_token($token);
 
 			$user_id = $user_row->id;
 			$workshop_id = $this->post("workshop_id");
@@ -170,7 +170,7 @@ class User extends REST_Controller {
 				$comments = $this->post("comments");
 
 				$arr = array("user_id" => $user_id, "workshop_id" => $workshop_id, "date" => $date . " " . $time, "status" => "pending", "comments" => $comments, "created_date" => date('Y-m-d H:i'));
-				$this->users_model->insert_in_table("booking", $arr);
+				$this->Users_model->insert_in_table("booking", $arr);
 
 				$arr['success'] = true;
 				$arr['message'] = "Booking placed successfully";
@@ -211,11 +211,11 @@ class User extends REST_Controller {
 			$password = $data['password'];
 
 			if ($this->ion_auth->login($identity, $password)) {
-				$user = $this->users_model->get_user_by_email($data['email']);
-				$token = $this->users_model->get_unique_user_token();
+				$user = $this->Users_model->get_user_by_email($data['email']);
+				$token = $this->Users_model->get_unique_user_token();
 
-				$this->users_model->update($user->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
-				$user = $this->users_model->get_user_by_email($data['email']);
+				$this->Users_model->update($user->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
+				$user = $this->Users_model->get_user_by_email($data['email']);
 
 				$user->created_on = date("Y-m-d H:i", $user->created_on);
 
@@ -248,10 +248,10 @@ class User extends REST_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run()) {
-			if ($user_row = $this->users_model->get_user_by_field('social_id', $data['social_id'])) {
-				$token = $this->users_model->get_unique_user_token();
-				$this->users_model->update($user_row->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
-				$user_row = $this->users_model->get_user_by_field('social_id', $data['social_id']);
+			if ($user_row = $this->Users_model->get_user_by_field('social_id', $data['social_id'])) {
+				$token = $this->Users_model->get_unique_user_token();
+				$this->Users_model->update($user_row->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
+				$user_row = $this->Users_model->get_user_by_field('social_id', $data['social_id']);
 				$user_row->created_on = date("Y-m-d H:i", $user_row->created_on);
 				$arr['year'] = $this->Cars_model->get_by_table_and_field_name("years", "id", $user_row->year_id);
 				$arr['model'] = $this->Cars_model->get_by_table_and_field_name("model", "id", $user_row->model_id);
@@ -282,7 +282,7 @@ class User extends REST_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run()) {
-			$result = $this->users_model->logout($login_data);
+			$result = $this->Users_model->logout($login_data);
 			if ($result) {
 				$arr['success'] = true;
 				$arr['message'] = "Logout successfully!";
@@ -336,7 +336,7 @@ class User extends REST_Controller {
 			$this->db->query("insert into data_logs(data) values('" . $json . "')");
 
 			if (isset($save_data['social_id']) && $save_data['social_id'] != "") {
-				$user_row = $this->users_model->get_user_by_field('social_id', $save_data['social_id']);
+				$user_row = $this->Users_model->get_user_by_field('social_id', $save_data['social_id']);
 				if ($user_row) {
 					/*$user_row->created_on	= date("Y-m-d H:i",$user_row->created_on);
 
@@ -348,7 +348,7 @@ class User extends REST_Controller {
 					$arr['message'] = "Use different facebook profile for registering, the current user already exists";
 					$arr['success'] = false;
 				} else {
-					if ($this->users_model->check_user_by_email($save_data['email']) && $this->users_model->check_user_by_phone($save_data['mobile'])) {
+					if ($this->Users_model->check_user_by_email($save_data['email']) && $this->Users_model->check_user_by_phone($save_data['mobile'])) {
 						$arr = array();
 						$additional_detail = array();
 						$new_array = array(
@@ -383,10 +383,10 @@ class User extends REST_Controller {
 								}
 							}
 						}
-						$token = $this->users_model->get_unique_user_token();
+						$token = $this->Users_model->get_unique_user_token();
 						$verification_code = rand(100000, 999999);
 						$save_data['password'] = ($save_data['password'] != '') ? $save_data['password'] : rand(100000, 999999);
-						$chassis = $this->users_model->get_chassis_by_car_vin_prefix($save_data['car_vin_prefix']);
+						$chassis = $this->Users_model->get_chassis_by_car_vin_prefix($save_data['car_vin_prefix']);
 						$additional_detail = array(
 							"username" => $save_data['first_name'] . $save_data['last_name'],
 							"first_name" => $save_data['first_name'],
@@ -409,8 +409,8 @@ class User extends REST_Controller {
 						$userID = $this->ion_auth->register($new_array['email'], $save_data['password'], $new_array['email'], $additional_detail, array(2));
 
 						if ($userID) {
-							$user = $this->users_model->get_user_by_id($userID);
-							$result = $this->users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
+							$user = $this->Users_model->get_user_by_id($userID);
+							$result = $this->Users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
 //							$this->send_code($verification_code, $user->phone);
 							$arr['message'] = "Code sent successfully!";
 
@@ -440,7 +440,7 @@ class User extends REST_Controller {
 					}
 				}
 			} else {
-				if ($this->users_model->check_user_by_email($save_data['email']) && $this->users_model->check_user_by_phone($save_data['mobile'])) {
+				if ($this->Users_model->check_user_by_email($save_data['email']) && $this->Users_model->check_user_by_phone($save_data['mobile'])) {
 
 					$arr = array();
 					$additional_detail = array();
@@ -470,10 +470,10 @@ class User extends REST_Controller {
 							}
 						}
 					}
-					$token = $this->users_model->get_unique_user_token();
+					$token = $this->Users_model->get_unique_user_token();
 					$verification_code = rand(100000, 999999);
 					$save_data['password'] = ($save_data['password'] != '') ? $save_data['password'] : rand(100000, 999999);
-					$chassis = $this->users_model->get_chassis_by_car_vin_prefix($save_data['car_vin_prefix']);
+					$chassis = $this->Users_model->get_chassis_by_car_vin_prefix($save_data['car_vin_prefix']);
 					$additional_detail = array(
 						"first_name" => $save_data['first_name'],
 						"last_name" => $save_data['last_name'],
@@ -493,8 +493,8 @@ class User extends REST_Controller {
 					);
 					$userID = $this->ion_auth->register($new_array['email'], $save_data['password'], $new_array['email'], $additional_detail, array(2));
 					if ($userID) {
-						$user = $this->users_model->get_user_by_id($userID);
-						$result = $this->users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
+						$user = $this->Users_model->get_user_by_id($userID);
+						$result = $this->Users_model->check_activation_code($verification_code, $user->token, $user->phone, $user->email);
 //						$this->send_code($verification_code, $user->phone);
 						$arr['message'] = "Code sent successfully!";
 
@@ -549,7 +549,7 @@ class User extends REST_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run()) {
-			$userRow = $this->users_model->get_user_by_token($save_data['token']);
+			$userRow = $this->Users_model->get_user_by_token($save_data['token']);
 			if ($userRow) {
 				$change = $this->ion_auth->reset_password($userRow->email, $save_data['password']);
 				$arr['message'] = "Password change successfully!";
@@ -598,7 +598,7 @@ class User extends REST_Controller {
 		// $this->form_validation->set_rules($rules);
 
 		if ($data['phone']) {
-			$user = $this->users_model->get_user_by_mobile($data['phone']);
+			$user = $this->Users_model->get_user_by_mobile($data['phone']);
 			if ($user) {
 				$resetToken = md5($user->email);
 				$resetTimeStemp = time();
@@ -611,7 +611,7 @@ class User extends REST_Controller {
 				$this->email->subject('Reset Password Request Clubenz');
 				$this->email->message($mesg);
 				$this->email->send();
-				$user = $this->users_model->reset_password_request($data['phone'], $resetToken, $resetTimeStemp);
+				$user = $this->Users_model->reset_password_request($data['phone'], $resetToken, $resetTimeStemp);
 				// $this->form_validation->set_error_delimiters('','');
 				// $this->form_validation->set_rules($rules);
 				$arr['message'] = "Password check your email to rest your password";
@@ -672,7 +672,7 @@ class User extends REST_Controller {
 		$verification_code = $this->post('verification_code');
 
 		if ($phone && $verification_code) {
-			$varified = $this->users_model->verification_phone($phone, $verification_code);
+			$varified = $this->Users_model->verification_phone($phone, $verification_code);
 			if ($varified) {
 
 				$arr['message'] = "Phone varified Successfully";
@@ -698,10 +698,10 @@ class User extends REST_Controller {
 			$email = $this->post('email');
 			$mobile = $this->post('mobile');
 
-			$user = $this->users_model->get_user_by_token($token);
+			$user = $this->Users_model->get_user_by_token($token);
 			if ($user) {
 
-				$user1 = $this->users_model->get_user_by_field("phone", $mobile);
+				$user1 = $this->Users_model->get_user_by_field("phone", $mobile);
 
 				if ($user1) {
 					if ($user1->email == $email) {
@@ -710,7 +710,7 @@ class User extends REST_Controller {
 						}
 						$token = $this->post('token');
 
-						$chassis = $this->users_model->get_chassis_by_vinPrefix($this->post('car_vin_prefix'));
+						$chassis = $this->Users_model->get_chassis_by_vinPrefix($this->post('car_vin_prefix'));
 
 						if ($_FILES) {
 							$file_name = $_FILES['profile_picture']['name'];
@@ -755,7 +755,7 @@ class User extends REST_Controller {
 
 						}
 
-						$res = $this->users_model->edit_user($data, $token);
+						$res = $this->Users_model->edit_user($data, $token);
 						if ($res) {
 							$arr['success'] = true;
 							$arr['year'] = $this->Cars_model->get_by_table_and_field_name("years", "id", $user->year_id);
@@ -768,7 +768,7 @@ class User extends REST_Controller {
 						}
 
 					} else {
-						$user2 = $this->users_model->get_user_by_email($email);
+						$user2 = $this->Users_model->get_user_by_email($email);
 
 						if ($user2) {
 
@@ -782,7 +782,7 @@ class User extends REST_Controller {
 							}
 							$token = $this->post('token');
 
-							$chassis = $this->users_model->get_chassis_by_vinPrefix($this->post('car_vin_prefix'));
+							$chassis = $this->Users_model->get_chassis_by_vinPrefix($this->post('car_vin_prefix'));
 
 							if ($_FILES) {
 								$file_name = $_FILES['profile_picture']['name'];
@@ -823,7 +823,7 @@ class User extends REST_Controller {
 								$data['profile_picture'] = $this->post('fb_picture');
 
 							}
-							$res = $this->users_model->edit_user($data, $token);
+							$res = $this->Users_model->edit_user($data, $token);
 							if ($res) {
 								$arr['success'] = true;
 								$arr['year'] = $this->Cars_model->get_by_table_and_field_name("years", "id", $user->year_id);
@@ -849,7 +849,7 @@ class User extends REST_Controller {
 
 	function get_profile_post() {
 		$token = $this->post('token');
-		$data = $this->users_model->get_user_by_token($token);
+		$data = $this->Users_model->get_user_by_token($token);
 		$arr['success'] = true;
 		$arr['data'] = $data;
 		$this->response($arr, 200);
@@ -871,7 +871,7 @@ class User extends REST_Controller {
 				$sms_msg
 			);
 
-			$data = $this->users_model->updateVerificationCode($code, $phone);
+			$data = $this->Users_model->updateVerificationCode($code, $phone);
 		} catch (Exception $e) {
 			$arr['message'] = $e->getMessage();
 			$arr['success'] = false;
@@ -900,7 +900,7 @@ class User extends REST_Controller {
 
 //		$workshop= $workShops[0];
 
-		$user = $this->users_model->get_user_by_id($user_id);
+		$user = $this->Users_model->get_user_by_id($user_id);
 
 		$this->send_auto_notifications($workShops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "workshop");
 		$this->send_auto_notifications($partshops, $notification_settings, $user_id, $interval_hours, $user, $lat, $lon, "partshop");
@@ -990,7 +990,7 @@ class User extends REST_Controller {
 	}
 	public function remove_user_post() {
 		$phone = $this->post('phone');
-		$user = $this->users_model->delete_by_phone($phone);
+		$user = $this->Users_model->delete_by_phone($phone);
 	}
 
 }

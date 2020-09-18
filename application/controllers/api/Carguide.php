@@ -4,7 +4,7 @@ class Carguide extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Users_model', 'users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Emailtemplates_model');
 		$this->load->model('Serviceshop_model');
 		$this->load->model('Workshop_model');
@@ -52,7 +52,7 @@ class Carguide extends REST_Controller {
 					}
 				}
 
-				$user_row = $this->users_model->get_user_by_token($this->input->post("token"));
+				$user_row = $this->Users_model->get_user_by_token($this->input->post("token"));
 
 				date_default_timezone_set('Egypt');
 				$arr = array(
@@ -122,7 +122,7 @@ class Carguide extends REST_Controller {
 
 	function cluster_error_solution_post() {
 		$id = $this->post('cluster_error_id');
-		$user_row = $this->users_model->get_user_by_token($this->input->post("token"));
+		$user_row = $this->Users_model->get_user_by_token($this->input->post("token"));
 		$arr1 = $this->Car_guide_model->get_cluster_error_chassis_id($id);
 		$arr = $this->Car_guide_model->get_error_solution_id($id);
 		$new_array = array();
@@ -153,7 +153,7 @@ class Carguide extends REST_Controller {
 		$solution_id = $this->post('solution_id');
 		$type = $this->post('type');
 		$token = $this->post('token');
-		$user_row = $this->users_model->get_user_by_token($token);
+		$user_row = $this->Users_model->get_user_by_token($token);
 		if ($user_row->id != "") {
 			$rules = array(
 				array(

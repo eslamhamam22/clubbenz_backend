@@ -4,7 +4,7 @@ class Preferences extends REST_Controller {
 	public $data;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Users_model', 'users_model');
+		$this->load->model('Users_model');
 		$this->load->model('Cars_model');
 		$this->load->model('Years_model');
 		$this->load->model('Fuel_model');
@@ -14,12 +14,11 @@ class Preferences extends REST_Controller {
 		$this->load->model('Workshop_model');
 		$this->load->model('Service_model');
 		$this->load->model('Serviceshop_model');
-		$this->load->model('Classes_model');
 		$this->load->model('Advertisement_model');
 		$this->load->model('Part_model');
 		$this->load->model('Partsshop_model');
 		$this->load->model('Service_tag_model');
-		$this->load->model('Catalog_model', 'cat');
+		$this->load->model('Catalog_model');
 		$this->load->model('Push_notification_model', 'notification');
 		define('FIREBASE_API_KEY', 'AAAAIDGWJ6Y:APA91bFyMeIkXy_kSS6R_l5VfCox6UqjMiv5uU8CVnzlmavattG1_hZFAv3m_HHbPGMgeSslcy8d_rcZIMZIXsXPjf3ItXM6An2i2Ljvw8bKXvsDHogx1FZO388tJ6qJBmxkINXvFjRJ');
 	}
@@ -29,7 +28,7 @@ class Preferences extends REST_Controller {
 		$arr['fuel_types'] = $this->Fuel_model->fuel_manage();
 		$arr['models'] = $this->Classes_model->model_manage();
 		$arr['home_page_services'] = $this->Service_model->get_home_page_service_api();
-		$arr['profile_pictures'] = $this->users_model->get_profile_pictures();
+		$arr['profile_pictures'] = $this->Users_model->get_profile_pictures();
 		$arr['home_ads'] = $this->Advertisement_model->manage_advertisement();
 
 		$arr['home_slide'] = $this->Advertisement_model->manage_advertisement_home("active");
@@ -40,7 +39,7 @@ class Preferences extends REST_Controller {
 		$arr['services'] = $this->Advertisement_model->manage_services_banner_active("active");
 		$arr['partcatlog'] = $this->Advertisement_model->manage_partcatlog_banner_active("active");
 		$arr['activate_part_catalogue'] = true;
-		$part_catalogue = $this->cat->catalog_manage();
+		$part_catalogue = $this->Catalog_model->catalog_manage();
 
 		if ($part_catalogue) {
 			$arr['activate_part_catalogue'] = $part_catalogue[0]->status == 0 ? false : true;
@@ -153,7 +152,7 @@ class Preferences extends REST_Controller {
 				// $this->response($arr[0], 200);
 
 				if ($arr[0]) {
-					$user = $this->users_model->get_user_by_id($user_id);
+					$user = $this->Users_model->get_user_by_id($user_id);
 					if ($user->fcm_token) {
 						$arr[0]->fcm_token = $user->fcm_token;
 					}
@@ -272,10 +271,10 @@ class Preferences extends REST_Controller {
 	}
 	function get_car_by_vin_prefix_post() {
 		$vin_prefix = $this->post('vin_prefix');
-		$arr = $this->cars_model->get_car_by_vin_prefix($vin_prefix);
+		$arr = $this->Cars_model->get_car_by_vin_prefix($vin_prefix);
 
 		if ($arr) {
-			$end_year = $this->cars_model->get_year_by_yearEnd($arr->model_year_end);
+			$end_year = $this->Cars_model->get_year_by_yearEnd($arr->model_year_end);
 			if ($end_year) {
 				$arr->year_id = $end_year->id;
 
@@ -286,7 +285,7 @@ class Preferences extends REST_Controller {
 				$response['data'] = $arr;
 
 			} else {
-				$start_year = $this->cars_model->get_year_by_yearStart($arr->model_year_start);
+				$start_year = $this->Cars_model->get_year_by_yearStart($arr->model_year_start);
 				if ($start_year) {
 					$arr->year_id = $start_year->id;
 
@@ -316,7 +315,7 @@ class Preferences extends REST_Controller {
 			$model_id = $this->post('model_id');
 			$fuel_type = $this->post('fuel_type');
 			$year = $this->post('year');
-			$arr['cars_information'] = $this->cars_model->get_cars_information($model_id, $fuel_type, $year);
+			$arr['cars_information'] = $this->Cars_model->get_cars_information($model_id, $fuel_type, $year);
 			$new_array = array();
 
 			foreach ($arr['cars_information'] as $val) {
@@ -370,7 +369,7 @@ class Preferences extends REST_Controller {
 						}
 					}
 				}
-				$user_row = $this->users_model->get_user_by_token($this->post("token"));
+				$user_row = $this->Users_model->get_user_by_token($this->post("token"));
 
 				date_default_timezone_set('Egypt');
 
