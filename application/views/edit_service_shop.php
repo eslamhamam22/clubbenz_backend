@@ -217,7 +217,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <div class="col-md-9">
-                              <label class="control-label " style="width:100%">Service Tags Type</label>
+                              <label class="control-label " style="width:100%">Service Tags group</label>
                               <select name="service_type_id[]"  class="form-control js-example-tokenizer3" id="classes_select" multiple >
                                  <?php foreach ($service_type_id as $service_type) {?>
                                  <option  selected="selected"  value="<?php echo $service_type->id; ?>" ><?php echo $service_type->name ?></option>
@@ -252,7 +252,7 @@
                      <div class="row margin-top">
                         <div class="col-md-6" >
                           <div class="col-sm-9" >
-                             <label class="control-label ">Select service group</label>
+                             <label class="control-label ">Select service type</label>
                               <?php $service_type_arr = explode(',', $rec->service_type);?>
                               <select name="service_english[]" id="groups" multiple="multiple" class="form-control js-example-tokenizer">
                                  <?php foreach ($service as $sr) {?>

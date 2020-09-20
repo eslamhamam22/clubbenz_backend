@@ -1,6 +1,14 @@
 <?php
 
 class Partsubcategory_model extends CI_Model {
+
+	public function __construct() {
+		parent::__construct();
+
+		/* Load Models - Model_1 */
+		$this->load->model('Part_model');
+	}
+
 	public function manage_parts_sub_cat() {
 		$this->db->select('*');
 		$this->db->from('parts_sub_categories');

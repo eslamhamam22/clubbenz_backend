@@ -41,17 +41,18 @@
                              <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Select Shop Type</label>
                                 <div class="col-sm-9">
-                                    <select name="shop_type"  class="form-control ">
-                                        <option><?php echo $service->shop_type ?></option>
+                                    <select name="shop_type"  class="form-control" onchange='CheckColors(this.value);'>
 
-                                        <option value="workshop" >workshop</option>
-                                        <option value="serviceshop" >serviceshop</option>
-                                        <option value="partshop" >partshop</option>
+                                         <?php if (!empty($service->shop_type)) {?>
+                                            <option value="workshop" <?php echo $service->shop_type == 'workshop' ? 'selected' : ''; ?>>workshop</option>
+                                            <option value="serviceshop" <?php echo $service->shop_type == 'serviceshop' ? 'selected' : ''; ?>>serviceshop</option>
+                                            <option value="partshop" <?php echo $service->shop_type == 'partshop' ? 'selected' : ''; ?>>partshop</option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style='<?php if ($service->shop_type == 'workshop' || $service->shop_type == 'partshop') {echo "display:none";}?>/* display:none; */' id="service_id">
                                 <label for="inputEmail3" class="col-sm-3 control-label">service group Name</label>
                                 <div class="col-sm-9">
                                     <select required name="service_type_id" class="form-control">
@@ -102,5 +103,17 @@
           showAutocompleteOnFocus: true
         })
     </script>
+
+    <script type="text/javascript">
+        function CheckColors(val){
+         var element=document.getElementById('service_id');
+         if(val=='serviceshop')
+           element.style.display='block';
+         else
+           element.style.display='none';
+        }
+    </script>
+
+
 
 </html>

@@ -593,7 +593,7 @@ class Parts extends CI_Controller {
 			return "Please renew your plan first";
 		}
 
-		if (count($featured_parts) >= $current_plan->plan->num_featured) {
+		if (count($featured_parts) > $current_plan->plan->num_featured) {
 			return "According to your plan you cannot mark more than " . $current_plan->plan->num_parts . " parts as featured";
 		}
 
