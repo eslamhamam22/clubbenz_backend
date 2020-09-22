@@ -731,6 +731,7 @@ class User extends REST_Controller {
 							"car_type_id" => $this->post('car_type_id'),
 							"model_id" => $this->post('model_id'),
 							"car_vin_prefix" => $this->post('car_vin_prefix'),
+							"social_id" => $this->post('social_id'),
 
 						);
 //						if($this->post('password') && $this->post('password') != ""){
@@ -803,6 +804,7 @@ class User extends REST_Controller {
 								"car_type_id" => $this->post('car_type_id'),
 								"model_id" => $this->post('model_id'),
 								"car_vin_prefix" => $this->post('car_vin_prefix'),
+								"social_id" => $this->post('social_id'),
 
 							);
 
