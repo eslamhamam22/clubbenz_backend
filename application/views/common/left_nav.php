@@ -245,6 +245,9 @@ if (in_array('Users/active', $c_a) || $group_id[0]->name == 'admin') {?>
 
 			<?php if (in_array('Pendning_solutions/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>car_guide/solution"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> Solution Pending <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
 			</li>
+
+			<?php if (in_array('Dataprivacy/active', $c_a) || $group_id[0]->name == 'admin') {?><li> <a href="<?php echo base_url() ?>Dataprivacy"class="waves-effect "><i class="" data-icon="">A</i> <span class="hide-menu"> Data Privacy <span class="label label-rouded label-inverse pull-right"></span></span></a></li><?php }?>
+			</li>
 		</ul>
 	</div>
 </div>
