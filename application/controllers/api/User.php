@@ -261,7 +261,7 @@ class User extends REST_Controller {
 				$arr['user'] = $user_row;
 				$arr['success'] = true;
 			} else {
-				$arr['message'] = "Your Facebook Id is not connected to any user yet , Please create a new account";
+				$arr['message'] = "Your account Id is not connected to any user yet , Please create a new account";
 				$arr['success'] = false;
 			}
 		} else {

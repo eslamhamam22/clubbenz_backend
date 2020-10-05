@@ -30,22 +30,40 @@
                                 <th>Title</th>
                                 <th>Message</th>
                                 <th>User</th>
+                                <th>class</th>
+                                <th>chassiss</th>
                                 <th>Shop</th>
                                 <th>Type</th>
+                                <th>Time</th>
                             </tr>
                         </thead>
                         <tbody>
     <?php foreach ($rec as $a) {
 	$username = $this->notification->get_user_name($a->user_id);
 	$part_shop_name = $this->notification->get_part_shop_name($a->shop_id);
+	$get_id = $this->notification->get_user_model_id($a->user_id);
+	$get_user_chassis_id = $this->notification->get_user_chassis_id($a->user_id);
 	?>
 
                             <tr>
                                 <td><?php echo $a->title; ?></td>
                                 <td><?php echo $a->message; ?></td>
                                 <td><?php echo $username; ?></td>
+                                <td>
+                                    <?php foreach ($class as $cls) {?>
+                                        <?php if ($get_id == $cls->id) {?>
+                                            <?php echo $cls->name; ?>
+                                    <?php }}?>
+                                </td>
+                                <td>
+                                    <?php foreach ($chassis as $chas) {?>
+                                        <?php if ($get_user_chassis_id == $chas->id) {?>
+                                            <?php echo $chas->chassis_num; ?>
+                                    <?php }}?>
+                                </td>
                                 <td><?php echo $part_shop_name; ?></td>
                                 <td><?php echo $a->shop_type; ?></td>
+                                <td><?php echo $a->created_at; ?></td>
                             </tr>
                             <?php }?>
                         </tbody>

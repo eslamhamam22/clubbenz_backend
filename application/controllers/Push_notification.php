@@ -47,6 +47,8 @@ class Push_notification extends MY_Controller {
 	}
 	public function manage_notification() {
 		$this->data['rec'] = $this->notification->manage_notification();
+		$this->data['class'] = $this->classes->model_manage();
+		$this->data['chassis'] = $this->Users_model->get_all_chassis();
 		$this->data['title'] = 'Manage Notification';
 		$this->load->view('manage_notification', $this->data);
 	}
@@ -111,7 +113,7 @@ class Push_notification extends MY_Controller {
 			$data['show_in_foreground'] = true;
 
 			$result = $this->notification->get_all_users($posted_data);
-			$show_admin= true;
+			$show_admin = true;
 
 			if (!empty($result)) {
 				foreach ($result as $value) {
@@ -123,8 +125,8 @@ class Push_notification extends MY_Controller {
 						$this->db->insert("data_logs", $d);
 						$data['user_id'] = $value->id;
 //						print_r($value);
-						$data['show_admin']= $show_admin;
-						$show_admin= false;
+						$data['show_admin'] = $show_admin;
+						$show_admin = false;
 						$this->db->insert("notifications", $data);
 					}
 				}

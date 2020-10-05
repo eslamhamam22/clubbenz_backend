@@ -78,66 +78,42 @@ class Part_model extends CI_Model {
 	function get_shop($data, $start, $limit, $chassis, $phone) {
 
 		$chassis_ids = array('24', $chassis);
-//		$this->db->where_in('chassis_id', $chassis_ids);
-		//		$this->db->like('chassis_id', $chassis);
-		//		$this->db->or_like('chassis_id', $chassis);
-		//		$this->db->or_like('chassis_id', $chassis);
-		if ($data['search']) {
-//			$this->db->like("chassis_id",'24', "both" );
-			//$this->db->alike("chassis_id",'2', "both" );
-			//			$this->db->where(array('chassis_id' => 24, 'chassis_id' => 2));
 
-//			$this->db->where('chassis_id', 24);
-			//			$this->db->orwhere('chassis_id', 24);
+		if ($data['search']) {
 
 			$this->db->like("title", $data['search']);
 			$this->db->or_like('part_number', $data['search']);
 			$this->db->or_like('parts.id', $data['search']);
-//			$this->db->like("chassis_id",'2', "both" );
-			//			$this->db->like("chassis_id",'3', "both" );
-			//			$this->db->or_like("chassis_id", $chassis , "both" );
-			//			$this->db->like("title",$data['search'] );
-
-			//$this->db->like("title",$data['brand_id']);
-			//			$this->db->like("chassis_id",'24' , "both");
-			//			$this->db->like("chassis_id", "2" , "both");
-
 		}
-		if ($data['type'] == 'New') {
-//			$types = array('New', 'New&Used');
-			//			$this->db->where_in('part_case', $types);
-			//			$this->db->where("part_case",'New');
-			//			$this->db->or_where("part_case","New&Used");
 
+		if ($data['type'] == 'New') {
 			$where = " (part_case='New' or part_case='New&Used') ";
 
 			$this->db->where($where, NULL, FALSE);
 
 		} else if ($data['type'] == 'Used') {
 
-//
-			//			$this->db->where("part_case",'Used');
-			//			$this->db->or_where("part_case","New&Used");
-
 			$where = " (part_case='Used' or part_case='New&Used') ";
 			$this->db->where($where, NULL, FALSE);
 
-		}if ($data['sub_category']) {
+		}
+
+		if ($data['sub_category']) {
 			$this->db->where("part_sub_category", $data['sub_category']);
-		}if ($data['brand_id']) {
+		}
+		if ($data['brand_id']) {
 			$this->db->like("part_brand", $data['brand_id']);
 
 		}
 
-//		$this->db->limit($limit, $start);
 		$this->db->select('parts.*');
-		$this->db->select('countries.phonecode');
+		$this->db->from("parts");
 		$this->db->where('parts.active', 1);
 		$this->db->where('parts.status', "approve");
 
-		$this->db->from("parts");
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
-		$this->db->join('countries', 'country = countries.id');
+		$this->db->join('countries', 'provider_user.country = countries.name');
+		$this->db->join('parts_sub_categories', 'parts.part_sub_category = parts_sub_categories.id');
 		$q = $this->db->get();
 
 		if ($q->num_rows() > 0) {
@@ -147,8 +123,9 @@ class Part_model extends CI_Model {
 			}
 			$arr['shops'] = array_filter($arr['shops'], function ($part) use ($phone, $chassis) {
 				$chassis_arr = explode(',', $part->chassis_id);
-				if (!in_array($chassis, $chassis_arr)) {
-					return false;
+				if (in_array($chassis, $chassis_arr)) {
+
+					return true;
 				}
 				if ($part->date_expire && !empty($part->date_expire) && strtotime(date("Y-m-d")) > strtotime($part->date_expire)) {
 					return false;
@@ -168,6 +145,7 @@ class Part_model extends CI_Model {
 				}
 				return true;
 			});
+			//
 			$arr['shops'] = array_slice($arr['shops'], $start, $limit);
 			return $arr['shops'];
 		}

@@ -184,6 +184,27 @@ class Push_notification_model extends CI_Model {
 		}
 		return "";
 	}
+	function get_user_model_id($id) {
+		$this->db->select('model_id');
+		$this->db->where('id', $id);
+		$this->db->from('users');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->row()->model_id;
+		}
+		return "";
+	}
+
+	function get_user_chassis_id($id) {
+		$this->db->select('chassis');
+		$this->db->where('id', $id);
+		$this->db->from('users');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->row()->chassis;
+		}
+		return "";
+	}
 
 	function get_part_shop_name($id) {
 		$this->db->select('name');
