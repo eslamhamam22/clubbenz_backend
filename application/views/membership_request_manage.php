@@ -63,8 +63,8 @@
                                         <td><img class="img_size" src="<?php echo base_url() . "/upload/$s->licence_rear" ?>"></td>
                                         <td>
                                             <?php if ($s->status == 'pending') {echo "pending";}?>
-                                            <?php if ($s->status == 'approve') {echo "Complete";}?>
-                                            <?php if ($s->status == 'reject') {echo "Delivery";}?>
+                                            <?php if ($s->status == 'approve') {echo "Delivery";}?>
+                                            <?php if ($s->status == 'reject') {echo "Requested";}?>
 
                                             </td>
 

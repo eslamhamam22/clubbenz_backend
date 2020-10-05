@@ -150,6 +150,7 @@ class Membership_model extends CI_Model {
 		$this->db->select('memberships.name, memberships.image, memberships.price, memberships.duration, "memberships.msg_ar", "memberships.msg_en", memberships_users.*');
 		$this->db->from('memberships_users');
 		$this->db->where('user_id', $user_id);
+		$this->db->where('status', 'approve');
 		$this->db->join('memberships', 'memberships_users.membership_id = memberships.id');
 		$this->db->order_by('memberships_users.id', "DESC");
 		$this->db->limit(1);

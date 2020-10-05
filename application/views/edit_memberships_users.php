@@ -115,8 +115,8 @@ foreach ($rec as $us) {
                                             <select id="status"  name="status" class="form-control">
                                                 <?php if (!empty($us->status)) {?>
                                                 <option value="pending" <?php echo $us->status == 'pending' ? 'selected' : ''; ?>>pending</option>
-                                                <option value="approve" <?php echo $us->status == 'approve' ? 'selected' : ''; ?>>Complete</option>
-                                                <option value="reject" <?php echo $us->status == 'reject' ? 'selected' : ''; ?>>Delivery</option>
+                                                <option value="approve" <?php echo $us->status == 'approve' ? 'selected' : ''; ?>>Delivery</option>
+                                                <option value="reject" <?php echo $us->status == 'reject' ? 'selected' : ''; ?>>Requested</option>
                                                 <?php }?>
                                             </select>
                                         </div>
