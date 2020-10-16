@@ -261,8 +261,19 @@ class User extends REST_Controller {
 				$arr['user'] = $user_row;
 				$arr['success'] = true;
 			} else {
-				$arr['message'] = "Your account Id is not connected to any user yet , Please create a new account";
-				$arr['success'] = false;
+				// $arr['message'] = "Your account Id is not connected to any user yet , Please create a new account";
+				// $arr['success'] = false;
+				$token = $this->users_model->get_unique_user_token();
+				$this->users_model->update($user_row->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
+				$user_row = $this->users_model->get_user_by_field('social_id', $data['social_id']);
+				$user_row->created_on = date("Y-m-d H:i", $user_row->created_on);
+				$arr['year'] = $this->Cars_model->get_by_table_and_field_name("years", "id", 39);
+				$arr['model'] = $this->Cars_model->get_by_table_and_field_name("model", "id", 18);
+				$arr['car_type'] = $this->Cars_model->get_by_table_and_field_name("fuel_type", "id", 39);
+				$arr['car'] = $this->Cars_model->get_by_table_and_field_name("cars", "vin_prefix", 177044);
+
+				$arr['user'] = $user_row;
+				$arr['success'] = true;
 			}
 		} else {
 			$arr['message'] = validation_errors();

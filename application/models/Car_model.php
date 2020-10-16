@@ -45,6 +45,20 @@ class Car_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result();
 	}
+	public function get_chassis_num() {
+		$this->db->select('*');
+		$this->db->from('chassis');
+		$this->db->where('chassis_num  !=', 'All');
+		$this->db->order_by('chassis_num', 'asc');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function get_model_num() {
+		$this->db->select('*');
+		$this->db->from('model');
+		$q = $this->db->get();
+		return $q->result();
+	}
 	public function car_del($id) {
 		$this->db->where('id', $id);
 		$this->db->delete('cars');

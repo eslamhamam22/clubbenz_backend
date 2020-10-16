@@ -25,29 +25,33 @@
 
                             <div style="margin-left: 50px">
                                 <div class="row" style="padding-top: 20px">
+
                                     <div class="col-md-6" style="width: 28%">
                                         <div class="" style="padding-left: 15px ; padding-right: 15px">
                                             <label class=" ">Model Name</label>
-                                            <select name="model_id" class="form-control">
-                                                <option>Select Model</option>
-                                                <?php foreach ($year as $yr) {?>
-                                                    <?php echo '<option value="' . $yr->id . '">' . $yr->name . '</option>'; ?>
-                                                    <!-- <option><?php echo $yr->name ?></option> -->
+                                            <select id="classes_select" type="text" name="model_id[]" class="form-control js-example-tokenizer3" multiple >
+                                                <option value="0">All</option>
+                                                <?php foreach ($year as $model) {?>
+                                                    <?php echo '<option value="' . $model->id . '">' . $model->name . '</option>'; ?>
+
                                                 <?php }?>
-                                            </select> <span class="help-block"></span>
+                                            </select>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6" style="width: 28%">
                                         <div class="form-group">
 
                                             <label class="">Chassis</label>
-                                            <select name="chassis" class="form-control" style="width: 200px;">
-                                                <option>Select Chassis</option>
-                                                <?php foreach ($chassis_number as $cn) {?>
-                                                    <?php echo '<option value="' . $cn->id . '">' . $cn->chassis_num . '</option>'; ?>
-
+                                            <select  required type="text" name="chassis[]" id="chassis_select" class="form-control js-example-tokenizer" multiple>
+                                                <option value="">Select Chassis</option>
+                                                <option value="<?php foreach ($chassis_number as $c) {echo $c->id . ',';}?>">All</option>
+                                                <?php foreach ($chassis_number as $c) {?>
+                                                    <?php echo '<option value="' . $c->id . '">' . $c->chassis_num . '</option>'; ?>
                                                 <?php }?>
-                                            </select> <span class="help-block"></span>
+                                            </select>
+                                            <span class="help-block"></span>
 
 
                                         </div>
@@ -207,6 +211,58 @@
             </div>
         </div>
        <?php $this->load->view("common/common_script")?>
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".js-example-tokenizer").select2({
+                    tags: true,
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer2").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                 $(".js-example-tokenizer3").select2({
+                    placeholder: "Please select option",
+                    tokenSeparators: [',', ' ']
+                });
+                var chassis_number= [];
+                <?php foreach ($chassis_number as $c) {?>
+                chassis_number.push({
+                    id: <?php echo $c->id; ?>,
+                    chassis_num: "<?php echo $c->chassis_num; ?>",
+                    model_id: "<?php echo $c->model_id; ?>"
+                })
+                <?php }?>
+                $('#classes_select').change( function () {
+                    var value = $(this).val() + ''
+                    console.log(value)
+                    var valueArr= value.split(',');
+                    var availableChassis= []
+                    if(!$(this).val() || $(this).val() == 0 || valueArr.indexOf("0") != -1){
+                        availableChassis= chassis_number.slice()
+                    }else{
+                        availableChassis= chassis_number.filter(function (ch) {
+                            return valueArr.indexOf(ch.model_id) != -1
+                        })
+                    }
+                    var prevValue= $('#chassis_select').val();
+                    $('#chassis_select').empty();
+                    // $('#chassis_select').append('<option value="">Select Option</option>');
+                    $('#chassis_select').append('<option value="all">All</option>');
+                    availableChassis.forEach( function(ch){
+                        console.log(ch.id)
+                        $('#chassis_select').append('<option value="'+ch.id+'">'+ch.chassis_num+'</option>');
+                    })
+                    $('#chassis_select').val(prevValue || '')
+                });
+
+            });
+        </script>
 
 
     </body>

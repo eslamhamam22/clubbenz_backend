@@ -39,15 +39,20 @@
 foreach ($rec as $us) {
 
 	$fuel_name = $this->car->get_fuel_type($us->fuel_type);
-	$year = $this->car->get_modell($us->model_id);
-
-	$chassis_number = $this->car->get_chassis_number($us->chassis);
+	$model_arr = explode(",", $us->model_id, 5);
+	$chassis_arr = explode(",", $us->chassis, 5);
 
 	?>
                                 <tr>
-                                    <td><?php echo $year->name . "<br>" . $us->model; ?></td>
+                                    <td><?php $cout = count($model_arr);?>
+                                        <?php if ($cout <= 4) {foreach ($get_modell as $model) {if (in_array($model->id, $model_arr)) {echo $model->name . ', ';}}} else {foreach ($chassis_number as $model) {if (in_array($model->id, $model_arr)) {echo $model->name . ', ';}}
+		echo "More...";}?><br> <?php echo $us->model; ?> </td>
                                     <td><?php echo $us->model_year_start . "<br>" . $us->model_year_end; ?></td>
-                                    <td><?php if (isset($chassis_number)) {echo $chassis_number->chassis_num;}?></td>
+
+                                    <td><?php $cou = count($chassis_arr);?>
+                                        <?php if ($cou <= 4) {foreach ($chassis_number as $chassis_n) {if (in_array($chassis_n->id, $chassis_arr)) {echo $chassis_n->chassis_num . ', ';}}} else {foreach ($chassis_number as $chassis_n) {if (in_array($chassis_n->id, $chassis_arr)) {echo $chassis_n->chassis_num . ', ';}}
+		echo "More...";}?> </td>
+
                                     <td><?php echo $us->vin_prefix; ?></td>
                                     <td><?php echo $fuel_name->name; ?></td>
                                     <td>

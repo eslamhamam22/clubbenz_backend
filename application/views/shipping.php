@@ -13,9 +13,9 @@
             <?php $this->load->view('common/top_nav');?>
 
             <?php $this->load->view('common/left_nav');?>
-			<div style="overflow: auto">
+            <div style="overflow: auto">
 
-			<div id="page-wrapper" style="background: white">
+            <div id="page-wrapper" style="background: white">
                     <div class="container-fluid">
                         <div class="row bg-title">
                             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -36,10 +36,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Provider Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-									<th>Cost</th>
+                                    <th>Provider Information</th>
+                                    <!-- <th>Email</th> -->
+                                    <!-- <th>Phone Number</th> -->
+                                    <th>Cost</th>
                                     <th>Request Date</th>
                                     <th>Shipping Date</th>
                                     <th>Status</th>
@@ -52,15 +52,13 @@
 	?>
                                 <tr>
                                     <td><?php echo $r['id']; ?></td>
-                                    <td>
-    <?php foreach ($providers as $provider) {
-		if ($r['provider_id'] == $provider['id']) {
-			echo $provider['user_name'];?>
-
-                                    </td>
-                                    <td><?php echo $provider['user_email']; ?></td>
-                                    <td><?php echo $provider['user_mobile']; ?></td>
-                                    <?php }}?>
+                                    <td> <?php foreach ($providers as $provider) {
+		?> <?php if ($r['provider_id'] == $provider['id']) {?> - <?php echo $provider['user_name']; ?> <br>
+                                        -<?php echo $provider['user_email']; ?><br>
+                                        -<?php echo $provider['user_mobile']; ?>
+                                        <?php } else {echo "User Not Found";}
+		break;}?>
+                                     </td>
                                     <td><?php echo $r['price']; ?><?php if (!empty($r['price'])) {echo " E.G.P";}?></td>
                                     <td><?php echo $r['shippment_date']; ?></td>
                                     <td><?php echo $r['created_at']; ?></td>
@@ -75,7 +73,7 @@
                          </table>
 
 
-						</div>
+                        </div>
                     <?php $this->load->view('common/common_footer');?>
                 </div>
             </div>

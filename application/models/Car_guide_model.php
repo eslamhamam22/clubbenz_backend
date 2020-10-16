@@ -31,15 +31,17 @@ class Car_guide_model extends CI_Model {
 	public function get_cluster_error_chassis($chassis) {
 		$this->db->select("*");
 //		$this->db->where("chassis", $chassis);
-//		$this->db->or_like("chassis", ",".$chassis.",");
-//		$this->db->or_where("chassis", 24);
+		//		$this->db->or_like("chassis", ",".$chassis.",");
+		//		$this->db->or_where("chassis", 24);
 		$this->db->from("cluster_error");
 		$q = $this->db->get();
 		if ($q->num_rows() > 0) {
-			$result= $q->result();
-			$result= array_filter($result, function($error) use($chassis){
-				if(in_array($chassis, explode(",", $error->chassis)))
+			$result = $q->result();
+			$result = array_filter($result, function ($error) use ($chassis) {
+				if (in_array($chassis, explode(",", $error->chassis))) {
 					return true;
+				}
+
 				return false;
 			});
 			return $result;

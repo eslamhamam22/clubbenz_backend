@@ -9,7 +9,8 @@ class Cars extends MY_Controller {
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
 		$this->load->model('Car_model', 'car');
-
+		$this->load->model('Part_model', 'part');
+		$this->load->model('Car_guide_model', 'car_guide');
 		$this->load->model('acl_model');
 		$this->load->model('Users_model');
 
@@ -30,6 +31,8 @@ class Cars extends MY_Controller {
 	public function index() {
 
 		$this->data['rec'] = $this->car->cars_manage();
+		$this->data['chassis_number'] = $this->car->get_chassis_num();
+		$this->data['get_modell'] = $this->car->get_model_num();
 		$this->data['title'] = 'Cars';
 		$this->load->view('cars_manage', $this->data);
 	}
@@ -63,21 +66,33 @@ class Cars extends MY_Controller {
 					'rules' => 'trim|required',
 				),
 				array(
-					'field' => 'chassis',
-					'label' => 'Chassis',
-					'rules' => 'trim|required',
-				),
-				array(
 					'field' => 'model',
 					'label' => 'Model',
 					'rules' => 'trim|required',
 				),
 			);
 			$this->form_validation->set_rules($rules);
+			$cha = implode(',', $this->input->post('chassis'));
+			$model_id = implode(',', $this->input->post('model_id'));
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
 			if ($this->form_validation->run()) {
 				$data = array(
-					'model_id' => $this->input->post('model_id'),
-					'chassis' => $this->input->post('chassis'),
+					'model_id' => $model_id,
+					'chassis' => $cha,
 					'model_year_start' => $this->input->post('year_start'),
 					'model_year_end' => $this->input->post('year_end'),
 					'fuel_type' => $this->input->post('fuel_type'),
@@ -164,11 +179,28 @@ class Cars extends MY_Controller {
 					'rules' => 'trim|required',
 				),
 			);
+			$cha = implode(',', $this->input->post('chassis'));
+			$model_id = implode(',', $this->input->post('model_id'));
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}
 			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run()) {
 				$data = array(
-					'model_id' => $this->input->post('model_id'),
-					'chassis' => $this->input->post('chassis'),
+					'model_id' => $cha,
+					'chassis' => $model_id,
 					'model_year_start' => $this->input->post('year_start'),
 					'model_year_end' => $this->input->post('year_end'),
 					'fuel_type' => $this->input->post('fuel_type'),
@@ -222,7 +254,23 @@ class Cars extends MY_Controller {
 	}
 	public function edit_car($id) {
 		if ($this->input->post()) {
-			$rules = array(
+			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+			$model_id = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
+
+			if ($cha == "all") {
+
+				$model_list = explode(",", $model_id);
+				$chassis_list = [];
+				foreach ($model_list as $single_model) {
+					$model_chassis = $this->part->get_chassis_by_model($single_model);
+					foreach ($model_chassis as $single_chassis) {
+						echo $single_chassis->id;
+						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+					}
+				}
+				$cha = implode(',', $chassis_list);
+
+			}$rules = array(
 				array(
 					'field' => 'year_start',
 					'label' => 'Start Year',
@@ -248,23 +296,14 @@ class Cars extends MY_Controller {
 					'label' => 'Fuel Type',
 					'rules' => 'trim|required',
 				),
-				array(
-					'field' => 'chassis',
-					'label' => 'Chassis',
-					'rules' => 'trim|required',
-				),
-				array(
-					'field' => 'model_id',
-					'label' => 'Model',
-					'rules' => 'trim|required',
-				),
 			);
 
 			$this->form_validation->set_rules($rules);
+
 			if ($this->form_validation->run()) {
 				$data = array(
-					'model_id' => $this->input->post('model_id'),
-					'chassis' => $this->input->post('chassis'),
+					'model_id' => $model_id,
+					'chassis' => $cha,
 					'model_year_start' => $this->input->post('year_start'),
 					'model_year_end' => $this->input->post('year_end'),
 					'fuel_type' => $this->input->post('fuel_type'),
@@ -294,6 +333,7 @@ class Cars extends MY_Controller {
 		}
 
 		$this->data['chassis_number'] = $this->car->get_chassis();
+		// $this->data['chassis'] = $this->data['chassis_number'];
 		$this->data['fuel_name'] = $this->car->get_fuel();
 		$this->data['models'] = $this->car->get_classes();
 		$this->data['model_name'] = $this->car->get_classes();
