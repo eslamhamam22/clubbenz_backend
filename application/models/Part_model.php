@@ -31,6 +31,7 @@ class Part_model extends CI_Model {
 		// }
 
 		$this->db->select('*');
+		$this->db->order_by('featured', 'desc');
 		$q = $this->db->get("parts");
 
 		if ($q->num_rows() > 0) {
@@ -102,7 +103,7 @@ class Part_model extends CI_Model {
 			$this->db->where("part_sub_category", $data['sub_category']);
 		}
 		if ($data['brand_id']) {
-			$this->db->like("part_brand", $data['brand_id']);
+			$this->db->where("part_brand", $data['brand_id']);
 
 		}
 
@@ -114,6 +115,7 @@ class Part_model extends CI_Model {
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
 		$this->db->join('countries', 'provider_user.country = countries.name');
 		$this->db->join('parts_sub_categories', 'parts.part_sub_category = parts_sub_categories.id');
+		$this->db->order_by('parts.featured', 'desc');
 		$q = $this->db->get();
 
 		if ($q->num_rows() > 0) {
@@ -244,14 +246,25 @@ class Part_model extends CI_Model {
 		return $q->row();
 	}
 	public function same_part($part, $id) {
-		$this->db->limit('10');
-		$this->db->where('id !=', $id);
-		$this->db->where('part_category', $part);
-		$this->db->select('*');
+		$this->db->select('parts.*, part_photos.photo_name main_image');
 		$this->db->from('parts');
+		$this->db->where('parts.id !=', $id);
+		$this->db->where('parts.part_category', $part);
+		$this->db->join('part_photos', 'parts.id = part_photos.part_id');
+		$this->db->where('part_photos.is_default', 'yes');
+		// $this->db->limit('10');
 		$q = $this->db->get();
 		return $q->result_array();
 	}
+	// public function same_part($part, $id) {
+	// 	$this->db->limit('10');
+	// 	$this->db->where('id !=', $id);
+	// 	$this->db->where('part_category', $part);
+	// 	$this->db->select('*');
+	// 	$this->db->from('parts');
+	// 	$q = $this->db->get();
+	// 	return $q->result_array();
+	// }
 	public function part_brand() {
 		$this->db->select("*");
 		$this->db->from("brands");

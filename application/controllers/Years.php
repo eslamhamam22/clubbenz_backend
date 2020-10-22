@@ -73,9 +73,10 @@ class years extends MY_Controller {
 			redirect(base_url('years/?error=some error!'));
 		}
 	}
-	public function year_update($id, $name, $sorting) {
+	public function year_update($id) {
 		$this->data['title'] = 'Edit Years';
-		$this->load->view('year_update', $this->data, ['id' => $id, 'name' => $name, 'sorting' => $sorting]);
+		$this->data['years'] = $this->years->year_update($id);
+		$this->load->view('year_update', $this->data);
 	}
 	public function year_update_value() {
 		if ($this->input->post()) {

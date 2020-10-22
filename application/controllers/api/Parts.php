@@ -50,20 +50,6 @@ class Parts extends REST_Controller {
 			$new_array[] = $val;
 		}
 		$country = null;
-//		$arr['shops']= array_filter($arr['shops'], function ($part) use ($phone) {
-		//			if(!$part->plan || $part->plan->status != "active")
-		//				return false;
-		//			if($part->available_location == "National" && $phone){
-		//				$phonecode= "+".$part->phonecode;
-		//				if(strpos($phone, $phonecode) !== false){
-		//					return true;
-		//				}else{
-		//					return false;
-		//				}
-		//			}
-		//			return true;
-		//		});
-		//		$arr['shops'] = array_slice($arr['shops'], $start, $limit);
 		$this->response($arr, 200);
 	}
 

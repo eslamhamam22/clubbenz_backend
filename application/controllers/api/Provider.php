@@ -23,14 +23,16 @@ class Provider extends REST_Controller {
 		$provider_id = $this->get('provider_id');
 		$provider = $this->Provider_model->get_provider_by_id($provider_id);
 		$provider[0]->reviews = $this->Workshop_model->get_reviews($provider_id, "provider");
+		// if (isset($provider[0])) {
 		foreach ($provider[0]->reviews as $r) {
 			$user = $this->Workshop_model->get_user_picture($r->user_id);
 			$r->user_picture = $user->profile_picture;
 			$r->user_name = $user->username;
 		}
+		// }
 		$provider[0]->avg_rating = $this->Workshop_model->average_rating($provider_id, "provider");
-		$provider[0]->country = $this->World_model->get_country_by_id($provider[0]->country);
-		$provider[0]->governorate = $this->World_model->get_state_by_id($provider[0]->governorate);
+		// $provider[0]->country = $this->World_model->get_country_by_id($provider[0]->country);
+		// $provider[0]->governorate = $this->World_model->get_state_by_id($provider[0]->governorate);
 		$this->response($provider[0], 200);
 	}
 }
