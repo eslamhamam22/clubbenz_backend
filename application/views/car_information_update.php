@@ -228,7 +228,7 @@ $chassis_numb = $this->car->get_chassis_by_id($rec->chassis);
                         </div>
                         <div class="col-md-6" style="width: 200px">
 
-                            <label class="">Wheeles</label>
+                            <label class="">Tank capacity</label>
                             <input type="text" style="height: 120px ; width: 150px ; text-align: center" name="wheeles" class="form-control" value="<?php echo $rec->wheels ?>">
                         </div>
                         <div class="col-md-6" style="width: 200px">

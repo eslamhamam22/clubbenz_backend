@@ -554,6 +554,10 @@ class Users_model extends CI_Model {
 		return $this->db->get("chassis")->result();
 
 	}
+
+	public function acc_fac($additional_detail) {
+		$this->db->insert('users', $additional_detail);
+	}
 }
 
 ?>

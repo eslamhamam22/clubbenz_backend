@@ -261,18 +261,30 @@ class User extends REST_Controller {
 				$arr['user'] = $user_row;
 				$arr['success'] = true;
 			} else {
-				// $arr['message'] = "Your account Id is not connected to any user yet , Please create a new account";
-				// $arr['success'] = false;
 				$token = $this->users_model->get_unique_user_token();
-				$this->users_model->update($user_row->id, array("token" => $token, "fcm_token" => $this->post("fcm_token")));
-				$user_row = $this->users_model->get_user_by_field('social_id', $data['social_id']);
-				$user_row->created_on = date("Y-m-d H:i", $user_row->created_on);
-				$arr['year'] = $this->Cars_model->get_by_table_and_field_name("years", "id", 39);
-				$arr['model'] = $this->Cars_model->get_by_table_and_field_name("model", "id", 18);
-				$arr['car_type'] = $this->Cars_model->get_by_table_and_field_name("fuel_type", "id", 39);
-				$arr['car'] = $this->Cars_model->get_by_table_and_field_name("cars", "vin_prefix", 177044);
+				$verification_code = rand(100000, 999999);
+				$additional_detail = array(
+					"username" => $data['name'],
+					"email" => $data['email'],
+					"phone" => '+20100',
+					"token" => $token,
+					"verification_code" => $verification_code,
+					"model_id" => 18,
+					"car_type_id" => 39,
+					"car_vin_prefix" => 177044,
+					"year_id" => 39,
+					"password" => md5(123456),
+					"profile_picture" => "",
+					"app_type" => $data['app_type'],
+					"fcm_token" => $data['fcm_token'],
+					"social_id" => $data['social_id'],
+					"created_date" => date("Y-m-d"),
+					"chassis" => 4,
+				);
 
-				$arr['user'] = $user_row;
+				$this->users_model->acc_fac($additional_detail);
+
+				$arr['user'] = $additional_detail;
 				$arr['success'] = true;
 			}
 		} else {

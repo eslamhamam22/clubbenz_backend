@@ -79,7 +79,7 @@ class Partsubcategory_model extends CI_Model {
 		$this->db->where('category', $id);
 		$this->db->from('parts_sub_categories');
 		// $this->db->join('parts', 'parts_sub_categories.id = parts.part_sub_category');
-		//		$this->db->where('active', 1);
+		$this->db->where('status', 1);
 		$this->db->order_by('sorting', 'asc');
 		$q = $this->db->get();
 		$data = array();

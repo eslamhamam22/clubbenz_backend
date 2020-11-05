@@ -182,8 +182,8 @@
                                     </div>
                                     <div class="col-md-6" style="width: 200px">
 
-                                        <label class="">Wheeles</label>
-                                        <input type="text" style="height: 120px ; width: 150px ; text-align: center" name="wheeles" class="form-control"  placeholder="Wheeles" value="<?php echo $this->input->post("wheeles") ?>">
+                                        <label class="">Tank capacity</label>
+                                        <input type="text" style="height: 120px ; width: 150px ; text-align: center" name="wheeles" class="form-control"  placeholder="Tank capacity" value="<?php echo $this->input->post("wheeles") ?>">
                                     </div>
                                     <div class="col-md-6" style="width: 200px">
 

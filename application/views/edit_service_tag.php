@@ -55,7 +55,7 @@
                             <div class="form-group" style='<?php if ($service->shop_type == 'workshop' || $service->shop_type == 'partshop') {echo "display:none";}?>/* display:none; */' id="service_id">
                                 <label for="inputEmail3" class="col-sm-3 control-label">service group Name</label>
                                 <div class="col-sm-9">
-                                    <select required name="service_type_id" class="form-control">
+                                    <select name="service_type_id" class="form-control">
                                         <option value="">Select Option</option>
                                         <?php foreach ($service_type as $sr) {?>
                                         <option value="<?php echo $sr->id ?>"<?php if ($sr->id == $service->service_type_id) {echo 'selected="selected"';}?>><?php echo $sr->name ?></option>

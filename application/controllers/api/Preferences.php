@@ -30,7 +30,7 @@ class Preferences extends REST_Controller {
 		$arr['home_page_services'] = $this->Service_model->get_home_page_service_api();
 		$arr['profile_pictures'] = $this->users_model->get_profile_pictures();
 		$arr['home_ads'] = $this->Advertisement_model->manage_advertisement();
-
+		$arr['parts_brand'] = $this->Part_model->part_brand();
 		$arr['home_slide'] = $this->Advertisement_model->manage_advertisement_home("active");
 		$arr['timeDisplay'] = $this->Advertisement_model->manage_advertisement_timeDisplay("active");
 		$arr['banner'] = $this->Advertisement_model->manage_advertisement_banner("active");

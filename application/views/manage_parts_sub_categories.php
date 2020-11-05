@@ -44,9 +44,9 @@ foreach ($partcat as $cat) {
                                                 <li><a class="btn default btn-outline" title="Delete" href="<?php echo base_url('partsubcategory/part_sub_categories_del/') ?><?php echo $subcat['id']; ?>" onclick="return confirm('Are You Sure To Delete This?')"><i class="icon-trash"></i></a></li>
 
                                                 <?php $status = $subcat['status'];if ($status == 1) {?>
-    <a href="<?php echo base_url('partsubcategory/update_status?sid=') ?><?php echo $subcat['id']; ?>&sval=<?php echo $status; ?> " class="btn btn-success">Active</a>
+    <a href="<?php echo base_url('partsubcategory/update_status?sid=') ?><?php echo $subcat['id']; ?>&sval=<?php echo $status; ?> " class="btn btn-danger">in Active</a>
                                                 <?php } else {?>
-                                                     <a href="<?php echo base_url('partsubcategory/update_status?sid=') ?><?php echo $subcat['id']; ?>&sval=<?php echo $status; ?> " class="btn btn-danger">in Active</a>
+                                                     <a href="<?php echo base_url('partsubcategory/update_status?sid=') ?><?php echo $subcat['id']; ?>&sval=<?php echo $status; ?> " class="btn btn-success">Active</a>
                                                 <?php }?>
                                             </ul>
                                         </div>
