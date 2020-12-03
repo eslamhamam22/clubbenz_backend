@@ -92,7 +92,9 @@ class Push_notification extends MY_Controller {
 			$payload['badge'] = 1;
 			$payload['priority'] = "high";
 			$payload['icon'] = "ic_stat";
+			$payload['created_at'] = date("yy-m-d H:i:s");
 			$payload['show_in_foreground'] = true;
+
 			// print_r($posted_data);
 			// return $this->input->post("chassiss");
 
@@ -110,6 +112,7 @@ class Push_notification extends MY_Controller {
 			$data['badge'] = 1;
 			$data['priority'] = "high";
 			$data['icon'] = "ic_stat";
+			$data['created_at'] = date("yy-m-d H:i:s");
 			$data['show_in_foreground'] = true;
 
 			$result = $this->notification->get_all_users($posted_data);

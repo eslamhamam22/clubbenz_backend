@@ -48,15 +48,6 @@ class part extends MY_Controller {
 
 		if ($this->input->post()) {
 
-//			if(empty($this->input->post('username'))){
-			//				$user = $this->ion_auth->user()->row();
-			//				$usname = $user->username;
-			//			}
-			//			else{
-			//				$usname = $this->input->post('username');
-			//
-			//			}
-			/*$brand=implode(',',$this->input->post('part_brand'));*/
 			$rules = array(
 				array(
 					'field' => 'price',
@@ -111,6 +102,7 @@ class part extends MY_Controller {
 
 					$model_select = implode(',', $model_select);
 				}
+
 				if ($cha == "all") {
 
 					$model_list = explode(",", $model_select);
@@ -118,7 +110,6 @@ class part extends MY_Controller {
 					foreach ($model_list as $single_model) {
 						$model_chassis = $this->part->get_chassis_by_model($single_model);
 						foreach ($model_chassis as $single_chassis) {
-							echo $single_chassis->id;
 							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
 						}
 					}
@@ -127,7 +118,6 @@ class part extends MY_Controller {
 				}
 
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
-				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				$title = $this->input->post('title');
 				$arabicTitle = $this->input->post('title_arabic');
 
@@ -148,24 +138,13 @@ class part extends MY_Controller {
 					'part_brand' => $part_brand,
 					'add_date' => $this->input->post('add_date'),
 					'description' => $this->input->post('description'),
-
-//					'location_latitude'	 =>   $this->input->post('location_lat'),
-					//					'location_longitude' =>   $this->input->post('location_lon'),
-
-//					'location_zone' => $this->input->post('location_zone'),
-					'username' => $this->session->userdata("user_name"),
-					'email' => $this->session->userdata("user_email"),
-					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
 					'model_id' => $model_select,
-//					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					// 'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),
 					'status' => $this->input->post('status'),
-
 				);
 				$result = $this->part->add_part($new_array);
 
@@ -210,8 +189,6 @@ class part extends MY_Controller {
 
 					redirect(base_url('Part/?success=Added successfully!'));
 				} else {
-					echo $result;
-//					print_r($new_array);
 
 					redirect(base_url('Part/?error=Unknown error!'));
 				}
@@ -233,6 +210,7 @@ class part extends MY_Controller {
 
 		$this->load->view('add_part', $this->data);
 	}
+
 	public function del_part($id) {
 		$id = $this->part->del_part($id);
 		if ($id) {
@@ -241,42 +219,13 @@ class part extends MY_Controller {
 			redirect(base_url('part/?error=Some error!'));
 		}
 	}
-	public function edit_part($id) {
 
-//		$user = $this->ion_auth->user()->row();
-		//		$usname = $user->username;
-		$this->data['rec'] = $this->part->edit_part($id);
+	public function edit_part($id) {
 
 		if ($this->input->post()) {
 
-//			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
-			//			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
-			$cha = implode(',', $this->input->post('chassis'));
-			$model_select = implode(',', $this->input->post('model_id'));
-			if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
-				$all_models = $this->car->get_classes();
-				$model_select = array();
-				foreach ($all_models as $single_model) {
-					$model_select = array_merge($model_select, array($single_model->id));
-				}
-
-				$model_select = implode(',', $model_select);
-			}
-
-			if ($cha == "all") {
-
-				$model_list = explode(",", $model_select);
-				$chassis_list = [];
-				foreach ($model_list as $single_model) {
-					$model_chassis = $this->part->get_chassis_by_model($single_model);
-					foreach ($model_chassis as $single_chassis) {
-						echo $single_chassis->id;
-						$chassis_list = array_merge($chassis_list, array($single_chassis->id));
-					}
-				}
-				$cha = implode(',', $chassis_list);
-
-			}
+			$cha = !empty($this->input->post('chassis')) ? implode(',', $this->input->post('chassis')) : "";
+			$model_select = !empty($this->input->post('model_id')) ? implode(',', $this->input->post('model_id')) : "";
 
 			$rules = array(
 
@@ -302,7 +251,31 @@ class part extends MY_Controller {
 			if ($this->form_validation->run()) {
 				$file_name = $_FILES['image']['name'];
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
-				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
+				$cha = implode(',', $this->input->post('chassis'));
+				$model_select = implode(',', $this->input->post('model_id'));
+				if (!$model_select || $model_select == "all" || $model_select == "" || (is_array($model_select) && (in_array(0, $model_select) || in_array("0", $model_select)))) {
+					$all_models = $this->car->get_classes();
+					$model_select = array();
+					foreach ($all_models as $single_model) {
+						$model_select = array_merge($model_select, array($single_model->id));
+					}
+
+					$model_select = implode(',', $model_select);
+				}
+
+				if ($cha == "all") {
+
+					$model_list = explode(",", $model_select);
+					$chassis_list = [];
+					foreach ($model_list as $single_model) {
+						$model_chassis = $this->part->get_chassis_by_model($single_model);
+						foreach ($model_chassis as $single_chassis) {
+							$chassis_list = array_merge($chassis_list, array($single_chassis->id));
+						}
+					}
+					$cha = implode(',', $chassis_list);
+
+				}
 				$title = $this->input->post('title');
 				$arabicTitle = $this->input->post('title_arabic');
 
@@ -315,17 +288,6 @@ class part extends MY_Controller {
 					$addDate = $this->input->post('updated_date');
 				} else {
 					$addDate = $this->input->post('add_date');
-				}
-				if ($this->data['rec']->status != "approve" && $this->input->post('status') == "approve") {
-					if (!$this->check_maximum_parts_for_plan($this->data['rec']->provider_id)) {
-						$this->part->activate($id);
-					}
-				}
-				if ($this->input->post('status') == "reject") {
-					$this->part->deactivate($id);
-				}
-				if ($this->input->post('status') == "pending") {
-					$this->part->deactivate($id);
 				}
 
 				$new_array = array(
@@ -340,20 +302,11 @@ class part extends MY_Controller {
 					'part_brand' => $part_brand,
 					'add_date' => $addDate,
 					'description' => $this->input->post('description'),
-
-//					'location_latitude'	 =>   $this->input->post('location_lat'),
-					//					'location_longitude' =>   $this->input->post('location_lon'),
-
 					'location' => $this->input->post('location'),
 					'location_zone' => $this->input->post('location_zone'),
-					'username' => $this->session->userdata("user_name"),
-					'email' => $this->session->userdata("user_email"),
-					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
 					'model_id' => $model_select,
-//					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					// 'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->input->post('provider_id'),
@@ -370,25 +323,16 @@ class part extends MY_Controller {
 				);
 
 				$previous_photos = $this->partphotos->manage_part_photos($id);
-//				print_r($_POST["old"]);
-				//				print_r($previous_photos);
-				//				return;
 				$deleted_photos = $this->partphotos->del_part_photos_by_part_id($id);
 				$i = 0;
 				$j = 0;
 				$files = $_FILES;
-//				$dataInfo = array();
 				if (isset($_POST["old"])) {
 					foreach ($_POST["old"] as $key => $value) {
 						if ($value) {
-							//OLD
 							$single_img = array_search($value, array_column($previous_photos, 'id'));
-							//						print_r($single_img);
-							//						return;
-							//						echo $j;
 							$photo_array['photo_name'] = $previous_photos[$single_img]["photo_name"];
 						} else {
-							//New
 							$_FILES['file']['name'] = $files['image']['name'][$i];
 							$_FILES['file']['type'] = $_FILES['image']['type'][$i];
 							$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
@@ -399,7 +343,6 @@ class part extends MY_Controller {
 							$config['allowed_types'] = 'gif|jpg|png|jpeg';
 							$this->upload->initialize($config);
 							if ($this->upload->do_upload('file')) {
-								//							$dataInfo[] = $this->upload->data();
 								$photo_array['photo_name'] = $this->upload->data()['file_name'];
 							}
 							$i++;
@@ -444,41 +387,6 @@ class part extends MY_Controller {
 
 					}
 				}
-
-//				return;
-				//				$dataInfo = array();
-				//				$files = $_FILES;
-				//				$cpt = count($_FILES['image']['name']);
-				//				for($i=0; $i<$cpt; $i++){
-				//
-				//					$_FILES['file']['name'] 	= $files['image']['name'][$i];
-				//					$_FILES['file']['type']     = $_FILES['image']['type'][$i];
-				//					$_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-				//					$_FILES['file']['error']     = $_FILES['image']['error'][$i];
-				//					$_FILES['file']['size']     = $_FILES['image']['size'][$i];
-				//					$config= array();
-				//					$config['upload_path'] ='./upload/';
-				//					$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				//					$this->upload->initialize($config);
-				//					if($this->upload->do_upload('file')){
-				//						$dataInfo[] = $this->upload->data();
-				//					}
-				//				}
-				//
-				//				for($i=0; $i<sizeof($dataInfo); $i++){
-				//
-				//					if($i==0){
-				//						$photo_array['is_default'] = "yes";
-				//						$photo_array['photo_name'] = $dataInfo[0]['file_name'];
-				//					}
-				//					else{
-				//						$photo_array['is_default'] = "no";
-				//						$photo_array['photo_name'] = $dataInfo[$i]['file_name'];
-				//					}
-				//					$this->partphotos->add_part_photos($photo_array);
-				//
-				//				}
-
 				$this->data['success'] = "Updated successfully!";
 			} else {
 				$error = validation_errors();
@@ -494,6 +402,7 @@ class part extends MY_Controller {
 		$this->data['location'] = $this->location->manage_location();
 		$this->data['part_photos'] = $photos_array;
 		$this->data['remaining_count'] = $remaining_count;
+		$this->data['rec'] = $this->part->edit_part($id);
 		$this->data['brand'] = $this->part->manage_brand();
 		$this->data['parts_category'] = $this->part->manage_parts_cat();
 		$this->data['parts_sub_cat'] = $this->part->manage_parts_sub_cat();
@@ -503,6 +412,7 @@ class part extends MY_Controller {
 		$this->data['title'] = 'Edit Listing Part';
 		$this->load->view('edit_part', $this->data);
 	}
+
 	public function sub_cat() {
 
 		$id = $this->input->post('id');
@@ -572,7 +482,6 @@ class part extends MY_Controller {
 	public function reject($id) {
 		$this->part->reject_part($id);
 		$this->part->deactivate($id);
-//		$this->part->deac($id);
 		redirect(base_url('part?success=updated  successfully!'));
 	}
 	public function pending($id) {

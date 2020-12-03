@@ -78,13 +78,18 @@ class Part_model extends CI_Model {
 
 	function get_shop($data, $start, $limit, $chassis, $phone) {
 
+		$today = new DateTime();
+		$compare = $today->format('Y-m-d');
+
 		$chassis_ids = array('24', $chassis);
 
 		if ($data['search']) {
-
-			$this->db->like("title", $data['search']);
-			$this->db->or_like('part_number', $data['search']);
-			$this->db->or_like('parts.id', $data['search']);
+			// $this->db->where('parts.active', 1);
+			// $this->db->where('parts.status', "approve");
+			$this->db->like("title", $data['search'])->where('active', 1)->where("parts.status", 'approve')->where('parts.date_expire >', $compare);
+			$this->db->or_like("title_arabic", $data['search'])->where('active', 1)->where("parts.status", 'approve')->where('parts.date_expire >', $compare);
+			$this->db->or_like('part_number', $data['search'])->where('active', 1)->where("parts.status", 'approve')->where('parts.date_expire >', $compare);
+			$this->db->or_like('parts.id', $data['search'])->where('active', 1)->where("parts.status", 'approve')->where('parts.date_expire >', $compare);
 		}
 
 		if ($data['type'] == 'New') {
@@ -111,6 +116,7 @@ class Part_model extends CI_Model {
 		$this->db->from("parts");
 		$this->db->where('parts.active', 1);
 		$this->db->where('parts.status', "approve");
+		$this->db->where('parts.date_expire >', $compare);
 
 		$this->db->join('provider_user', 'parts.provider_id = provider_user.id');
 		$this->db->join('countries', 'provider_user.country = countries.name');

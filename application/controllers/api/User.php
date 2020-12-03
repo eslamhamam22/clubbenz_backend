@@ -757,9 +757,6 @@ class User extends REST_Controller {
 							"social_id" => $this->post('social_id'),
 
 						);
-//						if($this->post('password') && $this->post('password') != ""){
-						//							$data["password"]= md5($this->post('password'));
-						//						}
 
 						if ($file_name != '') {
 							$config['upload_path'] = './upload/profile_picture';
@@ -868,6 +865,8 @@ class User extends REST_Controller {
 			} else {
 				$arr['data'] = 'invilid user';
 			}
+			$arr['success'] = true;
+			$arr['data'] = $user;
 			$this->response($arr, 200);
 		}
 	}

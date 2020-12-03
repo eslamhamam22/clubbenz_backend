@@ -55,15 +55,6 @@ class Parts extends CI_Controller {
 
 		if ($this->input->post()) {
 
-//			if(empty($this->input->post('username'))){
-			//				$user = $this->ion_auth->user()->row();
-			//				$usname = $user->username;
-			//			}
-			//			else{
-			//				$usname = $this->input->post('username');
-			//
-			//			}
-			/*$brand=implode(',',$this->input->post('part_brand'));*/
 			$rules = array(
 				array(
 					'field' => 'price',
@@ -135,7 +126,6 @@ class Parts extends CI_Controller {
 				}
 
 				$part_brand = ($this->input->post('part_brand') != '') ? implode(',', $this->input->post('part_brand')) : "";
-				//$part_case = ($this->input->post('part_case')!='') ? implode(',',$this->input->post('part_case')) : "";
 				$title = $this->input->post('title');
 				$arabicTitle = $this->input->post('title_arabic');
 
@@ -156,19 +146,12 @@ class Parts extends CI_Controller {
 					'part_brand' => $part_brand,
 					'add_date' => $this->input->post('add_date'),
 					'description' => $this->input->post('description'),
-
-//					'location_latitude'	 =>   $this->input->post('location_lat'),
-					//					'location_longitude' =>   $this->input->post('location_lon'),
-
-//					'location_zone' => $this->input->post('location_zone'),
 					'username' => $this->session->userdata("user_name"),
 					'email' => $this->session->userdata("user_email"),
 					'phone' => $this->session->userdata("user_mobile"),
 					'chassis_id' => $cha,
 					'model_id' => $model_select,
-//					'sort_order' => $this->input->post('sort_order'),
 					'available_location' => $this->input->post('available_location'),
-					// 'date_active' => $this->input->post('date_active'),
 					'date_expire' => $this->input->post('date_expire'),
 					'num_stock' => $this->input->post('num_stock'),
 					'provider_id' => $this->session->userdata("id"),
@@ -216,7 +199,6 @@ class Parts extends CI_Controller {
 
 					redirect(base_url('provider/Parts/?success=Added successfully!'));
 				} else {
-//					print_r($new_array);
 
 					redirect(base_url('provider/Parts/?error=Unknown error!'));
 				}
@@ -712,27 +694,75 @@ class Parts extends CI_Controller {
 		fclose($df);
 		return ob_get_clean();
 	}
-	function download_send_headers($filename) {
-		// disable caching
-		$now = gmdate("D, d M Y H:i:s");
-		header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
-		header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
-		header("Last-Modified: {$now} GMT");
+	// function download_send_headers($filename) {
+	// 	// disable caching
+	// 	$now = gmdate("D, d M Y H:i:s");
+	// 	header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+	// 	header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+	// 	header("Last-Modified: {$now} GMT");
 
-		// force download
-		header("Content-Type: application/force-download");
-		header("Content-Type: application/octet-stream");
-		header("Content-Type: application/download");
+	// 	// force download
+	// 	header("Content-Type: application/force-download");
+	// 	header("Content-Type: application/octet-stream");
+	// 	header("Content-Type: application/download");
 
-		// disposition / encoding on response body
-		header("Content-Disposition: attachment;filename={$filename}");
-		header("Content-Transfer-Encoding: binary");
-	}
-	public function export() {
-		$array = $this->Provider_model->get_parts_for_export($this->session->userdata("id"), true);
-		$this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
-		echo $this->array2csv($array);
-		die();
+	// 	// disposition / encoding on response body
+	// 	header("Content-Disposition: attachment;filename={$filename}");
+	// 	header("Content-Transfer-Encoding: binary");
+	// }
+	// public function export() {
+	// 	$array = $this->Provider_model->get_parts_for_export($this->session->userdata("id"), true);
+	// 	$this->download_send_headers("data_export_" . date("Y-m-d") . ".csv");
+	// 	echo $this->array2csv($array);
+	// 	die();
+	// }
+
+	function export() {
+		$this->load->model("Provider_model");
+		// $this->this->workshop->fetch_data();
+		$this->load->library("excel");
+		$object = new PHPExcel();
+
+		$object->setActiveSheetIndex(0);
+
+		$table_columns = array("id", "title", "title_arabic", "part_number", "part_category", "part_sub_category", "price", "discount", "part_case", "part_brand", "add_date", "description", "chassis_id", "model_id", "available_location", "date_expire", "num_stock");
+
+		$column = 0;
+
+		foreach ($table_columns as $field) {
+			$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+			$column++;
+		}
+
+		$employee_data = $this->Provider_model->fetch_data($this->session->userdata("id"), true);
+
+		$excel_row = 2;
+
+		foreach ($employee_data as $row) {
+			$object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->id);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->title);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->title_arabic);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row->part_number);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row->part_category);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row->part_sub_category);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row->price);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row->discount);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row->part_case);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->part_brand);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row->add_date);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row->description);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row->chassis_id);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row->model_id);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row->available_location);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row->date_expire);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->num_stock);
+			$excel_row++;
+		}
+
+		$object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="parts Data.xlsx"');
+		$object_writer->save('php://output');
 	}
 
 	public function import() {

@@ -159,6 +159,17 @@ class Provider_model extends CI_model {
 
 	}
 
+	function fetch_data($id) {
+		$this->db->select(array('id', 'title', 'title_arabic', 'part_number', 'part_category', 'part_sub_category', 'price', 'discount', 'part_case', 'part_brand', 'add_date', 'description', 'chassis_id', 'model_id', 'available_location', 'date_expire', 'num_stock'));
+		$this->db->from("parts");
+		$this->db->where('provider_id', $id);
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result();
+		}
+		return 0;
+	}
+
 	public function get_parts_fet() {
 		$this->db->select('*');
 		$this->db->from('parts');

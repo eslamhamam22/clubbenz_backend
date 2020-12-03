@@ -175,13 +175,6 @@ if ($cou <= 4) {
         $("#file").change(function (){
             $('#submit').click();
         });
-        // Setup - add a text input to each footer cell
-        // $('#myTable tfoot th').each( function () {
-        //     var title = $(this).text();
-        //     if(title)
-        //         $(this).html( '<input style="width: 150px; font-weight: 100;" type="text" placeholder="Search '+title+'" />' );
-        // } );
-
         var table= $('#myTable').DataTable({
             dom: 'Bfrtip',
             columnDefs: [ {

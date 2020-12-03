@@ -59,6 +59,7 @@ class Push_notification_model extends CI_Model {
 		$this->db->where('user_id', $id);
 		$this->db->where('auto', 0);
 		$this->db->from('notifications');
+		$this->db->join('users', 'notifications.user_id = users.id');
 		$this->db->order_by('id', 'DESC');
 		$this->db->limit(10);
 		$q = $this->db->get();
